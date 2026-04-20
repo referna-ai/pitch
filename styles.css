@@ -470,7 +470,7 @@ body {
 
 .plan-key {
   display: inline-block;
-  min-width: 84px;
+  min-width: 128px;
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 11px;
