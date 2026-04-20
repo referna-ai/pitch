@@ -423,7 +423,7 @@ body {
   background: rgba(212, 165, 116, 0.06);
   border-left: 2px solid var(--gold);
   padding: 18px 24px;
-  margin: 16px 0;
+  margin: 10px 0;
   font-family: var(--font-body);
   font-size: 17px;
   line-height: 1.5;
@@ -437,7 +437,8 @@ body {
 }
 
 .plan-milestone-notes {
-  flex: 0 0 auto;
+  flex: 0 0 400px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -467,6 +468,7 @@ body {
   font-size: 17px;
   color: var(--white);
   line-height: 1.45;
+  white-space: nowrap;
 }
 
 .plan-row + .plan-row {
@@ -827,7 +829,7 @@ body {
 .journey-timeline {
   position: relative;
   padding: 0;
-  margin: 20px 0 28px;
+  margin: 12px 0 16px;
 }
 
 .timeline-row {
