@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InTouch — Pick a version</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<style>
+  :root {
+    --black: #0D0D0D;
+    --gold: #D4A574;
+    --white: #FFFFFF;
+    --gray-100: #F5F5F5;
+    --gray: #D1D1D1;
+    --gray-mid: #999999;
+    --gray-dark: #737373;
+    --gray-700: #404040;
+    --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-body: 'IBM Plex Serif', Georgia, serif;
+    --radius-lg: 16px;
+    --shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { height: 100%; }
+
+  body {
+    font-family: var(--font-display);
+    background: var(--gray-100);
+    color: var(--gray-700);
+    min-height: 100vh;
+    padding: clamp(20px, 3vh, 40px) clamp(16px, 2vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vh, 40px);
+  }
+
+  .page-header {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+
+  .page-eyebrow {
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .page-header h1 {
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 34px);
+    color: var(--black);
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .page-sub {
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: clamp(14px, 1.4vw, 16px);
+    color: var(--gray-dark);
+  }
+
+  .comparison {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.5vw, 32px);
+    flex: 1;
+    align-items: start;
+  }
+
+  .variant {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-decoration: none;
+    color: inherit;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .variant-label {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .variant-tag {
+    display: inline-block;
+    color: var(--gold);
+    border: 2px solid var(--gold);
+    border-radius: 9999px;
+    padding: 5px 12px;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .variant-title {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--gray-dark);
+  }
+
+  .slide {
+    background: var(--black);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(212, 165, 116, 0.12);
+    aspect-ratio: 16 / 10;
+    width: 100%;
+    max-height: calc(100vh - 180px);
+    padding: clamp(20px, 3.5vw, 48px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(14px, 2vw, 32px);
+    text-align: center;
+    box-shadow: var(--shadow-dropdown);
+    position: relative;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .variant:hover .slide,
+  .variant:focus-visible .slide {
+    transform: translateY(-4px);
+    border-color: rgba(212, 165, 116, 0.45);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55);
+  }
+
+  .variant:focus-visible { outline: none; }
+
+  .slide-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .slide-logo-mark {
+    width: clamp(20px, 1.8vw, 28px);
+    height: clamp(20px, 1.8vw, 28px);
+    flex-shrink: 0;
+  }
+
+  .slide-logo-wordmark {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(16px, 1.5vw, 22px);
+    color: var(--white);
+    letter-spacing: -0.02em;
+  }
+
+  .divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    border: none;
+  }
+
+  .slide-headline {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: clamp(26px, 3.6vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--white);
+  }
+
+  .slide-headline .gold { color: var(--gold); }
+
+  .slide-subtitle {
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(13px, 1.35vw, 20px);
+    line-height: 1.5;
+    color: var(--gray);
+    max-width: 640px;
+  }
+
+  .slide-footer {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(9px, 0.8vw, 11px);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .slide-cta {
+    margin-top: 4px;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: clamp(11px, 1vw, 13px);
+    letter-spacing: 0.06em;
+    color: var(--gray-mid);
+    transition: color 0.2s ease;
+  }
+
+  .variant:hover .slide-cta,
+  .variant:focus-visible .slide-cta {
+    color: var(--gold);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: 16px 10px; gap: 16px; }
+    .slide { gap: 12px; padding: 18px; max-height: calc(100vh - 140px); }
+    .variant-label { gap: 8px; }
+    .variant-title { font-size: 11px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="page-eyebrow">InTouch · Pre-seed round</div>
+  <h1>Which company do you want to hear about?</h1>
+  <p class="page-sub">Pick a version — same team, two framings.</p>
+</div>
+
+<div class="comparison">
+
+  <a class="variant" href="index.html" aria-label="Open Variant A — The trust network">
+    <div class="variant-label">
+      <span class="variant-tag">Variant A</span>
+      <span class="variant-title">The trust network</span>
+    </div>
+
+    <div class="slide">
+      <div class="slide-logo">
+        <svg class="slide-logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>
+          <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+        </svg>
+        <span class="slide-logo-wordmark">InTouch</span>
+      </div>
+
+      <hr class="divider">
+
+      <h2 class="slide-headline">
+        The <span class="gold">trust</span> network
+      </h2>
+
+      <p class="slide-subtitle">
+        A professional network where connections are verified by real-world interactions — by design. Built for the 338 million professionals in small teams who run on who they know.
+      </p>
+
+      <hr class="divider">
+
+      <div class="slide-footer">Pre-seed round</div>
+      <div class="slide-cta">View deck →</div>
+    </div>
+  </a>
+
+  <a class="variant" href="v2/index.html" aria-label="Open Variant B — The agent network">
+    <div class="variant-label">
+      <span class="variant-tag">Variant B</span>
+      <span class="variant-title">The agent network</span>
+    </div>
+
+    <div class="slide">
+      <div class="slide-logo">
+        <svg class="slide-logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>
+          <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+        </svg>
+        <span class="slide-logo-wordmark">InTouch</span>
+      </div>
+
+      <hr class="divider">
+
+      <h2 class="slide-headline">
+        The <span class="gold">agent</span> network
+      </h2>
+
+      <p class="slide-subtitle">
+        A professional network for a world where humans are not reading emails. Built to generate trust signal for agents navigating a world 100x noisier than yesterday.
+      </p>
+
+      <hr class="divider">
+
+      <div class="slide-footer">Pre-seed round</div>
+      <div class="slide-cta">View deck →</div>
+    </div>
+  </a>
+
+</div>
+
+</body>
+</html>
