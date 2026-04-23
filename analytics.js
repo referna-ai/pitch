@@ -12,7 +12,7 @@
     'slide-1-updated.html':  '01 \u00b7 The Market',
     'slide-2.html':          '02 \u00b7 The Network',
     'slide-3.html':          '03 \u00b7 The Opportunity',
-    'slide-companion.html':  '04 \u00b7 The Companion',
+    'slide-companion.html':  '04 \u00b7 The Agent Network',
     'slide-4-updated.html':  '05 \u00b7 The Plan',
     'slide-5.html':          '06 \u00b7 The Team'
   };
