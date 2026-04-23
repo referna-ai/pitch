@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · The future — InTouch Pitch</title>
+<title>S4 · The companion — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -30,31 +30,9 @@
     color: var(--white);
     line-height: 1.3;
   }
-  .companion-table .label { width: 22%; }
+  .companion-table .label { width: 28%; }
   .companion-table .volume,
-  .companion-table .intouch { width: 26%; }
-  .companion-table .muted { color: var(--gray-mid); font-style: italic; }
-  .companion-table .verdict-row td {
-    border-top: 1px solid var(--border);
-    padding-top: 14px;
-  }
-  .companion-table .verdict {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 17px;
-    letter-spacing: 0.02em;
-  }
-  .companion-table .verdict-shallow { color: var(--gray-mid); }
-  .companion-table .verdict-broken  { color: var(--error); }
-  .companion-table .verdict-works   { color: var(--gold); }
-  .slide-lead {
-    font-family: var(--font-body);
-    font-size: 17px;
-    line-height: 1.55;
-    color: var(--gray);
-    margin-bottom: 20px;
-  }
-  .slide-lead strong { color: var(--white); }
+  .companion-table .intouch { width: 24%; }
 </style>
 </head>
 <body data-slide="slide-companion">
@@ -65,7 +43,7 @@
   <a href="slide-1-updated.html" class="deck-tab">The networkers</a>
   <a href="slide-2.html" class="deck-tab">The trend</a>
   <a href="slide-3.html" class="deck-tab">The network</a>
-  <a href="slide-companion.html" class="deck-tab active">The future</a>
+  <a href="slide-companion.html" class="deck-tab active">The companion</a>
   <a href="slide-4-updated.html" class="deck-tab">The plan</a>
   <a href="slide-5.html" class="deck-tab">The team</a>
 </nav>
@@ -74,66 +52,56 @@
 
 <div class="slide" id="slide-companion">
   <div class="slide-number">04 / 06</div>
-  <div class="slide-label">The future</div>
+  <div class="slide-label">The companion</div>
   <h2 class="slide-title">InTouch unlocks agent networking</h2>
-
-  <p class="slide-lead">
-    <strong>Three futures.</strong> Either agents stay siloed, or everyone dumps private data into public pools, or trust gates the exchange. There isn't a fourth option.
-  </p>
 
   <table class="comparison companion-table">
     <thead>
       <tr>
-        <th></th>
+        <th>Use case</th>
         <th>
-          <div class="col-eyebrow">01 · Today</div>
-          <div class="col-name">Agents work alone</div>
+          <div class="col-eyebrow">Today</div>
+          <div class="col-name">Human</div>
         </th>
         <th>
-          <div class="col-eyebrow">02 · All-public</div>
-          <div class="col-name">Private in the open</div>
+          <div class="col-eyebrow">Today</div>
+          <div class="col-name">AI agent</div>
         </th>
         <th class="intouch">
-          <div class="col-eyebrow">03 · InTouch</div>
-          <div class="col-name">Trust-gated exchange</div>
+          <div class="col-eyebrow">Agent-native</div>
+          <div class="col-name">InTouch</div>
         </th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td class="label">Agent-to-agent exchange</td>
-        <td class="volume">None</td>
-        <td class="volume">Unrestricted</td>
-        <td class="intouch"><strong>Permissioned</strong></td>
+        <td class="label">&ldquo;Who should I meet?&rdquo;</td>
+        <td class="volume">Ask trusted contacts</td>
+        <td class="volume">Searches public data only</td>
+        <td class="intouch"><strong>Queries trust-gated graph</strong></td>
       </tr>
       <tr>
-        <td class="label">What each agent accesses</td>
-        <td class="volume">Public data only</td>
-        <td class="volume">Everyone's private data</td>
-        <td class="intouch"><strong>Gated, permissioned slices</strong></td>
+        <td class="label">&ldquo;Is this person right for me?&rdquo;</td>
+        <td class="volume">Call someone who knows them</td>
+        <td class="volume">No way to verify</td>
+        <td class="intouch"><strong>Verified interaction history</strong></td>
       </tr>
       <tr>
-        <td class="label">Private data ends up</td>
-        <td class="volume">In each silo</td>
-        <td class="volume">In a shared pool</td>
-        <td class="intouch"><strong>Where it started</strong></td>
+        <td class="label">&ldquo;Who can intro me to X?&rdquo;</td>
+        <td class="volume">Mental rolodex, ~150 max</td>
+        <td class="volume">Can&rsquo;t — no trust layer</td>
+        <td class="intouch"><strong>2nd-hop paths across circles</strong></td>
       </tr>
       <tr>
-        <td class="label">Who decides what's shared</td>
-        <td class="volume muted">—</td>
-        <td class="volume">No one</td>
-        <td class="intouch"><strong>Verified circle trust</strong></td>
-      </tr>
-      <tr class="verdict-row">
-        <td class="label">Verdict</td>
-        <td class="volume verdict verdict-shallow">Shallow</td>
-        <td class="volume verdict verdict-broken">Broken</td>
-        <td class="intouch verdict verdict-works"><strong>Works</strong></td>
+        <td class="label">&ldquo;What context do I need before this meeting?&rdquo;</td>
+        <td class="volume">Ask around, prep manually</td>
+        <td class="volume">Only your own calendar/email</td>
+        <td class="intouch"><strong>Agent-to-agent context exchange</strong></td>
       </tr>
     </tbody>
   </table>
 
-  <div class="conclusion">InTouch gives AI agents a trust layer to make intros, recommendations, and trusted advice.</div>
+  <div class="conclusion">InTouch is the trust layer that lets AI agents introduce, recommend, and advise.</div>
   <div class="sources">Sources: InTouch product design</div>
 </div>
 
