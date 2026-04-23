@@ -3,19 +3,19 @@
   window.__pitchAnalyticsLoaded = true;
 
   // ── CONFIG ────────────────────────────────────────────────────────────
-  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwVQQ73tge2QdXaFirAUIM0q9BmNnoV5v45OwIejBkxpMVsl0b-k5XP-RoEVEWNpWM-jw/exec';
+  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzpqpGLcsQ44kV4g5sPV7L7I4Ce627Ad6TRuy-ilSlkF8NL4lxqaGbS14yqCbgPAQMEnA/exec';
   var MAX_SLIDE_SECS = 30 * 60; // cap at 30 min — handles tabs left open for days
   // ─────────────────────────────────────────────────────────────────────
 
   var SLIDES = {
-    'index.html':            '00 - Cover',
-    'slide-1-updated.html':  '01 \u00b7 The Market',
-    'slide-2.html':          '02 \u00b7 The Network',
-    'slide-3.html':          '03 \u00b7 The Opportunity',
-    'slide-3b.html':         '04 \u00b7 The AI Trust Layer',
-    'slide-companion.html':  '05 \u00b7 The Agent Network',
-    'slide-4-updated.html':  '06 \u00b7 The Plan',
-    'slide-5.html':          '07 \u00b7 The Team'
+    'index.html':   '00 · Cover',
+    'slide-1.html': '01 · The Market',
+    'slide-2.html': '02 · The Network',
+    'slide-3.html': '03 · The Opportunity',
+    'slide-4.html': '04 · The AI Trust Layer',
+    'slide-5.html': '05 · The Agent Network',
+    'slide-6.html': '06 · The Plan',
+    'slide-7.html': '07 · The Team'
   };
 
   var COOKIE = 'pitch_viewer';
