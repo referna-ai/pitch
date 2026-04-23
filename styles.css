@@ -133,25 +133,13 @@ body {
   font-weight: 600;
 }
 
-/* S1: content frame (indented rails) */
-.slide-inset {
-  padding-left: 180px;
-  padding-right: 180px;
+/* S1: content items indented (title/label/conclusion/sources keep slide padding) */
+.slide-inset .bullets,
+.slide-inset .hero-stats,
+.slide-inset .derivation {
+  margin-left: 120px;
+  margin-right: 120px;
 }
-
-.slide-inset::before,
-.slide-inset::after {
-  content: "";
-  position: absolute;
-  top: 56px;
-  bottom: 56px;
-  width: 1px;
-  background: rgba(212, 165, 116, 0.22);
-  pointer-events: none;
-}
-
-.slide-inset::before { left: 120px; }
-.slide-inset::after { right: 120px; }
 
 /* S1: hero stats */
 .hero-stats {
@@ -1433,8 +1421,9 @@ body {
     gap: 14px;
   }
 
-  .slide-inset { padding-left: 20px; padding-right: 20px; }
-  .slide-inset::before, .slide-inset::after { display: none; }
+  .slide-inset .bullets,
+  .slide-inset .hero-stats,
+  .slide-inset .derivation { margin-left: 0; margin-right: 0; }
 
   .hero-stats {
     flex-direction: column;
