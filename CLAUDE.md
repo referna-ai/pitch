@@ -14,7 +14,7 @@ Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
 - `slide-1-updated.html` — S1: The Networkers
 - `slide-2.html` — S2: The trend (every channel is closing)
 - `slide-3.html` — S3: The network (LinkedIn vs InTouch)
-- `slide-companion.html` — S4: The companion (three futures for agent exchange)
+- `slide-companion.html` — S4: The future (InTouch unlocks agent networking)
 - `slide-4-updated.html` — S5: The plan
 - `slide-5.html` — S6: The team
 - `backup/` — archived versions, do not modify
