@@ -76,7 +76,7 @@
     font-size: 15px;
     line-height: 1.4;
     color: var(--gray);
-    margin: 0 0 14px 0;
+    margin: 0 0 10px 0;
     padding-left: 12px;
     border-left: 2px solid var(--gold);
   }
@@ -91,8 +91,8 @@
     background: var(--black);
     border: 1px solid var(--border);
     border-radius: 8px;
-    padding: 14px 22px 18px;
-    margin: 0 0 14px 0;
+    padding: 10px 22px 12px;
+    margin: 0 0 10px 0;
   }
 
   .trust-diagram svg {
@@ -138,12 +138,13 @@
     fill: var(--white);
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 24px;
+    font-size: 22px;
     letter-spacing: -0.01em;
   }
   .trust-diagram .centerpiece-accent {
     fill: var(--gold);
     font-weight: 800;
+    font-size: 26px;
   }
   .trust-diagram .ctx-title {
     fill: var(--gold);
@@ -167,19 +168,10 @@
     letter-spacing: -0.005em;
   }
 
-  /* Tighter conclusion for S3b so the slide doesn't overflow vertically */
-  #slide-3b .conclusion {
-    font-size: 20px;
-    padding-top: 14px;
-    margin-top: 14px;
-    line-height: 1.35;
-  }
-
   @media (max-width: 768px) {
-    .trust-diagram { padding: 12px 14px; }
+    .trust-diagram { padding: 10px 14px; }
     .trust-toggle { font-size: 10px; padding: 6px 10px; }
     .scenario-note { font-size: 13px; }
-    #slide-3b .conclusion { font-size: 16px; }
   }
 </style>
 </head>
@@ -213,7 +205,7 @@
   <div class="scenario-note" id="scenario-note"></div>
 
   <div class="trust-diagram">
-    <svg viewBox="0 0 1000 380" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <svg viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
       <defs>
         <marker id="trust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
           <path d="M 0 0 L 10 5 L 0 10 z" fill="#D4A574"/>
@@ -237,12 +229,8 @@
       <line x1="130" y1="74" x2="130" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
       <line x1="870" y1="74" x2="870" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
 
-      <!-- ========== CENTERPIECE STATEMENT ========== -->
-      <text x="500" y="132" text-anchor="middle" class="centerpiece">Trust between humans</text>
-      <text x="500" y="166" text-anchor="middle" class="centerpiece">
-        <tspan class="centerpiece-accent">=</tspan>
-        <tspan dx="6">permission between agents</tspan>
-      </text>
+      <!-- ========== CENTERPIECE STATEMENT (single line) ========== -->
+      <text x="500" y="140" text-anchor="middle" class="centerpiece">Trust between humans <tspan class="centerpiece-accent">=</tspan> permission between agents</text>
 
       <!-- ========== AGENTS ROW ========== -->
       <!-- Exchange channel -->
@@ -278,13 +266,13 @@
       </text>
 
       <!-- ========== PRIVATE CONTEXT (dynamic) ========== -->
-      <rect x="60" y="316" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
-      <text x="74" y="334" class="ctx-title" id="left-ctx-title">FOUNDER · PRIVATE CONTEXT</text>
-      <text id="left-ctx-items" x="74" y="356" class="ctx-item"></text>
+      <rect x="60" y="296" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="74" y="314" class="ctx-title" id="left-ctx-title">FOUNDER · PRIVATE CONTEXT</text>
+      <text id="left-ctx-items" x="74" y="336" class="ctx-item"></text>
 
-      <rect x="560" y="316" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
-      <text x="574" y="334" class="ctx-title" id="right-ctx-title">VC · PRIVATE CONTEXT</text>
-      <text id="right-ctx-items" x="574" y="356" class="ctx-item"></text>
+      <rect x="560" y="296" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="574" y="314" class="ctx-title" id="right-ctx-title">VC · PRIVATE CONTEXT</text>
+      <text id="right-ctx-items" x="574" y="336" class="ctx-item"></text>
     </svg>
   </div>
 

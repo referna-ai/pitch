@@ -12,7 +12,7 @@
     'slide-1-updated.html': '01 \u00b7 The Market',
     'slide-2.html':         '02 \u00b7 The Network',
     'slide-3.html':         '03 \u00b7 The Opportunity',
-    'slide-3b.html':        '04 \u00b7 Why It Matters',
+    'slide-3b.html':        '04 \u00b7 The AI Trust Layer',
     'slide-4-updated.html': '05 \u00b7 The Plan',
     'slide-5.html':         '06 \u00b7 The Team'
   };
