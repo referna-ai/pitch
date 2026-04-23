@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<!-- trigger: redeploy -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S3b — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .trust-toggles {
+    display: flex;
+    gap: 8px;
+    margin: 0 0 14px 0;
+    flex-wrap: wrap;
+  }
+  .trust-toggle {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 999px;
+    background: var(--black-soft);
+    color: var(--gray-mid);
+    border: 1px solid var(--border);
+    cursor: pointer;
+    transition: color 0.18s ease, border-color 0.18s ease,
+                background 0.18s ease, transform 0.18s ease,
+                box-shadow 0.18s ease;
+    will-change: transform, box-shadow;
+  }
+  /* Subtle breathing hint so inactive toggles read as clickable */
+  .trust-toggle:not(.active) {
+    animation: toggleBreath 2.6s ease-in-out infinite;
+  }
+  @keyframes toggleBreath {
+    0%, 100% {
+      border-color: var(--border);
+      box-shadow: 0 0 0 0 rgba(212, 165, 116, 0);
+    }
+    50% {
+      border-color: rgba(212, 165, 116, 0.55);
+      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.10);
+    }
+  }
+  .trust-toggle:hover {
+    color: var(--white);
+    border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(212, 165, 116, 0.18);
+    animation: none;
+  }
+  .trust-toggle:active {
+    transform: translateY(0);
+  }
+  .trust-toggle.active {
+    color: var(--gold);
+    border-color: var(--gold);
+    background: rgba(212, 165, 116, 0.08);
+    animation: none;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trust-toggle:not(.active) { animation: none; }
+    .trust-toggle:hover { transform: none; }
+  }
+
+  .scenario-note {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.4;
+    color: var(--gray);
+    margin: 0 0 10px 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--gold);
+  }
+  .scenario-note em {
+    color: var(--gold);
+    font-style: normal;
+    font-weight: 700;
+    font-family: var(--font-display);
+  }
+
+  .trust-diagram {
+    background: var(--black);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px 22px 12px;
+    margin: 0 0 10px 0;
+  }
+
+  .trust-diagram svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .trust-diagram .node-label {
+    fill: var(--white);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 16px;
+  }
+  .trust-diagram .node-sub {
+    fill: var(--gray);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 1.2px;
+  }
+  .trust-diagram .chip-label {
+    fill: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.4px;
+  }
+  .trust-diagram .chip-sub {
+    fill: var(--white);
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 12px;
+  }
+  .trust-diagram .flow-label {
+    fill: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.2px;
+  }
+  .trust-diagram .centerpiece {
+    fill: var(--white);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+  }
+  .trust-diagram .centerpiece-accent {
+    fill: var(--gold);
+    font-weight: 800;
+    font-size: 26px;
+  }
+  .trust-diagram .ctx-title {
+    fill: var(--gold);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 1.4px;
+  }
+  .trust-diagram .ctx-item {
+    fill: var(--white);
+    font-family: var(--font-body);
+    font-size: 13px;
+  }
+  .trust-diagram .query-text,
+  .trust-diagram .response-text {
+    fill: var(--white);
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.005em;
+  }
+
+  @media (max-width: 768px) {
+    .trust-diagram { padding: 10px 14px; }
+    .trust-toggle { font-size: 10px; padding: 6px 10px; }
+    .scenario-note { font-size: 13px; }
+  }
+</style>
+</head>
+<body data-slide="slide-3b">
+
+<div class="deck-tabs-trigger" aria-hidden="true"></div>
+<nav class="deck-tabs">
+  <a href="index.html" class="deck-tab">Overview</a>
+  <a href="slide-1-updated.html" class="deck-tab">The networkers</a>
+  <a href="slide-2.html" class="deck-tab">The trend</a>
+  <a href="slide-3.html" class="deck-tab">The network</a>
+  <a href="slide-3b.html" class="deck-tab active">The AI Trust Layer</a>
+  <a href="slide-companion.html" class="deck-tab">The agent network</a>
+  <a href="slide-4-updated.html" class="deck-tab">The plan</a>
+  <a href="slide-5.html" class="deck-tab">The team</a>
+</nav>
+
+<div class="deck">
+
+<div class="slide" id="slide-3b">
+  <div class="slide-number">04 / 07</div>
+  <div class="slide-label">The AI Trust Layer</div>
+  <h2 class="slide-title">Agents inherit human trust</h2>
+
+  <div class="trust-toggles" role="tablist" aria-label="Use case">
+    <button type="button" class="trust-toggle active" data-case="intro" role="tab" aria-selected="true">Find a warm intro</button>
+    <button type="button" class="trust-toggle" data-case="reference" role="tab" aria-selected="false">Check a reference</button>
+    <button type="button" class="trust-toggle" data-case="redflag" role="tab" aria-selected="false">Spot red flags</button>
+    <button type="button" class="trust-toggle" data-case="advice" role="tab" aria-selected="false">Get deck feedback</button>
+  </div>
+
+  <div class="scenario-note" id="scenario-note"></div>
+
+  <div class="trust-diagram">
+    <svg viewBox="0 0 1000 360" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="trust-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#D4A574"/>
+        </marker>
+      </defs>
+
+      <!-- ========== HUMANS ROW ========== -->
+      <line x1="190" y1="40" x2="430" y2="40" stroke="#D4A574" stroke-width="2"/>
+      <line x1="570" y1="40" x2="810" y2="40" stroke="#D4A574" stroke-width="2"/>
+
+      <rect x="70" y="10" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="130" y="46" text-anchor="middle" class="node-label" id="left-human">Founder</text>
+
+      <rect x="810" y="10" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="870" y="46" text-anchor="middle" class="node-label" id="right-human">VC</text>
+
+      <rect x="430" y="24" width="140" height="32" rx="4" fill="#0D0D0D" stroke="#D4A574" stroke-width="1.5"/>
+      <text x="500" y="44" text-anchor="middle" class="chip-label">TRUST CIRCLE</text>
+
+      <!-- ========== INHERITANCE ARROWS (flank the centerpiece statement) ========== -->
+      <line x1="130" y1="74" x2="130" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
+      <line x1="870" y1="74" x2="870" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
+
+      <!-- ========== CENTERPIECE STATEMENT (single line) ========== -->
+      <text x="500" y="140" text-anchor="middle" class="centerpiece">Trust between humans <tspan class="centerpiece-accent">=</tspan> permission between agents</text>
+
+      <!-- ========== AGENTS ROW ========== -->
+      <!-- Exchange channel -->
+      <line x1="170" y1="238" x2="830" y2="238" stroke="#D4A574" stroke-width="2"/>
+
+      <!-- Founder's Agent -->
+      <rect x="60" y="202" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="115" y="228" text-anchor="middle" class="node-sub" id="left-agent-sub">FOUNDER'S</text>
+      <text x="115" y="254" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+
+      <!-- VC's Agent -->
+      <rect x="830" y="202" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="885" y="228" text-anchor="middle" class="node-sub" id="right-agent-sub">VC'S</text>
+      <text x="885" y="254" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+
+      <!-- InTouch permission chip -->
+      <rect x="445" y="212" width="110" height="52" rx="8" fill="#0D0D0D" stroke="#D4A574" stroke-width="2"/>
+      <text x="500" y="232" text-anchor="middle" class="chip-label">INTOUCH</text>
+      <text x="500" y="252" text-anchor="middle" class="chip-sub">permission layer</text>
+
+      <!-- Flow labels (static: query always on left, response always on right) -->
+      <text x="307" y="228" text-anchor="middle" class="flow-label">query →</text>
+      <text x="693" y="228" text-anchor="middle" class="flow-label">← response</text>
+
+      <!-- Dynamic query / response body text (bigger, non-italic, up to 2 lines) -->
+      <text id="left-body" x="307" y="262" text-anchor="middle" class="query-text">
+        <tspan id="left-body-1" x="307" dy="0"></tspan>
+        <tspan id="left-body-2" x="307" dy="1.15em"></tspan>
+      </text>
+      <text id="right-body" x="693" y="262" text-anchor="middle" class="query-text">
+        <tspan id="right-body-1" x="693" dy="0"></tspan>
+        <tspan id="right-body-2" x="693" dy="1.15em"></tspan>
+      </text>
+
+      <!-- ========== PRIVATE CONTEXT (dynamic) ========== -->
+      <rect x="60" y="296" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="74" y="314" class="ctx-title" id="left-ctx-title">FOUNDER · PRIVATE CONTEXT</text>
+      <text id="left-ctx-items" x="74" y="336" class="ctx-item"></text>
+
+      <rect x="560" y="296" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="574" y="314" class="ctx-title" id="right-ctx-title">VC · PRIVATE CONTEXT</text>
+      <text id="right-ctx-items" x="574" y="336" class="ctx-item"></text>
+    </svg>
+  </div>
+
+  <div class="conclusion">Agents inherit trust from humans. Private context sharing enables high-leverage use cases.</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+<script>
+(function () {
+  // Query is always on the left; response is always on the right.
+  // The two participants (left → right) vary per scenario: FF, VF, VV, FV.
+  var cases = {
+    // FF — founder asks another founder in their trust circle
+    intro: {
+      leftHuman: 'Founder', rightHuman: 'Founder',
+      leftAgent: "FOUNDER'S", rightAgent: "FOUNDER'S",
+      leftCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      rightCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      leftCtx: 'my circle · who I want to reach · tie strength',
+      rightCtx: 'my contacts · shared history · relationship depth',
+      query: '"Anyone know the CFO at Acme?"',
+      response: '"Priya — met him twice."',
+      note: '<em>A warm path</em> — neither agent could surface it from public data.'
+    },
+    // VF — VC asks a founder to vouch for a candidate
+    reference: {
+      leftHuman: 'VC', rightHuman: 'Founder',
+      leftAgent: "VC'S", rightAgent: "FOUNDER'S",
+      leftCtxTitle: 'VC · PRIVATE CONTEXT',
+      rightCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      leftCtx: 'diligence list · candidate claims · hiring bar',
+      rightCtx: 'former reports · shipped projects · work quality',
+      query: '"Did Sarah really lead payments at Y?"',
+      response: '"Yes — tech lead, 2022–2024."',
+      note: '<em>A verified reference</em> — neither agent could confirm it from public data.'
+    },
+    // VV — VC asks a peer VC about a founder
+    redflag: {
+      leftHuman: 'VC', rightHuman: 'VC',
+      leftAgent: "VC'S", rightAgent: "VC'S",
+      leftCtxTitle: 'VC · PRIVATE CONTEXT',
+      rightCtxTitle: 'VC · PRIVATE CONTEXT',
+      leftCtx: 'current deal · diligence · timing',
+      rightCtx: 'prior deals · passed rounds · founder behavior',
+      query: '"Any reason I shouldn’t back this founder?"',
+      response: '"Passed their seed — cap-table games."',
+      note: '<em>A candid warning</em> — neither agent could learn it from public data.'
+    },
+    // FV — founder asks a VC for deck feedback
+    advice: {
+      leftHuman: 'Founder', rightHuman: 'VC',
+      leftAgent: "FOUNDER'S", rightAgent: "VC'S",
+      leftCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      rightCtxTitle: 'VC · PRIVATE CONTEXT',
+      leftCtx: 'deck draft · fundraise stage · team · traction',
+      rightCtx: 'thesis · pattern preferences · pet peeves',
+      query: '"What would you flag in my deck?"',
+      response: '"Burn, moat, and the org chart."',
+      note: '<em>Trusted feedback</em> — neither agent could produce it from public data.'
+    }
+  };
+
+  var leftHuman = document.getElementById('left-human');
+  var rightHuman = document.getElementById('right-human');
+  var leftAgentSub = document.getElementById('left-agent-sub');
+  var rightAgentSub = document.getElementById('right-agent-sub');
+  var leftCtxTitle = document.getElementById('left-ctx-title');
+  var rightCtxTitle = document.getElementById('right-ctx-title');
+  var leftBody1 = document.getElementById('left-body-1');
+  var leftBody2 = document.getElementById('left-body-2');
+  var rightBody1 = document.getElementById('right-body-1');
+  var rightBody2 = document.getElementById('right-body-2');
+  var leftCtxItems = document.getElementById('left-ctx-items');
+  var rightCtxItems = document.getElementById('right-ctx-items');
+  var note = document.getElementById('scenario-note');
+  var toggles = document.querySelectorAll('.trust-toggle');
+
+  // If `text` fits on a single line (<= maxChars), it all goes in line1 and line2 clears.
+  // Otherwise split at the last space at-or-before maxChars (fall back to first space after).
+  function setWrapped(line1, line2, text, maxChars) {
+    if (text.length <= maxChars) {
+      line1.textContent = text;
+      line2.textContent = '';
+      return;
+    }
+    var split = text.lastIndexOf(' ', maxChars);
+    if (split < 0) split = text.indexOf(' ', maxChars);
+    if (split < 0) {
+      line1.textContent = text;
+      line2.textContent = '';
+      return;
+    }
+    line1.textContent = text.slice(0, split);
+    line2.textContent = text.slice(split + 1);
+  }
+
+  function apply(key) {
+    var c = cases[key];
+    if (!c) return;
+
+    // Query always left, response always right — participants vary per pair.
+    leftHuman.textContent = c.leftHuman;
+    rightHuman.textContent = c.rightHuman;
+    leftAgentSub.textContent = c.leftAgent;
+    rightAgentSub.textContent = c.rightAgent;
+    leftCtxTitle.textContent = c.leftCtxTitle;
+    rightCtxTitle.textContent = c.rightCtxTitle;
+    setWrapped(leftBody1, leftBody2, c.query, 26);
+    setWrapped(rightBody1, rightBody2, c.response, 26);
+    leftCtxItems.textContent = c.leftCtx;
+    rightCtxItems.textContent = c.rightCtx;
+    note.innerHTML = c.note;
+
+    toggles.forEach(function (btn) {
+      var active = btn.dataset.case === key;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+  }
+
+  toggles.forEach(function (btn) {
+    btn.setAttribute('data-nav-ignore', '');
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      apply(btn.dataset.case);
+    });
+  });
+
+  apply('intro');
+})();
+</script>
+</body>
+</html>
