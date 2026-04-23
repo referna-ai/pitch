@@ -8,6 +8,7 @@
     'slide-2.html',
     'slide-3.html',
     'slide-3b.html',
+    'slide-companion.html',
     'slide-4-updated.html',
     'slide-5.html'
   ];
