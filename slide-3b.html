@@ -29,21 +29,50 @@
     color: var(--gray-mid);
     border: 1px solid var(--border);
     cursor: pointer;
-    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+    transition: color 0.18s ease, border-color 0.18s ease,
+                background 0.18s ease, transform 0.18s ease,
+                box-shadow 0.18s ease;
+    will-change: transform, box-shadow;
+  }
+  /* Subtle breathing hint so inactive toggles read as clickable */
+  .trust-toggle:not(.active) {
+    animation: toggleBreath 2.6s ease-in-out infinite;
+  }
+  @keyframes toggleBreath {
+    0%, 100% {
+      border-color: var(--border);
+      box-shadow: 0 0 0 0 rgba(212, 165, 116, 0);
+    }
+    50% {
+      border-color: rgba(212, 165, 116, 0.55);
+      box-shadow: 0 0 0 3px rgba(212, 165, 116, 0.10);
+    }
   }
   .trust-toggle:hover {
     color: var(--white);
     border-color: var(--gold);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(212, 165, 116, 0.18);
+    animation: none;
+  }
+  .trust-toggle:active {
+    transform: translateY(0);
   }
   .trust-toggle.active {
     color: var(--gold);
     border-color: var(--gold);
     background: rgba(212, 165, 116, 0.08);
+    animation: none;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .trust-toggle:not(.active) { animation: none; }
+    .trust-toggle:hover { transform: none; }
   }
 
   .scenario-note {
-    font-family: var(--font-body);
-    font-style: italic;
+    font-family: var(--font-display);
+    font-weight: 500;
     font-size: 15px;
     line-height: 1.4;
     color: var(--gray);
@@ -54,7 +83,7 @@
   .scenario-note em {
     color: var(--gold);
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     font-family: var(--font-display);
   }
 
@@ -72,19 +101,6 @@
     height: auto;
   }
 
-  .trust-diagram .band-label {
-    fill: var(--gold);
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 12px;
-    letter-spacing: 1.6px;
-  }
-  .trust-diagram .band-caption {
-    fill: var(--gray);
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 13px;
-  }
   .trust-diagram .node-label {
     fill: var(--white);
     font-family: var(--font-display);
@@ -118,12 +134,16 @@
     font-size: 12px;
     letter-spacing: 1.2px;
   }
-  .trust-diagram .inherit-label {
-    fill: var(--gold);
+  .trust-diagram .centerpiece {
+    fill: var(--white);
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 1.2px;
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: -0.01em;
+  }
+  .trust-diagram .centerpiece-accent {
+    fill: var(--gold);
+    font-weight: 800;
   }
   .trust-diagram .ctx-title {
     fill: var(--gold);
@@ -140,9 +160,11 @@
   .trust-diagram .query-text,
   .trust-diagram .response-text {
     fill: var(--white);
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 14px;
+    font-family: var(--font-display);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.005em;
   }
 
   /* Tighter conclusion for S3b so the slide doesn't overflow vertically */
@@ -198,77 +220,71 @@
         </marker>
       </defs>
 
-      <!-- ========== BAND 1: HUMANS MEET ========== -->
-      <text x="500" y="14" text-anchor="middle" class="band-label">1 · HUMANS MEET</text>
-      <text x="500" y="32" text-anchor="middle" class="band-caption">Verified in-person / calendar interactions build the trust graph.</text>
+      <!-- ========== HUMANS ROW ========== -->
+      <line x1="190" y1="40" x2="430" y2="40" stroke="#D4A574" stroke-width="2"/>
+      <line x1="570" y1="40" x2="810" y2="40" stroke="#D4A574" stroke-width="2"/>
 
-      <!-- Connector lines (behind chip) -->
-      <line x1="190" y1="84" x2="430" y2="84" stroke="#D4A574" stroke-width="2"/>
-      <line x1="570" y1="84" x2="810" y2="84" stroke="#D4A574" stroke-width="2"/>
+      <rect x="70" y="10" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="130" y="46" text-anchor="middle" class="node-label" id="left-human">Founder</text>
 
-      <!-- Founder node -->
-      <rect x="70" y="54" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
-      <text x="130" y="90" text-anchor="middle" class="node-label" id="left-human">Founder</text>
+      <rect x="810" y="10" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
+      <text x="870" y="46" text-anchor="middle" class="node-label" id="right-human">VC</text>
 
-      <!-- VC node -->
-      <rect x="810" y="54" width="120" height="60" rx="8" fill="#0D0D0D" stroke="#FFFFFF" stroke-width="2"/>
-      <text x="870" y="90" text-anchor="middle" class="node-label" id="right-human">VC</text>
+      <rect x="430" y="24" width="140" height="32" rx="4" fill="#0D0D0D" stroke="#D4A574" stroke-width="1.5"/>
+      <text x="500" y="44" text-anchor="middle" class="chip-label">TRUST CIRCLE</text>
 
-      <!-- TRUST CIRCLE chip -->
-      <rect x="430" y="68" width="140" height="32" rx="4" fill="#0D0D0D" stroke="#D4A574" stroke-width="1.5"/>
-      <text x="500" y="88" text-anchor="middle" class="chip-label">TRUST CIRCLE</text>
+      <!-- ========== INHERITANCE ARROWS (flank the centerpiece statement) ========== -->
+      <line x1="130" y1="74" x2="130" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
+      <line x1="870" y1="74" x2="870" y2="180" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
 
-      <!-- ========== INHERITANCE ARROWS ========== -->
-      <line x1="130" y1="118" x2="130" y2="186" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
-      <text x="144" y="158" class="inherit-label">INHERITS TRUST</text>
+      <!-- ========== CENTERPIECE STATEMENT ========== -->
+      <text x="500" y="132" text-anchor="middle" class="centerpiece">Trust between humans</text>
+      <text x="500" y="166" text-anchor="middle" class="centerpiece">
+        <tspan class="centerpiece-accent">=</tspan>
+        <tspan dx="6">permission between agents</tspan>
+      </text>
 
-      <line x1="870" y1="118" x2="870" y2="186" stroke="#D4A574" stroke-width="1.5" stroke-dasharray="4,4" marker-end="url(#trust-arrow)"/>
-      <text x="856" y="158" text-anchor="end" class="inherit-label">INHERITS TRUST</text>
-
-      <!-- ========== BAND 2: AGENTS INHERIT THE TRUST ========== -->
-      <text x="500" y="204" text-anchor="middle" class="band-label">2 · AGENTS INHERIT THE TRUST</text>
-      <text x="500" y="222" text-anchor="middle" class="band-caption">One agent per verified human. Trust between humans = permission between agents.</text>
-
+      <!-- ========== AGENTS ROW ========== -->
       <!-- Exchange channel -->
-      <line x1="170" y1="272" x2="830" y2="272" stroke="#D4A574" stroke-width="2"/>
+      <line x1="170" y1="238" x2="830" y2="238" stroke="#D4A574" stroke-width="2"/>
 
       <!-- Founder's Agent -->
-      <rect x="60" y="236" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-      <text x="115" y="262" text-anchor="middle" class="node-sub" id="left-agent-sub">FOUNDER'S</text>
-      <text x="115" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+      <rect x="60" y="202" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="115" y="228" text-anchor="middle" class="node-sub" id="left-agent-sub">FOUNDER'S</text>
+      <text x="115" y="254" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
 
       <!-- VC's Agent -->
-      <rect x="830" y="236" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-      <text x="885" y="262" text-anchor="middle" class="node-sub" id="right-agent-sub">VC'S</text>
-      <text x="885" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+      <rect x="830" y="202" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="885" y="228" text-anchor="middle" class="node-sub" id="right-agent-sub">VC'S</text>
+      <text x="885" y="254" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
 
       <!-- InTouch permission chip -->
-      <rect x="445" y="246" width="110" height="52" rx="8" fill="#0D0D0D" stroke="#D4A574" stroke-width="2"/>
-      <text x="500" y="266" text-anchor="middle" class="chip-label">INTOUCH</text>
-      <text x="500" y="286" text-anchor="middle" class="chip-sub">permission layer</text>
+      <rect x="445" y="212" width="110" height="52" rx="8" fill="#0D0D0D" stroke="#D4A574" stroke-width="2"/>
+      <text x="500" y="232" text-anchor="middle" class="chip-label">INTOUCH</text>
+      <text x="500" y="252" text-anchor="middle" class="chip-sub">permission layer</text>
 
       <!-- Flow labels (static: query always on left, response always on right) -->
-      <text x="307" y="262" text-anchor="middle" class="flow-label">query →</text>
-      <text x="693" y="262" text-anchor="middle" class="flow-label">← response</text>
+      <text x="307" y="228" text-anchor="middle" class="flow-label">query →</text>
+      <text x="693" y="228" text-anchor="middle" class="flow-label">← response</text>
 
-      <!-- Dynamic query / response body text (2 tspans each to allow optional wrapping) -->
-      <text id="left-body" x="307" y="290" text-anchor="middle" class="query-text">
+      <!-- Dynamic query / response body text (bigger, non-italic, up to 2 lines) -->
+      <text id="left-body" x="307" y="262" text-anchor="middle" class="query-text">
         <tspan id="left-body-1" x="307" dy="0"></tspan>
-        <tspan id="left-body-2" x="307" dy="1.1em"></tspan>
+        <tspan id="left-body-2" x="307" dy="1.15em"></tspan>
       </text>
-      <text id="right-body" x="693" y="290" text-anchor="middle" class="query-text">
+      <text id="right-body" x="693" y="262" text-anchor="middle" class="query-text">
         <tspan id="right-body-1" x="693" dy="0"></tspan>
-        <tspan id="right-body-2" x="693" dy="1.1em"></tspan>
+        <tspan id="right-body-2" x="693" dy="1.15em"></tspan>
       </text>
 
       <!-- ========== PRIVATE CONTEXT (dynamic) ========== -->
-      <rect x="60" y="320" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
-      <text x="74" y="338" class="ctx-title" id="left-ctx-title">FOUNDER · PRIVATE CONTEXT</text>
-      <text id="left-ctx-items" x="74" y="360" class="ctx-item"></text>
+      <rect x="60" y="316" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="74" y="334" class="ctx-title" id="left-ctx-title">FOUNDER · PRIVATE CONTEXT</text>
+      <text id="left-ctx-items" x="74" y="356" class="ctx-item"></text>
 
-      <rect x="560" y="320" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
-      <text x="574" y="338" class="ctx-title" id="right-ctx-title">VC · PRIVATE CONTEXT</text>
-      <text id="right-ctx-items" x="574" y="360" class="ctx-item"></text>
+      <rect x="560" y="316" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
+      <text x="574" y="334" class="ctx-title" id="right-ctx-title">VC · PRIVATE CONTEXT</text>
+      <text id="right-ctx-items" x="574" y="356" class="ctx-item"></text>
     </svg>
   </div>
 
@@ -293,7 +309,7 @@
       rightCtx: 'my contacts · shared history · relationship depth',
       query: '"Anyone know the CFO at Acme?"',
       response: '"Priya — met him twice."',
-      note: '<em>A warm path</em> — only possible because their humans met. Neither agent could surface it from public data.'
+      note: '<em>A warm path</em> — neither agent could surface it from public data.'
     },
     // VF — VC asks a founder to vouch for a candidate
     reference: {
@@ -305,7 +321,7 @@
       rightCtx: 'former reports · shipped projects · work quality',
       query: '"Did Sarah really lead payments at Y?"',
       response: '"Yes — tech lead, 2022–2024."',
-      note: '<em>A verified reference</em> — only possible because their humans met. Neither agent could confirm it from public data.'
+      note: '<em>A verified reference</em> — neither agent could confirm it from public data.'
     },
     // VV — VC asks a peer VC about a founder
     redflag: {
@@ -317,7 +333,7 @@
       rightCtx: 'prior deals · passed rounds · founder behavior',
       query: '"Any reason I shouldn’t back this founder?"',
       response: '"Passed their seed — cap-table games."',
-      note: '<em>A candid warning</em> — only possible because their humans met. Neither agent could learn it from public data.'
+      note: '<em>A candid warning</em> — neither agent could learn it from public data.'
     },
     // FV — founder asks a VC for deck feedback
     advice: {
@@ -329,7 +345,7 @@
       rightCtx: 'thesis · pattern preferences · pet peeves',
       query: '"What would you flag in my deck?"',
       response: '"Burn, moat, and the org chart."',
-      note: '<em>Trusted feedback</em> — only possible because their humans met. Neither agent could produce it from public data.'
+      note: '<em>Trusted feedback</em> — neither agent could produce it from public data.'
     }
   };
 
@@ -378,8 +394,8 @@
     rightAgentSub.textContent = c.rightAgent;
     leftCtxTitle.textContent = c.leftCtxTitle;
     rightCtxTitle.textContent = c.rightCtxTitle;
-    setWrapped(leftBody1, leftBody2, c.query, 32);
-    setWrapped(rightBody1, rightBody2, c.response, 32);
+    setWrapped(leftBody1, leftBody2, c.query, 26);
+    setWrapped(rightBody1, rightBody2, c.response, 26);
     leftCtxItems.textContent = c.leftCtx;
     rightCtxItems.textContent = c.rightCtx;
     note.innerHTML = c.note;
