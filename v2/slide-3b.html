@@ -145,10 +145,19 @@
     font-size: 14px;
   }
 
+  /* Tighter conclusion for S3b so the slide doesn't overflow vertically */
+  #slide-3b .conclusion {
+    font-size: 20px;
+    padding-top: 14px;
+    margin-top: 14px;
+    line-height: 1.35;
+  }
+
   @media (max-width: 768px) {
     .trust-diagram { padding: 12px 14px; }
     .trust-toggle { font-size: 10px; padding: 6px 10px; }
     .scenario-note { font-size: 13px; }
+    #slide-3b .conclusion { font-size: 16px; }
   }
 </style>
 </head>
@@ -221,30 +230,36 @@
       <text x="500" y="222" text-anchor="middle" class="band-caption">One agent per verified human. Trust between humans = permission between agents.</text>
 
       <!-- Exchange channel -->
-      <line x1="200" y1="272" x2="800" y2="272" stroke="#D4A574" stroke-width="2"/>
+      <line x1="170" y1="272" x2="830" y2="272" stroke="#D4A574" stroke-width="2"/>
 
       <!-- Founder's Agent -->
-      <rect x="60" y="236" width="140" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-      <text x="130" y="262" text-anchor="middle" class="node-sub" id="left-agent-sub">FOUNDER'S</text>
-      <text x="130" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+      <rect x="60" y="236" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="115" y="262" text-anchor="middle" class="node-sub" id="left-agent-sub">FOUNDER'S</text>
+      <text x="115" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
 
       <!-- VC's Agent -->
-      <rect x="800" y="236" width="140" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-      <text x="870" y="262" text-anchor="middle" class="node-sub" id="right-agent-sub">VC'S</text>
-      <text x="870" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
+      <rect x="830" y="236" width="110" height="72" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+      <text x="885" y="262" text-anchor="middle" class="node-sub" id="right-agent-sub">VC'S</text>
+      <text x="885" y="288" text-anchor="middle" class="node-label" style="font-size:18px;font-weight:700;">Agent</text>
 
       <!-- InTouch permission chip -->
-      <rect x="430" y="246" width="140" height="52" rx="8" fill="#0D0D0D" stroke="#D4A574" stroke-width="2"/>
+      <rect x="445" y="246" width="110" height="52" rx="8" fill="#0D0D0D" stroke="#D4A574" stroke-width="2"/>
       <text x="500" y="266" text-anchor="middle" class="chip-label">INTOUCH</text>
       <text x="500" y="286" text-anchor="middle" class="chip-sub">permission layer</text>
 
       <!-- Flow labels (static: query always on left, response always on right) -->
-      <text x="315" y="262" text-anchor="middle" class="flow-label">query →</text>
-      <text x="685" y="262" text-anchor="middle" class="flow-label">← response</text>
+      <text x="307" y="262" text-anchor="middle" class="flow-label">query →</text>
+      <text x="693" y="262" text-anchor="middle" class="flow-label">← response</text>
 
-      <!-- Dynamic query / response body text -->
-      <text id="left-body" x="315" y="294" text-anchor="middle" class="query-text"></text>
-      <text id="right-body" x="685" y="294" text-anchor="middle" class="query-text"></text>
+      <!-- Dynamic query / response body text (2 tspans each to allow optional wrapping) -->
+      <text id="left-body" x="307" y="290" text-anchor="middle" class="query-text">
+        <tspan id="left-body-1" x="307" dy="0"></tspan>
+        <tspan id="left-body-2" x="307" dy="1.1em"></tspan>
+      </text>
+      <text id="right-body" x="693" y="290" text-anchor="middle" class="query-text">
+        <tspan id="right-body-1" x="693" dy="0"></tspan>
+        <tspan id="right-body-2" x="693" dy="1.1em"></tspan>
+      </text>
 
       <!-- ========== PRIVATE CONTEXT (dynamic) ========== -->
       <rect x="60" y="320" width="380" height="52" rx="6" fill="#0D0D0D" stroke="#737373" stroke-width="1.2" stroke-dasharray="4,4"/>
@@ -257,7 +272,7 @@
     </svg>
   </div>
 
-  <div class="conclusion">Humans meet. Their agents inherit that trust. Private context flows between them — conversations no amount of public data can reproduce.</div>
+  <div class="conclusion">Agents inherit trust from humans. Private context sharing enables high-leverage use cases.</div>
 </div>
 
 </div>
@@ -324,12 +339,33 @@
   var rightAgentSub = document.getElementById('right-agent-sub');
   var leftCtxTitle = document.getElementById('left-ctx-title');
   var rightCtxTitle = document.getElementById('right-ctx-title');
-  var leftBody = document.getElementById('left-body');
-  var rightBody = document.getElementById('right-body');
+  var leftBody1 = document.getElementById('left-body-1');
+  var leftBody2 = document.getElementById('left-body-2');
+  var rightBody1 = document.getElementById('right-body-1');
+  var rightBody2 = document.getElementById('right-body-2');
   var leftCtxItems = document.getElementById('left-ctx-items');
   var rightCtxItems = document.getElementById('right-ctx-items');
   var note = document.getElementById('scenario-note');
   var toggles = document.querySelectorAll('.trust-toggle');
+
+  // If `text` fits on a single line (<= maxChars), it all goes in line1 and line2 clears.
+  // Otherwise split at the last space at-or-before maxChars (fall back to first space after).
+  function setWrapped(line1, line2, text, maxChars) {
+    if (text.length <= maxChars) {
+      line1.textContent = text;
+      line2.textContent = '';
+      return;
+    }
+    var split = text.lastIndexOf(' ', maxChars);
+    if (split < 0) split = text.indexOf(' ', maxChars);
+    if (split < 0) {
+      line1.textContent = text;
+      line2.textContent = '';
+      return;
+    }
+    line1.textContent = text.slice(0, split);
+    line2.textContent = text.slice(split + 1);
+  }
 
   function apply(key) {
     var c = cases[key];
@@ -342,8 +378,8 @@
     rightAgentSub.textContent = c.rightAgent;
     leftCtxTitle.textContent = c.leftCtxTitle;
     rightCtxTitle.textContent = c.rightCtxTitle;
-    leftBody.textContent = c.query;
-    rightBody.textContent = c.response;
+    setWrapped(leftBody1, leftBody2, c.query, 32);
+    setWrapped(rightBody1, rightBody2, c.response, 32);
     leftCtxItems.textContent = c.leftCtx;
     rightCtxItems.textContent = c.rightCtx;
     note.innerHTML = c.note;
