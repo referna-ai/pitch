@@ -135,17 +135,16 @@ body {
 
 /* S1: hero stats */
 .hero-stats {
-  display: flex;
-  gap: 80px;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 8px 0 18px;
-  padding: 18px 0 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin: 12px 0 10px;
+  padding: 18px 0 10px;
 }
 
 .hero-stat {
-  text-align: center;
-  flex: 0 1 auto;
+  text-align: left;
 }
 
 .hero-stat-num {
@@ -155,13 +154,26 @@ body {
   line-height: 1;
   letter-spacing: -0.03em;
   color: var(--gold);
-  margin-bottom: 12px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 }
 
-.hero-stat-unit {
-  font-size: 36px;
+.hero-num-main {
+  font-size: 1em;
+  line-height: 1;
+}
+
+.hero-num-suffix {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  font-size: 24px;
   font-weight: 700;
-  letter-spacing: -0.02em;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
 }
 
 .hero-stat-label {
@@ -170,8 +182,7 @@ body {
   color: var(--gray-mid);
   font-style: italic;
   line-height: 1.4;
-  max-width: 320px;
-  margin: 0 auto;
+  max-width: 420px;
 }
 
 .derivation {
@@ -179,8 +190,8 @@ body {
   font-size: 12px;
   color: var(--gray-dark);
   line-height: 1.5;
-  text-align: center;
-  margin-top: 8px;
+  text-align: left;
+  margin-top: 10px;
   font-style: italic;
 }
 
@@ -1402,12 +1413,12 @@ body {
   }
 
   .hero-stats {
-    flex-direction: column;
-    gap: 28px;
+    grid-template-columns: 1fr;
+    gap: 24px;
     padding: 12px 0;
   }
-  .hero-stat-num { font-size: 56px; }
-  .hero-stat-unit { font-size: 24px; }
+  .hero-stat-num { font-size: 56px; gap: 10px; }
+  .hero-num-suffix { font-size: 18px; }
   .derivation { font-size: 11px; }
 
 }
