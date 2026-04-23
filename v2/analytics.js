@@ -3,7 +3,7 @@
   window.__pitchAnalyticsLoaded = true;
 
   // ── CONFIG ────────────────────────────────────────────────────────────
-  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbwVQQ73tge2QdXaFirAUIM0q9BmNnoV5v45OwIejBkxpMVsl0b-k5XP-RoEVEWNpWM-jw/exec';
+  var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzpqpGLcsQ44kV4g5sPV7L7I4Ce627Ad6TRuy-ilSlkF8NL4lxqaGbS14yqCbgPAQMEnA/exec';
   var MAX_SLIDE_SECS = 30 * 60; // cap at 30 min — handles tabs left open for days
   // ─────────────────────────────────────────────────────────────────────
 
