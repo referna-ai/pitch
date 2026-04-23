@@ -33,6 +33,25 @@
   .companion-table .label { width: 28%; }
   .companion-table .volume,
   .companion-table .intouch { width: 24%; }
+  .companion-table .use-case-name {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-bottom: 4px;
+  }
+  .companion-table .use-case-q {
+    font-family: var(--font-body);
+    font-style: italic;
+    font-size: 13px;
+    color: var(--gray);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.35;
+  }
 </style>
 </head>
 <body data-slide="slide-companion">
@@ -75,28 +94,40 @@
     </thead>
     <tbody>
       <tr>
-        <td class="label">&ldquo;Who should I meet?&rdquo;</td>
+        <td class="label">
+          <div class="use-case-name">Find a warm intro</div>
+          <div class="use-case-q">&ldquo;Anyone know the CFO at Acme?&rdquo;</div>
+        </td>
         <td class="volume">Ask trusted contacts</td>
         <td class="volume">Searches public data only</td>
-        <td class="intouch"><strong>Queries trust-gated graph</strong></td>
+        <td class="intouch"><strong>Warm path via verified circles</strong></td>
       </tr>
       <tr>
-        <td class="label">&ldquo;Is this person right for me?&rdquo;</td>
-        <td class="volume">Call someone who knows them</td>
-        <td class="volume">No way to verify</td>
+        <td class="label">
+          <div class="use-case-name">Check a reference</div>
+          <div class="use-case-q">&ldquo;Did Sarah really lead payments at Y?&rdquo;</div>
+        </td>
+        <td class="volume">Backchannel former teammates</td>
+        <td class="volume">LinkedIn profile, unverified</td>
         <td class="intouch"><strong>Verified interaction history</strong></td>
       </tr>
       <tr>
-        <td class="label">&ldquo;Who can intro me to X?&rdquo;</td>
-        <td class="volume">Mental rolodex, ~150 max</td>
-        <td class="volume">Can&rsquo;t — no trust layer</td>
-        <td class="intouch"><strong>2nd-hop paths across circles</strong></td>
+        <td class="label">
+          <div class="use-case-name">Spot red flags</div>
+          <div class="use-case-q">&ldquo;Any reason I shouldn&rsquo;t back this founder?&rdquo;</div>
+        </td>
+        <td class="volume">Ask other VCs privately</td>
+        <td class="volume">No access to candid signals</td>
+        <td class="intouch"><strong>Candid warnings from the circle</strong></td>
       </tr>
       <tr>
-        <td class="label">&ldquo;What context do I need before this meeting?&rdquo;</td>
-        <td class="volume">Ask around, prep manually</td>
-        <td class="volume">Only your own calendar/email</td>
-        <td class="intouch"><strong>Agent-to-agent context exchange</strong></td>
+        <td class="label">
+          <div class="use-case-name">Get deck feedback</div>
+          <div class="use-case-q">&ldquo;What would you flag in my deck?&rdquo;</div>
+        </td>
+        <td class="volume">Ask advisors for a read</td>
+        <td class="volume">Generic LLM feedback</td>
+        <td class="intouch"><strong>VC&rsquo;s agent flags what matters</strong></td>
       </tr>
     </tbody>
   </table>
