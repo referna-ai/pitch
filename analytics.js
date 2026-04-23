@@ -8,14 +8,14 @@
   // ─────────────────────────────────────────────────────────────────────
 
   var SLIDES = {
-    'index.html':            '00 - Cover',
-    'slide-1.html':          '01 \u00b7 The Market',
-    'slide-2.html':          '02 \u00b7 The Network',
-    'slide-3.html':          '03 \u00b7 The Opportunity',
-    'slide-4.html':         '04 \u00b7 The AI Trust Layer',
-    'slide-7.html':        '05 \u00b7 The Agent Network',
-    'slide-6.html':         '06 \u00b7 The Plan',
-    'slide-7.html':         '07 \u00b7 The Team'
+    'index.html':   '00 · Cover',
+    'slide-1.html': '01 · The Market',
+    'slide-2.html': '02 · The Network',
+    'slide-3.html': '03 · The Opportunity',
+    'slide-4.html': '04 · The AI Trust Layer',
+    'slide-5.html': '05 · The Agent Network',
+    'slide-6.html': '06 · The Plan',
+    'slide-7.html': '07 · The Team'
   };
 
   var COOKIE = 'pitch_viewer';
