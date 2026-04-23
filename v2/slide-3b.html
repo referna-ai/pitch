@@ -175,7 +175,7 @@
     <button type="button" class="trust-toggle active" data-case="intro" role="tab" aria-selected="true">Find a warm intro</button>
     <button type="button" class="trust-toggle" data-case="reference" role="tab" aria-selected="false">Check a reference</button>
     <button type="button" class="trust-toggle" data-case="redflag" role="tab" aria-selected="false">Spot red flags</button>
-    <button type="button" class="trust-toggle" data-case="advice" role="tab" aria-selected="false">Get candid feedback</button>
+    <button type="button" class="trust-toggle" data-case="advice" role="tab" aria-selected="false">Get deck feedback</button>
   </div>
 
   <div class="scenario-note" id="scenario-note"></div>
@@ -237,9 +237,9 @@
       <text x="500" y="266" text-anchor="middle" class="chip-label">INTOUCH</text>
       <text x="500" y="286" text-anchor="middle" class="chip-sub">permission layer</text>
 
-      <!-- Flow labels (direction flips by scenario) -->
-      <text id="left-flow-label" x="315" y="262" text-anchor="middle" class="flow-label">query →</text>
-      <text id="right-flow-label" x="685" y="262" text-anchor="middle" class="flow-label">← response</text>
+      <!-- Flow labels (static: query always on left, response always on right) -->
+      <text x="315" y="262" text-anchor="middle" class="flow-label">query →</text>
+      <text x="685" y="262" text-anchor="middle" class="flow-label">← response</text>
 
       <!-- Dynamic query / response body text -->
       <text id="left-body" x="315" y="294" text-anchor="middle" class="query-text"></text>
@@ -264,46 +264,67 @@
 <script src="nav.js"></script>
 <script>
 (function () {
-  // direction: 'forward' = founder asks VC; 'reverse' = VC asks founder
+  // Query is always on the left; response is always on the right.
+  // The two participants (left → right) vary per scenario: FF, VF, VV, FV.
   var cases = {
+    // FF — founder asks another founder in their trust circle
     intro: {
-      direction: 'forward',
+      leftHuman: 'Founder', rightHuman: 'Founder',
+      leftAgent: "FOUNDER'S", rightAgent: "FOUNDER'S",
+      leftCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      rightCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      leftCtx: 'my circle · who I want to reach · tie strength',
+      rightCtx: 'my contacts · shared history · relationship depth',
       query: '"Anyone know the CFO at Acme?"',
-      response: '"Priya — met them twice."',
-      founderCtx: 'my circle · who I want to reach · tie strength',
-      vcCtx: 'my circle · who I’d intro for · past teammates',
+      response: '"Priya — met him twice."',
       note: '<em>A warm path</em> — only possible because their humans met. Neither agent could surface it from public data.'
     },
+    // VF — VC asks a founder to vouch for a candidate
     reference: {
-      direction: 'reverse',
-      query: '"Confirm Sarah shipped payments at Y?"',
+      leftHuman: 'VC', rightHuman: 'Founder',
+      leftAgent: "VC'S", rightAgent: "FOUNDER'S",
+      leftCtxTitle: 'VC · PRIVATE CONTEXT',
+      rightCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      leftCtx: 'diligence list · candidate claims · hiring bar',
+      rightCtx: 'former reports · shipped projects · work quality',
+      query: '"Did Sarah really lead payments at Y?"',
       response: '"Yes — tech lead, 2022–2024."',
-      founderCtx: 'former reports · shipped projects · work quality',
-      vcCtx: 'candidate claims · hiring bar · diligence list',
       note: '<em>A verified reference</em> — only possible because their humans met. Neither agent could confirm it from public data.'
     },
+    // VV — VC asks a peer VC about a founder
     redflag: {
-      direction: 'forward',
-      query: '"Safe to take this term sheet?"',
-      response: '"Pushed founders out. I’d pass."',
-      founderCtx: 'active term sheets · investor options · timeline',
-      vcCtx: 'prior deals · observed behavior · founder feedback',
+      leftHuman: 'VC', rightHuman: 'VC',
+      leftAgent: "VC'S", rightAgent: "VC'S",
+      leftCtxTitle: 'VC · PRIVATE CONTEXT',
+      rightCtxTitle: 'VC · PRIVATE CONTEXT',
+      leftCtx: 'current deal · diligence · timing',
+      rightCtx: 'prior deals · passed rounds · founder behavior',
+      query: '"Any reason I shouldn’t back this founder?"',
+      response: '"Passed their seed — cap-table games."',
       note: '<em>A candid warning</em> — only possible because their humans met. Neither agent could learn it from public data.'
     },
+    // FV — founder asks a VC for deck feedback
     advice: {
-      direction: 'reverse',
-      query: '"What did founders flag about us?"',
-      response: '"You move fast. Push hard on numbers."',
-      founderCtx: 'portfolio experience · post-investment behavior',
-      vcCtx: 'our reputation · deal flow · blind spots',
+      leftHuman: 'Founder', rightHuman: 'VC',
+      leftAgent: "FOUNDER'S", rightAgent: "VC'S",
+      leftCtxTitle: 'FOUNDER · PRIVATE CONTEXT',
+      rightCtxTitle: 'VC · PRIVATE CONTEXT',
+      leftCtx: 'deck draft · fundraise stage · team · traction',
+      rightCtx: 'thesis · pattern preferences · pet peeves',
+      query: '"What would you flag in my deck?"',
+      response: '"Burn, moat, and the org chart."',
       note: '<em>Trusted feedback</em> — only possible because their humans met. Neither agent could produce it from public data.'
     }
   };
 
+  var leftHuman = document.getElementById('left-human');
+  var rightHuman = document.getElementById('right-human');
+  var leftAgentSub = document.getElementById('left-agent-sub');
+  var rightAgentSub = document.getElementById('right-agent-sub');
+  var leftCtxTitle = document.getElementById('left-ctx-title');
+  var rightCtxTitle = document.getElementById('right-ctx-title');
   var leftBody = document.getElementById('left-body');
   var rightBody = document.getElementById('right-body');
-  var leftFlow = document.getElementById('left-flow-label');
-  var rightFlow = document.getElementById('right-flow-label');
   var leftCtxItems = document.getElementById('left-ctx-items');
   var rightCtxItems = document.getElementById('right-ctx-items');
   var note = document.getElementById('scenario-note');
@@ -313,24 +334,17 @@
     var c = cases[key];
     if (!c) return;
 
-    // Flow labels + body text flip based on direction.
-    // Founder is on the left (Agent rect), VC is on the right.
-    if (c.direction === 'forward') {
-      // Founder asks VC: query travels left->right, response travels right->left.
-      leftFlow.textContent = 'query →';
-      rightFlow.textContent = '← response';
-      leftBody.textContent = c.query;    // founder's question, near founder
-      rightBody.textContent = c.response; // VC's answer, near VC
-    } else {
-      // VC asks Founder: query travels right->left, response travels left->right.
-      leftFlow.textContent = 'response →';
-      rightFlow.textContent = '← query';
-      leftBody.textContent = c.response;  // founder's answer, near founder
-      rightBody.textContent = c.query;    // VC's question, near VC
-    }
-
-    leftCtxItems.textContent = c.founderCtx;
-    rightCtxItems.textContent = c.vcCtx;
+    // Query always left, response always right — participants vary per pair.
+    leftHuman.textContent = c.leftHuman;
+    rightHuman.textContent = c.rightHuman;
+    leftAgentSub.textContent = c.leftAgent;
+    rightAgentSub.textContent = c.rightAgent;
+    leftCtxTitle.textContent = c.leftCtxTitle;
+    rightCtxTitle.textContent = c.rightCtxTitle;
+    leftBody.textContent = c.query;
+    rightBody.textContent = c.response;
+    leftCtxItems.textContent = c.leftCtx;
+    rightCtxItems.textContent = c.rightCtx;
     note.innerHTML = c.note;
 
     toggles.forEach(function (btn) {
