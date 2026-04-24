@@ -25,3 +25,6 @@ Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
 
 ## Navigation system
 See **`docs/navigation.md`** for a full explanation of how navigation works, the three files that must stay in sync, and the common sed double-replace pitfall that has bitten us before.
+
+## Copy HTML button
+See **`docs/copy-deck.md`**. The button on `index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in `copy-deck.js` and `v2/copy-deck.js` or the button breaks silently.

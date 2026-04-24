@@ -16,11 +16,11 @@
   }
 
   function collectUrls() {
-    const cards = document.querySelectorAll('.deck-nav .nav-card');
+    const tabs = document.querySelectorAll('.deck-tabs .deck-tab');
     const urls = [];
-    cards.forEach((a) => {
+    tabs.forEach((a) => {
       const href = a.getAttribute('href');
-      if (href) urls.push(href);
+      if (href && href !== 'index.html') urls.push(href);
     });
     return urls;
   }
