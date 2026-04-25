@@ -12,11 +12,12 @@
     'slide-1.html': '01 · The Networkers',
     'slide-2.html': '02 · The Trend',
     'slide-3.html': '03 · The Gap',
-    'slide-4.html': '04 · Past Attempts',
+    'slide-4.html': '04 · The Distinction',
     'slide-5.html': '05 · The Positioning',
-    'slide-6.html': '06 · InTouch',
-    'slide-7.html': '07 · The Plan',
-    'slide-8.html': '08 · The Team'
+    'slide-6.html': '06 · The Network',
+    'slide-7.html': '07 · The Wedge',
+    'slide-8.html': '08 · The Plan',
+    'slide-9.html': '09 · The Team'
   };
 
   var COOKIE = 'pitch_viewer';
