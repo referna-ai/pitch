@@ -1437,6 +1437,36 @@ body {
 
 }
 
+/* S3: Gap analogy block */
+.gap-analogy {
+  margin: 28px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.gap-analogy-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 17px;
+  color: var(--gray-mid);
+}
+.gap-category { min-width: 200px; }
+.gap-arrow { color: var(--gold); font-weight: 700; }
+.gap-winner { color: var(--white); font-weight: 600; }
+.gap-val { color: var(--gray-mid); font-weight: 400; font-size: 14px; }
+.gap-analogy-empty {
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 20px;
+}
+.gap-unknown {
+  color: var(--gold) !important;
+  font-size: 24px;
+  font-weight: 800;
+}
+
 /* Copy-HTML button (agent-readable export) */
 .copy-html-btn {
   position: absolute;
