@@ -3,56 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · The agent network — InTouch Pitch</title>
+<title>S5 · The Positioning — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>
-  .companion-table thead th { vertical-align: bottom; }
-  .companion-table .col-eyebrow {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--gray-mid);
-    margin-bottom: 4px;
-  }
-  .companion-table thead th.intouch .col-eyebrow { color: var(--gold); }
-  .companion-table .col-name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 0.02em;
-    text-transform: none;
-    color: var(--white);
-    line-height: 1.3;
-  }
-  .companion-table .label { width: 28%; }
-  .companion-table .volume,
-  .companion-table .intouch { width: 24%; }
-  .companion-table .use-case-name {
-    font-family: var(--font-display);
-    font-weight: 700;
-    font-size: 13px;
-    color: var(--white);
-    text-transform: none;
-    letter-spacing: 0;
-    margin-bottom: 4px;
-  }
-  .companion-table .use-case-q {
-    font-family: var(--font-body);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--gray);
-    font-weight: 400;
-    text-transform: none;
-    letter-spacing: 0;
-    line-height: 1.35;
-  }
-</style>
 </head>
 <body data-slide="slide-5">
 
@@ -73,69 +29,40 @@
 
 <div class="slide" id="slide-5">
   <div class="slide-number">05 / 08</div>
-  <div class="slide-label">The agent network</div>
-  <h2 class="slide-title">InTouch unlocks agent networking</h2>
+  <div class="slide-label">The Positioning</div>
+  <h2 class="slide-title">Where InTouch sits</h2>
 
-  <table class="comparison companion-table">
-    <thead>
-      <tr>
-        <th>Use case</th>
-        <th>
-          <div class="col-eyebrow">Today</div>
-          <div class="col-name">Human</div>
-        </th>
-        <th>
-          <div class="col-eyebrow">Today</div>
-          <div class="col-name">AI agent</div>
-        </th>
-        <th class="intouch">
-          <div class="col-eyebrow">InTouch</div>
-          <div class="col-name">Agent Network</div>
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="label">
-          <div class="use-case-name">Find a warm intro</div>
-          <div class="use-case-q">&ldquo;Anyone know the CFO at Acme?&rdquo;</div>
-        </td>
-        <td class="volume">Ask trusted contacts</td>
-        <td class="volume">Searches public data only</td>
-        <td class="intouch"><strong>Warm path via verified circles</strong></td>
-      </tr>
-      <tr>
-        <td class="label">
-          <div class="use-case-name">Check a reference</div>
-          <div class="use-case-q">&ldquo;Did Sarah really lead payments at Y?&rdquo;</div>
-        </td>
-        <td class="volume">Backchannel former teammates</td>
-        <td class="volume">LinkedIn profile, unverified</td>
-        <td class="intouch"><strong>Verified interaction history</strong></td>
-      </tr>
-      <tr>
-        <td class="label">
-          <div class="use-case-name">Spot red flags</div>
-          <div class="use-case-q">&ldquo;Any reason I shouldn&rsquo;t back this founder?&rdquo;</div>
-        </td>
-        <td class="volume">Ask other VCs privately</td>
-        <td class="volume">No access to candid signals</td>
-        <td class="intouch"><strong>Candid warnings from the circle</strong></td>
-      </tr>
-      <tr>
-        <td class="label">
-          <div class="use-case-name">Get deck feedback</div>
-          <div class="use-case-q">&ldquo;What would you flag in my deck?&rdquo;</div>
-        </td>
-        <td class="volume">Ask advisors for a read</td>
-        <td class="volume">Generic LLM feedback</td>
-        <td class="intouch"><strong>VC&rsquo;s agent flags what matters</strong></td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="matrix-wrap">
+    <div class="matrix-yaxis">Trust / Referrals <span class="matrix-yaxis-low">Volume / Reach</span></div>
+    <div class="matrix-body">
+      <div class="matrix-xaxis">
+        <span>Analog</span>
+        <span>Digital</span>
+      </div>
+      <div class="matrix-grid">
+        <div class="matrix-cell matrix-cell-muted">
+          <div class="matrix-cell-label">Job boards, classifieds</div>
+        </div>
+        <div class="matrix-cell">
+          <div class="matrix-cell-label">LinkedIn</div>
+          <div class="matrix-cell-sub">$26B acquisition</div>
+        </div>
+        <div class="matrix-cell">
+          <div class="matrix-cell-label">BNI</div>
+          <div class="matrix-cell-sub">$26.4B in referrals · 340K members · 40 years old</div>
+        </div>
+        <div class="matrix-cell matrix-cell-gold">
+          <div class="matrix-cell-label">InTouch</div>
+          <div class="matrix-cell-sub">Digital · AI-amplified · circle-based</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <div class="conclusion">InTouch is the trust layer that lets AI agents introduce, recommend, and advise.</div>
-  <div class="sources">Sources: InTouch product design</div>
+  <p class="matrix-stat">BNI members: 79% are in companies under 10 people. Average member generates $62K/year from referrals.</p>
+
+  <div class="conclusion">→ LinkedIn digitized reach. InTouch digitizes trust.</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 (n=340K), BNI UK&amp;Ireland survey (n=4,785), Microsoft/LinkedIn acquisition ($26.2B, 2016)</div>
 </div>
 
 </div>
