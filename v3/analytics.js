@@ -8,16 +8,17 @@
   // ─────────────────────────────────────────────────────────────────────
 
   var SLIDES = {
-    'index.html':   '00 · Cover',
-    'slide-1.html': '01 · The Networkers',
-    'slide-2.html': '02 · The Trend',
-    'slide-3.html': '03 · The Gap',
-    'slide-4.html': '04 · The Distinction',
-    'slide-5.html': '05 · The Positioning',
-    'slide-6.html': '06 · The Network',
-    'slide-7.html': '07 · The Wedge',
-    'slide-8.html': '08 · The Plan',
-    'slide-9.html': '09 · The Team'
+    'index.html':    '00 · Cover',
+    'slide-1.html':  '01 · The Thesis',
+    'slide-2.html':  '02 · The Networkers',
+    'slide-3.html':  '03 · The Trend',
+    'slide-4.html':  '04 · The Gap',
+    'slide-5.html':  '05 · The Distinction',
+    'slide-6.html':  '06 · The Positioning',
+    'slide-7.html':  '07 · The Network',
+    'slide-8.html':  '08 · The Wedge',
+    'slide-9.html':  '09 · The Plan',
+    'slide-10.html': '10 · The Team'
   };
 
   var COOKIE = 'pitch_viewer';

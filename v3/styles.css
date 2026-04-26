@@ -1762,3 +1762,11 @@ body {
   .funnel-num { font-size: 22px; min-width: 80px; }
   .plan-milestone { grid-template-columns: 1fr; gap: 20px; }
 }
+
+/* THESIS BEATS (S1) */
+.thesis-beats { display: flex; flex-direction: column; gap: 0; margin: 40px 0; }
+.thesis-beat { display: flex; gap: 32px; padding: 32px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.thesis-beat:last-child { border-bottom: none; }
+.thesis-beat-num { font-family: var(--font-display); font-weight: 800; font-size: 11px; letter-spacing: 0.18em; color: var(--gold); opacity: 0.7; flex-shrink: 0; width: 28px; padding-top: 4px; }
+.thesis-beat-claim { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); line-height: 1.25; margin-bottom: 10px; }
+.thesis-beat-sub { font-family: var(--font-body); font-size: 16px; color: var(--gray); line-height: 1.6; }
