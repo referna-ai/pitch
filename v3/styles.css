@@ -1818,17 +1818,27 @@ body {
 .step-desc { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.5; }
 .step-desc strong { color: var(--white); font-weight: 600; }
 
-/* GTM / WEDGE (S7) */
-.wedge-box { background: rgba(212, 165, 116, 0.06); border-left: 3px solid var(--gold); padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 24px; }
-.wedge-label { font-family: var(--font-display); font-weight: 800; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-.wedge-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--white); margin-bottom: 6px; }
-.wedge-detail { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
+/* GTM / WEDGE (S8) */
+.wedge-box { background: rgba(212, 165, 116, 0.06); border-left: 3px solid var(--gold); padding: 20px 26px; border-radius: 0 8px 8px 0; margin-bottom: 24px; }
+.wedge-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 16px; }
+.wedge-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.wedge-tag { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--gold); border: 1px solid var(--gold); padding: 4px 12px; border-radius: 4px; letter-spacing: 0.04em; white-space: nowrap; }
+.wedge-title { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--white); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px; }
+.wedge-detail { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.55; }
 .wedge-detail strong { color: var(--white); font-weight: 600; }
-.gtm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
-.gtm-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
-.gtm-card-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
-.gtm-card-desc { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
-.gtm-card-desc strong { color: var(--white); font-weight: 600; }
+.profession-inline { color: var(--white); font-weight: 500; }
+
+.section-heading { font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin: 0 0 14px 0; }
+
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 8px; }
+.reason-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 8px; }
+.reason-num { font-family: var(--font-display); font-weight: 800; font-size: 12px; color: var(--gold); letter-spacing: 0.08em; }
+.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--white); letter-spacing: -0.01em; line-height: 1.25; }
+.reason-desc { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.5; }
+.reason-desc strong { color: var(--white); font-weight: 600; }
+.reason-proof { margin-top: auto; padding-top: 10px; border-top: 1px solid var(--border); font-family: var(--font-display); font-size: 11px; color: var(--gold); letter-spacing: 0.04em; line-height: 1.5; }
+
+.conclusion .pivot { color: var(--gold); }
 
 /* PLAN TIMELINE */
 .journey-timeline { position: relative; padding: 0; margin-bottom: 40px; }
@@ -1870,10 +1880,12 @@ body {
 
 /* RESPONSIVE V3 */
 @media (max-width: 768px) {
-  .gtm-grid { grid-template-columns: 1fr; }
+  .reasons-grid { grid-template-columns: 1fr; }
   .vs-oneliner { flex-direction: column; gap: 12px; }
   .funnel-num { font-size: 22px; min-width: 80px; }
   .plan-milestone { grid-template-columns: 1fr; gap: 20px; }
+  .wedge-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .wedge-title { font-size: 20px; }
 }
 
 /* THESIS BEATS (S1) */
