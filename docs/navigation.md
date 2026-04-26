@@ -28,7 +28,7 @@ The repo holds multiple deck versions in parallel — each lives in its own dire
 | 1 | `v3/slide-1.html` | The Thesis |
 | 2 | `v3/slide-2.html` | The Networkers |
 | 3 | `v3/slide-3.html` | The Trend |
-| 4 | `v3/slide-4.html` | The Gap |
+| 4 | `v3/slide-4.html` | The Market |
 | 5 | `v3/slide-5.html` | The Distinction |
 | 6 | `v3/slide-6.html` | The Positioning |
 | 7 | `v3/slide-7.html` | The Network |

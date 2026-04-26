@@ -7,7 +7,7 @@
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The networkers' },
     { file: 'slide-3.html',  title: 'The trend' },
-    { file: 'slide-4.html',  title: 'The gap' },
+    { file: 'slide-4.html',  title: 'The market' },
     { file: 'slide-5.html',  title: 'The distinction' },
     { file: 'slide-6.html',  title: 'The positioning' },
     { file: 'slide-7.html',  title: 'The network' },
