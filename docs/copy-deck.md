@@ -17,7 +17,7 @@ The "Copy HTML" button on `index.html` lets the founders copy all slide content 
 document.querySelectorAll('.deck-tabs .deck-tab')
 ```
 
-This must match the `<nav class="deck-tabs">` / `<a class="deck-tab">` structure in `index.html`. **If you rename or restructure the nav markup, update this selector in `copy-deck.js` (and `v2/copy-deck.js`) or the button will silently collect zero slides and copy an empty string.**
+This must match the `<nav class="deck-tabs">` / `<a class="deck-tab">` structure that `nav.js` injects into the page. `nav.js` runs at the end of `<body>` (before the user can click the button), so the tabs exist by the time `collectUrls()` runs. **If you rename the nav class names in `nav.js`, update this selector in `copy-deck.js` (and `v2/copy-deck.js`, `v3/copy-deck.js`) or the button will silently collect zero slides and copy an empty string.**
 
 ## What each slide must have
 
