@@ -3,34 +3,80 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 — InTouch Pitch</title>
+<title>S4 · The Stakes — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-.market-funnel { display: flex; flex-direction: column; gap: 8px; margin: 0 0 24px 0; }
-.funnel-tier { display: flex; align-items: stretch; gap: 20px; padding: 18px 24px; border-radius: 8px; }
-.funnel-tier-context { background: var(--black-soft); opacity: 0.7; }
-.funnel-tier-impact { background: var(--black-soft); }
-.funnel-tier-hero { background: rgba(212, 165, 116, 0.08); border: 2px solid var(--gold); padding: 28px 28px; }
-.funnel-num-col { min-width: 110px; display: flex; align-items: center; line-height: 1; }
-.funnel-tier-context .funnel-num-col { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--gray-mid); letter-spacing: -0.02em; }
-.funnel-tier-impact .funnel-num-col { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--white); letter-spacing: -0.02em; }
-.funnel-tier-hero .funnel-num-col { font-family: var(--font-display); font-weight: 800; font-size: 48px; color: var(--gold); letter-spacing: -0.03em; min-width: 130px; }
-.funnel-text-col { border-left: 1px solid var(--border); padding-left: 20px; display: flex; flex-direction: column; justify-content: center; }
-.funnel-tier-hero .funnel-text-col { border-left-color: var(--gold); }
-.funnel-text-title { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); margin-bottom: 4px; letter-spacing: -0.005em; }
-.funnel-tier-context .funnel-text-title { font-size: 14px; color: var(--gray); }
-.funnel-tier-hero .funnel-text-title { font-size: 17px; color: var(--gold); }
-.funnel-text-sub { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); line-height: 1.5; }
-.funnel-tier-context .funnel-text-sub { font-size: 12px; color: var(--gray-dark); }
-.funnel-tier-hero .funnel-text-sub { font-size: 14px; color: var(--white); }
-.funnel-arrow { display: flex; justify-content: center; padding: 2px 0; }
-.funnel-arrow svg { stroke: var(--gray-dark); }
-.handoff-note { font-family: var(--font-body); font-size: 13px; color: var(--gray-dark); font-style: italic; margin: 4px 0 24px; }
-.handoff-note strong { color: var(--gray-mid); font-style: normal; font-family: var(--font-display); font-weight: 600; }
+:root { --error: #D4645C; }
+
+body[data-slide="slide-4"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-4"] .slide-title strong { color: var(--gold); font-weight: 800; }
+body[data-slide="slide-4"] .slide .conclusion { margin-top: 22px; }
+
+.economics-frame { background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; padding: 26px 30px; }
+
+.economics-header { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 22px; }
+.ami-photo-sm { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden; background: var(--black-soft); }
+.ami-photo-sm img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.economics-header-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--white); letter-spacing: -0.005em; line-height: 1.2; }
+.economics-header-role { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); font-style: italic; margin-top: 3px; }
+.economics-header-side { margin-left: auto; text-align: right; }
+.economics-header-side-num { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.02em; line-height: 1; }
+.economics-header-side-label { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+.economics-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: stretch; }
+
+.bar-stack { display: flex; flex-direction: column; gap: 14px; }
+.bar-row { display: flex; flex-direction: column; gap: 6px; }
+.bar-row-meta { display: flex; justify-content: space-between; align-items: baseline; }
+.bar-row-label { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--gray); letter-spacing: 0.04em; text-transform: uppercase; }
+.bar-row-value { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
+.bar-track { width: 100%; height: 22px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; position: relative; }
+.bar-track-split { display: flex; height: 100%; width: 100%; }
+.bar-fill { height: 100%; border-radius: 3px; position: relative; }
+.bar-fill.bar-referrals { background: var(--gold); width: 66.7%; }
+.bar-fill.bar-other { background: rgba(212, 100, 92, 0.45); width: 33.3%; position: relative; }
+.bar-fill.bar-other::after { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(13,13,13,0.4) 5px, rgba(13,13,13,0.4) 10px); }
+.bar-fill.bar-outcome { background: var(--gold); width: 66.7%; }
+.bar-status-row { display: flex; justify-content: space-between; }
+.bar-status { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.04em; }
+.bar-status.status-safe { color: var(--gold); font-weight: 700; }
+.bar-status.status-dying { color: var(--error); font-weight: 700; }
+
+.bar-arrow { display: flex; align-items: center; justify-content: center; padding: 2px 0; }
+.bar-arrow-text { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+
+.stake-col { display: flex; flex-direction: column; gap: 16px; justify-content: space-between; }
+.stake-headline { font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.18; letter-spacing: -0.02em; color: var(--white); }
+.stake-headline .gold { color: var(--gold); }
+.stake-sub { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.55; margin-top: 12px; }
+.stake-sub strong { color: var(--white); font-weight: 600; }
+
+.ami-quote-block { background: rgba(212, 165, 116, 0.06); border-left: 2px solid var(--gold); border-radius: 0 6px 6px 0; padding: 14px 16px; }
+.ami-quote-text { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 16px; line-height: 1.4; color: var(--white); letter-spacing: -0.005em; margin-bottom: 6px; }
+.ami-quote-attr { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.multiplier { margin-top: 20px; padding: 18px 24px; background: rgba(212, 165, 116, 0.04); border: 1px solid var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 24px; flex-wrap: wrap; }
+.mult-term { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.mult-num { font-family: var(--font-display); font-weight: 800; font-size: 32px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.mult-num.mult-result { color: var(--gold); font-size: 44px; }
+.mult-label { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+.mult-op { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--gold); }
+
+@media (max-width: 900px) {
+  .economics-grid { grid-template-columns: 1fr; gap: 24px; }
+  .economics-header-side { display: none; }
+}
+@media (max-width: 768px) {
+  .economics-frame { padding: 22px 20px; }
+  .stake-headline { font-size: 22px; }
+  .multiplier { gap: 16px; padding: 16px; }
+  .mult-num { font-size: 26px; }
+  .mult-num.mult-result { font-size: 34px; }
+}
 </style>
 </head>
 <body data-slide="slide-4">
@@ -40,56 +86,97 @@
 
 <div class="slide" id="slide-4">
   <div class="slide-number">04 / 10</div>
-  <div class="slide-label">The market</div>
-  <h2 class="slide-title">$5.2 billion in platform fees.</h2>
+  <div class="slide-label">The stakes</div>
+  <h2 class="slide-title">For Ami, this is <strong>problem #1.</strong></h2>
 
-  <p class="slide-lead">65% of small-team revenue comes from referrals. A defensible slice flows through segments circles can serve. Our piece sits on top.</p>
+  <div class="economics-frame">
 
-  <div class="market-funnel">
-
-    <div class="funnel-tier funnel-tier-context">
-      <div class="funnel-num-col">$17T</div>
-      <div class="funnel-text-col">
-        <div class="funnel-text-title">Global referral economy</div>
-        <div class="funnel-text-sub">65% of small-team revenue worldwide</div>
+    <div class="economics-header">
+      <div class="ami-photo-sm"><img src="ami.png" alt="Ami B."></div>
+      <div>
+        <div class="economics-header-name">Ami B.</div>
+        <div class="economics-header-role">Fractional VP of Marketing · Herzliya</div>
+      </div>
+      <div class="economics-header-side">
+        <div class="economics-header-side-num">~$150K</div>
+        <div class="economics-header-side-label">2025 revenue</div>
       </div>
     </div>
 
-    <div class="funnel-arrow">
-      <svg width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 1 L8 11 M3 7 L8 12 L13 7" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+    <div class="economics-grid">
 
-    <div class="funnel-tier funnel-tier-impact">
-      <div class="funnel-num-col">$1.3T</div>
-      <div class="funnel-text-col">
-        <div class="funnel-text-title">Referral value through circle-fit segments</div>
-        <div class="funnel-text-sub">Just-funded founders, new C-level hires, and adjacent recurring transitions — value flowing to our users</div>
+      <div class="bar-stack">
+        <div class="bar-row">
+          <div class="bar-row-meta">
+            <span class="bar-row-label">Today</span>
+            <span class="bar-row-value">$150K</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-track-split">
+              <div class="bar-fill bar-referrals"></div>
+              <div class="bar-fill bar-other"></div>
+            </div>
+          </div>
+          <div class="bar-status-row">
+            <span class="bar-status status-safe">$100K · referrals (65%)</span>
+            <span class="bar-status status-dying">$50K · dying channels</span>
+          </div>
+        </div>
+
+        <div class="bar-arrow">
+          <span class="bar-arrow-text">↓ &nbsp; channels collapse &nbsp; ↓</span>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-row-meta">
+            <span class="bar-row-label">Where it's heading</span>
+            <span class="bar-row-value">$100K</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-outcome"></div>
+          </div>
+          <div class="bar-status-row">
+            <span class="bar-status status-safe">$100K · only referrals left</span>
+            <span class="bar-status status-dying">−$50K · 33% income loss</span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="funnel-arrow">
-      <svg width="16" height="14" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 1 L8 11 M3 7 L8 12 L13 7" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </div>
+      <div class="stake-col">
+        <div>
+          <div class="stake-headline">A <span class="gold">33%</span> income cut. <br>And referrals are the only way out.</div>
+          <p class="stake-sub">For a solo fractional with a family, this isn't a top-3 problem. <strong>It's the only problem that matters.</strong> No other channel can replace what's collapsing.</p>
+        </div>
 
-    <div class="funnel-tier funnel-tier-hero">
-      <div class="funnel-num-col">$5.2B</div>
-      <div class="funnel-text-col">
-        <div class="funnel-text-title">Our platform market</div>
-        <div class="funnel-text-sub">Platform fees at a 2% take rate on circle-fit referral flow</div>
+        <div class="ami-quote-block">
+          <div class="ami-quote-text">"That's my #1 problem — isn't it anyone's top one?"</div>
+          <div class="ami-quote-attr">Ami B.</div>
+        </div>
       </div>
+
     </div>
 
   </div>
 
-  <div class="handoff-note">Wedge sizing and capture math → <strong>slide 8</strong></div>
+  <div class="multiplier">
+    <div class="mult-term">
+      <div class="mult-num">$100K</div>
+      <div class="mult-label">at stake per Ami</div>
+    </div>
+    <div class="mult-op">×</div>
+    <div class="mult-term">
+      <div class="mult-num">338M</div>
+      <div class="mult-label">professionals</div>
+    </div>
+    <div class="mult-op">=</div>
+    <div class="mult-term">
+      <div class="mult-num mult-result">$33T</div>
+      <div class="mult-label">in livelihoods at stake</div>
+    </div>
+  </div>
 
-  <div class="conclusion">$1.3 trillion in referral value flows through these circles. $5.2 billion of that is our platform fee market.</div>
-
-  <div class="sources">Sources: DemandSage (65% stat), US Census Bureau, InTouch market analysis</div>
+  <div class="conclusion">For 338 million professionals, referrals aren't a channel. <strong>They're survival.</strong></div>
+  <div class="sources">Sources: Ami B. interview (Apr 2026); 65% referral revenue stat (DemandSage); 338M derivation (Census, BLS, LinkedIn)</div>
 </div>
 
 </div>
