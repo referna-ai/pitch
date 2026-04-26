@@ -3,41 +3,111 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S1 — InTouch Pitch</title>
+<title>S2 · The Professionals — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-2"] .slide-title { margin-bottom: 28px; }
+
+.s2-grid { display: grid; grid-template-columns: 0.95fr 1.05fr; gap: 36px; align-items: start; }
+
+.ami-block { display: flex; flex-direction: column; gap: 16px; }
+.ami-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px 20px; }
+.ami-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.ami-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.ami-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; border: 2px solid var(--gold); flex-shrink: 0; background: var(--black-soft); }
+.ami-id-name { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--white); letter-spacing: -0.01em; line-height: 1.15; }
+.ami-id-role { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); font-style: italic; margin-top: 4px; }
+.ami-quote { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 21px; line-height: 1.35; color: var(--white); padding: 14px 16px; border-left: 2px solid var(--gold); background: rgba(212, 165, 116, 0.06); border-radius: 0 6px 6px 0; letter-spacing: -0.01em; }
+.ami-footer { font-family: var(--font-display); font-size: 11px; color: var(--gray-dark); letter-spacing: 0.04em; margin-top: 12px; padding-top: 10px; border-top: 1px solid rgba(212, 165, 116, 0.12); }
+
+.ami-circle-row { padding: 12px 0 12px 18px; border-left: 2px solid var(--gold); }
+.ami-circle-tag { font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
+.ami-circle-row .profession { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); letter-spacing: -0.005em; }
+.ami-circle-row .profession.ami-self { color: var(--gold); }
+.ami-circle-row .profession-sep { color: var(--gold); margin: 0 8px; font-weight: 700; }
+.ami-circle-row .profession-more { font-family: var(--font-body); font-style: italic; color: var(--gray-mid); font-size: 14px; }
+
+.right-col { display: flex; flex-direction: column; gap: 20px; padding-top: 8px; }
+.right-col-tag { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin: 0; }
+
+body[data-slide="slide-2"] .hero-summary { flex: none; padding: 0 0 8px; border-left: none; }
+body[data-slide="slide-2"] .hero-summary-num { font-size: 92px; line-height: 0.92; margin-bottom: 12px; }
+body[data-slide="slide-2"] .hero-summary-label { font-size: 15px; margin-bottom: 8px; }
+body[data-slide="slide-2"] .hero-summary-derivation { font-family: var(--font-display); font-style: normal; font-size: 11px; color: var(--gray-dark); letter-spacing: 0.03em; line-height: 1.5; }
+
+.other-segments { padding-top: 16px; border-top: 1px solid var(--border); }
+.other-row { padding: 6px 0 6px 16px; border-left: 2px solid rgba(212, 165, 116, 0.4); margin-bottom: 8px; line-height: 1.6; }
+.other-row .profession { font-family: var(--font-display); font-weight: 500; font-size: 14px; color: var(--gray); letter-spacing: -0.005em; }
+.other-row .profession-sep { color: var(--gold); margin: 0 6px; font-weight: 700; }
+.other-row .profession-more { font-family: var(--font-body); font-style: italic; color: var(--gray-mid); font-size: 13px; }
+.other-segments .segments-row { padding: 8px 0 0 16px; border-left: none; }
+.other-segments .segments-row .profession-more { font-family: var(--font-display); font-style: normal; font-weight: 700; color: var(--gold); font-size: 12px; letter-spacing: 0.05em; text-transform: uppercase; }
+
+@media (max-width: 900px) {
+  .s2-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+@media (max-width: 768px) {
+  body[data-slide="slide-2"] .hero-summary-num { font-size: 56px; }
+  .ami-quote { font-size: 18px; }
+  .ami-circle-row .profession { font-size: 14px; }
+  .ami-circle-row .profession-sep { margin: 0 6px; }
+}
+</style>
 </head>
 <body data-slide="slide-2">
 
 
 <div class="deck">
 
-<div class="slide" id="slide-1">
+<div class="slide" id="slide-2">
   <div class="slide-number">02 / 10</div>
   <div class="slide-label">The Professionals</div>
   <h2 class="slide-title">338 million who live off one thing</h2>
 
-  <div class="professions-grid">
-    <div class="profession-list">
-      <div class="profession-row">
-        <span class="profession">Startup lawyer</span><span class="profession-sep">·</span><span class="profession">Startup PR agent</span><span class="profession-sep">·</span><span class="profession">Startup designer</span><span class="profession-sep">·</span><span class="profession">Startup recruiter</span><span class="profession-more"> &nbsp;+ 10 other startup-focused professionals</span>
+  <div class="s2-grid">
+
+    <div class="ami-block">
+      <div class="ami-card">
+        <div class="ami-eyebrow">A real one of them</div>
+        <div class="ami-header">
+          <img class="ami-photo" src="ami.png" alt="Ami B.">
+          <div>
+            <div class="ami-id-name">Ami B.</div>
+            <div class="ami-id-role">Fractional VP of Marketing · Herzliya</div>
+          </div>
+        </div>
+        <div class="ami-quote">"I need more referrals."</div>
+        <div class="ami-footer">Real · Reachable for reference</div>
       </div>
-      <div class="profession-row">
-        <span class="profession">Estate lawyer</span><span class="profession-sep">·</span><span class="profession">Grief therapist</span><span class="profession-sep">·</span><span class="profession">Estate organizer</span><span class="profession-sep">·</span><span class="profession">Estate accountant</span><span class="profession-more"> &nbsp;+ 2 other estate-focused professionals</span>
-      </div>
-      <div class="profession-row segments-row">
-        <span class="profession-more">+ 19 other professional segments</span>
+
+      <div class="ami-circle-row">
+        <div class="ami-circle-tag">Ami's circle</div>
+        <span class="profession ami-self">Fractional CMO</span><span class="profession-sep">·</span><span class="profession">Startup lawyer</span><span class="profession-sep">·</span><span class="profession">PR agent</span><span class="profession-sep">·</span><span class="profession">Recruiter</span><span class="profession-more"> &nbsp;+ 10 more startup-focused</span>
       </div>
     </div>
 
-    <aside class="hero-summary">
-      <div class="hero-summary-num">338M</div>
-      <div class="hero-summary-label">professionals at firms under 20</div>
-      <div class="hero-summary-derivation">16% at firms under 20 (Census) + 10% self-employed (BLS) = 26% × 1.3B (LinkedIn)</div>
-    </aside>
+    <div class="right-col">
+      <div class="right-col-tag">And he's one of</div>
+      <div class="hero-summary">
+        <div class="hero-summary-num">338M</div>
+        <div class="hero-summary-label">professionals at firms under 20</div>
+        <div class="hero-summary-derivation">16% at firms under 20 (Census) + 10% self-employed (BLS) = 26% × 1.3B (LinkedIn)</div>
+      </div>
+
+      <div class="other-segments">
+        <div class="other-row">
+          <span class="profession">Estate lawyer</span><span class="profession-sep">·</span><span class="profession">Grief therapist</span><span class="profession-sep">·</span><span class="profession">Estate organizer</span><span class="profession-sep">·</span><span class="profession">Estate accountant</span><span class="profession-more"> &nbsp;+ 2 more estate-focused</span>
+        </div>
+        <div class="segments-row">
+          <span class="profession-more">+ 19 other professional segments</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="conclusion">Hiding in plain sight: <strong>338 million livelihoods</strong>, in <strong>21 specific segments</strong>.</div>

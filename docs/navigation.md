@@ -26,7 +26,7 @@ The repo holds multiple deck versions in parallel — each lives in its own dire
 |---|------|-------|
 | 0 | `v3/index.html` | Cover |
 | 1 | `v3/slide-1.html` | The Thesis |
-| 2 | `v3/slide-2.html` | The Networkers |
+| 2 | `v3/slide-2.html` | The Professionals |
 | 3 | `v3/slide-3.html` | The Trend |
 | 4 | `v3/slide-4.html` | The Market |
 | 5 | `v3/slide-5.html` | The Insight |
