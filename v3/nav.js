@@ -10,7 +10,7 @@
     { file: 'slide-4.html',  title: 'The market' },
     { file: 'slide-5.html',  title: 'The insight' },
     { file: 'slide-6.html',  title: 'The play' },
-    { file: 'slide-7.html',  title: 'The network' },
+    { file: 'slide-7.html',  title: 'The mechanism' },
     { file: 'slide-8.html',  title: 'The wedge' },
     { file: 'slide-9.html',  title: 'The plan' },
     { file: 'slide-10.html', title: 'The team' }
