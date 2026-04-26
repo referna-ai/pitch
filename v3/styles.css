@@ -1697,9 +1697,9 @@ body {
 .comparison .result { color: var(--gray); }
 .table-note { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.6; margin-bottom: 8px; }
 .table-note em { color: var(--white); font-style: italic; font-family: var(--font-body); }
-.winner-row td { border-top: 2px solid var(--gold) !important; }
+.winner-row td { border-top: 2px solid var(--gold) !important; vertical-align: middle !important; }
 .winner-row .winner-label { color: var(--gold); font-weight: 700; letter-spacing: 0.02em; }
-.winner-row .winner-pct { color: var(--white); font-size: 22px; }
+.winner-row .winner-pct { color: var(--white); }
 .winner-row .winner-result { color: var(--white); font-weight: 500; }
 .winner-row .winner-result strong { color: var(--gold); }
 
