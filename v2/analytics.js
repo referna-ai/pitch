@@ -66,7 +66,17 @@
   }
 
   // ── Viewer identity ───────────────────────────────────────────────────
+  // Production is exactly intouch-short-deck.pages.dev; branch previews
+  // are <slug>.intouch-short-deck.pages.dev. Localhost is dev.
+  function isPreviewEnv() {
+    var h = location.hostname;
+    if (!h || h === 'localhost' || h === '127.0.0.1') return true;
+    if (/\.intouch-short-deck\.pages\.dev$/.test(h)) return true;
+    return false;
+  }
+
   function resolveViewer() {
+    if (isPreviewEnv()) return 'Dev';
     var p = new URLSearchParams(location.search);
     var q = (p.get('viewer') || p.get('name') || '').trim();
     if (q) { setCookie(COOKIE, q, 30); return q; }
