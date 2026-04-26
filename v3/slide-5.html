@@ -3,55 +3,66 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S5 · The value is in referrals, not intros — InTouch Pitch</title>
+<title>S5 · The Insight — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* ===== ONE-LINER CONTRAST (REQUEST → RESPONSE) ===== */
-.vs-oneliner { display: flex; flex-direction: column; gap: 16px; margin: 0 0 36px 0; padding: 0; background: none; border: none; border-radius: 0; }
-.vs-oneliner-item { font-family: var(--font-body); font-size: 18px; line-height: 1.4; padding: 12px 0 12px 22px; border-left: 2px solid var(--border); display: flex; align-items: center; gap: 22px; flex-wrap: wrap; font-weight: 400; color: inherit; }
-.vs-oneliner-item:first-child { color: inherit; }
-.vs-oneliner-item:last-child { color: inherit; border-left-color: var(--gold); }
-.vs-oneliner-item .who { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); width: 72px; flex: none; }
+body[data-slide="slide-5"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-5"] .slide .conclusion { margin-top: 18px; }
+body[data-slide="slide-5"] .conclusion .gold { color: var(--gold); }
+
+.vs-oneliner { margin: 0 0 24px 0; }
+.vs-oneliner-item { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-left: 2px solid var(--border); margin-bottom: 10px; }
+.vs-oneliner-item:last-child { border-left-color: var(--gold); margin-bottom: 0; }
+.vs-oneliner-item .who { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gray-mid); width: 80px; flex-shrink: 0; }
 .vs-oneliner-item:last-child .who { color: var(--gold); }
-.vs-oneliner-item .request { color: var(--gray-mid); font-style: italic; }
-.vs-oneliner-item:last-child .request { color: var(--gray); }
-.vs-oneliner-item .arrow { color: var(--gold); font-family: var(--font-display); font-weight: 700; font-size: 16px; }
-.vs-oneliner-item .response { color: var(--gray); font-style: italic; }
-.vs-oneliner-item:last-child .response { color: var(--white); font-style: normal; font-weight: 500; }
+.vs-oneliner-item .request { font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--gray); flex: 1; }
+.vs-oneliner-item .arrow { color: var(--gold); font-weight: 700; font-family: var(--font-display); flex-shrink: 0; }
+.vs-oneliner-item .response { font-family: var(--font-body); font-style: italic; font-size: 16px; color: var(--white); flex: 1; }
+.vs-oneliner-item:last-child .response { font-weight: 500; }
 
-/* ===== THE INSIGHT (framed, 2-col: copy left | example right) ===== */
-.insight { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: center; margin: 0 0 36px 0; padding: 22px 28px; border: 1px solid var(--border); border-radius: 12px; background: rgba(212, 165, 116, 0.04); }
-.insight-content { display: flex; flex-direction: column; gap: 10px; }
-.insight-headline { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.25; color: var(--white); letter-spacing: -0.02em; margin: 0; }
+.ami-react { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; padding: 4px 14px 4px 4px; border-radius: 999px; border: 1px solid var(--border); flex-shrink: 0; }
+.ami-react-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+.ami-react-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); }
+.ami-react-icon { flex-shrink: 0; }
+.ami-react-no { color: var(--gray-mid); background: var(--black-soft); }
+.ami-react-yes { color: var(--gold); border-color: var(--gold); background: rgba(212, 165, 116, 0.08); }
+.ami-react-yes .ami-react-avatar { border-color: var(--gold); }
+
+.insight { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; margin: 0 0 24px 0; overflow: hidden; }
+.insight-content { padding: 22px 26px; }
+.insight-headline { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px; }
 .insight-headline .gold { color: var(--gold); }
-.insight-line { font-family: var(--font-body); font-size: 17px; line-height: 1.5; color: var(--gray); margin: 0; }
-.insight-example { padding: 4px 0 4px 28px; margin: 0; border-left: 1px solid rgba(212, 165, 116, 0.35); display: flex; flex-direction: column; gap: 8px; background: none; border-top: none; border-right: none; border-bottom: none; border-radius: 0; }
-.insight-example-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
-.insight-example-quote { font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--white); margin: 0; font-style: normal; }
+.insight-line { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
+.insight-example { padding: 22px 26px; border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.insight-example-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.insight-example-quote { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--white); line-height: 1.5; }
 
-/* ===== THREE JOBS (tag in top-right, title below) ===== */
-.jobs-intro { font-family: var(--font-body); font-size: 16px; color: var(--gray-mid); margin-bottom: 18px; font-style: italic; }
-.jobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 0; }
-.job { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px 18px; }
-.job-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
-.job-num { font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--gold); letter-spacing: 0.16em; }
-.job-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.3; letter-spacing: -0.005em; }
-.job-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-.job-tag-ai { background: rgba(212, 165, 116, 0.12); color: var(--gold); border: 1px solid rgba(212, 165, 116, 0.4); }
-.job-tag-solved { background: rgba(212, 165, 116, 0.04); color: var(--gray); border: 1px solid var(--border); }
-.job-tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.jobs-intro { font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--gray-mid); margin-bottom: 12px; }
+.jobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.job { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.job-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.job-num { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--gold); letter-spacing: 0.08em; }
+.job-tag { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+.job-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+.job-tag-ai { color: var(--gold); border: 1px solid var(--gold); background: rgba(212, 165, 116, 0.06); }
+.job-tag-ai::before { background: var(--gold); }
+.job-tag-solved { color: var(--gray-mid); border: 1px solid var(--border); }
+.job-tag-solved::before { background: var(--gray-mid); }
+.job-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.3; }
 
 @media (max-width: 768px) {
-  .vs-oneliner-item { font-size: 14px; gap: 10px; padding: 12px 14px; }
+  body[data-slide="slide-5"] .slide-title { font-size: 28px; }
+  .vs-oneliner-item { flex-wrap: wrap; gap: 10px; }
   .vs-oneliner-item .who { width: auto; }
-  .insight { grid-template-columns: 1fr; gap: 18px; }
-  .insight-example { border-left: none; border-top: 1px solid rgba(212, 165, 116, 0.3); padding: 14px 0 0 0; }
-  .insight-headline { font-size: 22px; }
-  .insight-line, .insight-example-quote { font-size: 15px; }
+  .vs-oneliner-item .request, .vs-oneliner-item .response { font-size: 14px; flex: 1 1 100%; }
+  .ami-react { margin-left: 0; }
+  .insight { grid-template-columns: 1fr; }
+  .insight-example { border-left: none; border-top: 1px solid var(--border); }
+  .insight-headline { font-size: 19px; }
   .jobs { grid-template-columns: 1fr; }
 }
 </style>
@@ -72,12 +83,28 @@
       <span class="request">"Looking to branch out"</span>
       <span class="arrow">→</span>
       <span class="response">"Grab a coffee with my friend"</span>
+      <span class="ami-react ami-react-no">
+        <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
+        <svg class="ami-react-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 14V2"/>
+          <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+        </svg>
+      </span>
     </div>
     <div class="vs-oneliner-item">
       <span class="who">Referral</span>
       <span class="request">"I want to pay to solve it today"</span>
       <span class="arrow">→</span>
       <span class="response">"Call this number"</span>
+      <span class="ami-react ami-react-yes">
+        <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
+        <svg class="ami-react-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/>
+          <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/>
+          <path d="m2 16 6 6"/>
+          <circle cx="16" cy="9" r="2.9"/>
+        </svg>
+      </span>
     </div>
   </div>
 
