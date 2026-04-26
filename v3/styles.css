@@ -1693,8 +1693,15 @@ body {
 .vs-oneliner-item:last-child { color: var(--gold); }
 .bridge-text { font-family: var(--font-body); font-size: 18px; color: var(--gray); line-height: 1.6; margin: 8px 0; }
 .bridge-text strong { color: var(--white); font-weight: 600; }
-.ai-pct { color: var(--gold) !important; font-weight: 600; font-family: var(--font-display) !important; }
+.ai-pct { color: var(--gold) !important; font-weight: 600; font-family: var(--font-display) !important; width: 20%; }
+.comparison .result { color: var(--gray); }
 .table-note { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.6; margin-bottom: 8px; }
+.table-note em { color: var(--white); font-style: italic; font-family: var(--font-body); }
+.winner-row td { background: rgba(212, 165, 116, 0.08); border-top: 2px solid var(--gold) !important; padding-top: 22px !important; padding-bottom: 22px !important; }
+.winner-row .winner-label { color: var(--gold); font-weight: 700; letter-spacing: 0.02em; }
+.winner-row .winner-pct { color: var(--white); font-size: 22px; }
+.winner-row .winner-result { color: var(--white); font-weight: 500; }
+.winner-row .winner-result strong { color: var(--gold); }
 
 /* PRODUCT STEPS (S6) */
 .product-steps { display: flex; flex-direction: column; gap: 24px; margin: 32px 0; }
