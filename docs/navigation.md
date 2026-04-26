@@ -31,7 +31,7 @@ The repo holds multiple deck versions in parallel — each lives in its own dire
 | 4 | `v3/slide-4.html` | The Market |
 | 5 | `v3/slide-5.html` | The Distinction |
 | 6 | `v3/slide-6.html` | The Play |
-| 7 | `v3/slide-7.html` | The Network |
+| 7 | `v3/slide-7.html` | The Mechanism |
 | 8 | `v3/slide-8.html` | The Wedge |
 | 9 | `v3/slide-9.html` | The Plan |
 | 10 | `v3/slide-10.html` | The Team |

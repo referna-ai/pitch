@@ -3,49 +3,77 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S6 · The Network — InTouch Pitch</title>
+<title>S7 · The Mechanism — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-7"] .slide-title { font-size: 36px; margin-bottom: 24px; }
+body[data-slide="slide-7"] .conclusion { font-size: 22px; }
+
+.mechanism-steps { display: flex; flex-direction: column; gap: 14px; margin: 0; }
+.mechanism-step { display: flex; gap: 20px; padding: 18px 24px; background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; }
+.mechanism-step .step-num { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 800; font-size: 15px; display: flex; align-items: center; justify-content: center; }
+.mechanism-step .step-content { flex: 1; min-width: 0; }
+.mechanism-step .step-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+.mechanism-step .step-desc { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.5; margin-bottom: 6px; }
+.mechanism-step .step-desc strong { color: var(--white); font-weight: 600; }
+.mechanism-step .step-stat { font-family: var(--font-display); font-size: 12px; font-weight: 500; color: var(--gray-mid); font-style: italic; letter-spacing: 0.01em; line-height: 1.45; }
+.mechanism-step .step-stat strong { color: var(--gold); font-weight: 600; font-style: normal; }
+
+@media (max-width: 768px) {
+  body[data-slide="slide-7"] .slide-title { font-size: 28px; }
+  body[data-slide="slide-7"] .conclusion { font-size: 18px; }
+  .mechanism-step { padding: 16px 18px; gap: 14px; }
+  .mechanism-step .step-desc { font-size: 13px; }
+}
+</style>
 </head>
 <body data-slide="slide-7">
 
 
 <div class="deck">
 
-<div class="slide" id="slide-6">
+<div class="slide" id="slide-7">
   <div class="slide-number">07 / 10</div>
-  <div class="slide-label">The Network</div>
-  <h2 class="slide-title">How referrals actually scale</h2>
+  <div class="slide-label">The mechanism</div>
+  <h2 class="slide-title">InTouch delivers all 3 required components</h2>
 
-  <div class="how-steps">
-    <div class="how-step">
-      <div class="how-step-num">1</div>
-      <div class="how-step-body">
-        <div class="how-step-title">Connect your calendar</div>
-        <div class="how-step-desc">InTouch maps who you actually meet — verified by interaction history. Not who clicked "accept" three years ago.</div>
+  <div class="mechanism-steps">
+
+    <div class="mechanism-step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">Find willing referrers</div>
+        <div class="step-desc">InTouch combines onboarding inputs with calendar, email, and messaging signals to identify each member's ICP — then matches them into circles whose businesses naturally refer to each other.</div>
+        <div class="step-stat">Early signal: <strong>3.5 invites per user · 29% acceptance</strong> &nbsp;·&nbsp; n=48</div>
       </div>
     </div>
-    <div class="how-step">
-      <div class="how-step-num">2</div>
-      <div class="how-step-body">
-        <div class="how-step-title">Build your circle</div>
-        <div class="how-step-desc">3–8 people who agree to actively look out for each other. Everyone shares what they need. Everyone scans their meetings.</div>
+
+    <div class="mechanism-step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">Keep them motivated</div>
+        <div class="step-desc">Circles of 3–8 commit to mutual lookout. Each member scans their meetings for the others; the others scan back. <strong>BNI's reciprocity loop — minus the geography and the breakfast.</strong> Motivation is structural, not exhortational.</div>
+        <div class="step-stat">BNI ran this offline for 40 years to <strong>$26.4B/year</strong> · 79% of members in firms under 10</div>
       </div>
     </div>
-    <div class="how-step">
-      <div class="how-step-num">3</div>
-      <div class="how-step-body">
-        <div class="how-step-title">Referrals surface automatically</div>
-        <div class="how-step-desc">7.04 warm paths per week — people and opportunities you'd never find alone. Each worth ~$1,200 on average (BNI, n=340K).</div>
+
+    <div class="mechanism-step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Trigger recall at the right moment</div>
+        <div class="step-desc">Calendar is one input. InTouch maintains a <strong>collaborative CRM across the circle</strong> and predicts when a member's business is ready to be handed off. The signal doesn't go to the next vendor cold — it goes to the existing vendor, reminding them which circle-mate to refer in the meeting they're already having.</div>
+        <div class="step-stat">The inversion of intent platforms: <strong>attributed intent surfaced inside a trust loop</strong></div>
       </div>
     </div>
+
   </div>
 
-  <div class="conclusion">→ 68 real connections. 7 referrals a week. Built on trust you already earned.</div>
-  <div class="sources">Sources: InTouch product data, BNI/Misner (n=12,000)</div>
+  <div class="conclusion">BNI proved the loop at $26.4B/year. InTouch makes it digital, ambient, and continuous.</div>
+  <div class="sources">Sources: InTouch product data (n=48), BNI Mid-Year Report 2025 (n=340K), BNI/Misner research (n=12,000)</div>
 </div>
 
 </div>
