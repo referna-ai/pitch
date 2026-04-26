@@ -3,59 +3,123 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · The Distinction — InTouch Pitch</title>
+<title>S5 · The value is in referrals, not intros — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* ===== ONE-LINER CONTRAST (REQUEST → RESPONSE) ===== */
+.vs-oneliner { display: flex; flex-direction: column; gap: 16px; margin: 0 0 36px 0; padding: 0; background: none; border: none; border-radius: 0; }
+.vs-oneliner-item { font-family: var(--font-body); font-size: 18px; line-height: 1.4; padding: 12px 0 12px 22px; border-left: 2px solid var(--border); display: flex; align-items: center; gap: 22px; flex-wrap: wrap; font-weight: 400; color: inherit; }
+.vs-oneliner-item:first-child { color: inherit; }
+.vs-oneliner-item:last-child { color: inherit; border-left-color: var(--gold); }
+.vs-oneliner-item .who { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); width: 72px; flex: none; }
+.vs-oneliner-item:last-child .who { color: var(--gold); }
+.vs-oneliner-item .request { color: var(--gray-mid); font-style: italic; }
+.vs-oneliner-item:last-child .request { color: var(--gray); }
+.vs-oneliner-item .arrow { color: var(--gold); font-family: var(--font-display); font-weight: 700; font-size: 16px; }
+.vs-oneliner-item .response { color: var(--gray); font-style: italic; }
+.vs-oneliner-item:last-child .response { color: var(--white); font-style: normal; font-weight: 500; }
+
+/* ===== THE INSIGHT (framed, 2-col: copy left | example right) ===== */
+.insight { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: center; margin: 0 0 36px 0; padding: 22px 28px; border: 1px solid var(--border); border-radius: 12px; background: rgba(212, 165, 116, 0.04); }
+.insight-content { display: flex; flex-direction: column; gap: 10px; }
+.insight-headline { font-family: var(--font-display); font-weight: 800; font-size: 28px; line-height: 1.25; color: var(--white); letter-spacing: -0.02em; margin: 0; }
+.insight-headline .gold { color: var(--gold); }
+.insight-line { font-family: var(--font-body); font-size: 17px; line-height: 1.5; color: var(--gray); margin: 0; }
+.insight-example { padding: 4px 0 4px 28px; margin: 0; border-left: 1px solid rgba(212, 165, 116, 0.35); display: flex; flex-direction: column; gap: 8px; background: none; border-top: none; border-right: none; border-bottom: none; border-radius: 0; }
+.insight-example-label { font-family: var(--font-display); font-size: 10px; font-weight: 700; color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; }
+.insight-example-quote { font-family: var(--font-body); font-size: 16px; line-height: 1.55; color: var(--white); margin: 0; font-style: normal; }
+
+/* ===== THREE JOBS (tag in top-right, title below) ===== */
+.jobs-intro { font-family: var(--font-body); font-size: 16px; color: var(--gray-mid); margin-bottom: 18px; font-style: italic; }
+.jobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 0; }
+.job { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px 18px; }
+.job-header { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 10px; }
+.job-num { font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--gold); letter-spacing: 0.16em; }
+.job-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.3; letter-spacing: -0.005em; }
+.job-tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 9px; border-radius: 999px; font-family: var(--font-display); font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
+.job-tag-ai { background: rgba(212, 165, 116, 0.12); color: var(--gold); border: 1px solid rgba(212, 165, 116, 0.4); }
+.job-tag-solved { background: rgba(212, 165, 116, 0.04); color: var(--gray); border: 1px solid var(--border); }
+.job-tag::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+
+@media (max-width: 768px) {
+  .vs-oneliner-item { font-size: 14px; gap: 10px; padding: 12px 14px; }
+  .vs-oneliner-item .who { width: auto; }
+  .insight { grid-template-columns: 1fr; gap: 18px; }
+  .insight-example { border-left: none; border-top: 1px solid rgba(212, 165, 116, 0.3); padding: 14px 0 0 0; }
+  .insight-headline { font-size: 22px; }
+  .insight-line, .insight-example-quote { font-size: 15px; }
+  .jobs { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body data-slide="slide-5">
 
 
 <div class="deck">
 
-<div class="slide" id="slide-4">
+<div class="slide" id="slide-5">
   <div class="slide-number">05 / 10</div>
-  <div class="slide-label">The Distinction</div>
-  <h2 class="slide-title">Intros ≠ referrals</h2>
+  <div class="slide-label">The insight</div>
+  <h2 class="slide-title">The value is in referrals, not intros</h2>
 
   <div class="vs-oneliner">
-    <div class="vs-oneliner-item">Introduction — "Let me connect you two"</div>
-    <div class="vs-oneliner-item">Referral — "Use them. They’re the best."</div>
+    <div class="vs-oneliner-item">
+      <span class="who">Intro</span>
+      <span class="request">"Looking to branch out"</span>
+      <span class="arrow">→</span>
+      <span class="response">"Grab a coffee with my friend"</span>
+    </div>
+    <div class="vs-oneliner-item">
+      <span class="who">Referral</span>
+      <span class="request">"I want to pay to solve it today"</span>
+      <span class="arrow">→</span>
+      <span class="response">"Call this number"</span>
+    </div>
   </div>
 
-  <table class="vs-table">
-    <thead>
-      <tr>
-        <th>Introduction</th>
-        <th>Referral</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Connects strangers</td>
-        <td>Activates existing trust</td>
-      </tr>
-      <tr>
-        <td>One-and-done</td>
-        <td>Ongoing — circle members scan every meeting for your needs</td>
-      </tr>
-      <tr>
-        <td>Weak signal — "they seem relevant"</td>
-        <td>Strong signal — "I know exactly what they need"</td>
-      </tr>
-      <tr>
-        <td>0% close rate improvement</td>
-        <td>3–5× higher close rate vs. cold outreach</td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="insight">
+    <div class="insight-content">
+      <div class="insight-headline">The key ingredient in referrals is <span class="gold">timing.</span></div>
+      <p class="insight-line">Someone needs to think of you the moment a third party has a need.</p>
+    </div>
+    <div class="insight-example">
+      <span class="insight-example-label">Scenario</span>
+      <p class="insight-example-quote">"Just raised a round — do you know a good PR firm to get me on TechCrunch?"</p>
+    </div>
+  </div>
 
-  <p class="bridge-text">Every networking startup built the intro layer. <strong>None built the referral layer.</strong> That’s why Lunchclub pivoted, Shapr declined, and LinkedIn has 930 connections you never talk to.</p>
+  <p class="jobs-intro">For referrals to scale, three things have to be true:</p>
 
-  <div class="conclusion">→ The winning model already exists. It just hasn’t been digitized.</div>
-  <div class="sources">Sources: Lunchclub (a16z-backed, pivoted), Shapr (declined), InTouch interviews (n=26)</div>
+  <div class="jobs">
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">01</span>
+        <span class="job-tag job-tag-ai">Scalable with AI</span>
+      </div>
+      <div class="job-title">Find willing referrers</div>
+    </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">02</span>
+        <span class="job-tag job-tag-solved">Known playbook</span>
+      </div>
+      <div class="job-title">Keep them motivated</div>
+    </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">03</span>
+        <span class="job-tag job-tag-ai">Scalable with AI</span>
+      </div>
+      <div class="job-title">Trigger recall at the right moment</div>
+    </div>
+  </div>
+
+  <div class="conclusion">The more valuable problem has been hiding in plain sight — <span class="gold">referral timing.</span></div>
+  <div class="sources">Sources: InTouch interviews (n=26), product research</div>
 </div>
 
 </div>
