@@ -18,7 +18,8 @@ body[data-slide="slide-2"] .slide-title { margin-bottom: 28px; }
 .ami-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px 20px; }
 .ami-eyebrow { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
 .ami-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
-.ami-photo { width: 72px; height: 72px; border-radius: 50%; object-fit: cover; flex-shrink: 0; background: var(--gold); filter: grayscale(100%); box-shadow: 0 0 0 3px var(--gold), 0 0 0 5px var(--black-mid); }
+.ami-photo { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--gold); flex-shrink: 0; background: var(--black-soft); overflow: hidden; }
+.ami-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
 .ami-id-name { font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--white); letter-spacing: -0.01em; line-height: 1.15; }
 .ami-id-role { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); font-style: italic; margin-top: 4px; }
 .ami-quote { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 21px; line-height: 1.35; color: var(--white); padding: 14px 16px; border-left: 2px solid var(--gold); background: rgba(212, 165, 116, 0.06); border-radius: 0 6px 6px 0; letter-spacing: -0.01em; }
@@ -74,13 +75,13 @@ body[data-slide="slide-2"] .hero-summary-derivation { font-family: var(--font-di
       <div class="ami-card">
         <div class="ami-eyebrow">A real one of them</div>
         <div class="ami-header">
-          <img class="ami-photo" src="ami.png" alt="Ami B.">
+          <div class="ami-photo"><img src="ami.png" alt="Ami B."></div>
           <div>
             <div class="ami-id-name">Ami B.</div>
             <div class="ami-id-role">Fractional VP of Marketing · Herzliya</div>
           </div>
         </div>
-        <div class="ami-quote">"I need more referrals."</div>
+        <div class="ami-quote">"I sell marketing to startups."</div>
         <div class="ami-footer">Real · Reachable for reference</div>
       </div>
 
