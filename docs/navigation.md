@@ -2,19 +2,19 @@
 
 ## How it works
 
-`nav.js` is loaded by every slide and drives all navigation. It maintains a single ordered array of filenames (`slides[]`). It detects the current slide by reading the `data-slide` attribute on `<body>`, appending `.html`, and finding that value in the array. Forward/back move ±1 in the array.
+`nav.js` is loaded by every slide and drives all navigation. It maintains a single ordered array of `{ file, title }` objects (`slides[]`) and **renders the `<nav class="deck-tabs">` tab strip itself** — the slide HTML files no longer contain that markup. It detects the current slide by reading the `data-slide` attribute on `<body>`, appending `.html`, and finding that value in the array. Forward/back move ±1 in the array.
 
-## The three places that must stay in sync
+## The places that must stay in sync
 
-When adding, removing, or renaming a slide, update **all three**:
+When adding, removing, or renaming a slide, update:
 
 | File | What to change |
 |------|---------------|
-| `<version>/nav.js` (e.g. `v1/`, `v2/`, `v3/`) | The `slides[]` array — order determines navigation sequence |
+| `<version>/nav.js` (e.g. `v1/`, `v2/`, `v3/`) | The `slides[]` array of `{ file, title }` objects — order determines navigation sequence; `title` is the tab label |
 | `<version>/analytics.js` | The `SLIDES` map — keys are filenames, values are display names sent to the spreadsheet |
 | Every `<body>` tag | `data-slide` must equal the filename without `.html` |
 
-The nav tabs inside each HTML file (`<nav class="deck-tabs">`) are cosmetic — they don't affect keyboard/click/swipe navigation, only the top tab bar.
+The tab strip is generated from `slides[]` at page load — there is no per-slide tab markup to keep in sync anymore. Active tab is set by matching the detected current slide.
 
 ## Versions
 
@@ -38,10 +38,9 @@ The repo holds multiple deck versions in parallel — each lives in its own dire
 
 ## Adding a new slide (within a version)
 
-1. Create `<version>/slide-N.html` with `<body data-slide="slide-N">`
-2. Add `'slide-N.html'` to `slides[]` in `<version>/nav.js` at the right position
+1. Create `<version>/slide-N.html` with `<body data-slide="slide-N">` (no `<nav class="deck-tabs">` block — it's injected by `nav.js`)
+2. Add `{ file: 'slide-N.html', title: 'The thing' }` to `slides[]` in `<version>/nav.js` at the right position
 3. Add `'slide-N.html': 'NN · Title'` to `SLIDES` in `<version>/analytics.js`
-4. Add the nav tab link to every slide's `<nav class="deck-tabs">` block in that version
 
 ## Common bug: sequential sed replacements
 
