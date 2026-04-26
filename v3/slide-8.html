@@ -9,6 +9,40 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-8"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-8"] .conclusion .pivot { color: var(--gold); }
+
+.wedge-box { background: rgba(212, 165, 116, 0.06); border-left: 3px solid var(--gold); padding: 20px 24px; margin-bottom: 22px; border-radius: 0 8px 8px 0; }
+.wedge-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 16px; }
+.wedge-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.wedge-tag { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--gold); border: 1px solid var(--gold); padding: 4px 12px; border-radius: 4px; letter-spacing: 0.04em; white-space: nowrap; }
+.wedge-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px; }
+.wedge-detail { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.55; }
+.profession-inline { color: var(--white); font-weight: 500; }
+
+.section-heading { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin: 0 0 12px 0; }
+
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 0; }
+.reason-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+.reason-num { font-family: var(--font-display); font-weight: 800; font-size: 12px; color: var(--gold); letter-spacing: 0.08em; }
+.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; line-height: 1.25; }
+.reason-desc { font-family: var(--font-body); font-size: 13px; color: var(--gray); line-height: 1.5; }
+.reason-desc strong { color: var(--white); font-weight: 600; }
+
+.ami-evidence { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+.ami-mini { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--gold); flex-shrink: 0; background: var(--black); overflow: hidden; }
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--gold); font-style: italic; }
+.ami-evidence-text strong { color: var(--white); font-style: normal; font-weight: 600; }
+.ami-evidence-attrib { display: block; margin-top: 3px; font-family: var(--font-display); font-size: 10px; font-style: normal; color: var(--gray-mid); letter-spacing: 0.04em; }
+
+@media (max-width: 900px) {
+  .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-8"] .slide-title { font-size: 30px; }
+  .wedge-title { font-size: 19px; }
+}
+</style>
 </head>
 <body data-slide="slide-8">
 
@@ -36,22 +70,31 @@
     <div class="reason-card">
       <div class="reason-num">01</div>
       <div class="reason-title">We are their dream customer</div>
-      <div class="reason-desc">Yaniv just raised. Every one of these 14 vendor types wants this meeting. <strong>Founder-as-prospect opens every door in the segment</strong> — no one declines a warm intro to a funded founder.</div>
-      <div class="reason-proof">Yaniv's calendar = the wedge's front door</div>
+      <div class="reason-desc">Yaniv just raised. Every one of the 14 vendor types wants this meeting. <strong>Founder-as-prospect opens every door in the segment</strong> — even doors we never knocked on.</div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">"Yaniv, do you know any startups who just raised seed?"<span class="ami-evidence-attrib">Ami, last week — he came to us</span></div>
+      </div>
     </div>
 
     <div class="reason-card">
       <div class="reason-num">02</div>
       <div class="reason-title">A thirsty market</div>
       <div class="reason-desc">AI just killed every other channel they had. They open cold emails. They fight for spots on "Top 50" lists. They wear "verified" badges. <strong>Currency we can print.</strong></div>
-      <div class="reason-proof">Outbound response rate already validated</div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">Ami isn't waiting — he's hunting.<span class="ami-evidence-attrib">And there are 14 categories of him</span></div>
+      </div>
     </div>
 
     <div class="reason-card">
       <div class="reason-num">03</div>
       <div class="reason-title">Viral by design</div>
       <div class="reason-desc">Each provider sits in a 5+ vendor cluster around the same founders. Every successful referral creates two satisfied parties who pull in the next. <strong>The product is the growth engine.</strong></div>
-      <div class="reason-proof">3.5 invites/user · 29% acceptance · n=48</div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">Ami invited 5 friends his first day.<span class="ami-evidence-attrib">3.5 invites/user · 29% accept · n=48</span></div>
+      </div>
     </div>
 
   </div>
