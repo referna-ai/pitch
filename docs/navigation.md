@@ -10,30 +10,37 @@ When adding, removing, or renaming a slide, update:
 
 | File | What to change |
 |------|---------------|
-| `nav.js` (and `v2/nav.js`, `v3/nav.js`) | The `slides[]` array — order determines navigation sequence; `title` is the tab label |
-| `analytics.js` (and `v2/analytics.js`, `v3/analytics.js`) | The `SLIDES` map — keys are filenames, values are display names sent to the spreadsheet |
+| `<version>/nav.js` (e.g. `v1/`, `v2/`, `v3/`) | The `slides[]` array of `{ file, title }` objects — order determines navigation sequence; `title` is the tab label |
+| `<version>/analytics.js` | The `SLIDES` map — keys are filenames, values are display names sent to the spreadsheet |
 | Every `<body>` tag | `data-slide` must equal the filename without `.html` |
 
 The tab strip is generated from `slides[]` at page load — there is no per-slide tab markup to keep in sync anymore. Active tab is set by matching the detected current slide.
 
-## Current slide order
+## Versions
+
+The repo holds multiple deck versions in parallel — each lives in its own directory (`v1/`, `v2/`, `v3/`) and is fully self-contained. The root `index.html` is a redirect that points to whichever version is "live" — change the meta-refresh URL there to swap.
+
+## Current slide order (v3 — live)
 
 | # | File | Title |
 |---|------|-------|
-| 0 | `index.html` | Cover |
-| 1 | `slide-1.html` | The Market |
-| 2 | `slide-2.html` | The Trend |
-| 3 | `slide-3.html` | The Network |
-| 4 | `slide-4.html` | The AI Trust Layer |
-| 5 | `slide-5.html` | The Agent Network |
-| 6 | `slide-6.html` | The Plan |
-| 7 | `slide-7.html` | The Team |
+| 0 | `v3/index.html` | Cover |
+| 1 | `v3/slide-1.html` | The Thesis |
+| 2 | `v3/slide-2.html` | The Networkers |
+| 3 | `v3/slide-3.html` | The Trend |
+| 4 | `v3/slide-4.html` | The Gap |
+| 5 | `v3/slide-5.html` | The Distinction |
+| 6 | `v3/slide-6.html` | The Positioning |
+| 7 | `v3/slide-7.html` | The Network |
+| 8 | `v3/slide-8.html` | The Wedge |
+| 9 | `v3/slide-9.html` | The Plan |
+| 10 | `v3/slide-10.html` | The Team |
 
-## Adding a new slide
+## Adding a new slide (within a version)
 
-1. Create `slide-N.html` with `<body data-slide="slide-N">` (no `<nav class="deck-tabs">` block — it's injected by `nav.js`)
-2. Add `{ file: 'slide-N.html', title: 'The thing' }` to `slides[]` in `nav.js` **and** `v2/nav.js` / `v3/nav.js` at the right position
-3. Add `'slide-N.html': 'NN · Title'` to `SLIDES` in `analytics.js` **and** `v2/analytics.js` / `v3/analytics.js`
+1. Create `<version>/slide-N.html` with `<body data-slide="slide-N">` (no `<nav class="deck-tabs">` block — it's injected by `nav.js`)
+2. Add `{ file: 'slide-N.html', title: 'The thing' }` to `slides[]` in `<version>/nav.js` at the right position
+3. Add `'slide-N.html': 'NN · Title'` to `SLIDES` in `<version>/analytics.js`
 
 ## Common bug: sequential sed replacements
 
