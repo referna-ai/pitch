@@ -3,37 +3,61 @@
 
 (function () {
   const slides = [
-    'index.html',
-    'slide-1.html',
-    'slide-2.html',
-    'slide-3.html',
-    'slide-4.html',
-    'slide-5.html',
-    'slide-6.html',
-    'slide-7.html'
+    { file: 'index.html',   title: 'Overview' },
+    { file: 'slide-1.html', title: 'The networkers' },
+    { file: 'slide-2.html', title: 'The trend' },
+    { file: 'slide-3.html', title: 'The network' },
+    { file: 'slide-4.html', title: 'The AI Trust Layer' },
+    { file: 'slide-5.html', title: 'The agent network' },
+    { file: 'slide-6.html', title: 'The plan' },
+    { file: 'slide-7.html', title: 'The team' }
   ];
+  const slideFiles = slides.map((s) => s.file);
 
   function detectCurrent() {
     const ds = document.body && document.body.dataset && document.body.dataset.slide;
     if (ds) {
       const byData = ds + '.html';
-      if (slides.indexOf(byData) !== -1) return byData;
+      if (slideFiles.indexOf(byData) !== -1) return byData;
     }
     const path = location.pathname.toLowerCase();
-    for (let i = 0; i < slides.length; i++) {
-      if (path.endsWith('/' + slides[i]) || path.endsWith(slides[i])) return slides[i];
+    for (let i = 0; i < slideFiles.length; i++) {
+      if (path.endsWith('/' + slideFiles[i]) || path.endsWith(slideFiles[i])) return slideFiles[i];
     }
     if (path === '' || path === '/' || path.endsWith('/')) return 'index.html';
     return 'index.html';
   }
   const current = detectCurrent();
-  const idx = slides.indexOf(current);
+  const idx = slideFiles.indexOf(current);
+
+  function renderTabs() {
+    document.querySelectorAll('.deck-tabs, .deck-tabs-trigger').forEach((n) => n.remove());
+
+    const trigger = document.createElement('div');
+    trigger.className = 'deck-tabs-trigger';
+    trigger.setAttribute('aria-hidden', 'true');
+
+    const nav = document.createElement('nav');
+    nav.className = 'deck-tabs';
+    slides.forEach((s) => {
+      const a = document.createElement('a');
+      a.href = s.file;
+      a.className = 'deck-tab' + (s.file === current ? ' active' : '');
+      a.textContent = s.title;
+      nav.appendChild(a);
+    });
+
+    const first = document.body.firstChild;
+    document.body.insertBefore(trigger, first);
+    document.body.insertBefore(nav, first);
+  }
+  renderTabs();
 
   function go(delta) {
     if (idx < 0) return;
     const next = idx + delta;
-    if (next < 0 || next >= slides.length) return;
-    location.href = slides[next];
+    if (next < 0 || next >= slideFiles.length) return;
+    location.href = slideFiles[next];
   }
   const forward = () => go(1);
   const back = () => go(-1);
@@ -138,7 +162,7 @@
   function init() {
     if (idx < 0) return;
     makeArrow('left', back, idx > 0);
-    makeArrow('right', forward, idx < slides.length - 1);
+    makeArrow('right', forward, idx < slideFiles.length - 1);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
