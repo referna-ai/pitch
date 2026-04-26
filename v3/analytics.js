@@ -13,7 +13,7 @@
     'slide-2.html':  '02 · The Networkers',
     'slide-3.html':  '03 · The Trend',
     'slide-4.html':  '04 · The market',
-    'slide-5.html':  '05 · The Distinction',
+    'slide-5.html':  '05 · The Insight',
     'slide-6.html':  '06 · The Positioning',
     'slide-7.html':  '07 · The Network',
     'slide-8.html':  '08 · The Wedge',
