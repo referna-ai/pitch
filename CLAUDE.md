@@ -5,6 +5,7 @@ Before giving a PR link at the end of any task:
 1. Check whether the last PR on this repo is already merged: `gh pr list --state merged --limit 1` or `gh pr view <number> --json state`
 2. If the previous PR was merged, pull main first (`git checkout main && git pull origin main`), then create a new branch and open a fresh PR for the current work
 3. Always give the PR link at the end of the response
+4. Always give the Cloudflare Pages preview link too. The bot posts it as a PR comment shortly after the push (look for `cloudflare-workers-and-pages[bot]`); the per-branch URL pattern is `https://<branch-slug>.intouch-short-deck.pages.dev`. If the comment hasn't shown up yet, poll PR comments until it does (or note that the preview is still building).
 
 ## Branch naming
 Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
