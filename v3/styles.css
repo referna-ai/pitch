@@ -1778,7 +1778,7 @@ body {
 .thesis-belief:last-child { border-bottom: none; }
 .thesis-belief-num { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--gray-mid); flex-shrink: 0; width: 20px; }
 .thesis-belief-text { font-family: var(--font-body); font-size: 17px; color: var(--white); line-height: 1.5; }
-.thesis-link { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.06em; color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212,165,116,0.35); padding-bottom: 1px; margin-left: 10px; white-space: nowrap; transition: color 0.15s, border-color 0.15s; }
+.thesis-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212,165,116,0.4); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; }
 .thesis-link:hover { color: var(--white); border-color: var(--white); }
 
 /* THESIS COUNTER */
