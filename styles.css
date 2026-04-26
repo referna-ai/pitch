@@ -204,6 +204,73 @@ body {
   font-style: italic;
 }
 
+/* S1: hero-stats single (centered, bordered) */
+.hero-stats.hero-stats-single {
+  justify-content: center;
+  margin: 0 0 12px;
+  padding: 36px 0 28px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.hero-stats.hero-stats-single .hero-stat { text-align: center; }
+.hero-stats.hero-stats-single .hero-stat-num {
+  font-size: 80px;
+  justify-content: center;
+}
+.hero-stats.hero-stats-single .hero-stat-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-mid);
+  font-style: normal;
+  margin-top: 10px;
+  letter-spacing: 0.02em;
+  max-width: none;
+}
+
+/* S1: profession list */
+.profession-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.profession-row {
+  font-family: var(--font-body);
+  padding: 8px 0 8px 24px;
+  border-left: 2px solid var(--gold);
+  line-height: 1.7;
+}
+.profession {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+}
+.profession-sep {
+  color: var(--gold);
+  margin: 0 10px;
+  font-weight: 700;
+}
+.profession-more {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--gray-mid);
+  font-size: 16px;
+}
+.segments-row { padding-top: 12px; }
+.segments-row .profession-more {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.slide-inset .profession-list { margin-left: 120px; margin-right: 120px; }
+
 .bullets-loop {
   position: relative;
 }
@@ -1423,7 +1490,8 @@ body {
 
   .slide-inset .bullets,
   .slide-inset .hero-stats,
-  .slide-inset .derivation { margin-left: 0; margin-right: 0; }
+  .slide-inset .derivation,
+  .slide-inset .profession-list { margin-left: 0; margin-right: 0; }
 
   .hero-stats {
     flex-direction: column;
@@ -1432,8 +1500,12 @@ body {
     padding: 12px 0;
   }
   .hero-stat-num { font-size: 56px; gap: 10px; }
+  .hero-stats.hero-stats-single .hero-stat-num { font-size: 56px; }
   .hero-num-suffix { font-size: 22px; }
   .derivation { font-size: 11px; }
+  .profession { font-size: 14px; }
+  .profession-sep { margin: 0 6px; }
+  .profession-more { font-size: 14px; }
 
 }
 
