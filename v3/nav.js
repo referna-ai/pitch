@@ -5,7 +5,7 @@
   const slides = [
     { file: 'index.html',    title: 'Overview' },
     { file: 'slide-1.html',  title: 'The thesis' },
-    { file: 'slide-2.html',  title: 'The networkers' },
+    { file: 'slide-2.html',  title: 'The professionals' },
     { file: 'slide-3.html',  title: 'The trend' },
     { file: 'slide-4.html',  title: 'The market' },
     { file: 'slide-5.html',  title: 'The distinction' },

@@ -204,6 +204,90 @@ body {
   font-style: italic;
 }
 
+/* S2: side-by-side layout — profession list left, 338M summary right */
+.professions-grid {
+  display: flex;
+  align-items: center;
+  gap: 56px;
+  margin: 28px 0;
+}
+.professions-grid .profession-list {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.hero-summary {
+  flex: 0 0 260px;
+  padding-left: 40px;
+  border-left: 1px solid var(--border);
+}
+.hero-summary-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.hero-summary-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-mid);
+  letter-spacing: 0.02em;
+  margin-bottom: 14px;
+}
+.hero-summary-derivation {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--gray-dark);
+}
+
+/* S2: profession list */
+.profession-list {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.profession-row {
+  font-family: var(--font-body);
+  padding: 8px 0 8px 24px;
+  border-left: 2px solid var(--gold);
+  line-height: 1.7;
+}
+.profession {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+}
+.profession-sep {
+  color: var(--gold);
+  margin: 0 10px;
+  font-weight: 700;
+}
+.profession-more {
+  font-family: var(--font-body);
+  font-style: italic;
+  color: var(--gray-mid);
+  font-size: 16px;
+}
+.segments-row { padding-top: 12px; }
+.segments-row .profession-more {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-weight: 700;
+  color: var(--gold);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.slide-inset .profession-list { margin-left: 120px; margin-right: 120px; }
+
 .bullets-loop {
   position: relative;
 }
@@ -331,6 +415,11 @@ body {
   content: "→ ";
   color: var(--gold);
   font-weight: 800;
+}
+
+.conclusion strong {
+  color: var(--gold);
+  font-weight: 700;
 }
 
 /* Table styles for S2 */
@@ -1423,7 +1512,8 @@ body {
 
   .slide-inset .bullets,
   .slide-inset .hero-stats,
-  .slide-inset .derivation { margin-left: 0; margin-right: 0; }
+  .slide-inset .derivation,
+  .slide-inset .profession-list { margin-left: 0; margin-right: 0; }
 
   .hero-stats {
     flex-direction: column;
@@ -1434,6 +1524,22 @@ body {
   .hero-stat-num { font-size: 56px; gap: 10px; }
   .hero-num-suffix { font-size: 22px; }
   .derivation { font-size: 11px; }
+  .profession { font-size: 14px; }
+  .profession-sep { margin: 0 6px; }
+  .profession-more { font-size: 14px; }
+  .professions-grid {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 24px;
+  }
+  .hero-summary {
+    flex: 0 0 auto;
+    padding-left: 0;
+    padding-top: 20px;
+    border-left: none;
+    border-top: 1px solid var(--border);
+  }
+  .hero-summary-num { font-size: 56px; }
 
 }
 
