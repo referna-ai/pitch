@@ -10,7 +10,13 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-.transform-table { width: 100%; border-collapse: collapse; margin-bottom: 0; }
+/* Slide-6 chrome overrides — bigger title + conclusion match the reference */
+body[data-slide="slide-6"] .slide-title { font-size: 52px; margin-bottom: 36px; }
+body[data-slide="slide-6"] .conclusion { font-size: 30px; font-weight: 800; padding-top: 28px; line-height: 1.2; }
+body[data-slide="slide-6"] .conclusion::before { content: none; }
+body[data-slide="slide-6"] .conclusion strong { font-weight: 800; }
+
+.transform-table { width: 100%; border-collapse: collapse; margin: 0; }
 .transform-table thead th { text-align: left; padding: 0 18px 14px; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); border-bottom: 1px solid var(--border); }
 .transform-table thead th.col-motion { width: 22%; }
 .transform-table thead th.col-manual { width: 26%; }
@@ -21,33 +27,35 @@
 .transform-table tbody tr:last-child { border-bottom: none; }
 .transform-table tbody tr.row-intouch { background: rgba(212, 165, 116, 0.06); }
 .transform-table tbody tr.row-intouch td:first-child { border-left: 3px solid var(--gold); }
-.transform-table tbody td { padding: 24px 18px; vertical-align: top; font-family: var(--font-body); line-height: 1.45; }
+.transform-table tbody td { padding: 28px 18px; vertical-align: top; font-family: var(--font-body); line-height: 1.45; }
 
-.cell-motion .motion-name { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 6px; }
+.cell-motion .motion-name { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--white); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 6px; }
 .row-intouch .cell-motion .motion-name { color: var(--gold); }
-.cell-motion .motion-tag { font-family: var(--font-display); font-weight: 500; font-size: 11px; letter-spacing: 0.06em; color: var(--gray-mid); text-transform: uppercase; }
+.cell-motion .motion-tag { font-family: var(--font-display); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; color: var(--gray-mid); text-transform: uppercase; }
 .row-intouch .cell-motion .motion-tag { color: var(--gold); font-weight: 700; }
 
-.cell-manual { color: var(--gray); font-size: 15px; }
+.cell-manual { color: var(--gray); font-size: 16px; }
 
-.cell-ai .ai-brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em; }
+.cell-ai .ai-brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em; }
 .row-intouch .cell-ai .ai-brand { color: var(--gold); }
 .cell-ai .ai-desc { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.5; }
 .cell-ai .ai-desc strong { font-family: var(--font-display); font-weight: 700; color: var(--white); }
 .row-intouch .cell-ai .ai-desc strong { color: var(--gold); }
 
 .cell-val { text-align: right; }
-.cell-val .val-num { font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -0.02em; color: var(--white); }
-.row-intouch .cell-val .val-num { color: var(--gold); font-size: 40px; }
-.cell-val .val-sub { font-family: var(--font-body); font-size: 12px; color: var(--gray-mid); margin-top: 6px; font-style: italic; }
+.cell-val .val-num { font-family: var(--font-display); font-weight: 800; font-size: 36px; line-height: 1; letter-spacing: -0.02em; color: var(--white); }
+.row-intouch .cell-val .val-num { color: var(--gold); font-size: 44px; }
+.cell-val .val-sub { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); margin-top: 6px; font-style: italic; }
 
 @media (max-width: 768px) {
+  body[data-slide="slide-6"] .slide-title { font-size: 32px; margin-bottom: 20px; }
+  body[data-slide="slide-6"] .conclusion { font-size: 22px; }
   .transform-table thead { display: none; }
   .transform-table tbody tr { display: block; padding: 16px 0; }
   .transform-table tbody td { display: block; padding: 6px 12px; }
   .cell-val { text-align: left; }
-  .cell-val .val-num { font-size: 28px; }
-  .row-intouch .cell-val .val-num { font-size: 32px; }
+  .cell-val .val-num { font-size: 32px; }
+  .row-intouch .cell-val .val-num { font-size: 36px; }
 }
 </style>
 </head>
