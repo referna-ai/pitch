@@ -12,85 +12,67 @@
 <style>
 :root { --green: #7BC47F; --red: #D4645C; --border-soft: rgba(212, 165, 116, 0.12); }
 
-body[data-slide="slide-7"] .slide-title { font-size: 36px; margin-bottom: 8px; }
-body[data-slide="slide-7"] .slide .conclusion { margin-top: 20px; padding-top: 18px; font-size: 22px; }
+body[data-slide="slide-7"] .slide-title { font-size: 40px; margin-bottom: 32px; }
+body[data-slide="slide-7"] .slide .conclusion { margin-top: 28px; padding-top: 22px; font-size: 22px; }
 
-.slide-subtitle-line { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--gray-mid); margin-bottom: 22px; }
-.slide-subtitle-line strong { color: var(--gold); font-style: normal; font-family: var(--font-display); font-weight: 600; font-size: 13px; letter-spacing: 0.04em; }
+.mechanism-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; margin: 0; }
+.mech-col { display: flex; flex-direction: column; gap: 14px; }
 
-.mechanism-steps { display: flex; flex-direction: column; gap: 0; margin: 0; }
-.mechanism-step { display: grid; grid-template-columns: 1fr 1.1fr; gap: 36px; align-items: center; padding: 18px 6px; }
-.mechanism-step--reverse { grid-template-columns: 1.1fr 1fr; }
-.mechanism-step--reverse .step-text { order: 2; }
-.mechanism-step--reverse .step-visual { order: 1; }
-.step-divider { height: 1px; background: linear-gradient(to right, transparent, var(--border) 15%, var(--border) 85%, transparent); }
-.step-text { display: flex; flex-direction: column; gap: 0; }
-.step-title { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.18em; margin-bottom: 10px; display: flex; align-items: center; gap: 14px; }
-.step-title::before { content: ""; display: inline-block; width: 24px; height: 1px; background: var(--gold); }
-.step-desc { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.55; }
-.step-desc strong { color: var(--white); font-weight: 600; }
-.step-desc .ami { color: var(--white); font-weight: 600; }
-.step-desc .quote { color: var(--white); font-style: italic; }
-.step-visual { display: flex; align-items: center; justify-content: center; }
+.col-title { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; display: flex; align-items: center; gap: 12px; }
+.col-title::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--gold); }
+.col-desc { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.55; }
+.col-desc strong { color: var(--white); font-weight: 600; }
+.col-desc .ami { color: var(--white); font-weight: 600; }
+.col-desc .quote { color: var(--white); font-style: italic; }
 
-.quote-block { position: relative; padding-left: 44px; }
-.quote-mark { position: absolute; left: 0; top: -10px; font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: 80px; line-height: 1; color: var(--gold); opacity: 0.5; }
-.quote-text { font-family: var(--font-body); font-style: italic; font-weight: 500; font-size: 20px; line-height: 1.4; color: var(--white); letter-spacing: -0.005em; }
+.col-visual { margin-top: 6px; }
+
+.quote-block { position: relative; padding-left: 30px; }
+.quote-mark { position: absolute; left: 0; top: -6px; font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: 56px; line-height: 1; color: var(--gold); opacity: 0.5; }
+.quote-text { font-family: var(--font-body); font-style: italic; font-weight: 500; font-size: 17px; line-height: 1.45; color: var(--white); letter-spacing: -0.005em; }
 .quote-attr { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
-.quote-attr-photo-wrap { width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0; overflow: hidden; }
+.quote-attr-photo-wrap { width: 26px; height: 26px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
 .quote-attr-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.quote-attr-name { font-family: var(--font-display); font-weight: 600; font-size: 13px; color: var(--gold); letter-spacing: 0.02em; }
+.quote-attr-name { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--gold); letter-spacing: 0.02em; }
 .quote-attr-name span { color: var(--gray-mid); font-weight: 400; }
 
-.browser-frame { width: 100%; max-width: 360px; background: var(--black); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
-.browser-chrome { display: flex; align-items: center; gap: 12px; padding: 8px 14px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
-.browser-dots { display: flex; gap: 6px; }
-.browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+.browser-frame { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.browser-chrome { display: flex; align-items: center; gap: 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
+.browser-dots { display: flex; gap: 5px; }
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
 .browser-dot.red { background: #FF5F57; }
 .browser-dot.yellow { background: #FFBD2E; }
 .browser-dot.green { background: #28C840; }
-.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.04em; }
-.browser-body { padding: 14px 18px 16px; }
-
-.phone-frame { width: 100%; max-width: 300px; background: var(--black); border: 1px solid var(--border); border-radius: 28px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); padding: 8px 8px 12px; }
-.phone-status { display: flex; justify-content: space-between; align-items: center; padding: 4px 12px 10px; font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.02em; }
-.phone-time { color: var(--white); }
-.phone-icons { color: var(--gray-mid); letter-spacing: 0.18em; }
-.phone-body { padding: 0 6px; }
+.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.04em; }
+.browser-body { padding: 12px 14px 14px; }
 
 .credits-ledger { width: 100%; font-family: var(--font-display); }
 .credits-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding-bottom: 8px; border-bottom: 1px solid var(--border-soft); }
 .credits-header strong { color: var(--white); font-weight: 600; }
 .credits-rows { padding: 4px 0; }
-.credits-row { display: grid; grid-template-columns: 60px 1fr; gap: 12px; padding: 5px 0; align-items: baseline; }
+.credits-row { display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 4px 0; align-items: baseline; }
 .credits-amt { font-family: var(--font-display); font-weight: 700; font-size: 12px; text-align: right; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
 .credits-give .credits-amt { color: var(--green); }
 .credits-receive .credits-amt { color: var(--red); }
-.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 13px; line-height: 1.4; }
+.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 12px; line-height: 1.35; }
 .credits-text strong { color: var(--white); font-weight: 600; }
-.credits-balance { display: grid; grid-template-columns: 60px 1fr; gap: 12px; align-items: baseline; margin-top: 6px; padding-top: 8px; border-top: 1px solid var(--border-soft); }
-.credits-balance-num { text-align: right; font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.credits-balance { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: baseline; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-soft); }
+.credits-balance-num { text-align: right; font-size: 17px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
 .credits-balance-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
 
-.gordy-msg { display: flex; gap: 12px; align-items: flex-start; width: 100%; background: rgba(255, 255, 255, 0.04); border-radius: 14px; padding: 12px 12px 14px; }
-.gordy-avatar { flex-shrink: 0; width: 40px; height: 40px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 16px; box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.12); }
-.gordy-content { flex: 1; padding-top: 2px; }
+.gordy-card { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.gordy-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
+.gordy-content { flex: 1; }
 .gordy-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
 .gordy-name { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--white); }
-.gordy-role { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-.gordy-body { font-family: var(--font-body); font-size: 13px; color: var(--gray); line-height: 1.5; margin-bottom: 10px; }
+.gordy-time { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+.gordy-body { font-family: var(--font-body); font-size: 12.5px; color: var(--gray); line-height: 1.45; margin-bottom: 10px; }
 .gordy-body strong { color: var(--white); font-weight: 600; }
-.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 7px 14px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 6px; }
+.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 5px; }
 
 @media (max-width: 768px) {
-  body[data-slide="slide-7"] .slide-title { font-size: 28px; }
-  .mechanism-step { grid-template-columns: 1fr; padding: 18px 0; gap: 20px; }
-  .mechanism-step--reverse .step-text { order: 1; }
-  .mechanism-step--reverse .step-visual { order: 2; }
-  .step-desc { font-size: 14px; }
-  .quote-text { font-size: 17px; }
-  .quote-block { padding-left: 32px; }
-  .quote-mark { font-size: 56px; }
+  body[data-slide="slide-7"] .slide-title { font-size: 28px; margin-bottom: 24px; }
+  .mechanism-cols { grid-template-columns: 1fr; gap: 24px; }
 }
 </style>
 </head>
@@ -103,16 +85,13 @@ body[data-slide="slide-7"] .slide .conclusion { margin-top: 20px; padding-top: 1
   <div class="slide-number">07 / 10</div>
   <div class="slide-label">The mechanism</div>
   <h2 class="slide-title">InTouch delivers all 3 required components</h2>
-  <p class="slide-subtitle-line"><strong>Following Ami →</strong> from sign-up to his next referred client</p>
 
-  <div class="mechanism-steps">
+  <div class="mechanism-cols">
 
-    <div class="mechanism-step">
-      <div class="step-text">
-        <div class="step-title">Find willing referrers</div>
-        <div class="step-desc"><span class="ami">Ami</span> signs up. InTouch reads his ICP — <span class="quote">"I sell marketing to startups"</span> — plus calendar, email and messaging signals, and matches him into a circle of 8 vendors targeting the same founder.</div>
-      </div>
-      <div class="step-visual">
+    <div class="mech-col">
+      <div class="col-title">Find willing referrers</div>
+      <div class="col-desc"><span class="ami">Ami</span> signs up. InTouch reads his ICP — <span class="quote">"I sell marketing to startups"</span> — plus calendar, email and messaging signals, and matches him into a circle of 8 vendors targeting the same founder.</div>
+      <div class="col-visual">
         <div class="quote-block">
           <span class="quote-mark">"</span>
           <div class="quote-text">I would love to have a referral circle. I just didn't know the right people.</div>
@@ -124,14 +103,10 @@ body[data-slide="slide-7"] .slide .conclusion { margin-top: 20px; padding-top: 1
       </div>
     </div>
 
-    <div class="step-divider"></div>
-
-    <div class="mechanism-step mechanism-step--reverse">
-      <div class="step-text">
-        <div class="step-title">Keep them motivated</div>
-        <div class="step-desc">The circle commits to mutual lookout. <span class="ami">Ami</span> earns <strong>InTouch credits</strong> when he refers others, and spends them when others refer to him. Run out — make a referral, or stop receiving.</div>
-      </div>
-      <div class="step-visual">
+    <div class="mech-col">
+      <div class="col-title">Keep them motivated</div>
+      <div class="col-desc">The circle commits to mutual lookout. <span class="ami">Ami</span> earns <strong>InTouch credits</strong> when he refers others, spends them when others refer to him. Run out — make a referral, or stop receiving.</div>
+      <div class="col-visual">
         <div class="browser-frame">
           <div class="browser-chrome">
             <div class="browser-dots">
@@ -143,7 +118,7 @@ body[data-slide="slide-7"] .slide .conclusion { margin-top: 20px; padding-top: 1
           </div>
           <div class="browser-body">
             <div class="credits-ledger">
-              <div class="credits-header"><span><strong>Ami</strong> · Circle credits</span><span>This week</span></div>
+              <div class="credits-header"><span><strong>Ami</strong> · Credits</span><span>This week</span></div>
               <div class="credits-rows">
                 <div class="credits-row credits-give"><span class="credits-amt">+1,200</span><span class="credits-text">Referred founder to <strong>Sarah</strong> (lawyer)</span></div>
                 <div class="credits-row credits-give"><span class="credits-amt">+800</span><span class="credits-text">Referred founder to <strong>Tom</strong> (PR)</span></div>
@@ -157,31 +132,19 @@ body[data-slide="slide-7"] .slide .conclusion { margin-top: 20px; padding-top: 1
       </div>
     </div>
 
-    <div class="step-divider"></div>
-
-    <div class="mechanism-step">
-      <div class="step-text">
-        <div class="step-title">Trigger recall at the right moment</div>
-        <div class="step-desc">InTouch maintains a <strong>collaborative CRM across the circle</strong> and uses <strong>Gordy</strong> — our AI Circle Keeper. When <span class="ami">Ami</span> has an opportunity to refer someone, Gordy lets him know.</div>
-      </div>
-      <div class="step-visual">
-        <div class="phone-frame">
-          <div class="phone-status">
-            <span class="phone-time">9:47</span>
-            <span class="phone-icons">••• ◢ ▮▮</span>
-          </div>
-          <div class="phone-body">
-            <div class="gordy-msg">
-              <div class="gordy-avatar">G</div>
-              <div class="gordy-content">
-                <div class="gordy-meta">
-                  <span class="gordy-name">Gordy</span>
-                  <span class="gordy-role">now</span>
-                </div>
-                <div class="gordy-body">Your meeting with <strong>Acme</strong> starts in 15m. Their founder posted a job on LinkedIn — might need a recruiter. <strong>Tom</strong> is in your circle.</div>
-                <div class="gordy-action">Refer Tom →</div>
-              </div>
+    <div class="mech-col">
+      <div class="col-title">Trigger recall at the right moment</div>
+      <div class="col-desc">InTouch maintains a <strong>collaborative CRM across the circle</strong> and uses <strong>Gordy</strong> — our AI Circle Keeper. When <span class="ami">Ami</span> has an opportunity to refer someone, Gordy lets him know.</div>
+      <div class="col-visual">
+        <div class="gordy-card">
+          <div class="gordy-avatar">G</div>
+          <div class="gordy-content">
+            <div class="gordy-meta">
+              <span class="gordy-name">Gordy</span>
+              <span class="gordy-time">now</span>
             </div>
+            <div class="gordy-body">Your meeting with <strong>Acme</strong> starts in 15m. Their founder posted a job on LinkedIn — might need a recruiter. <strong>Tom</strong> is in your circle.</div>
+            <div class="gordy-action">Refer Tom →</div>
           </div>
         </div>
       </div>
