@@ -11,7 +11,9 @@
     'slide-5.html',
     'slide-6.html',
     'slide-7.html',
-    'slide-8.html'
+    'slide-8.html',
+    'slide-9.html',
+    'slide-10.html'
   ];
 
   function detectCurrent() {
