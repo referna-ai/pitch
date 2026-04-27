@@ -4,14 +4,16 @@
 //
 // No hardcoded slide list — columns are created automatically when new slides appear.
 
-var SHEET_ID = '1ndMM3HdLha7j51pbxHutavdpR0i-OlBSURNpuS15PK8';
+var SHEET_ID   = '1ndMM3HdLha7j51pbxHutavdpR0i-OlBSURNpuS15PK8';
+var SHEET_NAME = 'Sessions'; // target tab — created on first run if missing
 
 var FIXED_HEADERS = ['Date', 'Viewer', 'Total (s)', 'Session ID'];
 var FIXED_COUNT   = FIXED_HEADERS.length;
 
 function doPost(e) {
   try {
-    var sheet   = SpreadsheetApp.openById(SHEET_ID).getActiveSheet();
+    var ss    = SpreadsheetApp.openById(SHEET_ID);
+    var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     var data    = JSON.parse(e.postData.contents);
     var s       = data.session || data;
     var slides  = (s.slides || []).slice().sort(function(a, b) {
@@ -74,7 +76,9 @@ function doPost(e) {
     }
 
   } catch(err) {
-    Logger.log(err.toString());
+    // Surface in Executions UI so silent failures stop being silent
+    console.error('doPost failed: ' + err + ' — stack: ' + (err && err.stack));
+    throw err;
   }
   return ContentService.createTextOutput('OK');
 }
