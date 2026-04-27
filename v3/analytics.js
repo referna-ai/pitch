@@ -2,13 +2,6 @@
   if (window.__pitchAnalyticsLoaded) return;
   window.__pitchAnalyticsLoaded = true;
 
-  // Skip non-production hosts entirely — branch previews
-  // (<slug>.intouch-short-deck.pages.dev) and localhost should never write
-  // to the sheet. Production is the bare intouch-short-deck.pages.dev.
-  var host = location.hostname;
-  if (!host || host === 'localhost' || host === '127.0.0.1' ||
-      /\.intouch-short-deck\.pages\.dev$/.test(host)) return;
-
   // ── CONFIG ────────────────────────────────────────────────────────────
   var WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbzPcDXMf_ZFgZxsPDSTqUDnOMg3aaFFV5nbv1k-uFx63L3RlWr6JTaqTM6gbDQs5s_vSA/exec';
   var MAX_SLIDE_SECS = 30 * 60; // cap at 30 min — handles tabs left open for days
@@ -76,7 +69,17 @@
   }
 
   // ── Viewer identity ───────────────────────────────────────────────────
+  // Production is exactly intouch-short-deck.pages.dev; branch previews
+  // are <slug>.intouch-short-deck.pages.dev. Localhost is dev.
+  function isPreviewEnv() {
+    var h = location.hostname;
+    if (!h || h === 'localhost' || h === '127.0.0.1') return true;
+    if (/\.intouch-short-deck\.pages\.dev$/.test(h)) return true;
+    return false;
+  }
+
   function resolveViewer() {
+    if (isPreviewEnv()) return 'Dev';
     var p = new URLSearchParams(location.search);
     var q = (p.get('viewer') || p.get('name') || '').trim();
     if (q) { setCookie(COOKIE, q, 30); return q; }
