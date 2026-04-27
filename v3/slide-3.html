@@ -15,18 +15,19 @@ body[data-slide="slide-3"] .comparison { margin-bottom: 0; }
 body[data-slide="slide-3"] .comparison tbody td { padding: 14px 20px; }
 body[data-slide="slide-3"] .slide .conclusion { margin-top: 0; }
 
-.ami-margin { display: flex; align-items: center; gap: 14px; padding: 16px 20px; background: var(--black-soft); border-left: 2px solid var(--gold); border-radius: 0 8px 8px 0; margin-top: auto; margin-bottom: 20px; }
-.ami-margin-photo { width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0; border: 1.5px solid var(--gold); overflow: hidden; }
-.ami-margin-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.ami-margin-content { flex: 1; }
-.ami-margin-quote { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 17px; line-height: 1.35; color: var(--white); letter-spacing: -0.005em; }
-.ami-margin-attr { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.04em; margin-top: 4px; }
-.ami-margin-attr strong { color: var(--gold); font-weight: 700; }
+.ami-response { display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: center; padding: 22px 26px; background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold); border-radius: 0 8px 8px 0; position: relative; margin-top: auto; margin-bottom: 8px; }
+.ami-response-eyebrow { position: absolute; top: -10px; left: 22px; font-family: var(--font-display); font-weight: 700; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); background: var(--black-mid); padding: 2px 10px; }
+.ami-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0; background: var(--black-soft); }
+.ami-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.ami-content { display: flex; flex-direction: column; gap: 6px; }
+.ami-quote { font-family: var(--font-body); font-style: italic; font-size: 20px; line-height: 1.45; color: var(--white); }
+.ami-attr { font-family: var(--font-display); font-size: 13px; color: var(--gray-mid); letter-spacing: 0.02em; }
+.ami-attr strong { color: var(--white); font-weight: 600; }
 
 @media (max-width: 768px) {
-  .ami-margin { padding: 12px 14px; }
-  .ami-margin-photo { width: 40px; height: 40px; }
-  .ami-margin-quote { font-size: 15px; }
+  .ami-response { grid-template-columns: 48px 1fr; gap: 14px; padding: 22px 20px 18px; }
+  .ami-photo { width: 48px; height: 48px; }
+  .ami-quote { font-size: 17px; }
 }
 </style>
 </head>
@@ -38,7 +39,7 @@ body[data-slide="slide-3"] .slide .conclusion { margin-top: 0; }
 <div class="slide" id="slide-3">
   <div class="slide-number">03 / 10</div>
   <div class="slide-label">The trend</div>
-  <h2 class="slide-title">Every channel is closing. Referrals will grow.</h2>
+  <h2 class="slide-title">Professionals are looking for new channels</h2>
 
   <table class="comparison channel-table">
     <thead>
@@ -77,16 +78,17 @@ body[data-slide="slide-3"] .slide .conclusion { margin-top: 0; }
     </tbody>
   </table>
 
-  <div class="ami-margin">
-    <div class="ami-margin-photo"><img src="ami.png" alt="Ami B."></div>
-    <div class="ami-margin-content">
-      <div class="ami-margin-quote">"I'm working twice as hard for half the leads."</div>
-      <div class="ami-margin-attr"><strong>Ami B.</strong> · Fractional VP of Marketing</div>
+  <div class="ami-response">
+    <div class="ami-response-eyebrow">His response</div>
+    <div class="ami-photo"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-content">
+      <div class="ami-quote">"Would love to find someone who can refer business for cash."</div>
+      <div class="ami-attr"><strong>Ami B.</strong> · Fractional VP of Marketing · last week, unprompted</div>
     </div>
   </div>
 
-  <div class="conclusion">Every door is closing except referrals — AI can scale them, not replace them.</div>
-  <div class="sources">Sources: Firework/industry data (82%), Sales So, Originality.ai, Straits Research, MailerLite, AuthoredUp/Sales So, Phoenix Strategy Group; Seer Interactive (3,119 queries, 25.1M impressions, Sep 2025)</div>
+  <div class="conclusion">Every other channel is closing — they're already looking for what's next.</div>
+  <div class="sources">Sources: Sales So, Originality.ai, Straits Research, MailerLite, AuthoredUp/Sales So, Phoenix Strategy Group; Seer Interactive (3,119 queries, 25.1M impressions, Sep 2025); Firework/industry data (82%); Ami B. interview (Apr 2026)</div>
 </div>
 
 </div>
