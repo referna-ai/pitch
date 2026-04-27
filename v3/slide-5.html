@@ -14,25 +14,25 @@ body[data-slide="slide-5"] .slide-title { margin-bottom: 28px; }
 body[data-slide="slide-5"] .conclusion .gold { color: var(--gold); }
 
 .vs-oneliner { display: grid; grid-template-columns: 1fr 1fr; margin: 0 0 24px 0; }
-.vs-oneliner-item { display: grid; grid-template-columns: auto auto; align-items: center; gap: 10px 12px; padding: 6px 0; }
+.vs-oneliner-item { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 6px 0; }
 .vs-oneliner-item:last-child { border-left: 1px solid var(--border); padding-left: 24px; }
 .vs-oneliner-item:first-child { padding-right: 24px; }
-.vs-oneliner-item .who { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; justify-self: start; grid-column: 1; grid-row: 1; }
-.vs-oneliner-item:last-child .who { color: var(--gold); border-color: var(--gold); background: rgba(212, 165, 116, 0.06); }
-.vs-oneliner-item .ami-react { grid-column: 2; grid-row: 1; justify-self: start; margin-left: 0; }
-.vs-oneliner-line { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.vs-oneliner-line { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
 .vs-oneliner-item .request { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--gray); }
 .vs-oneliner-item .arrow { color: var(--gold); font-weight: 700; font-family: var(--font-display); }
 .vs-oneliner-item .response { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--white); }
 .vs-oneliner-item:last-child .response { font-weight: 500; }
 
-.ami-react { margin-left: auto; display: inline-flex; align-items: center; gap: 10px; padding: 4px 14px 4px 4px; border-radius: 999px; border: 1px solid var(--border); flex-shrink: 0; }
+.ami-react { display: inline-flex; align-items: center; gap: 10px; padding: 4px 14px 4px 14px; border-radius: 999px; border: 1px solid var(--border); flex-shrink: 0; }
+.ami-react-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
 .ami-react-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
 .ami-react-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); }
 .ami-react-icon { flex-shrink: 0; }
 .ami-react-no { color: var(--gray-mid); background: var(--black-soft); }
+.ami-react-no .ami-react-label { color: var(--gray-mid); }
 .ami-react-yes { color: var(--gold); border-color: var(--gold); background: rgba(212, 165, 116, 0.08); }
 .ami-react-yes .ami-react-avatar { border-color: var(--gold); }
+.ami-react-yes .ami-react-label { color: var(--gold); }
 
 .insight { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; margin: 0 0 24px 0; overflow: hidden; }
 .insight-content { padding: 22px 26px; }
@@ -81,8 +81,8 @@ body[data-slide="slide-5"] .conclusion .gold { color: var(--gold); }
 
   <div class="vs-oneliner">
     <div class="vs-oneliner-item">
-      <span class="who">Intro</span>
       <span class="ami-react ami-react-no">
+        <span class="ami-react-label">Intro</span>
         <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
         <svg class="ami-react-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M17 14V2"/>
@@ -96,8 +96,8 @@ body[data-slide="slide-5"] .conclusion .gold { color: var(--gold); }
       </div>
     </div>
     <div class="vs-oneliner-item">
-      <span class="who">Referral</span>
       <span class="ami-react ami-react-yes">
+        <span class="ami-react-label">Referral</span>
         <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
         <svg class="ami-react-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/>
