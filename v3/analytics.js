@@ -82,7 +82,16 @@
     if (isPreviewEnv()) return 'Dev';
     var p = new URLSearchParams(location.search);
     var q = (p.get('viewer') || p.get('name') || '').trim();
-    if (q) { setCookie(COOKIE, q, 30); return q; }
+    if (q) {
+      setCookie(COOKIE, q, 30);
+      // Drop ?viewer= from the address bar so the URL the user sees + bookmarks is clean.
+      try {
+        p.delete('viewer'); p.delete('name');
+        var qs = p.toString();
+        history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+      } catch (e) {}
+      return q;
+    }
     var c = getCookie(COOKIE);
     if (c) return c;
     return null;

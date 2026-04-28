@@ -7,16 +7,22 @@
 <link rel="canonical" href="v3/index.html">
 <title>InTouch — Investor Pitch</title>
 <script>
-  // Preserve query string + hash so links like ?viewer=Bob keep working through the redirect.
-  var target = 'v3/index.html' + location.search + location.hash;
-  window.location.replace(target);
+  // If a viewer name is in the URL, set the analytics cookie here so we can
+  // redirect to a clean URL (no ?viewer= leftover in the address bar). The
+  // cookie is on .pages.dev/, so /v3/analytics.js will read it on next load.
+  (function () {
+    try {
+      var p = new URLSearchParams(location.search);
+      var v = (p.get('viewer') || p.get('name') || '').trim();
+      if (v) {
+        var exp = new Date(Date.now() + 30 * 864e5).toUTCString();
+        document.cookie = 'pitch_viewer=' + encodeURIComponent(v) + '; expires=' + exp + '; path=/; SameSite=Lax';
+      }
+    } catch (e) {}
+    window.location.replace('v3/index.html' + location.hash);
+  })();
 </script>
 </head>
 <body>
-<p>Redirecting to <a id="fallback-link" href="v3/index.html">the latest pitch deck</a>…</p>
-<script>
-  var l = document.getElementById('fallback-link');
-  if (l) l.href = 'v3/index.html' + location.search + location.hash;
-</script>
-</body>
+<p>Redirecting to <a href="v3/index.html">the latest pitch deck</a>…</p>
 </html>
