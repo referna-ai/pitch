@@ -1153,6 +1153,15 @@ body {
   color: var(--gray-dark);
 }
 
+.stop-aside {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gray-dark);
+  margin-left: 4px;
+}
+
 /* Hover-reveal tab navigation */
 .deck-tabs-trigger {
   position: fixed;
