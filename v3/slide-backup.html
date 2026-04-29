@@ -10,28 +10,24 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-backup"] .slide { height: auto; min-height: min(738px, calc(100vh - 90px)); }
-body[data-slide="slide-backup"] .slide-title { margin-bottom: 16px; }
+body[data-slide="slide-backup"] .slide-title { margin-bottom: 20px; }
 
-.bk-lead { font-family: var(--font-body); font-size: 17px; color: var(--gray); margin-bottom: 28px; line-height: 1.6; }
-.bk-lead strong { color: var(--white); font-weight: 600; }
-
-.bk-stat-contrast { display: flex; align-items: stretch; justify-content: space-between; gap: 0; padding: 0; background: var(--black-soft); border-radius: 12px; margin-bottom: 32px; overflow: hidden; }
-.bk-stat-side { flex: 1; text-align: center; padding: 24px 28px; display: flex; flex-direction: column; justify-content: center; }
+.bk-stat-contrast { display: flex; align-items: stretch; justify-content: space-between; gap: 0; padding: 0; background: var(--black-soft); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+.bk-stat-side { flex: 1; text-align: center; padding: 18px 24px; display: flex; flex-direction: column; justify-content: center; }
 .bk-stat-side-bni { background: var(--black-soft); }
 .bk-stat-side-intouch { background: rgba(212, 165, 116, 0.06); }
 .bk-stat-tag { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; }
 .bk-stat-side-bni .bk-stat-tag { color: var(--gray-mid); }
 .bk-stat-side-intouch .bk-stat-tag { color: var(--gold); }
-.bk-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 48px; line-height: 1; letter-spacing: -0.03em; }
+.bk-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -0.03em; }
 .bk-stat-side-bni .bk-stat-num { color: var(--gray-mid); }
 .bk-stat-side-intouch .bk-stat-num { color: var(--gold); }
 .bk-stat-sub { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); margin-top: 8px; line-height: 1.4; font-style: italic; }
 .bk-stat-arrow { flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--gold); background: var(--black-soft); }
 
 .bk-mechs-intro { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
-.bk-mechs { display: flex; flex-direction: column; gap: 0; margin-bottom: 28px; }
-.bk-mech-row { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.bk-mechs { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.bk-mech-row { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
 .bk-mech-row:last-child { border-bottom: none; }
 .bk-mech-bni { font-family: var(--font-body); font-size: 15px; color: var(--gray-mid); text-align: right; line-height: 1.5; }
 .bk-mech-arrow { font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--gold); text-align: center; }
@@ -49,7 +45,7 @@ body[data-slide="slide-backup"] .slide-title { margin-bottom: 16px; }
 @media (max-width: 768px) {
   .bk-stat-contrast { flex-direction: column; }
   .bk-stat-side { padding: 18px 16px; }
-  .bk-stat-num { font-size: 36px; }
+  .bk-stat-num { font-size: 28px; }
   .bk-stat-arrow { padding: 8px; font-size: 18px; transform: rotate(90deg); }
   .bk-mech-row, .bk-mech-headers { grid-template-columns: 1fr 20px 1fr; gap: 8px; }
   .bk-mech-bni, .bk-mech-intouch { font-size: 13px; }
@@ -61,13 +57,10 @@ body[data-slide="slide-backup"] .slide-title { margin-bottom: 16px; }
 
 <div class="deck">
 
-<a href="slide-7.html" class="back-link">Back to The Mechanism</a>
-
 <div class="slide" id="slide-backup">
   <div class="slide-number">Backup</div>
   <div class="slide-label">The trust question</div>
   <h2 class="slide-title">Trust, faster</h2>
-  <p class="bk-lead">BNI's own founder: <strong>90+ hours</strong> of weekly meetings before referrals flow. We compress that to <strong>90 minutes</strong>.</p>
 
   <div class="bk-stat-contrast">
     <div class="bk-stat-side bk-stat-side-bni">
@@ -123,8 +116,8 @@ body[data-slide="slide-backup"] .slide-title { margin-bottom: 16px; }
     </div>
   </div>
 
-  <div class="conclusion">BNI uses <span class="gold">time.</span> We use <span class="gold">signal.</span></div>
-  <div class="sources">Sources: Ivan Misner / BNI ("90–200 hours" benchmark, 5 Levels of a Referral); BNI Mid-Year Report 2025; InTouch product design</div>
+  <div class="conclusion">BNI uses time. We use <span class="gold">signal.</span></div>
+  <div class="sources">Sources: Ivan Misner / BNI — founder's "90–200 hours before referrals flow" benchmark (5 Levels of a Referral); BNI Mid-Year Report 2025; InTouch product design</div>
 </div>
 
 </div>

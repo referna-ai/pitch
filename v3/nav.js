@@ -35,6 +35,7 @@
   }
   const current = detectCurrent();
   const idx = slideFiles.indexOf(current);
+  const isBackup = !!(document.body && document.body.dataset && document.body.dataset.slide === 'slide-backup');
 
   function renderTabs() {
     document.querySelectorAll('.deck-tabs, .deck-tabs-trigger').forEach((n) => n.remove());
@@ -60,6 +61,10 @@
   renderTabs();
 
   function go(delta) {
+    if (isBackup) {
+      location.href = delta < 0 ? 'slide-7.html' : 'slide-8.html';
+      return;
+    }
     if (idx < 0) return;
     const next = idx + delta;
     if (next < 0 || next >= slideFiles.length) return;
@@ -166,6 +171,11 @@
   }
 
   function init() {
+    if (isBackup) {
+      makeArrow('left', back, true);
+      makeArrow('right', forward, true);
+      return;
+    }
     if (idx < 0) return;
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
