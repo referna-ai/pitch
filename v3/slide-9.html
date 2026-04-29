@@ -11,14 +11,38 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 /* Keep timeline columns equal but let long single-line stats overflow into the
-   adjacent (empty) slots without wrapping. The content slots alternate with
-   empty slots, so symmetric overflow has room on each side. */
+   adjacent (empty) slots without wrapping. Content slots alternate with empty
+   slots, so symmetric overflow has room on each side. */
 body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-body[data-slide="slide-9"] .timeline-slot { overflow: visible; }
+body[data-slide="slide-9"] .timeline-slot { overflow: visible; text-align: center; }
+body[data-slide="slide-9"] .stop-text { overflow: visible; text-align: center; }
+
+/* Unify timeline text on Manrope, drop italic everywhere */
+body[data-slide="slide-9"] .stop-text,
+body[data-slide="slide-9"] .stop-stat,
+body[data-slide="slide-9"] .stop-fine,
+body[data-slide="slide-9"] .future-slot .stop-text,
+body[data-slide="slide-9"] .future-slot .stop-fine,
+body[data-slide="slide-9"] .stop-text-now {
+  font-family: var(--font-display);
+  font-style: normal;
+}
+
+/* Bigger, non-italic stat lines */
+body[data-slide="slide-9"] .stop-fine {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-mid);
+}
+
+/* Title + desc on one line; desc is the lighter half */
+body[data-slide="slide-9"] .stop-stat { font-size: 15px; font-weight: 600; }
+body[data-slide="slide-9"] .stop-desc { font-weight: 400; color: var(--gray); }
+
+/* Long stat lines stay one row; overflow centers on the dot */
 body[data-slide="slide-9"] .stop-label,
 body[data-slide="slide-9"] .stop-stat,
 body[data-slide="slide-9"] .stop-fine { white-space: nowrap; }
-body[data-slide="slide-9"] .stop-text { overflow: visible; }
 </style>
 </head>
 <body data-slide="slide-9">
@@ -35,14 +59,16 @@ body[data-slide="slide-9"] .stop-text { overflow: visible; }
     <div class="timeline-row timeline-above">
       <div class="timeline-slot">
         <div class="stop-label">Feb 2026</div>
-        <div class="stop-text">Decided to focus on InTouch 100%<br/>92 interviews</div>
+        <div class="stop-text">
+          <div class="stop-stat">Decided to focus on InTouch 100%</div>
+          <div class="stop-fine">92 interviews</div>
+        </div>
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot">
-        <div class="stop-label">Apr 1 · 3-day build</div>
+        <div class="stop-label">Apr 1</div>
         <div class="stop-text">
-          <div class="stop-stat">MVP2: Intro Circles</div>
-          <div class="stop-fine">Get weekly intros</div>
+          <div class="stop-stat">MVP2: Intro Circles <span class="stop-desc">— Get weekly intros</span></div>
           <div class="stop-fine">✓ $5–10 CPS · 42% reply · 3.5 invites/user · 14.8% W/W (n=64)</div>
           <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
         </div>
@@ -70,20 +96,18 @@ body[data-slide="slide-9"] .stop-text { overflow: visible; }
     <div class="timeline-row timeline-below">
       <div class="timeline-slot"></div>
       <div class="timeline-slot">
-        <div class="stop-label">Feb 22 · 4-day build</div>
+        <div class="stop-label">Feb 22</div>
         <div class="stop-text">
-          <div class="stop-stat">MVP1: Gordy</div>
-          <div class="stop-fine">2 intros per meeting</div>
+          <div class="stop-stat">MVP1: Gordy <span class="stop-desc">— 2 intros per meeting</span></div>
           <div class="stop-fine">✓ +50% connect calendar</div>
           <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot active-slot">
-        <div class="stop-label stop-label-now">This week · 3-day build <span class="rail-mark">you are here</span></div>
+        <div class="stop-label stop-label-now">This week</div>
         <div class="stop-text stop-text-now">
-          <div class="stop-stat">MVP3: Referral Circles</div>
-          <div class="stop-fine">First circle forming</div>
+          <div class="stop-stat">MVP3: Referral Circles <span class="stop-desc">— First circle forming</span></div>
           <div class="stop-fine">Members from MVP1 + MVP2</div>
         </div>
       </div>
