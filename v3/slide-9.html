@@ -9,6 +9,17 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Keep timeline columns equal but let long single-line stats overflow into the
+   adjacent (empty) slots without wrapping. The content slots alternate with
+   empty slots, so symmetric overflow has room on each side. */
+body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+body[data-slide="slide-9"] .timeline-slot { overflow: visible; }
+body[data-slide="slide-9"] .stop-label,
+body[data-slide="slide-9"] .stop-stat,
+body[data-slide="slide-9"] .stop-fine { white-space: nowrap; }
+body[data-slide="slide-9"] .stop-text { overflow: visible; }
+</style>
 </head>
 <body data-slide="slide-9">
 
@@ -18,7 +29,7 @@
 <div class="slide" id="slide-9">
   <div class="slide-number">09 / 10</div>
   <div class="slide-label">The plan</div>
-  <h2 class="slide-title">Already moving</h2>
+  <h2 class="slide-title">Already moving fast</h2>
 
   <div class="journey-timeline">
     <div class="timeline-row timeline-above">
@@ -28,12 +39,17 @@
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot">
-        <div class="stop-label">Apr 1</div>
-        <div class="stop-text">MVP2: Circles</div>
+        <div class="stop-label">Apr 1 · 3-day build</div>
+        <div class="stop-text">
+          <div class="stop-stat">MVP2: Intro Circles</div>
+          <div class="stop-fine">Get weekly intros</div>
+          <div class="stop-fine">✓ $5–10 CPS · 42% reply · 3.5 invites/user · 14.8% W/W (n=64)</div>
+          <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
+        </div>
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot future-slot">
-        <div class="stop-label">Apr 2027 <span class="rail-mark">+12 months</span></div>
+        <div class="stop-label">May 2027</div>
         <div class="stop-text">
           <div class="stop-stat">4,000 WAU</div>
           <div class="stop-stat">500 weekly referrals</div>
@@ -54,17 +70,21 @@
     <div class="timeline-row timeline-below">
       <div class="timeline-slot"></div>
       <div class="timeline-slot">
-        <div class="stop-label">Feb 22</div>
-        <div class="stop-text">MVP1: Gordy</div>
+        <div class="stop-label">Feb 22 · 4-day build</div>
+        <div class="stop-text">
+          <div class="stop-stat">MVP1: Gordy</div>
+          <div class="stop-fine">2 intros per meeting</div>
+          <div class="stop-fine">✓ +50% connect calendar</div>
+          <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
+        </div>
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot active-slot">
-        <div class="stop-label stop-label-now">Apr 2026 <span class="rail-mark">you are here</span></div>
+        <div class="stop-label stop-label-now">This week · 3-day build <span class="rail-mark">you are here</span></div>
         <div class="stop-text stop-text-now">
-          <div class="stop-stat">14.8% W/W user growth</div>
-          <div class="stop-fine">Registered users, 3 weeks, n=48</div>
-          <div class="stop-stat">3.5 invites per user</div>
-          <div class="stop-fine">29% acceptance rate</div>
+          <div class="stop-stat">MVP3: Referral Circles</div>
+          <div class="stop-fine">First circle forming</div>
+          <div class="stop-fine">Members from MVP1 + MVP2</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
@@ -80,13 +100,13 @@
     </div>
     <div class="plan-milestone-notes">
       <div class="plan-note">Active = any engagement with another user in the last 7 days</div>
+      <div class="plan-note">Referral = introduction at the time of need. Proof: the call.</div>
       <div class="plan-note">$260M = 4,000 users × $65K average referral value per user</div>
       <div class="plan-note">Cross-check: 500 referrals/week × $10K × 52 weeks ≈ $260M</div>
-      <div class="plan-note">4.1% of the $6B wedge (slide 8)</div>
     </div>
   </div>
 
-  <div class="conclusion">Momentum is compounding.</div>
+  <div class="conclusion">Iterating fast. Learning faster. Closing in on goals.</div>
   <div class="sources">Sources: InTouch product data; wedge sizing (slide 8)</div>
 </div>
 
