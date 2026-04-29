@@ -22,6 +22,9 @@
     if (ds) {
       const byData = ds + '.html';
       if (slideFiles.indexOf(byData) !== -1) return byData;
+      // Out-of-deck page (e.g. backup slide). Returning null leaves idx = -1
+      // so prev/next/click-to-advance handlers no-op; tab strip still renders.
+      return null;
     }
     const path = location.pathname.toLowerCase();
     for (let i = 0; i < slideFiles.length; i++) {
