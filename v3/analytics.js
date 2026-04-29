@@ -18,7 +18,8 @@
     'slide-7.html':  '07 · The Mechanism',
     'slide-8.html':  '08 · The Wedge',
     'slide-9.html':  '09 · The Plan',
-    'slide-10.html': '10 · The Team'
+    'slide-10.html': '10 · The Team',
+    'slide-backup.html': 'Backup · Trust, faster'
   };
 
   var COOKIE = 'pitch_viewer';
