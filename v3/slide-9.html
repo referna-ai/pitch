@@ -14,8 +14,17 @@
    adjacent (empty) slots without wrapping. Content slots alternate with empty
    slots, so symmetric overflow has room on each side. */
 body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-body[data-slide="slide-9"] .timeline-slot { overflow: visible; text-align: center; }
-body[data-slide="slide-9"] .stop-text { overflow: visible; text-align: center; }
+
+/* Flex-center each line on the dot. align-items:center on a flex column
+   centers items horizontally even when their intrinsic (nowrap) width
+   exceeds the column — overflow goes symmetric instead of right-only. */
+body[data-slide="slide-9"] .timeline-slot,
+body[data-slide="slide-9"] .stop-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
 
 /* Unify timeline text on Manrope, drop italic everywhere */
 body[data-slide="slide-9"] .stop-text,
@@ -28,21 +37,30 @@ body[data-slide="slide-9"] .stop-text-now {
   font-style: normal;
 }
 
-/* Bigger, non-italic stat lines */
 body[data-slide="slide-9"] .stop-fine {
   font-size: 14px;
   font-weight: 500;
   color: var(--gray-mid);
 }
 
-/* Title + desc on one line; desc is the lighter half */
 body[data-slide="slide-9"] .stop-stat { font-size: 15px; font-weight: 600; }
 body[data-slide="slide-9"] .stop-desc { font-weight: 400; color: var(--gray); }
 
-/* Long stat lines stay one row; overflow centers on the dot */
+/* Default: single-line, overflow symmetric around the dot */
 body[data-slide="slide-9"] .stop-label,
 body[data-slide="slide-9"] .stop-stat,
-body[data-slide="slide-9"] .stop-fine { white-space: nowrap; }
+body[data-slide="slide-9"] .stop-fine {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Opt-in wrap for lines that should break at column width */
+body[data-slide="slide-9"] .stop-wrap {
+  white-space: normal;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.35;
+}
 </style>
 </head>
 <body data-slide="slide-9">
@@ -60,7 +78,7 @@ body[data-slide="slide-9"] .stop-fine { white-space: nowrap; }
       <div class="timeline-slot">
         <div class="stop-label">Feb 2026</div>
         <div class="stop-text">
-          <div class="stop-stat">Decided to focus on InTouch 100%</div>
+          <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
           <div class="stop-fine">92 interviews</div>
         </div>
       </div>
@@ -107,8 +125,8 @@ body[data-slide="slide-9"] .stop-fine { white-space: nowrap; }
       <div class="timeline-slot active-slot">
         <div class="stop-label stop-label-now">This week</div>
         <div class="stop-text stop-text-now">
-          <div class="stop-stat">MVP3: Referral Circles <span class="stop-desc">— First circle forming</span></div>
-          <div class="stop-fine">Members from MVP1 + MVP2</div>
+          <div class="stop-stat">MVP3: Referral Circles</div>
+          <div class="stop-fine stop-wrap">First circle forming with members from MVP1 + MVP2</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
