@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S4 · The Stakes — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root { --error: #D4645C; }
+
+body[data-slide="slide-4"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-4"] .slide-title strong { color: var(--gold); font-weight: 800; }
+
+.economics-frame { background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; padding: 26px 30px; }
+
+.economics-header { display: flex; align-items: center; gap: 16px; padding-bottom: 18px; border-bottom: 1px solid var(--border); margin-bottom: 22px; }
+.ami-photo-sm { width: 56px; height: 56px; border-radius: 50%; flex-shrink: 0; border: 2px solid var(--gold); overflow: hidden; background: var(--black-soft); }
+.ami-photo-sm img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.economics-header-name { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--white); letter-spacing: -0.005em; line-height: 1.2; }
+.economics-header-role { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); font-style: italic; margin-top: 3px; }
+.economics-header-side { margin-left: auto; text-align: right; }
+.economics-header-side-num { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.02em; line-height: 1; }
+.economics-header-side-label { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+
+.economics-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 32px; align-items: stretch; }
+
+.bar-stack { display: flex; flex-direction: column; gap: 14px; }
+.bar-row { display: flex; flex-direction: column; gap: 6px; }
+.bar-row-meta { display: flex; justify-content: space-between; align-items: baseline; }
+.bar-row-label { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--gray); letter-spacing: 0.04em; text-transform: uppercase; }
+.bar-row-value { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
+.bar-track { width: 100%; height: 22px; background: rgba(255,255,255,0.04); border-radius: 3px; overflow: hidden; position: relative; }
+.bar-track-split { display: flex; height: 100%; width: 100%; }
+.bar-fill { height: 100%; border-radius: 3px; position: relative; }
+.bar-fill.bar-referrals { background: var(--gold); width: 66.7%; }
+.bar-fill.bar-other { background: rgba(212, 100, 92, 0.45); width: 33.3%; position: relative; }
+.bar-fill.bar-other::after { content: ""; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(13,13,13,0.4) 5px, rgba(13,13,13,0.4) 10px); }
+.bar-fill.bar-outcome { background: var(--gold); width: 66.7%; }
+.bar-status-row { display: flex; justify-content: space-between; }
+.bar-status { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.04em; }
+.bar-status.status-safe { color: var(--gold); font-weight: 700; }
+.bar-status.status-dying { color: var(--error); font-weight: 700; }
+
+.bar-arrow { display: flex; align-items: center; justify-content: center; padding: 2px 0; }
+.bar-arrow-text { font-family: var(--font-display); font-size: 11px; color: var(--gray-mid); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
+
+.stake-col { display: flex; flex-direction: column; gap: 16px; justify-content: space-between; }
+.stake-headline { font-family: var(--font-display); font-weight: 800; font-size: 26px; line-height: 1.18; letter-spacing: -0.02em; color: var(--white); }
+.stake-headline .gold { color: var(--gold); }
+.stake-sub { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.55; margin-top: 12px; }
+.stake-sub strong { color: var(--white); font-weight: 600; }
+
+.ami-quote-block { background: rgba(212, 165, 116, 0.06); border-left: 2px solid var(--gold); border-radius: 0 6px 6px 0; padding: 14px 16px; }
+.ami-quote-text { font-family: var(--font-display); font-style: italic; font-weight: 600; font-size: 16px; line-height: 1.4; color: var(--white); letter-spacing: -0.005em; margin-bottom: 6px; }
+.ami-quote-attr { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+
+.multiplier { margin-top: 16px; padding: 14px 22px; background: rgba(212, 165, 116, 0.04); border: 1px solid var(--gold); border-radius: 10px; display: flex; align-items: center; justify-content: center; gap: 22px; flex-wrap: wrap; }
+.mult-term { display: flex; flex-direction: column; align-items: center; gap: 3px; }
+.mult-num { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--white); line-height: 1; letter-spacing: -0.02em; }
+.mult-num.mult-result { color: var(--gold); font-size: 32px; }
+.mult-label { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 600; }
+.mult-op { font-family: var(--font-display); font-weight: 800; font-size: 20px; color: var(--gold); }
+
+@media (max-width: 900px) {
+  .economics-grid { grid-template-columns: 1fr; gap: 24px; }
+  .economics-header-side { display: none; }
+}
+@media (max-width: 768px) {
+  .economics-frame { padding: 22px 20px; }
+  .stake-headline { font-size: 22px; }
+  .multiplier { gap: 14px; padding: 14px; }
+  .mult-num { font-size: 20px; }
+  .mult-num.mult-result { font-size: 26px; }
+}
+</style>
+</head>
+<body data-slide="slide-4">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-4">
+  <div class="slide-number">04 / 10</div>
+  <div class="slide-label">The stakes</div>
+  <h2 class="slide-title">For Ami, this is <strong>problem #1.</strong></h2>
+
+  <div class="economics-frame">
+
+    <div class="economics-header">
+      <div class="ami-photo-sm"><img src="ami.png" alt="Ami B."></div>
+      <div>
+        <div class="economics-header-name">Ami B.</div>
+        <div class="economics-header-role">Fractional VP of Marketing · Herzliya</div>
+      </div>
+      <div class="economics-header-side">
+        <div class="economics-header-side-num">~$150K</div>
+        <div class="economics-header-side-label">2025 revenue</div>
+      </div>
+    </div>
+
+    <div class="economics-grid">
+
+      <div class="bar-stack">
+        <div class="bar-row">
+          <div class="bar-row-meta">
+            <span class="bar-row-label">Today</span>
+            <span class="bar-row-value">$150K</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-track-split">
+              <div class="bar-fill bar-referrals"></div>
+              <div class="bar-fill bar-other"></div>
+            </div>
+          </div>
+          <div class="bar-status-row">
+            <span class="bar-status status-safe">$100K · referrals (65%)</span>
+            <span class="bar-status status-dying">$50K · dying channels</span>
+          </div>
+        </div>
+
+        <div class="bar-arrow">
+          <span class="bar-arrow-text">↓ &nbsp; channels collapse &nbsp; ↓</span>
+        </div>
+
+        <div class="bar-row">
+          <div class="bar-row-meta">
+            <span class="bar-row-label">Where it's heading</span>
+            <span class="bar-row-value">$100K</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill bar-outcome"></div>
+          </div>
+          <div class="bar-status-row">
+            <span class="bar-status status-safe">$100K · only referrals left</span>
+            <span class="bar-status status-dying">−$50K · 33% income loss</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stake-col">
+        <div>
+          <div class="stake-headline">A <span class="gold">33%</span> income cut. <br>And referrals are the only way out.</div>
+          <p class="stake-sub">For a solo fractional with a family, this isn't a top-3 problem. <strong>It's the only problem that matters.</strong> No other channel can replace what's collapsing.</p>
+        </div>
+
+        <div class="ami-quote-block">
+          <div class="ami-quote-text">"That's my #1 problem — isn't it anyone's top one?"</div>
+          <div class="ami-quote-attr">Ami B.</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="multiplier">
+    <div class="mult-term">
+      <div class="mult-num">$100K</div>
+      <div class="mult-label">at stake per Ami</div>
+    </div>
+    <div class="mult-op">×</div>
+    <div class="mult-term">
+      <div class="mult-num">9.26M</div>
+      <div class="mult-label">U.S. professionals in our 21 segments</div>
+    </div>
+    <div class="mult-op">=</div>
+    <div class="mult-term">
+      <div class="mult-num mult-result">$926B</div>
+      <div class="mult-label">in livelihoods at stake</div>
+    </div>
+  </div>
+
+  <div class="conclusion">For 9.26M U.S. professionals, referrals aren't a channel. <strong>They're survival.</strong></div>
+  <div class="sources">Sources: Ami B. interview (Apr 2026); 65% referral revenue stat (DemandSage); 9.26M derivation (Census, BLS, LinkedIn SMB report)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>

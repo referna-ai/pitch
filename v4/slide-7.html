@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S7 · The Mechanism — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+:root { --green: #7BC47F; --red: #D4645C; --border-soft: rgba(212, 165, 116, 0.12); }
+
+body[data-slide="slide-7"] .slide-title { margin-bottom: 28px; }
+
+.mechanism-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 40px; margin: 0; }
+.mech-col { display: flex; flex-direction: column; gap: 20px; }
+
+.col-title { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; display: flex; align-items: center; gap: 12px; }
+.col-title::before { content: ""; display: inline-block; width: 20px; height: 1px; background: var(--gold); }
+.col-desc { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.6; }
+.col-desc strong { color: var(--white); font-weight: 600; }
+.col-desc .ami { color: var(--white); font-weight: 600; }
+.col-desc .quote { color: var(--white); font-style: italic; }
+.col-desc .more-link { color: var(--gold); text-decoration: none; border-bottom: 1px solid rgba(212,165,116,0.4); padding-bottom: 1px; transition: color 0.15s, border-color 0.15s; font-weight: 500; }
+.col-desc .more-link:hover { color: var(--white); border-color: var(--white); }
+
+.col-visual { margin-top: 10px; }
+.col-caption { font-family: var(--font-body); font-size: 12px; font-style: italic; color: var(--gray-mid); margin-top: 6px; line-height: 1.4; }
+
+.quote-block { position: relative; padding-left: 30px; }
+.quote-mark { position: absolute; left: 0; top: -6px; font-family: var(--font-body); font-style: italic; font-weight: 600; font-size: 56px; line-height: 1; color: var(--gold); opacity: 0.5; }
+.quote-text { font-family: var(--font-body); font-style: italic; font-weight: 500; font-size: 18px; line-height: 1.5; color: var(--white); letter-spacing: -0.005em; }
+.quote-attr { display: flex; align-items: center; gap: 10px; margin-top: 14px; }
+.quote-attr-photo-wrap { width: 26px; height: 26px; border-radius: 50%; overflow: hidden; flex-shrink: 0; }
+.quote-attr-photo-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.quote-attr-name { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--gold); letter-spacing: 0.02em; }
+.quote-attr-name span { color: var(--gray-mid); font-weight: 400; }
+
+.browser-frame { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.browser-chrome { display: flex; align-items: center; gap: 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
+.browser-dots { display: flex; gap: 5px; }
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+.browser-dot.red { background: #FF5F57; }
+.browser-dot.yellow { background: #FFBD2E; }
+.browser-dot.green { background: #28C840; }
+.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.04em; }
+.browser-body { padding: 12px 14px 14px; }
+
+.credits-ledger { width: 100%; font-family: var(--font-display); }
+.credits-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding-bottom: 8px; border-bottom: 1px solid var(--border-soft); }
+.credits-header strong { color: var(--white); font-weight: 600; }
+.credits-rows { padding: 4px 0; }
+.credits-row { display: grid; grid-template-columns: 52px 1fr; gap: 10px; padding: 4px 0; align-items: baseline; }
+.credits-amt { font-family: var(--font-display); font-weight: 700; font-size: 12px; text-align: right; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+.credits-give .credits-amt { color: var(--green); }
+.credits-receive .credits-amt { color: var(--red); }
+.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 13px; line-height: 1.4; }
+.credits-text strong { color: var(--white); font-weight: 600; }
+.credits-balance { display: grid; grid-template-columns: 52px 1fr; gap: 10px; align-items: baseline; margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-soft); }
+.credits-balance-num { text-align: right; font-size: 17px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.credits-balance-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+
+.gordy-card { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.gordy-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
+.gordy-content { flex: 1; }
+.gordy-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.gordy-name { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--white); }
+.gordy-time { font-family: var(--font-display); font-size: 10px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+.gordy-body { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
+.gordy-body strong { color: var(--white); font-weight: 600; }
+.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 5px; }
+
+@media (max-width: 768px) {
+  body[data-slide="slide-7"] .slide-title { font-size: 30px; margin-bottom: 20px; }
+  .mechanism-cols { grid-template-columns: 1fr; gap: 24px; }
+}
+</style>
+</head>
+<body data-slide="slide-7">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-7">
+  <div class="slide-number">07 / 10</div>
+  <div class="slide-label">The mechanism</div>
+  <h2 class="slide-title">InTouch delivers all 3 required components</h2>
+
+  <div class="mechanism-cols">
+
+    <div class="mech-col">
+      <div class="col-title">Find willing referrers</div>
+      <div class="col-desc"><span class="ami">Ami</span> signs up. InTouch reads his ICP — <span class="quote">"I sell marketing to startups"</span> — plus calendar and messaging signals, and matches him into a circle of 8 targeting the same ICP.</div>
+      <div class="col-visual">
+        <div class="quote-block">
+          <span class="quote-mark">"</span>
+          <div class="quote-text">I'd love a referral circle — just need people I'd trust to refer to.</div>
+          <div class="quote-attr">
+            <div class="quote-attr-photo-wrap"><img src="ami.png" alt="Ami B."></div>
+            <div class="quote-attr-name">Ami B. <span>· Fractional VP of Marketing</span></div>
+          </div>
+        </div>
+        <div class="col-desc" style="margin-top: 16px;">InTouch builds the trust by having members share <strong>track-record evidence</strong>, start with <strong>small tokens</strong> before going to full endorsement, and keep a <strong>visible score</strong>. <a href="slide-backup.html" class="more-link">More on trust →</a></div>
+      </div>
+    </div>
+
+    <div class="mech-col">
+      <div class="col-title">Keep them motivated</div>
+      <div class="col-desc">The circle commits to mutual lookout. <span class="ami">Ami</span> earns <strong>InTouch credits</strong> when he refers others, spends them when others refer to him. Run out — make a referral, or buy.</div>
+      <div class="col-visual">
+        <div class="browser-frame">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            <div class="browser-url">intouch.app · ami's circle</div>
+          </div>
+          <div class="browser-body">
+            <div class="credits-ledger">
+              <div class="credits-header"><span><strong>Ami</strong> · Credits</span><span>This week</span></div>
+              <div class="credits-rows">
+                <div class="credits-row credits-give"><span class="credits-amt">+1,200</span><span class="credits-text">Referred founder to <strong>Sarah</strong> (lawyer)</span></div>
+                <div class="credits-row credits-give"><span class="credits-amt">+800</span><span class="credits-text">Referred founder to <strong>Tom</strong> (PR)</span></div>
+                <div class="credits-row credits-receive"><span class="credits-amt">−1,500</span><span class="credits-text"><strong>Sarah</strong> referred Acme to Ami</span></div>
+                <div class="credits-row credits-give"><span class="credits-amt">+1,000</span><span class="credits-text">Referred founder to <strong>Mia</strong> (CFO)</span></div>
+              </div>
+              <div class="credits-balance"><span class="credits-balance-num">2,400</span><span class="credits-balance-label">Balance</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-caption">Once the network is dense enough, these credits also become InTouch's monetization.</div>
+      </div>
+    </div>
+
+    <div class="mech-col">
+      <div class="col-title">Trigger at the right moment</div>
+      <div class="col-desc">InTouch maintains a <strong>collaborative CRM across the circle</strong> and uses <strong>Gordy</strong> — our AI Circle Keeper. When <span class="ami">Ami</span> can refer someone, Gordy lets him know.</div>
+      <div class="col-visual">
+        <div class="gordy-card">
+          <div class="gordy-avatar">G</div>
+          <div class="gordy-content">
+            <div class="gordy-meta">
+              <span class="gordy-name">Gordy</span>
+              <span class="gordy-time">now</span>
+            </div>
+            <div class="gordy-body">Your meeting with <strong>Acme</strong> starts in 15m. Their founder posted a job on LinkedIn — might need a recruiter. <strong>Tom</strong> is in your circle.</div>
+            <div class="gordy-action">Refer Tom →</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="conclusion">BNI proved the loop at $65K/user/year. InTouch makes it accessible, smart and fun.</div>
+  <div class="sources">Sources: InTouch product data (n=48), BNI Mid-Year Report 2025 (n=340K)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>

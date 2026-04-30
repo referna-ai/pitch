@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S3 · The Trend — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-3"] .slide-title { margin-bottom: 18px; }
+body[data-slide="slide-3"] .comparison { margin-bottom: 0; }
+body[data-slide="slide-3"] .comparison tbody td { padding: 14px 20px; }
+body[data-slide="slide-3"] .slide .conclusion { margin-top: 0; }
+
+.ami-response { display: grid; grid-template-columns: 64px 1fr; gap: 20px; align-items: center; padding: 22px 26px; background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold); border-radius: 0 8px 8px 0; margin-top: auto; margin-bottom: 8px; }
+.ami-photo { width: 64px; height: 64px; border-radius: 50%; overflow: hidden; border: 2px solid var(--gold); flex-shrink: 0; background: var(--black-soft); }
+.ami-photo img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-content { display: flex; flex-direction: column; gap: 6px; }
+.ami-quote { font-family: var(--font-body); font-style: italic; font-size: 20px; line-height: 1.45; color: var(--white); }
+.ami-attr { font-family: var(--font-display); font-size: 13px; color: var(--gray-mid); letter-spacing: 0.02em; }
+.ami-attr strong { color: var(--white); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .ami-response { grid-template-columns: 48px 1fr; gap: 14px; padding: 22px 20px 18px; }
+  .ami-photo { width: 48px; height: 48px; }
+  .ami-quote { font-size: 17px; }
+}
+</style>
+</head>
+<body data-slide="slide-3">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-3">
+  <div class="slide-number">03 / 10</div>
+  <div class="slide-label">The trend</div>
+  <h2 class="slide-title">Professionals are looking for new channels</h2>
+
+  <table class="comparison channel-table">
+    <thead>
+      <tr>
+        <th>Channel</th>
+        <th>AI penetration</th>
+        <th>Result</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="label">Cold email</td>
+        <td class="ai-pct">30%</td>
+        <td class="result">Reply rates: 7% → 5.1% in one year</td>
+      </tr>
+      <tr>
+        <td class="label">LinkedIn content</td>
+        <td class="ai-pct">54%</td>
+        <td class="result">Organic reach down 50% YoY</td>
+      </tr>
+      <tr>
+        <td class="label">Newsletters</td>
+        <td class="ai-pct">50%</td>
+        <td class="result">Unsubscribes tripled in 12 months</td>
+      </tr>
+      <tr>
+        <td class="label">Search/SEO</td>
+        <td class="ai-pct">13%+</td>
+        <td class="result">CTR down 61%</td>
+      </tr>
+      <tr class="winner-row">
+        <td class="label winner-label">Referrals</td>
+        <td class="ai-pct winner-pct">0%</td>
+        <td class="result winner-result"><strong>82% of small teams</strong> call it their primary source of new customers</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="ami-response">
+    <div class="ami-photo"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-content">
+      <div class="ami-quote">"Would love to find someone who can refer business for cash."</div>
+      <div class="ami-attr"><strong>Ami B.</strong> · Fractional VP of Marketing · last week, unprompted</div>
+    </div>
+  </div>
+
+  <div class="conclusion">Every other channel is closing — they're already looking for what's next.</div>
+  <div class="sources">Sources: Sales So, Originality.ai, Straits Research, MailerLite, AuthoredUp/Sales So, Phoenix Strategy Group; Seer Interactive (3,119 queries, 25.1M impressions, Sep 2025); Firework/industry data (82%); Ami B. interview (Apr 2026)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>

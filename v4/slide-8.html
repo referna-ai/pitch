@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S8 · The Wedge — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-8"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-8"] .conclusion .pivot { color: var(--gold); }
+
+.wedge-box { background: rgba(212, 165, 116, 0.06); border-left: 3px solid var(--gold); padding: 20px 24px; margin-bottom: 22px; border-radius: 0 8px 8px 0; }
+.wedge-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; gap: 16px; }
+.wedge-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
+.wedge-metrics { display: flex; gap: 8px; align-items: center; }
+.wedge-tag { font-family: var(--font-display); font-weight: 700; font-size: 13px; color: var(--gold); border: 1px solid var(--gold); padding: 4px 12px; border-radius: 4px; letter-spacing: 0.04em; white-space: nowrap; }
+.wedge-tag-secondary { font-family: var(--font-display); font-weight: 600; font-size: 12px; color: var(--gray); border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; letter-spacing: 0.04em; white-space: nowrap; }
+.wedge-title { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--white); letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 10px; }
+.wedge-detail { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.55; }
+.profession-inline { color: var(--white); font-weight: 500; }
+
+.reason-stats { display: flex; gap: 14px; padding: 4px 0; }
+.reason-stat { flex: 1; }
+.reason-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--gold); line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 4px; }
+.reason-stat-label { font-family: var(--font-display); font-size: 10px; font-weight: 600; color: var(--gray-mid); text-transform: uppercase; letter-spacing: 0.08em; line-height: 1.4; }
+.reason-stat-sub { display: block; text-transform: none; letter-spacing: 0.04em; color: var(--gray-dark); font-weight: 500; font-style: normal; margin-top: 4px; font-size: 10px; font-family: var(--font-display); }
+
+.section-heading { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); margin: 0 0 12px 0; }
+
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 0; }
+.reason-card { position: relative; background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 18px 18px; display: flex; flex-direction: column; gap: 8px; }
+.reason-num { position: absolute; top: 14px; right: 16px; font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--gold); letter-spacing: 0.08em; opacity: 0.8; }
+.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; line-height: 1.25; padding-right: 28px; }
+.reason-desc { font-family: var(--font-body); font-size: 13px; color: var(--gray); line-height: 1.5; }
+.reason-desc strong { color: var(--white); font-weight: 600; }
+
+.ami-evidence { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); display: flex; align-items: flex-start; gap: 10px; }
+.ami-mini { width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid var(--gold); flex-shrink: 0; background: var(--black); overflow: hidden; }
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-size: 13px; line-height: 1.4; color: var(--gold); font-style: italic; }
+.ami-evidence-text strong { color: var(--white); font-style: normal; font-weight: 600; }
+.ami-evidence-attrib { display: block; margin-top: 3px; font-family: var(--font-display); font-size: 10px; font-style: normal; color: var(--gray-mid); letter-spacing: 0.04em; }
+
+@media (max-width: 900px) {
+  .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-8"] .slide-title { font-size: 30px; }
+  .wedge-title { font-size: 19px; }
+  .wedge-metrics { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body data-slide="slide-8">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-8">
+  <div class="slide-number">08 / 10</div>
+  <div class="slide-label">The wedge</div>
+  <h2 class="slide-title">This wedge falls fast</h2>
+
+  <div class="wedge-box">
+    <div class="wedge-header">
+      <div class="wedge-label">First Wedge</div>
+      <div class="wedge-metrics">
+        <div class="wedge-tag">$6B / yr</div>
+        <div class="wedge-tag-secondary">125K pros</div>
+      </div>
+    </div>
+    <div class="wedge-title">14 startup-focused professional categories</div>
+    <div class="wedge-detail"><span class="profession-inline">Startup lawyer</span> · <span class="profession-inline">PR agent</span> · <span class="profession-inline">recruiter</span> · <span class="profession-inline">designer</span> · <span class="profession-inline">fractional CFO</span> · <span class="profession-inline">growth marketer</span> · <span class="profession-inline">brand consultant</span> · <span class="profession-inline">dev shop</span> · <span class="profession-inline">accountant</span> · <span class="profession-inline">+ 5 more</span><br>Every vendor targeting a just-funded founder.</div>
+  </div>
+
+  <div class="section-heading">Early signals support fast growth</div>
+
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-num">01</div>
+      <div class="reason-title">Weekly growth</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">14.8%</div>
+          <div class="reason-stat-label">W/W user growth<span class="reason-stat-sub">3 weeks · n=64</span></div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">"Yaniv, do you know any startups who just raised seed?"<span class="ami-evidence-attrib">Ami — inbound, no outreach</span></div>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-num">02</div>
+      <div class="reason-title">Acquisition efficiency</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">$5–$10</div>
+          <div class="reason-stat-label">per signup</div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">42%</div>
+          <div class="reason-stat-label">reply → signup</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>Cheap to reach. Quick to convert.</strong></div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">"I read every incoming email."<span class="ami-evidence-attrib">Ami — and so does the rest of the segment</span></div>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-num">03</div>
+      <div class="reason-title">Virality</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">3.5</div>
+          <div class="reason-stat-label">invites / user<span class="reason-stat-sub">n=64</span></div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">29%</div>
+          <div class="reason-stat-label">acceptance</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>K = 1.0 · 5× the B2B median (0.20).</strong></div>
+      <div class="ami-evidence">
+        <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+        <div class="ami-evidence-text">Ami invited 5 friends his first day.<span class="ami-evidence-attrib">First-day behavior</span></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — all pointing to fast distribution.</div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Saxifrage K-factor benchmarks · Ami B. interview (Apr 2026)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>
