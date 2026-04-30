@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S9 · The Plan — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Keep timeline columns equal but let long single-line stats overflow into the
+   adjacent (empty) slots without wrapping. Content slots alternate with empty
+   slots, so symmetric overflow has room on each side. */
+body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+/* Flex-center each line on the dot. align-items:center on a flex column
+   centers items horizontally even when their intrinsic (nowrap) width
+   exceeds the column — overflow goes symmetric instead of right-only. */
+body[data-slide="slide-9"] .timeline-slot,
+body[data-slide="slide-9"] .stop-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Unify timeline text on Manrope, drop italic everywhere */
+body[data-slide="slide-9"] .stop-text,
+body[data-slide="slide-9"] .stop-stat,
+body[data-slide="slide-9"] .stop-fine,
+body[data-slide="slide-9"] .future-slot .stop-text,
+body[data-slide="slide-9"] .future-slot .stop-fine,
+body[data-slide="slide-9"] .stop-text-now {
+  font-family: var(--font-display);
+  font-style: normal;
+}
+
+body[data-slide="slide-9"] .stop-fine {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-mid);
+}
+
+body[data-slide="slide-9"] .stop-stat { font-size: 15px; font-weight: 600; }
+body[data-slide="slide-9"] .stop-desc { font-weight: 400; color: var(--gray); }
+
+/* Default: single-line, overflow symmetric around the dot */
+body[data-slide="slide-9"] .stop-label,
+body[data-slide="slide-9"] .stop-stat,
+body[data-slide="slide-9"] .stop-fine {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Opt-in wrap for lines that should break at column width */
+body[data-slide="slide-9"] .stop-wrap {
+  white-space: normal;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.35;
+}
+</style>
+</head>
+<body data-slide="slide-9">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-9">
+  <div class="slide-number">09 / 10</div>
+  <div class="slide-label">The plan</div>
+  <h2 class="slide-title">Already moving fast</h2>
+
+  <div class="journey-timeline">
+    <div class="timeline-row timeline-above">
+      <div class="timeline-slot">
+        <div class="stop-label">Feb 2026</div>
+        <div class="stop-text">
+          <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
+          <div class="stop-fine">92 interviews</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot">
+        <div class="stop-label">Apr 1</div>
+        <div class="stop-text">
+          <div class="stop-stat">MVP2: Intro Circles <span class="stop-desc">— Get weekly intros</span></div>
+          <div class="stop-fine">✓ $5–10 CPS · 42% reply · 3.5 invites/user · 14.8% W/W (n=64)</div>
+          <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot future-slot">
+        <div class="stop-label">May 2027</div>
+        <div class="stop-text">
+          <div class="stop-stat">4,000 WAU</div>
+          <div class="stop-stat">500 weekly referrals</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="timeline-axis">
+      <div class="axis-line-past"></div>
+      <div class="axis-line-future"></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot dot-now"></span></div>
+      <div class="axis-slot"><span class="stop-dot dot-future"></span></div>
+    </div>
+
+    <div class="timeline-row timeline-below">
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot">
+        <div class="stop-label">Feb 22</div>
+        <div class="stop-text">
+          <div class="stop-stat">MVP1: Gordy <span class="stop-desc">— 2 intros per meeting</span></div>
+          <div class="stop-fine">✓ +50% connect calendar</div>
+          <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot active-slot">
+        <div class="stop-label stop-label-now">This week</div>
+        <div class="stop-text stop-text-now">
+          <div class="stop-stat">MVP3: Referral Circles</div>
+          <div class="stop-fine stop-wrap">First circle forming with members from MVP1 + MVP2</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+    </div>
+  </div>
+
+  <div class="plan-milestone">
+    <div class="plan-milestone-left">
+      <div class="plan-label">Plan</div>
+      <div class="plan-row"><span class="plan-key">Ask</span> Pre-seed round — 24 months, team of 4</div>
+      <div class="plan-row"><span class="plan-key">Milestone</span> 4,000 WAU · 500 weekly referrals</div>
+      <div class="plan-row"><span class="plan-key">Value Generated</span> $260M / year ($0 revenue, focusing on growth)</div>
+    </div>
+    <div class="plan-milestone-notes">
+      <div class="plan-note">Active = any engagement with another user in the last 7 days</div>
+      <div class="plan-note">Referral = introduction at the time of need. Proof: the call.</div>
+      <div class="plan-note">$260M = 4,000 users × $65K average referral value per user</div>
+      <div class="plan-note">Cross-check: 500 referrals/week × $10K × 52 weeks ≈ $260M</div>
+    </div>
+  </div>
+
+  <div class="conclusion">Iterating fast. Learning faster. Closing in on goals.</div>
+  <div class="sources">Sources: InTouch product data; wedge sizing (slide 8)</div>
+</div>
+
+</div>
+
+
+<script src="nav.js"></script>
+</body>
+</html>

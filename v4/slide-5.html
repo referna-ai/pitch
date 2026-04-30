@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S5 · The Insight — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-5"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-5"] .conclusion .gold { color: var(--gold); }
+
+.vs-oneliner { display: grid; grid-template-columns: 1fr 1fr; margin: 0 0 24px 0; }
+.vs-oneliner-item { display: flex; flex-direction: column; align-items: flex-start; gap: 12px; padding: 6px 0; }
+.vs-oneliner-item:last-child { border-left: 1px solid var(--border); padding-left: 24px; }
+.vs-oneliner-item:first-child { padding-right: 24px; }
+.vs-oneliner-line { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+.vs-oneliner-item .request { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--gray); }
+.vs-oneliner-item .arrow { color: var(--gold); font-weight: 700; font-family: var(--font-display); }
+.vs-oneliner-item .response { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--white); }
+.vs-oneliner-item:last-child .response { font-weight: 500; }
+
+.ami-react { display: inline-flex; align-items: center; gap: 10px; padding: 4px 14px 4px 14px; border-radius: 999px; border: 1px solid var(--border); flex-shrink: 0; }
+.ami-react-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; }
+.ami-react-avatar { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+.ami-react-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1); }
+.ami-react-icon { flex-shrink: 0; }
+.ami-react-no { color: var(--gray-mid); background: var(--black-soft); }
+.ami-react-no .ami-react-label { color: var(--gray-mid); }
+.ami-react-yes { color: var(--gold); border-color: var(--gold); background: rgba(212, 165, 116, 0.08); }
+.ami-react-yes .ami-react-avatar { border-color: var(--gold); }
+.ami-react-yes .ami-react-label { color: var(--gold); }
+
+.insight { display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; margin: 0 0 24px 0; overflow: hidden; }
+.insight-content { padding: 22px 26px; }
+.insight-headline { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px; }
+.insight-headline .gold { color: var(--gold); }
+.insight-line { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
+.insight-example { padding: 22px 26px; border-left: 1px solid var(--border); display: flex; flex-direction: column; justify-content: center; gap: 8px; }
+.insight-example-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); }
+.insight-example-quote { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--white); line-height: 1.5; }
+
+.jobs-intro { font-family: var(--font-body); font-style: italic; font-size: 14px; color: var(--gray-mid); margin-bottom: 12px; }
+.jobs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.job { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+.job-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.job-num { font-family: var(--font-display); font-weight: 700; font-size: 12px; color: var(--gold); letter-spacing: 0.08em; }
+.job-tag { font-family: var(--font-display); font-weight: 600; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px; }
+.job-tag::before { content: ""; width: 6px; height: 6px; border-radius: 50%; }
+.job-tag-ai { color: var(--gold); border: 1px solid var(--gold); background: rgba(212, 165, 116, 0.06); }
+.job-tag-ai::before { background: var(--gold); }
+.job-tag-solved { color: var(--gray-mid); border: 1px solid var(--border); }
+.job-tag-solved::before { background: var(--gray-mid); }
+.job-title { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); line-height: 1.3; }
+
+@media (max-width: 768px) {
+  body[data-slide="slide-5"] .slide-title { font-size: 30px; margin-bottom: 20px; }
+  .vs-oneliner { grid-template-columns: 1fr; }
+  .vs-oneliner-item:first-child { padding-right: 0; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+  .vs-oneliner-item:last-child { padding-left: 0; padding-top: 14px; border-left: none; }
+  .vs-oneliner-item .request, .vs-oneliner-item .response { font-size: 14px; }
+  .insight { grid-template-columns: 1fr; }
+  .insight-example { border-left: none; border-top: 1px solid var(--border); }
+  .insight-headline { font-size: 19px; }
+  .jobs { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-slide="slide-5">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-5">
+  <div class="slide-number">05 / 10</div>
+  <div class="slide-label">The insight</div>
+  <h2 class="slide-title">Timing makes referrals better than intros</h2>
+
+  <div class="vs-oneliner">
+    <div class="vs-oneliner-item">
+      <span class="ami-react ami-react-no">
+        <span class="ami-react-label">Intro</span>
+        <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
+        <svg class="ami-react-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 14V2"/>
+          <path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/>
+        </svg>
+      </span>
+      <div class="vs-oneliner-line">
+        <span class="request">"Looking to branch out"</span>
+        <span class="arrow">→</span>
+        <span class="response">"Grab a coffee with my friend"</span>
+      </div>
+    </div>
+    <div class="vs-oneliner-item">
+      <span class="ami-react ami-react-yes">
+        <span class="ami-react-label">Referral</span>
+        <span class="ami-react-avatar"><img src="ami.png" alt="Ami"></span>
+        <svg class="ami-react-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M11 15h2a2 2 0 1 0 0-4h-3c-.6 0-1.1.2-1.4.6L3 17"/>
+          <path d="m7 21 1.6-1.4c.3-.4.8-.6 1.4-.6h4c1.1 0 2.1-.4 2.8-1.2l4.6-4.4a2 2 0 0 0-2.75-2.91l-4.2 3.9"/>
+          <path d="m2 16 6 6"/>
+          <circle cx="16" cy="9" r="2.9"/>
+        </svg>
+      </span>
+      <div class="vs-oneliner-line">
+        <span class="request">"I want to pay to solve it today"</span>
+        <span class="arrow">→</span>
+        <span class="response">"Call this number"</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="insight">
+    <div class="insight-content">
+      <div class="insight-headline">The key ingredient in referrals is <span class="gold">timing.</span></div>
+      <p class="insight-line">Someone needs to think of you the moment a third party has a need.</p>
+    </div>
+    <div class="insight-example">
+      <span class="insight-example-label">Scenario</span>
+      <p class="insight-example-quote">"Just raised a round — do you know a good PR firm to get me on TechCrunch?"</p>
+    </div>
+  </div>
+
+  <p class="jobs-intro">For referrals to scale, three things have to be true:</p>
+
+  <div class="jobs">
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">01</span>
+        <span class="job-tag job-tag-ai">Scalable with AI</span>
+      </div>
+      <div class="job-title">Find willing referrers</div>
+    </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">02</span>
+        <span class="job-tag job-tag-solved">Known playbook</span>
+      </div>
+      <div class="job-title">Keep them motivated</div>
+    </div>
+    <div class="job">
+      <div class="job-header">
+        <span class="job-num">03</span>
+        <span class="job-tag job-tag-ai">Scalable with AI</span>
+      </div>
+      <div class="job-title">Trigger recall at the right moment</div>
+    </div>
+  </div>
+
+  <div class="conclusion">The more valuable problem has been hiding in plain sight — <span class="gold">referral timing.</span></div>
+  <div class="sources">Sources: InTouch interviews (n=26), product research</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>
