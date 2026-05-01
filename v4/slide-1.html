@@ -9,6 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Pair structure: 1+2, 3+4, 5+6. Generals lead; specifics indent under them. */
+body[data-slide="slide-1"] .thesis-belief { border-bottom: none; padding: 8px 0; }
+body[data-slide="slide-1"] .thesis-belief[data-tier="general"] .thesis-belief-num { color: var(--gold); }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"] { padding-left: 40px; }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"] .thesis-belief-num { color: var(--gray-mid); }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"]:not(:last-child) {
+  margin-bottom: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+</style>
 </head>
 <body data-slide="slide-1">
 
@@ -21,29 +33,29 @@
   <h2 class="slide-title">Our bet</h2>
 
   <div class="thesis-beliefs">
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">1</div>
+    <div class="thesis-belief" data-tier="general">
+      <div class="thesis-belief-num">1</div>
       <div class="thesis-belief-text"><strong>Massive new businesses</strong> (billions in outcomes) get created by <strong>digitizing analog markets</strong>. AI now unlocks the ones software couldn't.</div>
     </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">2</div>
+    <div class="thesis-belief" data-tier="specific">
+      <div class="thesis-belief-num">2</div>
       <div class="thesis-belief-text">An existing <strong>huge business</strong> never digitized: a network of professionals referring customers to each other.</div>
     </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">3</div>
-      <div class="thesis-belief-text">A <strong>massive network business</strong> will be built, sitting on top of high-value transactions.</div>
+    <div class="thesis-belief" data-tier="general">
+      <div class="thesis-belief-num">3</div>
+      <div class="thesis-belief-text">A <strong>massive network business</strong> will be built for referrals, sitting on top of high-value transactions.</div>
     </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">4</div>
-      <div class="thesis-belief-text">Strong monetization through transaction proximity, and <strong>defensibility</strong> through network effects. AI labs can replicate the model — they can't replicate a community of professionals who already trust each other.</div>
+    <div class="thesis-belief" data-tier="specific">
+      <div class="thesis-belief-num">4</div>
+      <div class="thesis-belief-text">Such business will have strong monetization through transaction proximity, and <strong>defensibility</strong> through network effects. Powerful AI labs will not be a threat to this business as they can't replicate the network.</div>
     </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">5</div>
-      <div class="thesis-belief-text">The winner of the most coveted segment becomes the <strong>category leader</strong>.</div>
+    <div class="thesis-belief" data-tier="general">
+      <div class="thesis-belief-num">5</div>
+      <div class="thesis-belief-text">The winner of the most coveted segment will become the <strong>category leader</strong>.</div>
     </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num" style="color: #D4A574;">6</div>
-      <div class="thesis-belief-text">We're <strong>positioned to win</strong>: best team, started first, transformative insight.</div>
+    <div class="thesis-belief" data-tier="specific">
+      <div class="thesis-belief-num">6</div>
+      <div class="thesis-belief-text">We're <strong>positioned to win</strong> that segment: best team, started first, transformative insight.</div>
     </div>
   </div>
 
