@@ -9,6 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+/* Pair structure: 1+2, 3+4, 5+6. Generals lead; specifics indent under them. */
+body[data-slide="slide-1"] .thesis-belief { border-bottom: none; padding: 8px 0; }
+body[data-slide="slide-1"] .thesis-belief[data-tier="general"] .thesis-belief-num { color: var(--gold); }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"] { padding-left: 40px; }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"] .thesis-belief-num { color: var(--gray-mid); }
+body[data-slide="slide-1"] .thesis-belief[data-tier="specific"]:not(:last-child) {
+  margin-bottom: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--border);
+}
+</style>
 </head>
 <body data-slide="slide-1">
 
@@ -18,44 +30,39 @@
 <div class="slide" id="slide-1">
   <div class="slide-number">01 / 10</div>
   <div class="slide-label">The thesis</div>
-  <h2 class="slide-title">You should invest if we can convince you that:</h2>
+  <h2 class="slide-title">Our bet</h2>
 
   <div class="thesis-beliefs">
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="general">
       <div class="thesis-belief-num">1</div>
-      <div class="thesis-belief-text"><a href="slide-2.html" class="thesis-link" data-nav-ignore>338M professionals</a> — each living off one narrow specialty</div>
+      <div class="thesis-belief-text"><strong>Massive new businesses</strong> (billions in outcomes) get created by <strong>digitizing analog markets</strong>. AI now unlocks the ones software couldn't.</div>
     </div>
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="specific">
       <div class="thesis-belief-num">2</div>
-      <div class="thesis-belief-text">AI is killing <a href="slide-3.html" class="thesis-link" data-nav-ignore>every other channel</a> — forcing them to find new growth paths</div>
+      <div class="thesis-belief-text">An existing <strong>huge business</strong> never digitized: a network of professionals referring customers to each other.</div>
     </div>
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="general">
       <div class="thesis-belief-num">3</div>
-      <div class="thesis-belief-text">Referrals aren't a channel for them — they're survival (<a href="slide-4.html" class="thesis-link" data-nav-ignore>$926B at stake</a>)</div>
+      <div class="thesis-belief-text">A <strong>massive network business</strong> will be built for referrals, sitting on top of high-value transactions.</div>
     </div>
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="specific">
       <div class="thesis-belief-num">4</div>
-      <div class="thesis-belief-text"><a href="slide-5.html" class="thesis-link" data-nav-ignore>Timing</a> is what makes referrals worth far more than intros</div>
+      <div class="thesis-belief-text">Such business will have strong monetization through transaction proximity, and <strong>defensibility</strong> through network effects. Powerful AI labs will not be a threat to this business as they can't replicate the network.</div>
     </div>
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="general">
       <div class="thesis-belief-num">5</div>
-      <div class="thesis-belief-text"><a href="slide-6.html" class="thesis-link" data-nav-ignore>6sense ($5.2B) solved timing for outbound with AI</a>. Referrals are next.</div>
+      <div class="thesis-belief-text">The winner of the most coveted segment will become the <strong>category leader</strong>.</div>
     </div>
-    <div class="thesis-belief">
+    <div class="thesis-belief" data-tier="specific">
       <div class="thesis-belief-num">6</div>
-      <div class="thesis-belief-text">The <a href="slide-7.html" class="thesis-link" data-nav-ignore>blueprint exists</a> — BNI ($26.4B/yr) + 6sense ($5.2B). Now it's execution.</div>
-    </div>
-    <div class="thesis-belief">
-      <div class="thesis-belief-num">7</div>
-      <div class="thesis-belief-text">We have a <a href="slide-8.html" class="thesis-link" data-nav-ignore>segment</a> we know well, a <a href="slide-9.html" class="thesis-link" data-nav-ignore>strong plan</a>, and <a href="slide-10.html" class="thesis-link" data-nav-ignore>proven execution</a></div>
+      <div class="thesis-belief-text">We're <strong>positioned to win</strong> that segment: best team, started first, transformative insight.</div>
     </div>
   </div>
 
   <div class="thesis-counter">
     <div class="thesis-counter-label">You should not invest if:</div>
     <div class="thesis-counter-items">
-      <div class="thesis-counter-item">You believe referrals can't be digitized</div>
-      <div class="thesis-counter-item">You believe we can't reach 4,000 users in 12 months</div>
+      <div class="thesis-counter-item">You believe nothing huge is left to digitize</div>
       <div class="thesis-counter-item">You require revenue or a 12-month path to it</div>
     </div>
   </div>
