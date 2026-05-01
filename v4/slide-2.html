@@ -12,50 +12,47 @@
 <style>
 body[data-slide="slide-2"] .slide-title { margin-bottom: 28px; }
 
-.ami-header { display: flex; align-items: center; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid var(--border); }
-.ami-photo { width: 84px; height: 84px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--black-soft); border: 2px solid var(--gold); }
+.ami-header { display: flex; align-items: flex-start; gap: 28px; padding-bottom: 22px; border-bottom: 1px solid var(--border); }
+.ami-header-left { display: flex; align-items: center; gap: 20px; flex: 1 1 auto; padding-top: 8px; }
+.ami-photo { width: 96px; height: 96px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--black-soft); border: 2px solid var(--gold); }
 .ami-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); display: block; }
-.ami-id-name { font-family: var(--font-display); font-weight: 700; font-size: 28px; color: var(--white); letter-spacing: -0.01em; }
-.ami-id-role { font-family: var(--font-body); font-size: 18px; color: var(--gray); margin-top: 4px; }
-.ami-header-side { margin-left: auto; text-align: right; }
-.ami-header-side-num { font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--white); }
-.ami-header-side-label { font-family: var(--font-display); font-size: 13px; letter-spacing: 0.1em; color: var(--gray-dark); text-transform: uppercase; margin-top: 4px; }
+.ami-id-name { font-family: var(--font-display); font-weight: 700; font-size: 30px; color: var(--white); letter-spacing: -0.01em; }
+.ami-id-role { font-family: var(--font-body); font-size: 18px; color: var(--gray); margin-top: 6px; }
 
-.profile-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 20px; }
-.profile-row { display: flex; flex-direction: column; gap: 8px; }
-.profile-label { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
-.profile-value { font-family: var(--font-body); font-size: 20px; color: var(--white); line-height: 1.4; }
+.ami-header-card { flex: 0 0 320px; padding: 16px 20px; background: var(--black-soft); border: 1px solid var(--border); border-radius: 8px; }
+.ami-header-stat { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--border); }
+.ami-header-side-num { font-family: var(--font-display); font-weight: 800; font-size: 28px; color: var(--white); letter-spacing: -0.01em; }
+.ami-header-side-label { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.12em; color: var(--gray-dark); text-transform: uppercase; }
+
+.ami-card-rows { display: flex; flex-direction: column; gap: 10px; }
+.profile-row { display: flex; flex-direction: column; gap: 3px; }
+.profile-label { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+.profile-value { font-family: var(--font-body); font-size: 16px; color: var(--white); line-height: 1.3; }
 .profile-value strong { font-weight: 600; }
 
-.problem-block { margin-top: 22px; padding-top: 20px; border-top: 1px solid var(--border); }
+.problem-block { margin-top: 22px; padding-top: 0; border-top: none; }
 .problem-label { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 .problem-statement { font-family: var(--font-display); font-weight: 700; font-size: 26px; color: var(--white); line-height: 1.3; letter-spacing: -0.01em; }
 .problem-statement .gold { color: var(--gold); }
 
-.chart-row { display: flex; gap: 28px; margin-top: 22px; align-items: stretch; }
-.quote-block { flex: 0 0 60%; background: var(--black-soft); border-left: 2px solid var(--gold); padding: 18px 22px; font-family: var(--font-body); display: flex; flex-direction: column; justify-content: center; }
+.bar-container { margin-top: 18px; }
+.bar-row { margin-bottom: 14px; }
+.bar-row-meta { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.bar-row-label { font-family: var(--font-display); font-weight: 600; font-size: 16px; color: var(--gray); }
+.bar-row-value { font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--white); }
+.bar-track { height: 42px; background: var(--black-soft); border-radius: 4px; overflow: hidden; display: flex; }
+.bar-fill-referrals { background: var(--gold); height: 100%; display: flex; align-items: center; padding-left: 16px; font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--black); gap: 10px; }
+.bar-fill-referrals .pct { font-size: 18px; font-weight: 800; }
+.bar-fill-referrals .sep { opacity: 0.5; }
+.bar-fill-other { background: var(--black-soft); border-left: 1px solid var(--gray-dark); height: 100%; display: flex; align-items: center; padding-left: 16px; font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--gray-mid); }
+
+.quote-block { margin-top: 22px; background: var(--black-soft); border-left: 2px solid var(--gold); padding: 18px 22px; font-family: var(--font-body); }
 .quote-text { font-size: 22px; color: var(--white); font-style: italic; line-height: 1.5; }
 .quote-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-mid); margin-top: 8px; letter-spacing: 0.04em; }
 
-.donut-area { flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; }
-.donut-title { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); text-align: center; }
-.donut-svg { width: 104px; height: 104px; display: block; }
-.donut-svg .track { stroke: var(--black-soft); }
-.donut-svg .fill { stroke: var(--gold); }
-.donut-svg .amt { fill: var(--white); font-family: var(--font-display); font-weight: 800; font-size: 18px; }
-.donut-legend { font-family: var(--font-display); text-align: center; line-height: 1.5; }
-.donut-legend .row-gold { font-size: 15px; color: var(--white); }
-.donut-legend .row-gold .pct { font-weight: 800; color: var(--gold); }
-.donut-legend .row-gold .amt { font-weight: 700; }
-.donut-legend .sep { opacity: 0.4; margin: 0 4px; }
-.donut-legend .row-gray { font-size: 14px; color: var(--gray-mid); margin-top: 2px; }
-
 @media (max-width: 720px) {
-  .profile-grid { grid-template-columns: 1fr; }
-  .ami-header { flex-wrap: wrap; }
-  .ami-header-side { margin-left: 0; text-align: left; width: 100%; margin-top: 8px; }
-  .chart-row { flex-direction: column; }
-  .quote-block { flex: 1 1 auto; }
+  .ami-header { flex-direction: column; }
+  .ami-header-card { flex: 1 1 auto; width: 100%; }
 }
 </style>
 </head>
@@ -70,25 +67,28 @@ body[data-slide="slide-2"] .slide-title { margin-bottom: 28px; }
   <h2 class="slide-title">Meet Ami</h2>
 
   <div class="ami-header">
-      <div class="ami-photo"><img src="ami.png" alt="Ami B."></div>
-      <div>
-        <div class="ami-id-name">Ami B.</div>
-        <div class="ami-id-role">Herzliya · Real · Reachable for reference</div>
+      <div class="ami-header-left">
+        <div class="ami-photo"><img src="ami.png" alt="Ami B."></div>
+        <div>
+          <div class="ami-id-name">Ami B.</div>
+          <div class="ami-id-role">Herzliya · Real · Reachable for reference</div>
+        </div>
       </div>
-      <div class="ami-header-side">
-        <div class="ami-header-side-num">~$150K</div>
-        <div class="ami-header-side-label">2025 revenue</div>
-      </div>
-    </div>
-
-    <div class="profile-grid">
-      <div class="profile-row">
-        <div class="profile-label">Profession</div>
-        <div class="profile-value">Fractional VP of Marketing</div>
-      </div>
-      <div class="profile-row">
-        <div class="profile-label">Customers</div>
-        <div class="profile-value">Early-stage startups</div>
+      <div class="ami-header-card">
+        <div class="ami-header-stat">
+          <div class="ami-header-side-num">~$150K</div>
+          <div class="ami-header-side-label">2025 revenue</div>
+        </div>
+        <div class="ami-card-rows">
+          <div class="profile-row">
+            <div class="profile-label">Profession</div>
+            <div class="profile-value">Fractional VP of Marketing</div>
+          </div>
+          <div class="profile-row">
+            <div class="profile-label">Customers</div>
+            <div class="profile-value">Early-stage startups</div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -96,25 +96,23 @@ body[data-slide="slide-2"] .slide-title { margin-bottom: 28px; }
       <div class="problem-label">His #1 problem</div>
       <div class="problem-statement">Getting the next customer.</div>
 
-      <div class="chart-row">
-        <div class="quote-block">
-          <div class="quote-text">"That's my #1 problem — isn't it anyone's top one?"</div>
-          <div class="quote-attr">Ami B. · April 2026</div>
-        </div>
-        <div class="donut-area">
-          <div class="donut-title">Where his $150K comes from</div>
-          <svg viewBox="0 0 100 100" class="donut-svg" aria-label="66% referrals, 34% other">
-            <circle class="track" cx="50" cy="50" r="38" fill="none" stroke-width="14"/>
-            <circle class="fill" cx="50" cy="50" r="38" fill="none" stroke-width="14"
-                    stroke-dasharray="159.16 238.76" stroke-dashoffset="0"
-                    transform="rotate(-90 50 50)"/>
-            <text class="amt" x="50" y="50" text-anchor="middle" dominant-baseline="central">$150K</text>
-          </svg>
-          <div class="donut-legend">
-            <div class="row-gold"><span class="pct">66%</span><span class="sep">·</span>Referrals<span class="sep">·</span><span class="amt">$100K</span></div>
-            <div class="row-gray">$50K · other</div>
+      <div class="bar-container">
+        <div class="bar-row">
+          <div class="bar-row-meta">
+            <span class="bar-row-label">Where his $150K comes from</span>
+          </div>
+          <div class="bar-track">
+            <div class="bar-fill-referrals" style="width:66.7%;">
+              <span class="pct">66%</span><span class="sep">·</span><span>Referrals</span><span class="sep">·</span><span>$100K</span>
+            </div>
+            <div class="bar-fill-other" style="width:33.3%;">$50K · other</div>
           </div>
         </div>
+      </div>
+
+      <div class="quote-block">
+        <div class="quote-text">"That's my #1 problem — isn't it anyone's top one?"</div>
+        <div class="quote-attr">Ami B. · April 2026</div>
       </div>
     </div>
 
