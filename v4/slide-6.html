@@ -3,54 +3,42 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S6 · The Play — InTouch Pitch</title>
+<title>S6 · The proof — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-6"] .slide-title { margin-bottom: 18px; }
 
-.transform-table { width: 100%; border-collapse: collapse; margin: 0; }
-.transform-table thead th { text-align: left; padding: 0 18px 14px; font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); border-bottom: 1px solid var(--border); }
-.transform-table thead th.col-motion { width: 22%; }
-.transform-table thead th.col-manual { width: 26%; }
-.transform-table thead th.col-ai { width: 30%; }
-.transform-table thead th.col-val { width: 22%; text-align: right; }
+.bni-stats { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 18px; }
+.bni-stat { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+.bni-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--gold); letter-spacing: -0.02em; line-height: 1; }
+.bni-stat-label { font-family: var(--font-display); font-weight: 500; font-size: 13px; color: var(--gray); margin-top: 8px; letter-spacing: 0.02em; }
 
-.transform-table tbody tr { border-bottom: 1px solid var(--border); }
-.transform-table tbody tr:last-child { border-bottom: none; }
-.transform-table tbody tr.row-intouch { background: rgba(212, 165, 116, 0.06); }
-.transform-table tbody tr.row-intouch td:first-child { border-left: 3px solid var(--gold); }
-.transform-table tbody td { padding: 28px 18px; vertical-align: top; font-family: var(--font-body); line-height: 1.45; }
+.req-header { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.16em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
 
-.cell-motion .motion-name { font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--white); letter-spacing: -0.01em; line-height: 1.1; margin-bottom: 6px; }
-.row-intouch .cell-motion .motion-name { color: var(--gold); }
-.cell-motion .motion-tag { font-family: var(--font-display); font-weight: 500; font-size: 12px; letter-spacing: 0.06em; color: var(--gray-mid); text-transform: uppercase; }
-.row-intouch .cell-motion .motion-tag { color: var(--gold); font-weight: 700; }
+.req-grid-top { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.req-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 10px; padding: 14px 18px; }
+.req-num { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 6px; }
+.req-title { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--white); letter-spacing: -0.01em; line-height: 1.3; }
 
-.cell-manual { color: var(--gray); font-size: 16px; }
+.req-card-key { border-color: var(--gold); background: rgba(212, 165, 116, 0.05); padding: 16px 20px; }
+.req-card-key .req-title { font-size: 18px; margin-bottom: 12px; }
 
-.cell-ai .ai-brand { display: flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--white); margin-bottom: 6px; letter-spacing: -0.01em; }
-.row-intouch .cell-ai .ai-brand { color: var(--gold); }
-.cell-ai .ai-desc { font-family: var(--font-body); font-size: 14px; color: var(--gray); line-height: 1.5; }
-.cell-ai .ai-desc strong { font-family: var(--font-display); font-weight: 700; color: var(--white); }
-.row-intouch .cell-ai .ai-desc strong { color: var(--gold); }
-
-.cell-val { text-align: right; }
-.cell-val .val-num { font-family: var(--font-display); font-weight: 800; font-size: 36px; line-height: 1; letter-spacing: -0.02em; color: var(--white); }
-.row-intouch .cell-val .val-num { color: var(--gold); font-size: 44px; }
-.cell-val .val-sub { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); margin-top: 6px; font-style: italic; }
+.examples { display: flex; flex-direction: column; gap: 6px; }
+.example { display: flex; align-items: center; gap: 12px; background: var(--black-mid); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; font-family: var(--font-display); }
+.example-from { font-weight: 700; font-size: 14px; color: var(--white); }
+.example-context { font-family: var(--font-body); font-size: 14px; color: var(--gray-mid); font-style: italic; flex: 1; }
+.example-arrow { color: var(--gold); font-weight: 700; font-size: 16px; }
+.example-to { font-weight: 700; font-size: 14px; color: var(--gold); }
 
 @media (max-width: 768px) {
-  body[data-slide="slide-6"] .slide-title { font-size: 30px; margin-bottom: 20px; }
-  .transform-table thead { display: none; }
-  .transform-table tbody tr { display: block; padding: 16px 0; }
-  .transform-table tbody td { display: block; padding: 6px 12px; }
-  .cell-val { text-align: left; }
-  .cell-val .val-num { font-size: 32px; }
-  .row-intouch .cell-val .val-num { font-size: 36px; }
+  .bni-stats { grid-template-columns: 1fr; }
+  .req-grid-top { grid-template-columns: 1fr; }
+  .example { flex-wrap: wrap; }
+  .example-context { flex-basis: 100%; order: 3; }
 }
 </style>
 </head>
@@ -61,61 +49,65 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
 
 <div class="slide" id="slide-6">
   <div class="slide-number">06 / 10</div>
-  <div class="slide-label">The play</div>
-  <h2 class="slide-title">6sense for <span class="gold">referrals</span></h2>
+  <div class="slide-label">The proof</div>
+  <h2 class="slide-title">BNI made referrals predictable — analog</h2>
 
-  <table class="transform-table">
-    <thead>
-      <tr>
-        <th class="col-motion">Revenue motion</th>
-        <th class="col-manual">Solving timing manually</th>
-        <th class="col-ai">Solving timing with AI</th>
-        <th class="col-val">Valuation</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class="cell-motion">
-          <div class="motion-name">Outbound sales</div>
-          <div class="motion-tag">AI cracked timing here</div>
-        </td>
-        <td class="cell-manual">Account managers research using LinkedIn Sales Navigator</td>
-        <td class="cell-ai">
-          <div class="ai-brand">6sense</div>
-          <div class="ai-desc">Influences <strong>$7.5B</strong> in revenue by automating intent signals</div>
-        </td>
-        <td class="cell-val">
-          <div class="val-num">$5.2B</div>
-          <div class="val-sub">Series E · $200M ARR</div>
-        </td>
-      </tr>
-      <tr class="row-intouch">
-        <td class="cell-motion">
-          <div class="motion-name">Referrals</div>
-          <div class="motion-tag">Next</div>
-        </td>
-        <td class="cell-manual">BNI breakfast meetings</td>
-        <td class="cell-ai">
-          <div class="ai-brand">
-            <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="4" y="4" width="40" height="40" rx="8" fill="#D4A574"/>
-              <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
-            </svg>
-            InTouch
-          </div>
-          <div class="ai-desc">Will influence <strong>$9.26B</strong> at just 1% market share</div>
-        </td>
-        <td class="cell-val">
-          <div class="val-num">???</div>
-          <div class="val-sub">your turn</div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div class="bni-stats">
+    <div class="bni-stat">
+      <div class="bni-stat-num">$26.4B</div>
+      <div class="bni-stat-label">Annual referral revenue</div>
+    </div>
+    <div class="bni-stat">
+      <div class="bni-stat-num">$65K</div>
+      <div class="bni-stat-label">Avg referral value per member</div>
+    </div>
+    <div class="bni-stat">
+      <div class="bni-stat-num">$500</div>
+      <div class="bni-stat-label">Annual membership fee</div>
+    </div>
+  </div>
 
-  <div class="conclusion">Same play. <strong>Untapped market.</strong></div>
+  <div class="req-header">How BNI solves the three requirements</div>
 
-  <div class="sources">Sources: 6sense Series E ($5.2B post-money, Jan 2022); 6sense $200M ARR (FY24); 6sense customer claims; InTouch market analysis</div>
+  <div class="req-grid-top">
+    <div class="req-card">
+      <div class="req-num">01 · Find referrers + build trust</div>
+      <div class="req-title">Organic within the chapter</div>
+    </div>
+    <div class="req-card">
+      <div class="req-num">02 · Keep them motivated</div>
+      <div class="req-title">Weekly accountability</div>
+    </div>
+  </div>
+
+  <div class="req-card req-card-key">
+    <div class="req-num">03 · Trigger at the right moment · The key insight</div>
+    <div class="req-title">Demand for one professional predicts demand for others</div>
+    <div class="examples">
+      <div class="example">
+        <span class="example-from">Startup lawyer</span>
+        <span class="example-context">closes a Series A</span>
+        <span class="example-arrow">→</span>
+        <span class="example-to">ESOP provider</span>
+      </div>
+      <div class="example">
+        <span class="example-from">Fractional CMO</span>
+        <span class="example-context">sets the brand strategy</span>
+        <span class="example-arrow">→</span>
+        <span class="example-to">SEO consultant</span>
+      </div>
+      <div class="example">
+        <span class="example-from">Estate lawyer</span>
+        <span class="example-context">handles the will</span>
+        <span class="example-arrow">→</span>
+        <span class="example-to">Grief counselor</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="conclusion">Three requirements. All solved. <strong>$26B in proof — manually.</strong></div>
+
+  <div class="sources">Sources: BNI Mid-Year Report 2025 (n=340K)</div>
 </div>
 
 </div>
