@@ -16,7 +16,7 @@
     'slide-5.html':  '05 · The Insight',
     'slide-6.html':  '06 · The Play',
     'slide-7.html':  '07 · The Mechanism',
-    'slide-8.html':  '08 · The Wedge',
+    'slide-8.html':  '08 · The Segment',
     'slide-9.html':  '09 · The Plan',
     'slide-10.html': '10 · The Team',
     'slide-backup.html': 'Backup · Trust, faster'
