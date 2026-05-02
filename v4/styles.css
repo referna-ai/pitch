@@ -1193,9 +1193,9 @@ body {
 
 @media (max-width: 1180px) {
   .deck-tabs {
-    gap: 22px;
-    padding: 14px 16px;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 14px 22px;
+    padding: 14px 18px;
   }
   .deck-tab {
     font-size: 11px;
@@ -1205,7 +1205,7 @@ body {
 
 @media (max-width: 820px) {
   .deck-tabs {
-    gap: 16px;
+    gap: 12px 16px;
     padding: 12px 14px;
   }
   .deck-tab {
