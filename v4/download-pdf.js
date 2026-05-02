@@ -144,6 +144,14 @@
     }
   }
 
+  function trackDownloadClick() {
+    try {
+      if (window.pitchAnalytics && window.pitchAnalytics.trackAction) {
+        window.pitchAnalytics.trackAction('pdf-download', '★ PDF · Download');
+      }
+    } catch (_) {}
+  }
+
   btn.addEventListener('click', async (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -151,6 +159,7 @@
     busy = true;
     btn.setAttribute('disabled', '');
     setTooltip('Building…', null);
+    trackDownloadClick();
     try {
       await generate();
       setTooltip('Downloaded!', 'ok');
