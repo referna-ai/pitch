@@ -198,6 +198,25 @@
 
     // Last-ditch — sendBeacon inside
     window.addEventListener('beforeunload', function () { flush(session); });
+
+    // Public API — let other scripts log a one-off action (e.g., PDF download)
+    // as its own row in the same session payload. The Apps Script upserts on
+    // (session.id, slide.file), so each unique actionFile becomes one row.
+    // duration is repurposed as a click counter.
+    window.pitchAnalytics = {
+      trackAction: function (actionFile, actionName) {
+        var idx = session.slides.findIndex(function (s) { return s.file === actionFile; });
+        var nowIso = new Date().toISOString();
+        if (idx >= 0) {
+          var prev = session.slides[idx];
+          session.slides[idx] = { file: actionFile, name: actionName, duration: (prev.duration || 0) + 1, at: nowIso };
+        } else {
+          session.slides.push({ file: actionFile, name: actionName, duration: 1, at: nowIso });
+        }
+        persist(session);
+        dispatch(session);
+      }
+    };
   }
 
   var known = resolveViewer();
