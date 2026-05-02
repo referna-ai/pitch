@@ -13,7 +13,9 @@
 /* Keep timeline columns equal but let long single-line stats overflow into the
    adjacent (empty) slots without wrapping. Content slots alternate with empty
    slots, so symmetric overflow has room on each side. */
-body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+body[data-slide="slide-9"] .timeline-axis { grid-template-columns: repeat(4, 1fr); }
+body[data-slide="slide-9"] .axis-line-past { left: 12.5%; width: 75%; }
 
 /* Flex-center each line on the dot. align-items:center on a flex column
    centers items horizontally even when their intrinsic (nowrap) width
@@ -38,13 +40,64 @@ body[data-slide="slide-9"] .stop-text-now {
 }
 
 body[data-slide="slide-9"] .stop-fine {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 500;
   color: var(--gray-mid);
 }
 
-body[data-slide="slide-9"] .stop-stat { font-size: 15px; font-weight: 600; }
+body[data-slide="slide-9"] .stop-stat { font-size: 17px; font-weight: 600; }
 body[data-slide="slide-9"] .stop-desc { font-weight: 400; color: var(--gray); }
+
+/* Plan box — large variant */
+body[data-slide="slide-9"] .plan-milestone-large {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  padding: 0;
+  margin: 10px 0;
+}
+body[data-slide="slide-9"] .plan-milestone-large .plan-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+body[data-slide="slide-9"] .plan-milestone-large .plan-row {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  padding: 8px 0;
+  color: var(--white);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+}
+body[data-slide="slide-9"] .plan-milestone-large .plan-row:last-child { border-bottom: none; }
+body[data-slide="slide-9"] .plan-milestone-large .plan-key {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  width: 130px;
+}
+body[data-slide="slide-9"] .plan-milestone-large .plan-milestone-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(212, 165, 116, 0.18);
+}
+body[data-slide="slide-9"] .plan-milestone-large .plan-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--gray-mid);
+}
 
 /* Default: single-line, overflow symmetric around the dot */
 body[data-slide="slide-9"] .stop-label,
@@ -86,29 +139,20 @@ body[data-slide="slide-9"] .stop-wrap {
       <div class="timeline-slot">
         <div class="stop-label">Apr 1</div>
         <div class="stop-text">
-          <div class="stop-stat">MVP2: Intro Circles <span class="stop-desc">— Get weekly intros</span></div>
-          <div class="stop-fine">✓ $5–10 CPS · 42% reply · 3.5 invites/user · 14.8% W/W (n=64)</div>
+          <div class="stop-stat">Test 2 · Intro Circles</div>
+          <div class="stop-fine">✓ All 5 acquisition KPIs hit (slide 8)</div>
           <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
-      <div class="timeline-slot future-slot">
-        <div class="stop-label">May 2027</div>
-        <div class="stop-text">
-          <div class="stop-stat">4,000 WAU</div>
-          <div class="stop-stat">500 weekly referrals</div>
-        </div>
-      </div>
     </div>
 
     <div class="timeline-axis">
       <div class="axis-line-past"></div>
-      <div class="axis-line-future"></div>
       <div class="axis-slot"><span class="stop-dot"></span></div>
       <div class="axis-slot"><span class="stop-dot"></span></div>
       <div class="axis-slot"><span class="stop-dot"></span></div>
       <div class="axis-slot"><span class="stop-dot dot-now"></span></div>
-      <div class="axis-slot"><span class="stop-dot dot-future"></span></div>
     </div>
 
     <div class="timeline-row timeline-below">
@@ -116,7 +160,7 @@ body[data-slide="slide-9"] .stop-wrap {
       <div class="timeline-slot">
         <div class="stop-label">Feb 22</div>
         <div class="stop-text">
-          <div class="stop-stat">MVP1: Gordy <span class="stop-desc">— 2 intros per meeting</span></div>
+          <div class="stop-stat">Test 1 · Gordy</div>
           <div class="stop-fine">✓ +50% connect calendar</div>
           <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
         </div>
@@ -125,30 +169,28 @@ body[data-slide="slide-9"] .stop-wrap {
       <div class="timeline-slot active-slot">
         <div class="stop-label stop-label-now">This week</div>
         <div class="stop-text stop-text-now">
-          <div class="stop-stat">MVP3: Referral Circles</div>
-          <div class="stop-fine stop-wrap">First circle forming with members from MVP1 + MVP2</div>
+          <div class="stop-stat">Test 3 · Referral Circles</div>
         </div>
       </div>
-      <div class="timeline-slot"></div>
     </div>
   </div>
 
-  <div class="plan-milestone">
+  <div class="plan-milestone-large">
     <div class="plan-milestone-left">
-      <div class="plan-label">Plan</div>
-      <div class="plan-row"><span class="plan-key">Ask</span> Pre-seed round — 24 months, team of 4</div>
+      <div class="plan-label">The ask</div>
+      <div class="plan-row"><span class="plan-key">Round</span> Pre-seed · 24 months · team of 4</div>
       <div class="plan-row"><span class="plan-key">Milestone</span> 4,000 WAU · 500 weekly referrals</div>
-      <div class="plan-row"><span class="plan-key">Value Generated</span> $260M / year ($0 revenue, focusing on growth)</div>
+      <div class="plan-row"><span class="plan-key">Value generated</span> $260M / year (revenue deferred — growth first)</div>
     </div>
     <div class="plan-milestone-notes">
-      <div class="plan-note">Active = any engagement with another user in the last 7 days</div>
-      <div class="plan-note">Referral = introduction at the time of need. Proof: the call.</div>
-      <div class="plan-note">$260M = 4,000 users × $65K average referral value per user</div>
-      <div class="plan-note">Cross-check: 500 referrals/week × $10K × 52 weeks ≈ $260M</div>
+      <div class="plan-note">Active = engaged with another user in the last 7 days</div>
+      <div class="plan-note">Referral = introduction at the moment of need (proof: the call)</div>
+      <div class="plan-note">$260M = 4,000 × $65K avg referral value/user</div>
+      <div class="plan-note">Cross-check: 500/wk × $10K × 52 ≈ $260M</div>
     </div>
   </div>
 
-  <div class="conclusion">Iterating fast. Learning faster. Closing in on goals.</div>
+  <div class="conclusion">Three tests in ten weeks. Honest about what works and what doesn't.</div>
   <div class="sources">Sources: InTouch product data; segment sizing (slide 8)</div>
 </div>
 
