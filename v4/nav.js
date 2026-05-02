@@ -7,9 +7,9 @@
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The professionals' },
     { file: 'slide-3.html',  title: 'The trend' },
-    { file: 'slide-4.html',  title: 'The stakes' },
+    { file: 'slide-4.html',  title: 'The channels' },
     { file: 'slide-5.html',  title: 'The insight' },
-    { file: 'slide-6.html',  title: 'The play' },
+    { file: 'slide-6.html',  title: 'The proof' },
     { file: 'slide-7.html',  title: 'The mechanism' },
     { file: 'slide-8.html',  title: 'The segment' },
     { file: 'slide-9.html',  title: 'The plan' },
@@ -57,6 +57,23 @@
     const first = document.body.firstChild;
     document.body.insertBefore(trigger, first);
     document.body.insertBefore(nav, first);
+
+    // Touch devices: tap the top edge to open/close the tab strip
+    // (hover is unreliable on iPad/iOS).
+    const isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+    if (isTouch) {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nav.classList.toggle('is-open');
+      });
+      // Tapping outside the strip closes it
+      document.addEventListener('click', (e) => {
+        if (!nav.classList.contains('is-open')) return;
+        if (nav.contains(e.target) || trigger.contains(e.target)) return;
+        nav.classList.remove('is-open');
+      });
+      // Closing after navigation happens automatically on page change
+    }
   }
   renderTabs();
 
