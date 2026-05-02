@@ -3,9 +3,14 @@
   if (!btn) return;
   const tooltip = btn.querySelector('.pdf-download-tooltip');
   const defaultTooltip = tooltip ? tooltip.textContent : '';
-  const LIB_URL = 'https://cdn.jsdelivr.net/npm/html2pdf.js@0.10.2/dist/html2pdf.bundle.min.js';
+  const H2C_URL = 'https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js';
+  const JSPDF_URL = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
+  const PAGE_W = 1260;
+  const PAGE_H = 738;
+  // iOS Safari caps each canvas at ~16M pixels. 1260*738*2*2 = ~7.4M, safe.
+  const SCALE = 2;
   let busy = false;
-  let libPromise = null;
+  let libsPromise = null;
 
   function setTooltip(text, state) {
     if (tooltip) tooltip.textContent = text;
@@ -14,17 +19,22 @@
   }
   function resetTooltip() { setTooltip(defaultTooltip, null); }
 
-  function loadLib() {
-    if (window.html2pdf) return Promise.resolve(window.html2pdf);
-    if (libPromise) return libPromise;
-    libPromise = new Promise((resolve, reject) => {
+  function loadScript(src) {
+    return new Promise((resolve, reject) => {
       const s = document.createElement('script');
-      s.src = LIB_URL;
-      s.onload = () => resolve(window.html2pdf);
-      s.onerror = () => { libPromise = null; reject(new Error('html2pdf load failed')); };
+      s.src = src;
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error('Script load failed: ' + src));
       document.head.appendChild(s);
     });
-    return libPromise;
+  }
+  function loadLibs() {
+    if (libsPromise) return libsPromise;
+    libsPromise = (async () => {
+      if (!window.html2canvas) await loadScript(H2C_URL);
+      if (!(window.jspdf && window.jspdf.jsPDF)) await loadScript(JSPDF_URL);
+    })();
+    return libsPromise;
   }
 
   function collectUrls() {
@@ -69,9 +79,6 @@
       const doc = new DOMParser().parseFromString(html, 'text/html');
       const slide = doc.querySelector('.slide');
       if (!slide) return;
-      // Some slides ship per-page <style> overrides scoped via body[data-slide="..."].
-      // Re-attach those styles and apply the data-slide attribute on a wrapper so
-      // the selectors still match inside the export root.
       const slideName = doc.body && doc.body.getAttribute('data-slide');
       const inlineStyles = Array.from(doc.head.querySelectorAll('style'));
 
@@ -79,8 +86,8 @@
       page.className = 'pdf-page';
       if (slideName) page.setAttribute('data-slide', slideName);
 
-      // Rewrite per-slide selectors from `body[data-slide="X"]` to `[data-slide="X"]`
-      // so they apply to our wrapper rather than the page <body>.
+      // Per-slide overrides are scoped to body[data-slide="..."]; rewrite to
+      // [data-slide="..."] so they apply to our wrapper rather than <body>.
       inlineStyles.forEach((styleEl) => {
         const s = document.createElement('style');
         s.textContent = (styleEl.textContent || '').replace(/body\[data-slide=/g, '[data-slide=');
@@ -96,32 +103,42 @@
   }
 
   async function generate() {
-    const html2pdf = await loadLib();
+    await loadLibs();
     if (document.fonts && document.fonts.ready) {
       try { await document.fonts.ready; } catch (_) {}
     }
+    const html2canvas = window.html2canvas;
+    const { jsPDF } = window.jspdf;
+
     const root = await buildContainer();
     try {
-      await html2pdf().set({
-        margin: 0,
-        filename: 'intouch-pitch.pdf',
-        image: { type: 'jpeg', quality: 0.95 },
-        html2canvas: {
-          scale: 2,
+      const pages = Array.from(root.querySelectorAll('.pdf-page'));
+      const pdf = new jsPDF({
+        orientation: 'landscape',
+        unit: 'px',
+        format: [PAGE_W, PAGE_H],
+        hotfixes: ['px_scaling'],
+        compress: true
+      });
+
+      for (let i = 0; i < pages.length; i++) {
+        setTooltip('Page ' + (i + 1) + '/' + pages.length + '…', null);
+        const canvas = await html2canvas(pages[i], {
+          scale: SCALE,
           backgroundColor: '#0d0d0d',
           useCORS: true,
           logging: false,
-          windowWidth: 1260
-        },
-        jsPDF: {
-          unit: 'px',
-          format: [1260, 738],
-          orientation: 'landscape',
-          hotfixes: ['px_scaling'],
-          compress: true
-        },
-        pagebreak: { mode: ['css'], before: '.pdf-page', avoid: '.slide' }
-      }).from(root).save();
+          width: PAGE_W,
+          height: PAGE_H,
+          windowWidth: PAGE_W,
+          windowHeight: PAGE_H
+        });
+        const img = canvas.toDataURL('image/jpeg', 0.92);
+        if (i > 0) pdf.addPage([PAGE_W, PAGE_H], 'landscape');
+        pdf.addImage(img, 'JPEG', 0, 0, PAGE_W, PAGE_H);
+      }
+
+      pdf.save('intouch-pitch.pdf');
     } finally {
       root.remove();
     }

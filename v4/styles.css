@@ -1864,14 +1864,15 @@ body {
 }
 
 /* Offscreen container used while rendering the PDF.
-   Kept on-screen (so html2canvas can measure layout) but pushed far left. */
+   absolute (not fixed) + far-left offset keeps it laid-out for html2canvas
+   without affecting the visible page. */
 .pdf-export-root {
-  position: fixed;
+  position: absolute;
   left: -10000px;
   top: 0;
   width: 1260px;
   background: var(--black);
-  z-index: -1;
+  pointer-events: none;
 }
 .pdf-export-root .pdf-page {
   width: 1260px;
@@ -1880,9 +1881,7 @@ body {
   background: var(--black);
   box-sizing: border-box;
   overflow: hidden;
-  page-break-after: always;
 }
-.pdf-export-root .pdf-page:last-child { page-break-after: auto; }
 .pdf-export-root .slide,
 .pdf-export-root .slide-hero {
   height: 698px;
