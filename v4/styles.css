@@ -1176,12 +1176,42 @@ body {
   pointer-events: none;
   transition: opacity 0.2s ease;
   z-index: 200;
+  background: rgba(13, 13, 13, 0.92);
+  backdrop-filter: blur(6px);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.deck-tabs::-webkit-scrollbar { display: none; }
 
 .deck-tabs-trigger:hover + .deck-tabs,
-.deck-tabs:hover {
+.deck-tabs:hover,
+.deck-tabs.is-open {
   opacity: 1;
   pointer-events: auto;
+}
+
+@media (max-width: 1180px) {
+  .deck-tabs {
+    gap: 22px;
+    padding: 14px 16px;
+    justify-content: flex-start;
+  }
+  .deck-tab {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+  }
+}
+
+@media (max-width: 820px) {
+  .deck-tabs {
+    gap: 16px;
+    padding: 12px 14px;
+  }
+  .deck-tab {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+  }
 }
 
 .deck-tab {

@@ -57,6 +57,23 @@
     const first = document.body.firstChild;
     document.body.insertBefore(trigger, first);
     document.body.insertBefore(nav, first);
+
+    // Touch devices: tap the top edge to open/close the tab strip
+    // (hover is unreliable on iPad/iOS).
+    const isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
+    if (isTouch) {
+      trigger.addEventListener('click', (e) => {
+        e.stopPropagation();
+        nav.classList.toggle('is-open');
+      });
+      // Tapping outside the strip closes it
+      document.addEventListener('click', (e) => {
+        if (!nav.classList.contains('is-open')) return;
+        if (nav.contains(e.target) || trigger.contains(e.target)) return;
+        nav.classList.remove('is-open');
+      });
+      // Closing after navigation happens automatically on page change
+    }
   }
   renderTabs();
 
