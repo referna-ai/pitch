@@ -10,7 +10,7 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-.matrix-area { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.matrix-area { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
 
 .axis-top, .axis-bottom { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; max-width: 130px; margin: 0 auto; line-height: 1.35; }
 
@@ -20,7 +20,10 @@
 .axis-left { left: 0; }
 .axis-right { right: 0; }
 
-.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; column-gap: 22px; row-gap: 44px; width: 78%; margin: 0 auto; }
+.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; column-gap: 22px; row-gap: 60px; width: 78%; margin: 0 auto; }
+
+.center-cross { position: absolute; top: 50%; left: 50%; height: 60%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; }
+.center-cross svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
 .quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; min-height: 128px; }
 .quadrant.winner { background: rgba(212, 165, 116, 0.08); border-color: var(--gold); }
@@ -44,6 +47,7 @@
   .matrix-row { position: static; }
   .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
   .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; margin: 6px 0; }
+  .center-cross { display: none; }
 }
 </style>
 </head>
@@ -64,7 +68,7 @@
       <div class="matrix">
         <div class="quadrant">
           <div class="quadrant-name">Intros</div>
-          <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span></div>
+          <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span> valuation · <span class="val">$0</span> impacted rev</div>
         </div>
         <div class="quadrant winner">
           <div class="quadrant-name">Referrals</div>
@@ -85,11 +89,22 @@
           <div class="quadrant-info"><span class="comp-name">Outreach</span> · <span class="val">$4B</span> valuation</div>
         </div>
         <div class="quadrant">
-          <div class="quadrant-name">AI outbound</div>
+          <div class="quadrant-name">Signal based outbound (AI)</div>
           <div class="quadrant-info"><span class="comp-name">6sense</span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
         </div>
       </div>
       <div class="axis-right">High intent timing</div>
+      <div class="center-cross" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="s5-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse" markerUnits="strokeWidth">
+              <path d="M0,0 L6,3 L0,6 z" fill="#D4A574"/>
+            </marker>
+          </defs>
+          <line x1="50" y1="6" x2="50" y2="94" stroke="#D4A574" stroke-width="0.7" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+          <line x1="6" y1="50" x2="94" y2="50" stroke="#D4A574" stroke-width="0.7" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+        </svg>
+      </div>
     </div>
     <div class="axis-bottom">Cold relationship</div>
   </div>
