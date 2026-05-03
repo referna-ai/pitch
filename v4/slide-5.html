@@ -10,14 +10,27 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-.matrix-wrapper { display: grid; grid-template-columns: auto 1fr; gap: 14px; align-items: stretch; margin-top: 20px; }
+.matrix-area { margin-top: 8px; }
 
-.y-axis { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 6px 0; }
-.y-axis-label { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg); }
+.matrix-row { position: relative; padding: 28px 0; }
 
-.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 14px; }
+.axis-top, .axis-bottom, .axis-left, .axis-right { position: absolute; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+.axis-top, .axis-bottom { left: 50%; transform: translateX(-50%); text-align: center; max-width: 140px; line-height: 1.35; }
+.axis-top { top: 0; }
+.axis-bottom { bottom: 0; }
+.axis-left, .axis-right { top: 50%; transform: translateY(-50%); white-space: nowrap; }
+.axis-left { left: 0; }
+.axis-right { right: 0; }
 
-.quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: center; min-height: 150px; }
+.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; column-gap: 60px; row-gap: 44px; width: 82%; margin: 0 auto; }
+
+.center-cross { position: absolute; top: 50%; left: 50%; height: 75%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; }
+.center-cross svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+.quadrant-note { margin-top: 10px; font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
+.quadrant-note .highlight { color: var(--error); font-weight: 700; }
+
+.quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; min-height: 128px; }
 .quadrant.winner { background: rgba(212, 165, 116, 0.08); border-color: var(--gold); }
 
 .quadrant-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.005em; margin-bottom: 12px; }
@@ -35,17 +48,11 @@
 .ref-method.intouch svg { display: block; }
 .ref-stat { color: var(--gold); font-weight: 700; }
 
-.x-axis-row { display: grid; grid-template-columns: auto 1fr; gap: 14px; margin-top: 10px; }
-.x-axis-spacer { width: 30px; }
-.x-axis { display: flex; justify-content: center; align-items: center; }
-.x-axis-label { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
-
 @media (max-width: 768px) {
-  .matrix { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .matrix-wrapper { grid-template-columns: 1fr; }
-  .y-axis-label { writing-mode: horizontal-tb; transform: none; }
-  .x-axis-row { grid-template-columns: 1fr; }
-  .x-axis-spacer { display: none; }
+  .matrix-row { position: static; padding: 0; }
+  .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
+  .axis-top, .axis-bottom, .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; max-width: none; margin: 6px auto; }
+  .center-cross { display: none; }
 }
 </style>
 </head>
@@ -59,43 +66,53 @@
   <div class="slide-label">The insight</div>
   <h2 class="slide-title">Massive outcomes follow revenue impact</h2>
 
-  <div class="matrix-wrapper">
-    <div class="y-axis">
-      <div class="y-axis-label">Warmth →</div>
-    </div>
-    <div class="matrix">
-      <div class="quadrant">
-        <div class="quadrant-name">Warm intros</div>
-        <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span></div>
-      </div>
-      <div class="quadrant winner">
-        <div class="quadrant-name">Referrals</div>
-        <div class="ref-line"><span class="ref-tag">Unpredictable</span> — customers recommend</div>
-        <div class="ref-line"><span class="ref-tag">Predictable</span> —
-          <span class="ref-method">BNI</span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
-          <span class="ref-method intouch">
-            <svg width="14" height="14" viewBox="0 0 48 48" fill="none">
-              <rect x="4" y="4" width="40" height="40" rx="8" fill="currentColor"/>
-              <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
-            </svg>
-            InTouch
-          </span> (digital)
+  <div class="matrix-area">
+    <div class="matrix-row">
+      <div class="axis-top">Relationship warm</div>
+      <div class="axis-left">Random timing</div>
+      <div class="matrix">
+        <div class="quadrant">
+          <div class="quadrant-name">Warm intros</div>
+          <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span> valuation · <span class="val">$0</span> direct impacted rev</div>
+          <div class="quadrant-note">Unlike referrals, intros <span class="highlight">lack buying intent</span></div>
+        </div>
+        <div class="quadrant winner">
+          <div class="quadrant-name">Referrals</div>
+          <div class="ref-line"><span class="ref-tag">Unpredictable</span> — customers recommend</div>
+          <div class="ref-line"><span class="ref-tag">Predictable</span> —
+            <span class="ref-method">BNI</span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
+            <span class="ref-method intouch">
+              <svg width="14" height="14" viewBox="0 0 48 48" fill="none">
+                <rect x="4" y="4" width="40" height="40" rx="8" fill="currentColor"/>
+                <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+              </svg>
+              InTouch
+            </span> (digital)
+          </div>
+        </div>
+        <div class="quadrant">
+          <div class="quadrant-name">Cold outbound</div>
+          <div class="quadrant-info"><span class="comp-name">Outreach</span> · <span class="val">$4B</span> valuation</div>
+        </div>
+        <div class="quadrant">
+          <div class="quadrant-name">Signal based outbound (AI)</div>
+          <div class="quadrant-info"><span class="comp-name">6sense</span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
         </div>
       </div>
-      <div class="quadrant">
-        <div class="quadrant-name">Cold outbound</div>
-        <div class="quadrant-info"><span class="comp-name">Outreach</span> · <span class="val">$4B</span> valuation</div>
+      <div class="axis-right">High intent timing</div>
+      <div class="center-cross" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="s5-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse" markerUnits="strokeWidth">
+              <path d="M0,0 L6,3 L0,6 z" fill="rgba(212, 165, 116, 0.55)"/>
+            </marker>
+          </defs>
+          <line x1="50" y1="6" x2="50" y2="94" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+          <line x1="6" y1="50" x2="94" y2="50" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+        </svg>
       </div>
-      <div class="quadrant">
-        <div class="quadrant-name">AI signal based outbound</div>
-        <div class="quadrant-info"><span class="comp-name">6sense</span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
-      </div>
+      <div class="axis-bottom">Cold relationship</div>
     </div>
-  </div>
-
-  <div class="x-axis-row">
-    <div class="x-axis-spacer"></div>
-    <div class="x-axis"><div class="x-axis-label">Buying Intent / Timing →</div></div>
   </div>
 
   <div class="conclusion">Massive business can be built by <strong>digitizing BNI's proven model.</strong></div>
