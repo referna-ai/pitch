@@ -11,7 +11,7 @@
     'index.html':    '00 · Cover',
     'slide-1.html':  '01 · The Thesis',
     'slide-2.html':  '02 · The Professionals',
-    'slide-3.html':  '03 · The Trend',
+    'slide-3.html':  '03 · The Market',
     'slide-4.html':  '04 · The Channels',
     'slide-5.html':  '05 · The Insight',
     'slide-6.html':  '06 · The Proof',

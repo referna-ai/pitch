@@ -6,7 +6,7 @@
     { file: 'index.html',    title: 'Overview' },
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The professionals' },
-    { file: 'slide-3.html',  title: 'The trend' },
+    { file: 'slide-3.html',  title: 'The market' },
     { file: 'slide-4.html',  title: 'The channels' },
     { file: 'slide-5.html',  title: 'The insight' },
     { file: 'slide-6.html',  title: 'The proof' },
