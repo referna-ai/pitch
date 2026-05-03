@@ -13,22 +13,15 @@
 body[data-slide="slide-1"] .thesis-beliefs { gap: 0; margin: 28px 0 24px; }
 body[data-slide="slide-1"] .thesis-belief { padding: 6px 0; border-bottom: none; }
 body[data-slide="slide-1"] .thesis-belief-num { color: var(--gold); }
-body[data-slide="slide-1"] .thesis-belief-text { font-size: 17px; line-height: 1.5; }
+body[data-slide="slide-1"] .thesis-belief-text { font-size: 19px; line-height: 1.5; }
 
-.thesis-group { display: grid; grid-template-columns: 110px 1fr; gap: 24px; padding: 14px 0; align-items: start; }
+.thesis-belief-sub { display: flex; gap: 10px; margin-top: 4px; padding-left: 22px; font-size: 19px; line-height: 1.5; color: var(--white); }
+.thesis-belief-sub::before { content: "→"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.thesis-belief-sub strong { font-family: var(--font-display); font-weight: 800; color: var(--white); }
+
+.thesis-group { padding: 14px 0; }
 .thesis-group + .thesis-group { border-top: 1px solid var(--border); }
-.thesis-group-label {
-  font-family: var(--font-display); font-weight: 700;
-  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: var(--gold);
-  padding-top: 14px;
-}
 .thesis-group-items { display: flex; flex-direction: column; }
-
-@media (max-width: 720px) {
-  .thesis-group { grid-template-columns: 1fr; gap: 6px; }
-  .thesis-group-label { padding-top: 0; }
-}
 </style>
 </head>
 <body data-slide="slide-1">
@@ -44,47 +37,46 @@ body[data-slide="slide-1"] .thesis-belief-text { font-size: 17px; line-height: 1
   <div class="thesis-beliefs">
 
     <div class="thesis-group">
-      <div class="thesis-group-label">Exists</div>
       <div class="thesis-group-items">
         <div class="thesis-belief">
           <div class="thesis-belief-num">1</div>
-          <div class="thesis-belief-text"><strong>Massive new businesses</strong> (billions in outcomes) get created by <strong>digitizing analog markets</strong>. AI now unlocks the ones software couldn't.</div>
+          <div>
+            <div class="thesis-belief-text">OpenAI won't replace Uber. Anthropic won't replace Airbnb.</div>
+            <div class="thesis-belief-sub"><span>Both are <strong>massive network businesses</strong> built by digitizing analog markets.</span></div>
+          </div>
         </div>
         <div class="thesis-belief">
           <div class="thesis-belief-num">2</div>
-          <div class="thesis-belief-text">An existing <strong>huge business</strong> never digitized: a network of professionals referring customers to each other.</div>
+          <div>
+            <div class="thesis-belief-text">We went looking for a <strong>huge undigitized business</strong>, and found one.</div>
+            <div class="thesis-belief-sub"><span>A network of professionals referring customers to each other.</span></div>
+          </div>
         </div>
+      </div>
+    </div>
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
         <div class="thesis-belief">
           <div class="thesis-belief-num">3</div>
-          <div class="thesis-belief-text">A <strong>massive network business</strong> will be built by digitizing referrals.</div>
+          <div class="thesis-belief-text">So history tells us: a <strong>massive network business</strong> with <strong>great defensibility</strong> will be built by digitizing referrals.</div>
         </div>
-      </div>
-    </div>
-
-    <div class="thesis-group">
-      <div class="thesis-group-label">High value</div>
-      <div class="thesis-group-items">
         <div class="thesis-belief">
           <div class="thesis-belief-num">4</div>
-          <div class="thesis-belief-text">Such a business will have <strong>strong monetization</strong> through transaction proximity.</div>
-        </div>
-        <div class="thesis-belief">
-          <div class="thesis-belief-num">5</div>
-          <div class="thesis-belief-text">Even powerful AI labs will not be a threat — the business has <strong>defensibility</strong> through network effects.</div>
+          <div class="thesis-belief-text">And that such a business will <strong>monetize well</strong> through transaction proximity.</div>
         </div>
       </div>
     </div>
 
     <div class="thesis-group">
-      <div class="thesis-group-label">We can win</div>
       <div class="thesis-group-items">
         <div class="thesis-belief">
-          <div class="thesis-belief-num">6</div>
-          <div class="thesis-belief-text">The winner of the most coveted segment will become the <strong>category leader</strong>.</div>
+          <div class="thesis-belief-num">5</div>
+          <div class="thesis-belief-text">In such businesses, the winner of the <strong>most coveted segment</strong> becomes the <strong>category leader</strong>.</div>
         </div>
         <div class="thesis-belief">
-          <div class="thesis-belief-num">7</div>
-          <div class="thesis-belief-text">We're <strong>positioned to win</strong> that segment: strong team, proven model, transformative insight.</div>
+          <div class="thesis-belief-num">6</div>
+          <div class="thesis-belief-text">Historically, winners had: <strong>strong team, head start, transformative insight.</strong></div>
         </div>
       </div>
     </div>
