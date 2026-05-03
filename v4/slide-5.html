@@ -12,15 +12,15 @@
 <style>
 .matrix-area { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
 
-.axis-top, .axis-bottom { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; }
+.axis-top, .axis-bottom { text-align: center; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; max-width: 130px; margin: 0 auto; line-height: 1.35; }
 
 .matrix-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; }
 
 .axis-left, .axis-right { font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
 
-.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; width: 90%; margin: 0 auto; }
+.matrix { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 22px; width: 95%; margin: 0 auto; }
 
-.quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; display: flex; flex-direction: column; justify-content: center; min-height: 142px; }
+.quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; min-height: 135px; }
 .quadrant.winner { background: rgba(212, 165, 116, 0.08); border-color: var(--gold); }
 
 .quadrant-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.005em; margin-bottom: 12px; }
