@@ -10,39 +10,49 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-.axis-chart { position: relative; margin: 30px 0 24px; padding: 44px 170px; }
+.axis-chart { position: relative; margin: 36px 0 28px; padding: 60px 220px; }
 
-.axis-vertical { position: absolute; top: 18px; bottom: 18px; left: 50%; width: 1px; background: var(--gold); transform: translateX(-50%); }
+.axis-vertical { position: absolute; top: 28px; bottom: 28px; left: 50%; width: 1px; background: var(--gold); transform: translateX(-50%); }
 .axis-vertical::before, .axis-vertical::after { content: ''; position: absolute; left: 50%; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; transform: translateX(-50%); }
 .axis-vertical::before { top: -8px; border-bottom: 8px solid var(--gold); }
 .axis-vertical::after { bottom: -8px; border-top: 8px solid var(--gold); }
 
-.axis-horizontal { position: absolute; left: 170px; right: 170px; top: 50%; height: 1px; background: var(--gold); transform: translateY(-50%); }
+.axis-horizontal { position: absolute; left: 220px; right: 220px; top: 50%; height: 1px; background: var(--gold); transform: translateY(-50%); }
 .axis-horizontal::before, .axis-horizontal::after { content: ''; position: absolute; top: 50%; width: 0; height: 0; border-top: 6px solid transparent; border-bottom: 6px solid transparent; transform: translateY(-50%); }
 .axis-horizontal::before { left: -8px; border-right: 8px solid var(--gold); }
 .axis-horizontal::after { right: -8px; border-left: 8px solid var(--gold); }
 
 .axis-label { position: absolute; font-family: var(--font-display); font-weight: 700; font-size: 13px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; white-space: nowrap; }
-.axis-label-top { top: 18px; left: 50%; transform: translate(-50%, -100%); padding-bottom: 10px; }
-.axis-label-bottom { bottom: 18px; left: 50%; transform: translate(-50%, 100%); padding-top: 10px; }
-.axis-label-left { top: 50%; left: 0; transform: translateY(-50%); padding-right: 14px; }
-.axis-label-right { top: 50%; right: 0; transform: translateY(-50%); padding-left: 14px; }
+.axis-label-top { top: 14px; left: 50%; transform: translateX(-50%); }
+.axis-label-bottom { bottom: 14px; left: 50%; transform: translateX(-50%); }
+.axis-label-left { top: 50%; left: 24px; transform: translateY(-50%); }
+.axis-label-right { top: 50%; right: 24px; transform: translateY(-50%); }
 
-.quadrants { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
-.quadrant { padding: 24px 32px; min-height: 140px; display: flex; flex-direction: column; justify-content: center; }
-.quadrant.top-left { text-align: right; align-items: flex-end; padding-right: 40px; padding-bottom: 32px; }
-.quadrant.top-right { text-align: left; align-items: flex-start; padding-left: 40px; padding-bottom: 32px; }
-.quadrant.bottom-left { text-align: right; align-items: flex-end; padding-right: 40px; padding-top: 32px; }
-.quadrant.bottom-right { text-align: left; align-items: flex-start; padding-left: 40px; padding-top: 32px; }
+.quadrants {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
+  min-height: 320px;
+  column-gap: 56px;
+  row-gap: 14px;
+}
 
-.quadrant-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.005em; margin-bottom: 10px; }
-.quadrant.winner .quadrant-name { color: var(--gold); font-size: 26px; }
+.cell { padding: 0 8px; }
+.cell.left { grid-column: 1; text-align: right; justify-self: end; }
+.cell.right { grid-column: 2; text-align: left; justify-self: start; }
+.cell.r1 { grid-row: 1; align-self: end; padding-bottom: 4px; }
+.cell.r2 { grid-row: 2; }
+.cell.r3 { grid-row: 3; }
+.cell.r4 { grid-row: 4; align-self: start; padding-top: 4px; }
 
-.quadrant-info { font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
+.quadrant-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.005em; line-height: 1.15; }
+.cell.winner .quadrant-name { color: var(--gold); font-size: 26px; }
+
+.quadrant-info, .ref-line { font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
 .quadrant-info .comp-name { color: var(--white); font-weight: 700; }
 .quadrant-info .val { color: var(--gold); font-weight: 700; }
 
-.ref-line { margin-bottom: 6px; font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
+.ref-line { margin-bottom: 4px; }
 .ref-line:last-child { margin-bottom: 0; }
 .ref-tag { color: var(--white); font-weight: 700; }
 .ref-method { color: var(--white); font-weight: 700; }
@@ -50,10 +60,14 @@
 .ref-method.intouch svg { display: block; }
 .ref-stat { color: var(--gold); font-weight: 700; }
 
-@media (max-width: 768px) {
-  .axis-chart { padding: 36px 0; }
-  .quadrants { grid-template-columns: 1fr; grid-template-rows: auto; }
-  .quadrant, .quadrant.top-left, .quadrant.top-right, .quadrant.bottom-left, .quadrant.bottom-right { text-align: left; align-items: flex-start; padding: 16px 8px; }
+@media (max-width: 900px) {
+  .axis-chart { padding: 48px 0 32px; }
+  .quadrants { grid-template-columns: 1fr; grid-template-rows: auto; min-height: 0; column-gap: 0; row-gap: 0; }
+  .cell, .cell.left, .cell.right { grid-column: 1; text-align: left; justify-self: stretch; align-self: auto; padding: 6px 8px; }
+  .cell.r1 { grid-row: auto; order: 2; }
+  .cell.r2 { grid-row: auto; order: 1; padding-top: 16px; }
+  .cell.r3 { grid-row: auto; order: 3; padding-top: 16px; }
+  .cell.r4 { grid-row: auto; order: 4; }
   .axis-vertical, .axis-horizontal, .axis-label-left, .axis-label-right, .axis-label-top, .axis-label-bottom { display: none; }
 }
 </style>
@@ -70,12 +84,10 @@
 
   <div class="axis-chart">
     <div class="quadrants">
-      <div class="quadrant top-left">
-        <div class="quadrant-name">Warm intros</div>
+      <div class="cell left r1">
         <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span></div>
       </div>
-      <div class="quadrant top-right winner">
-        <div class="quadrant-name">Referrals</div>
+      <div class="cell right r1">
         <div class="ref-line"><span class="ref-tag">Unpredictable</span> — customers recommend</div>
         <div class="ref-line"><span class="ref-tag">Predictable</span> —
           <span class="ref-method">BNI</span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
@@ -88,12 +100,25 @@
           </span> (digital)
         </div>
       </div>
-      <div class="quadrant bottom-left">
+
+      <div class="cell left r2">
+        <div class="quadrant-name">Warm intros</div>
+      </div>
+      <div class="cell right r2 winner">
+        <div class="quadrant-name">Referrals</div>
+      </div>
+
+      <div class="cell left r3">
         <div class="quadrant-name">Cold outbound</div>
+      </div>
+      <div class="cell right r3">
+        <div class="quadrant-name">AI signal based outbound</div>
+      </div>
+
+      <div class="cell left r4">
         <div class="quadrant-info"><span class="comp-name">Outreach</span> · <span class="val">$4B</span> valuation</div>
       </div>
-      <div class="quadrant bottom-right">
-        <div class="quadrant-name">AI signal based outbound</div>
+      <div class="cell right r4">
         <div class="quadrant-info"><span class="comp-name">6sense</span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
       </div>
     </div>
