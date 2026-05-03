@@ -15,6 +15,10 @@ body[data-slide="slide-1"] .thesis-belief { padding: 6px 0; border-bottom: none;
 body[data-slide="slide-1"] .thesis-belief-num { color: var(--gold); }
 body[data-slide="slide-1"] .thesis-belief-text { font-size: 19px; line-height: 1.5; }
 
+.thesis-belief-sub { display: flex; gap: 10px; margin-top: 4px; padding-left: 22px; font-size: 19px; line-height: 1.5; color: var(--white); }
+.thesis-belief-sub::before { content: "→"; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+.thesis-belief-sub strong { font-family: var(--font-display); font-weight: 800; color: var(--white); }
+
 .thesis-group { padding: 14px 0; }
 .thesis-group + .thesis-group { border-top: 1px solid var(--border); }
 .thesis-group-items { display: flex; flex-direction: column; }
@@ -36,11 +40,17 @@ body[data-slide="slide-1"] .thesis-belief-text { font-size: 19px; line-height: 1
       <div class="thesis-group-items">
         <div class="thesis-belief">
           <div class="thesis-belief-num">1</div>
-          <div class="thesis-belief-text">OpenAI won't replace Uber. Anthropic won't replace Airbnb. Both are <strong>massive network businesses</strong> built by digitizing analog markets.</div>
+          <div>
+            <div class="thesis-belief-text">OpenAI won't replace Uber. Anthropic won't replace Airbnb.</div>
+            <div class="thesis-belief-sub"><span>Both are <strong>massive network businesses</strong> built by digitizing analog markets.</span></div>
+          </div>
         </div>
         <div class="thesis-belief">
           <div class="thesis-belief-num">2</div>
-          <div class="thesis-belief-text">We went looking for a <strong>huge undigitized business</strong>, and found one: a network of professionals referring customers to each other.</div>
+          <div>
+            <div class="thesis-belief-text">We went looking for a <strong>huge undigitized business</strong>, and found one.</div>
+            <div class="thesis-belief-sub"><span>A network of professionals referring customers to each other.</span></div>
+          </div>
         </div>
       </div>
     </div>
