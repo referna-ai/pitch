@@ -52,3 +52,13 @@ Rules:
 - Use `<strong>` inside `.conclusion` for gold emphasis; don't add inline `style=` overrides.
 - Per-slide tweaks (e.g. `.slide-title { margin-bottom: 28px }`) belong in a scoped `body[data-slide="slide-N"]` block in that slide's `<style>`, never as inline styles, and never changing color/font/size of the four standard elements.
 - When adding a new slide, copy the structure from an existing slide in the same version (e.g. `v4/slide-3.html`) so the order and classes stay identical.
+
+Never override at slide scope (these affect every slide and the bottom-docking depends on them):
+- `.slide` flex-column layout and fixed height (`styles.css:40-50`) — changing `display`, `flex-direction`, or `height` breaks the bottom-pinning of `.conclusion` and `.sources`.
+- `.slide .conclusion { margin-top: auto }` and `.slide .sources { flex-shrink: 0 }` (`styles.css:52-58`) — these are what pin the bottom two elements.
+- `:root` CSS tokens (`styles.css:1-17`) — `--gold`, `--white`, `--gray-dark`, `--font-display`, `--font-body`, `--border`. Don't redeclare them inside a slide's scoped `<style>` block; it silently re-skins that slide and creates drift.
+
+Don't overlap the docked elements:
+- `.conclusion` is docked to the bottom with a 2px gold top border + 22px padding-top; `.sources` follows it with a 16px gap, a faint gold hairline, and 12px padding-top.
+- Slide-specific content sits above the conclusion's gold rule. Don't let it visually cross or collide with `.conclusion` / `.sources` — if a slide's content runs long, shrink the content (font-size or spacing in the scoped `body[data-slide="slide-N"]` block), don't shrink the conclusion/sources or remove their top borders.
+- Don't add `margin-bottom` to `.conclusion` or `margin-top` overrides to `.sources` at slide scope — it breaks the docked spacing.
