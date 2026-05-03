@@ -27,8 +27,7 @@
 .center-cross { position: absolute; top: 50%; left: 50%; height: 75%; aspect-ratio: 1; transform: translate(-50%, -50%); pointer-events: none; }
 .center-cross svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
-.quadrant { position: relative; }
-.quadrant-note { position: absolute; top: 100%; left: 0; right: 0; margin-top: 10px; font-family: var(--font-display); font-weight: 500; font-size: 13px; color: var(--gray-mid); font-style: italic; text-align: center; line-height: 1.4; }
+.quadrant-note { margin-top: 10px; font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
 
 .quadrant { background: var(--black-mid); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; min-height: 128px; }
 .quadrant.winner { background: rgba(212, 165, 116, 0.08); border-color: var(--gold); }
@@ -53,7 +52,6 @@
   .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
   .axis-top, .axis-bottom, .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; max-width: none; margin: 6px auto; }
   .center-cross { display: none; }
-  .quadrant-note { position: static; margin-top: 8px; }
 }
 </style>
 </head>
