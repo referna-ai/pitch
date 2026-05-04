@@ -102,19 +102,17 @@
     return root;
   }
 
-  // html2canvas does not reliably honor `filter: grayscale(...)` on raster
-  // <img> tags — masked photos render in their original color in the PDF.
-  // Bake the grayscale into a same-origin data URL ourselves and clear the
-  // CSS filter so html2canvas just draws the already-grayscaled pixels.
-  async function bakeGrayscaleImages(root) {
+  // html2canvas does not reliably honor CSS `filter` on raster <img> tags —
+  // grayscale photos render in their original color and `brightness(0)
+  // invert(1)` silhouettes render as the original colored logo. Bake any
+  // computed filter into a same-origin data URL via the Canvas 2D `filter`
+  // property, then clear the CSS filter so html2canvas just draws the
+  // pre-processed bitmap.
+  async function bakeFilteredImages(root) {
     const imgs = Array.from(root.querySelectorAll('img'));
     await Promise.all(imgs.map(async (img) => {
-      const f = (getComputedStyle(img).filter || '').toString();
-      const m = f.match(/grayscale\(\s*([\d.]+)(%?)\s*\)/);
-      if (!m) return;
-      const raw = parseFloat(m[1]);
-      const amt = m[2] === '%' ? Math.min(1, raw / 100) : Math.min(1, raw);
-      if (!amt) return;
+      const f = (getComputedStyle(img).filter || '').toString().trim();
+      if (!f || f === 'none') return;
 
       if (!img.complete || !img.naturalWidth) {
         await new Promise((res) => {
@@ -129,16 +127,8 @@
         c.width = img.naturalWidth;
         c.height = img.naturalHeight;
         const ctx = c.getContext('2d');
+        ctx.filter = f;
         ctx.drawImage(img, 0, 0);
-        const d = ctx.getImageData(0, 0, c.width, c.height);
-        const px = d.data;
-        for (let i = 0; i < px.length; i += 4) {
-          const lum = px[i] * 0.2126 + px[i + 1] * 0.7152 + px[i + 2] * 0.0722;
-          px[i]     = px[i]     * (1 - amt) + lum * amt;
-          px[i + 1] = px[i + 1] * (1 - amt) + lum * amt;
-          px[i + 2] = px[i + 2] * (1 - amt) + lum * amt;
-        }
-        ctx.putImageData(d, 0, 0);
         const dataUrl = c.toDataURL('image/png');
         await new Promise((res) => {
           img.addEventListener('load', res, { once: true });
@@ -147,7 +137,7 @@
         });
         img.style.filter = 'none';
       } catch (e) {
-        console.warn('[pdf] grayscale bake failed for', img.src, e);
+        console.warn('[pdf] filter bake failed for', img.src, e);
       }
     }));
   }
@@ -161,7 +151,7 @@
     const { jsPDF } = window.jspdf;
 
     const root = await buildContainer();
-    await bakeGrayscaleImages(root);
+    await bakeFilteredImages(root);
     try {
       const pages = Array.from(root.querySelectorAll('.pdf-page'));
       const pdf = new jsPDF({
