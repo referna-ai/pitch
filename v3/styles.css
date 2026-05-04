@@ -72,7 +72,7 @@ body {
 .slide-label {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
@@ -1086,8 +1086,8 @@ body {
 .stop-label {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 13px;
-  letter-spacing: 0.1em;
+  font-size: 14px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--gray-dark);
   margin-bottom: 6px;
@@ -1286,9 +1286,9 @@ body {
 .team-role {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--gold);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   margin-bottom: 16px;
 }
 
@@ -1869,7 +1869,7 @@ body {
 
 /* THESIS COUNTER */
 .thesis-counter { border-top: 1px solid var(--border); padding-top: 20px; display: flex; gap: 28px; align-items: flex-start; }
-.thesis-counter-label { font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-mid); white-space: nowrap; padding-top: 3px; flex-shrink: 0; }
+.thesis-counter-label { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); white-space: nowrap; padding-top: 3px; flex-shrink: 0; }
 .thesis-counter-items { display: flex; flex-direction: column; gap: 6px; }
 .thesis-counter-item { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
 .thesis-counter-item::before { content: "✕  "; font-size: 10px; color: var(--gray-mid); }
