@@ -102,6 +102,46 @@
     return root;
   }
 
+  // html2canvas does not reliably honor CSS `filter` on raster <img> tags —
+  // grayscale photos render in their original color and `brightness(0)
+  // invert(1)` silhouettes render as the original colored logo. Bake any
+  // computed filter into a same-origin data URL via the Canvas 2D `filter`
+  // property, then clear the CSS filter so html2canvas just draws the
+  // pre-processed bitmap.
+  async function bakeFilteredImages(root) {
+    const imgs = Array.from(root.querySelectorAll('img'));
+    await Promise.all(imgs.map(async (img) => {
+      const f = (getComputedStyle(img).filter || '').toString().trim();
+      if (!f || f === 'none') return;
+
+      if (!img.complete || !img.naturalWidth) {
+        await new Promise((res) => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+        });
+      }
+      if (!img.naturalWidth) return;
+
+      try {
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth;
+        c.height = img.naturalHeight;
+        const ctx = c.getContext('2d');
+        ctx.filter = f;
+        ctx.drawImage(img, 0, 0);
+        const dataUrl = c.toDataURL('image/png');
+        await new Promise((res) => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+          img.src = dataUrl;
+        });
+        img.style.filter = 'none';
+      } catch (e) {
+        console.warn('[pdf] filter bake failed for', img.src, e);
+      }
+    }));
+  }
+
   async function generate() {
     await loadLibs();
     if (document.fonts && document.fonts.ready) {
@@ -111,6 +151,7 @@
     const { jsPDF } = window.jspdf;
 
     const root = await buildContainer();
+    await bakeFilteredImages(root);
     try {
       const pages = Array.from(root.querySelectorAll('.pdf-page'));
       const pdf = new jsPDF({
