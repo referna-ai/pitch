@@ -102,6 +102,56 @@
     return root;
   }
 
+  // html2canvas does not reliably honor `filter: grayscale(...)` on raster
+  // <img> tags — masked photos render in their original color in the PDF.
+  // Bake the grayscale into a same-origin data URL ourselves and clear the
+  // CSS filter so html2canvas just draws the already-grayscaled pixels.
+  async function bakeGrayscaleImages(root) {
+    const imgs = Array.from(root.querySelectorAll('img'));
+    await Promise.all(imgs.map(async (img) => {
+      const f = (getComputedStyle(img).filter || '').toString();
+      const m = f.match(/grayscale\(\s*([\d.]+)(%?)\s*\)/);
+      if (!m) return;
+      const raw = parseFloat(m[1]);
+      const amt = m[2] === '%' ? Math.min(1, raw / 100) : Math.min(1, raw);
+      if (!amt) return;
+
+      if (!img.complete || !img.naturalWidth) {
+        await new Promise((res) => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+        });
+      }
+      if (!img.naturalWidth) return;
+
+      try {
+        const c = document.createElement('canvas');
+        c.width = img.naturalWidth;
+        c.height = img.naturalHeight;
+        const ctx = c.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const d = ctx.getImageData(0, 0, c.width, c.height);
+        const px = d.data;
+        for (let i = 0; i < px.length; i += 4) {
+          const lum = px[i] * 0.2126 + px[i + 1] * 0.7152 + px[i + 2] * 0.0722;
+          px[i]     = px[i]     * (1 - amt) + lum * amt;
+          px[i + 1] = px[i + 1] * (1 - amt) + lum * amt;
+          px[i + 2] = px[i + 2] * (1 - amt) + lum * amt;
+        }
+        ctx.putImageData(d, 0, 0);
+        const dataUrl = c.toDataURL('image/png');
+        await new Promise((res) => {
+          img.addEventListener('load', res, { once: true });
+          img.addEventListener('error', res, { once: true });
+          img.src = dataUrl;
+        });
+        img.style.filter = 'none';
+      } catch (e) {
+        console.warn('[pdf] grayscale bake failed for', img.src, e);
+      }
+    }));
+  }
+
   async function generate() {
     await loadLibs();
     if (document.fonts && document.fonts.ready) {
@@ -111,6 +161,7 @@
     const { jsPDF } = window.jspdf;
 
     const root = await buildContainer();
+    await bakeGrayscaleImages(root);
     try {
       const pages = Array.from(root.querySelectorAll('.pdf-page'));
       const pdf = new jsPDF({

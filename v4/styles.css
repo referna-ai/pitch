@@ -1775,16 +1775,15 @@ body {
 
 .copy-html-tooltip {
   position: absolute;
-  top: 50%;
-  right: calc(100% + 8px);
-  transform: translateY(-50%);
+  top: calc(100% + 8px);
+  right: 0;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.06em;
   white-space: nowrap;
   color: var(--white);
-  background: var(--black-soft);
+  background: var(--black);
   border: 1px solid var(--border);
   padding: 5px 9px;
   border-radius: 6px;
@@ -1838,16 +1837,15 @@ body {
 
 .pdf-download-tooltip {
   position: absolute;
-  top: 50%;
-  right: calc(100% + 8px);
-  transform: translateY(-50%);
+  top: calc(100% + 8px);
+  right: 0;
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 11px;
   letter-spacing: 0.06em;
   white-space: nowrap;
   color: var(--white);
-  background: var(--black-soft);
+  background: var(--black);
   border: 1px solid var(--border);
   padding: 5px 9px;
   border-radius: 6px;
