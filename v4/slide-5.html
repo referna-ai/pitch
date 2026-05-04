@@ -37,15 +37,23 @@
 .quadrant.winner .quadrant-name { color: var(--gold); font-size: 26px; }
 
 .quadrant-info { font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
-.quadrant-info .comp-name { color: var(--white); font-weight: 700; }
+.quadrant-info .comp-name { color: var(--white); font-weight: 700; display: inline-flex; align-items: center; gap: 7px; vertical-align: middle; }
 .quadrant-info .val { color: var(--gold); font-weight: 700; }
 
 .ref-line { margin-bottom: 6px; font-family: var(--font-display); font-weight: 500; font-size: 16px; color: var(--gray-mid); line-height: 1.45; }
 .ref-line:last-child { margin-bottom: 0; }
 .ref-tag { color: var(--white); font-weight: 700; }
-.ref-method { color: var(--white); font-weight: 700; }
-.ref-method.intouch { display: inline-flex; align-items: center; gap: 5px; }
-.ref-method.intouch svg { display: block; }
+.ref-method { color: var(--white); font-weight: 700; display: inline-flex; align-items: center; gap: 5px; vertical-align: middle; }
+.ref-method svg { display: block; }
+.comp-logo {
+  height: 19px;
+  width: auto;
+  max-width: 110px;
+  flex-shrink: 0;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+.ref-method .comp-logo { height: 16px; }
 .ref-stat { color: var(--gold); font-weight: 700; }
 
 @media (max-width: 768px) {
@@ -73,14 +81,14 @@
       <div class="matrix">
         <div class="quadrant">
           <div class="quadrant-name">Warm intros</div>
-          <div class="quadrant-info"><span class="comp-name">Lunchclub</span> · <span class="val">$100M</span> valuation · <span class="val">$0</span> direct impacted rev</div>
+          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/lunchclub.png" alt="Lunchclub"></span> · <span class="val">$100M</span> valuation · <span class="val">$0</span> direct impacted rev</div>
           <div class="quadrant-note">Unlike referrals, intros <span class="highlight">lack buying intent</span></div>
         </div>
         <div class="quadrant winner">
           <div class="quadrant-name">Referrals</div>
           <div class="ref-line"><span class="ref-tag">Unpredictable</span> — customers recommend</div>
           <div class="ref-line"><span class="ref-tag">Predictable</span> —
-            <span class="ref-method">BNI</span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
+            <span class="ref-method"><img class="comp-logo" src="logos/bni.png" alt="BNI"></span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
             <span class="ref-method intouch">
               <svg width="14" height="14" viewBox="0 0 48 48" fill="none">
                 <rect x="4" y="4" width="40" height="40" rx="8" fill="currentColor"/>
@@ -92,11 +100,11 @@
         </div>
         <div class="quadrant">
           <div class="quadrant-name">Cold outbound</div>
-          <div class="quadrant-info"><span class="comp-name">Outreach</span> · <span class="val">$4B</span> valuation</div>
+          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/outreach.svg" alt="Outreach"></span> · <span class="val">$4B</span> valuation</div>
         </div>
         <div class="quadrant">
           <div class="quadrant-name">Signal based outbound (AI)</div>
-          <div class="quadrant-info"><span class="comp-name">6sense</span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
+          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/6sense.svg" alt="6sense"></span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
         </div>
       </div>
       <div class="axis-right">High intent timing</div>
