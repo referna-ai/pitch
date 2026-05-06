@@ -578,6 +578,10 @@ body {
   margin: 0 auto;
 }
 
+.slide-hero .subtitle .gold {
+  color: var(--gold);
+}
+
 /* Section divider in S4 */
 .plan-milestone {
   background: rgba(212, 165, 116, 0.06);
