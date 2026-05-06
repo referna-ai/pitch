@@ -1,6 +1,20 @@
 // Auto-load analytics so every slide is covered without touching individual HTML files
 (function () { var s = document.createElement('script'); s.src = 'analytics.js'; document.head.appendChild(s); })();
 
+// Scale slides to fit short viewports (e.g. 1366x768 laptops). Design height = 738px.
+// .slide is visibility:hidden until we add .scaled to avoid an unscaled flash.
+(function () {
+  function applyScale() {
+    const slide = document.querySelector('.slide');
+    if (!slide) return;
+    const scale = Math.min(1, (window.innerHeight - 90) / 738);
+    slide.style.setProperty('--slide-scale', scale);
+    slide.classList.add('scaled');
+  }
+  applyScale();
+  window.addEventListener('resize', applyScale);
+})();
+
 (function () {
   const slides = [
     { file: 'index.html',    title: 'Overview' },
