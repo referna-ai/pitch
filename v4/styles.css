@@ -50,7 +50,9 @@ body {
   flex-direction: column;
   transform: scale(var(--slide-scale));
   transform-origin: top center;
+  visibility: hidden;
 }
+.slide.scaled { visibility: visible; }
 
 .slide .conclusion {
   margin-top: auto;
