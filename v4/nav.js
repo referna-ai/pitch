@@ -1,13 +1,60 @@
+// Single source of truth for the slide list. Tab strip, slide-label,
+// slide-number, analytics.js, copy-deck.js, and download-pdf.js all
+// derive from PITCH_SLIDES — never hardcode titles or numbers elsewhere.
+(function () {
+  const SLIDES = [
+    { file: 'index.html',    title: 'Overview' },
+    { file: 'slide-1.html',  title: 'The thesis' },
+    { file: 'slide-2.html',  title: 'The customer' },
+    { file: 'slide-3.html',  title: 'The market' },
+    { file: 'slide-4.html',  title: 'The problem' },
+    { file: 'slide-5.html',  title: 'The insight' },
+    { file: 'slide-6.html',  title: 'The proof' },
+    { file: 'slide-7.html',  title: 'The solution' },
+    { file: 'slide-8.html',  title: 'The GTM' },
+    { file: 'slide-9.html',  title: 'The traction' },
+    { file: 'slide-10.html', title: 'The round' },
+    { file: 'slide-11.html', title: 'The team' }
+  ];
+  window.PITCH_SLIDES = SLIDES;
+
+  // Populates .slide-label and .slide-number from the body's data-slide.
+  // scope defaults to the live document; pass a parsed DOMParser doc for
+  // fetched-slide flows (copy-deck.js, download-pdf.js).
+  window.PITCH_FILL_SLIDE = function (scope) {
+    const root = scope || document;
+    const body = root.body || (root.querySelector && root.querySelector('body'));
+    const ds = body && body.dataset && body.dataset.slide;
+    if (!ds) return;
+    const file = ds + '.html';
+    const idx = SLIDES.findIndex(function (s) { return s.file === file; });
+    if (idx <= 0) return;
+    const total = SLIDES.length - 1;
+    const num = String(idx).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    const labelEl = root.querySelector('.slide-label');
+    const numberEl = root.querySelector('.slide-number');
+    if (labelEl) labelEl.textContent = SLIDES[idx].title;
+    if (numberEl) numberEl.textContent = num;
+  };
+
+  window.PITCH_FILL_SLIDE(document);
+})();
+
 // Auto-load analytics so every slide is covered without touching individual HTML files
 (function () { var s = document.createElement('script'); s.src = 'analytics.js'; document.head.appendChild(s); })();
 
 // Scale slides to fit short viewports (e.g. 1366x768 laptops). Design height = 738px.
-// .slide is visibility:hidden until we add .scaled to avoid an unscaled flash.
+// .slide and .slide-hero are visibility:hidden until we add .scaled, so we
+// never flash an unscaled frame.
 (function () {
   function applyScale() {
-    const slide = document.querySelector('.slide');
+    const slide = document.querySelector('.slide, .slide-hero');
     if (!slide) return;
-    const scale = Math.min(1, (window.innerHeight - 90) / 738);
+    // Very short viewports (e.g. iPhone landscape ~390px tall) would scale to
+    // ~0.4 — too aggressive. CSS drops the fixed slide height in that regime;
+    // skip the transform here and let the page scroll naturally.
+    const tooShort = window.innerHeight < 500;
+    const scale = tooShort ? 1 : Math.min(1, (window.innerHeight - 90) / 738);
     slide.style.setProperty('--slide-scale', scale);
     slide.classList.add('scaled');
   }
@@ -16,19 +63,7 @@
 })();
 
 (function () {
-  const slides = [
-    { file: 'index.html',    title: 'Overview' },
-    { file: 'slide-1.html',  title: 'The thesis' },
-    { file: 'slide-2.html',  title: 'The independents' },
-    { file: 'slide-3.html',  title: 'The market' },
-    { file: 'slide-4.html',  title: 'The channels' },
-    { file: 'slide-5.html',  title: 'The insight' },
-    { file: 'slide-6.html',  title: 'The proof' },
-    { file: 'slide-7.html',  title: 'The mechanism' },
-    { file: 'slide-8.html',  title: 'The segment' },
-    { file: 'slide-9.html',  title: 'The plan' },
-    { file: 'slide-10.html', title: 'The team' }
-  ];
+  const slides = window.PITCH_SLIDES;
   const slideFiles = slides.map((s) => s.file);
 
   function detectCurrent() {

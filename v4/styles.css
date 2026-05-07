@@ -497,19 +497,27 @@ body {
   font-family: var(--font-display);
 }
 
-/* Title slide */
+/* Title slide — uses the same scale-to-fit pattern as .slide so short
+   viewports shrink the cover instead of clipping content. nav.js sets
+   --slide-scale and adds .scaled to reveal. */
 .slide-hero {
+  --slide-scale: 1;
   padding: 64px 56px;
   text-align: center;
   background: var(--black);
   border: 1px solid var(--border);
   border-radius: 16px;
-  height: min(738px, calc(100vh - 90px));
+  height: 738px;
+  margin-bottom: calc(738px * (var(--slide-scale) - 1));
   display: flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
+  transform: scale(var(--slide-scale));
+  transform-origin: top center;
+  visibility: hidden;
 }
+.slide-hero.scaled { visibility: visible; }
 
 .slide-hero .wordmark {
   display: flex;
@@ -1181,9 +1189,8 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   left: 0;
   right: 0;
   display: flex;
-  justify-content: center;
   gap: 40px;
-  padding: 16px 0;
+  padding: 16px 24px;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s ease;
@@ -1195,6 +1202,12 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   scrollbar-width: none;
 }
 .deck-tabs::-webkit-scrollbar { display: none; }
+/* Auto-margin trick: when tabs fit, slack is split between first/last
+   so the row appears centered; when they overflow, the auto margins
+   collapse to 0 so the row is left-aligned and fully reachable via
+   horizontal scroll. */
+.deck-tabs > :first-child { margin-left: auto; }
+.deck-tabs > :last-child  { margin-right: auto; }
 
 .deck-tabs-trigger:hover + .deck-tabs,
 .deck-tabs:hover,
@@ -1205,8 +1218,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 
 @media (max-width: 1180px) {
   .deck-tabs {
-    flex-wrap: wrap;
-    gap: 14px 22px;
+    gap: 22px;
     padding: 14px 18px;
   }
   .deck-tab {
@@ -1238,6 +1250,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   border-bottom: 1px solid transparent;
   transition: color 0.15s ease, border-color 0.15s ease;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .deck-tab:hover {
@@ -1583,6 +1596,25 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   }
   .hero-summary-num { font-size: 56px; }
 
+}
+
+/* Short viewports (e.g. iPhone landscape ~390px tall): the height-based JS
+   scale shrinks the deck to ~40% — too aggressive. Drop the fixed 738px slide
+   height and the transform here so the page just scrolls naturally. */
+@media (max-height: 500px) {
+  body { overflow: auto; display: block; }
+  .deck {
+    padding: 16px 24px;
+    min-height: 0;
+    display: block;
+  }
+  .slide,
+  .slide-hero {
+    height: auto;
+    transform: none;
+    margin-bottom: 0;
+    visibility: visible;
+  }
 }
 
 /* S3: Gap analogy block */
