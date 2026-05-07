@@ -699,6 +699,9 @@ body {
   line-height: 1.5;
 }
 
+/* Ami's photo always renders in grayscale across the deck */
+img[src$="ami.png"] { filter: grayscale(100%); }
+
 .spiral {
   position: relative;
   width: 100%;
