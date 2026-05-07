@@ -12,46 +12,216 @@
 <style>
 body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
 
-.zoom-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: stretch; }
+/* OUTER box: 130M Global */
+.box-global {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(212, 165, 116, 0.025);
+  padding: 22px 24px 24px;
+}
 
-.zoom-card { background: var(--black-soft); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; display: flex; flex-direction: column; }
-.zoom-card.featured { border-color: var(--gold); background: rgba(212, 165, 116, 0.06); }
+/* INNER box: 9.26M US */
+.box-us {
+  margin: 18px auto 0;
+  width: 96%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(212, 165, 116, 0.05);
+  padding: 18px 22px 20px;
+}
 
-.zoom-tag { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; }
-.zoom-num { font-family: var(--font-display); font-weight: 800; font-size: 60px; line-height: 1; color: var(--white); letter-spacing: -0.03em; }
-.zoom-num.zoom-num-us { font-size: 48px; color: var(--gold); }
-.zoom-num-label { font-family: var(--font-body); font-size: 16px; color: var(--gray); margin-top: 8px; line-height: 1.4; }
+/* Single-line headline pattern (used by both boxes) */
+.line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
 
-.stake-note { margin-top: 10px; font-family: var(--font-body); font-size: 14px; color: var(--gray-mid); line-height: 1.4; }
-.stake-amount { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--gold); letter-spacing: -0.01em; }
+.line-main {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  min-width: 0;
+}
 
-.zoom-divider { height: 1px; background: var(--border); margin: 18px 0; }
+.big-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-.segments-tag { font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.14em; color: var(--gold); text-transform: uppercase; margin-bottom: 14px; }
+.box-us .big-num { font-size: 32px; }
 
-.segment-block { margin-bottom: 14px; }
-.segment-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; }
-.segment-name { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--white); letter-spacing: -0.005em; }
-.segment-ami-badge { font-family: var(--font-display); font-size: 10px; font-weight: 700; color: var(--gold); background: rgba(212, 165, 116, 0.12); border: 1px solid var(--gold); border-radius: 9999px; padding: 3px 10px; letter-spacing: 0.08em; text-transform: uppercase; }
+.line-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.3;
+}
 
-.profession-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 14px; }
-.profession-cell { display: flex; align-items: center; gap: 10px; }
-.profession-icon { color: var(--gold); flex-shrink: 0; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
-.profession-icon svg { width: 18px; height: 18px; }
-.profession-name { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.3; }
+.box-us .line-text { font-size: 15px; }
 
-.segment-more { font-family: var(--font-display); font-size: 14px; color: var(--gray-mid); margin-top: 8px; padding-left: 28px; font-weight: 500; letter-spacing: 0.04em; }
+.line-tag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
-.segment-divider { height: 1px; background: var(--border); margin: 14px 0; }
+/* Carousel */
+.segments-carousel {
+  position: relative;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 4px 0;
+}
 
-.all-others { font-family: var(--font-body); font-size: 14px; color: var(--gray-mid); padding-top: 14px; border-top: 1px solid var(--border); margin-top: auto; line-height: 1.5; }
-.all-others strong { color: var(--white); font-weight: 600; font-family: var(--font-display); letter-spacing: 0.02em; }
+.segments-track {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  width: max-content;
+  min-width: 100%;
+  margin: 0 auto;
+}
 
-@media (max-width: 768px) {
-  .zoom-grid { grid-template-columns: 1fr; }
-  .zoom-num { font-size: 48px; }
-  .zoom-num.zoom-num-us { font-size: 40px; }
-  .profession-grid { grid-template-columns: 1fr; }
+.segment-box {
+  flex: 0 0 318px;
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.segment-box.featured {
+  border-color: var(--gold);
+  background: rgba(212, 165, 116, 0.08);
+}
+
+.segment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.segment-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.segment-ami-badge {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--gold);
+  text-transform: uppercase;
+  background: rgba(212, 165, 116, 0.15);
+  border: 1px solid rgba(212, 165, 116, 0.4);
+  padding: 4px 8px;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.segment-professions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profession-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.profession-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.profession-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.profession-name {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--gray);
+  line-height: 1.3;
+}
+
+.segment-more {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-dark);
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+}
+
+/* Edge fades — solid color matches the box-us bg over the slide bg */
+.segments-carousel::before,
+.segments-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.segments-carousel::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #1B1816 0%,
+    rgba(27, 24, 22, 0.85) 40%,
+    rgba(27, 24, 22, 0) 100%
+  );
+}
+
+.segments-carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #1B1816 0%,
+    rgba(27, 24, 22, 0.85) 40%,
+    rgba(27, 24, 22, 0) 100%
+  );
+}
+
+@media (max-width: 760px) {
+  .big-num { font-size: 32px; }
+  .box-us .big-num { font-size: 26px; }
+  .segment-box { flex: 0 0 260px; }
 }
 </style>
 </head>
@@ -63,102 +233,244 @@ body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
 <div class="slide" id="slide-3">
   <div class="slide-number">03 / 10</div>
   <div class="slide-label">The market</div>
-  <h2 class="slide-title">Many people are like Ami</h2>
+  <h2 class="slide-title">Millions of independents are struggling</h2>
 
-  <div class="zoom-grid">
-
-    <div class="zoom-card">
-      <div class="zoom-tag">Globally</div>
-      <div class="zoom-num">338M</div>
-      <div class="zoom-num-label">white-collar professionals at firms under 20</div>
-
-      <div class="zoom-divider"></div>
-
-      <div class="zoom-tag">In the US — our beachhead</div>
-      <div class="zoom-num zoom-num-us">9.26M</div>
-      <div class="zoom-num-label">across 21 segments we've identified</div>
-      <div class="stake-note">(<span class="stake-amount">$926B</span> in livelihoods at stake)</div>
+  <!-- OUTER: 130M Global -->
+  <div class="box-global">
+    <div class="line">
+      <div class="line-main">
+        <span class="big-num">~130M</span>
+        <span class="line-text">independent professionals worldwide</span>
+      </div>
     </div>
 
-    <div class="zoom-card featured">
-      <div class="segments-tag">21 US segments</div>
-
-      <div class="segment-block">
-        <div class="segment-header">
-          <div class="segment-name">Startup-focused</div>
-          <span class="segment-ami-badge">Ami's segment</span>
+    <!-- INNER: 9.26M US -->
+    <div class="box-us">
+      <div class="line">
+        <div class="line-main">
+          <span class="big-num">9.26M</span>
+          <span class="line-text">in the US, across 21 segments</span>
         </div>
-        <div class="profession-grid">
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-            </span>
-            <span class="profession-name">Fractional CMO</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
-            </span>
-            <span class="profession-name">Startup lawyer</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-            </span>
-            <span class="profession-name">PR agent</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </span>
-            <span class="profession-name">Recruiter</span>
-          </div>
-        </div>
-        <div class="segment-more">+ 4 more</div>
+        <div class="line-tag">$926B at stake</div>
       </div>
 
-      <div class="segment-divider"></div>
+      <!-- Carousel -->
+      <div class="segments-carousel">
+        <div class="segments-track">
 
-      <div class="segment-block">
-        <div class="segment-header">
-          <div class="segment-name">Estate-focused</div>
+          <!-- Wedding -->
+          <div class="segment-box">
+            <div class="segment-header">
+              <div class="segment-name">Wedding-focused</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <path d="m9 14 2 2 4-4"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Wedding planner</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Photographer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="9" r="3"/>
+                    <path d="M12 12v10"/>
+                    <path d="M9 22h6"/>
+                    <path d="M7 7c-1.5 1.5-2 3-1 5 1.5 0 3-.5 4.5-2"/>
+                    <path d="M17 7c1.5 1.5 2 3 1 5-1.5 0-3-.5-4.5-2"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Florist</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                    <path d="M7 2v20"/>
+                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Caterer</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 4 more</div>
+          </div>
+
+          <!-- Startup (Ami's) -->
+          <div class="segment-box featured">
+            <div class="segment-header">
+              <div class="segment-name">Startup-focused</div>
+              <div class="segment-ami-badge">Ami's segment</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 11 18-5v12L3 14v-3z"/>
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Fractional CMO</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="M7 21h10"/>
+                    <path d="M12 3v18"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Startup lawyer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="2" width="6" height="13" rx="3"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                  </svg>
+                </span>
+                <span class="profession-name">PR agent</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Recruiter</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 10 more</div>
+          </div>
+
+          <!-- Estate -->
+          <div class="segment-box">
+            <div class="segment-header">
+              <div class="segment-name">Estate-focused</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+                    <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate lawyer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Grief therapist</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate organizer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="2" width="16" height="20" rx="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6"/>
+                    <line x1="8" y1="14" x2="8.01" y2="14"/>
+                    <line x1="12" y1="14" x2="12.01" y2="14"/>
+                    <line x1="16" y1="14" x2="16.01" y2="14"/>
+                    <line x1="8" y1="18" x2="8.01" y2="18"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    <line x1="16" y1="18" x2="16.01" y2="18"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate accountant</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 4 more</div>
+          </div>
+
+          <!-- Divorce -->
+          <div class="segment-box">
+            <div class="segment-header">
+              <div class="segment-name">Divorce-focused</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m14 13-7.5 7.5c-.83.83-2.17.83-3 0a2.12 2.12 0 0 1 0-3L11 10"/>
+                    <path d="m16 16 6-6"/>
+                    <path d="m8 8 6-6"/>
+                    <path d="m9 7 8 8"/>
+                    <path d="m21 11-8-8"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Divorce lawyer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="9" cy="12" r="6"/>
+                    <circle cx="15" cy="12" r="6"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Mediator</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 3v18h18"/>
+                    <path d="m7 14 4-4 4 4 5-5"/>
+                    <path d="M16 5h5v5"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Financial advisor</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="11" width="20" height="7" rx="1"/>
+                    <path d="M5 18v3"/>
+                    <path d="M19 18v3"/>
+                    <path d="M2 14h20"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Therapist</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 4 more</div>
+          </div>
+
         </div>
-        <div class="profession-grid">
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 17V5a2 2 0 0 0-2-2H4"/><path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/></svg>
-            </span>
-            <span class="profession-name">Estate lawyer</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
-            </span>
-            <span class="profession-name">Grief therapist</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
-            </span>
-            <span class="profession-name">Estate organizer</span>
-          </div>
-          <div class="profession-cell">
-            <span class="profession-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="14" x2="8.01" y2="14"/><line x1="12" y1="14" x2="12.01" y2="14"/><line x1="16" y1="14" x2="16.01" y2="14"/><line x1="8" y1="18" x2="8.01" y2="18"/><line x1="12" y1="18" x2="12.01" y2="18"/><line x1="16" y1="18" x2="16.01" y2="18"/></svg>
-            </span>
-            <span class="profession-name">Estate accountant</span>
-          </div>
-        </div>
-        <div class="segment-more">+ 4 more</div>
       </div>
 
-      <div class="all-others"><strong>+ 19 more segments</strong> — divorce, relocation, inheritance, exit, IPO, retirement…</div>
     </div>
-
   </div>
 
-  <div class="conclusion">For millions of people — <strong>finding the next customer is problem #1</strong></div>
-  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn SMB report, InTouch wedge analysis</div>
+  <div class="conclusion">For millions of people — <strong>finding the next customer is problem #1.</strong></div>
+  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), InTouch wedge analysis</div>
 </div>
 
 </div>
