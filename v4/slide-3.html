@@ -228,6 +228,46 @@ body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
   .box-us .big-num { font-size: 26px; }
   .segment-box { flex: 0 0 260px; }
 }
+
+/* Phone: stack cards full-width and drop the horizontal carousel */
+@media (max-width: 560px) {
+  body[data-slide="slide-3"] .slide {
+    height: auto;
+    padding: 28px 18px 24px;
+  }
+
+  .box-global { padding: 16px 14px 18px; border-radius: 12px; }
+  .box-us {
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px 14px 16px;
+    border-radius: 10px;
+  }
+
+  /* Headline rows wrap so the $926B tag drops below */
+  .line { flex-wrap: wrap; row-gap: 6px; }
+  .line-tag { margin-left: 0; }
+
+  .big-num { font-size: 28px; }
+  .box-us .big-num { font-size: 24px; }
+  .line-text { font-size: 14px; }
+  .box-us .line-text { font-size: 13px; }
+
+  /* Stack segment cards vertically, full width, no carousel scroll */
+  .segments-carousel { overflow: visible; padding: 0; margin-top: 14px; }
+  .segments-carousel::before,
+  .segments-carousel::after { display: none; }
+  .segments-track {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .segment-box {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 14px 14px 12px;
+  }
+}
 </style>
 </head>
 <body data-slide="slide-3">
