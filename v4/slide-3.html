@@ -137,6 +137,10 @@ body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
   white-space: nowrap;
 }
 
+/* Estate count is shown only on phone (where stacked cards make a blank
+   header look broken next to the others) */
+.segment-count-mobile { display: none; }
+
 .profession-avatar {
   width: 22px;
   height: 22px;
@@ -267,6 +271,7 @@ body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
     width: 100%;
     padding: 14px 14px 12px;
   }
+  .segment-count-mobile { display: block; }
 }
 </style>
 </head>
@@ -412,6 +417,7 @@ body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
           <div class="segment-box">
             <div class="segment-header">
               <div class="segment-name">Estate-focused</div>
+              <div class="segment-count segment-count-mobile">82K</div>
             </div>
             <div class="segment-professions">
               <div class="profession-item">
