@@ -50,7 +50,11 @@
   function applyScale() {
     const slide = document.querySelector('.slide, .slide-hero');
     if (!slide) return;
-    const scale = Math.min(1, (window.innerHeight - 90) / 738);
+    // Very short viewports (e.g. iPhone landscape ~390px tall) would scale to
+    // ~0.4 — too aggressive. CSS drops the fixed slide height in that regime;
+    // skip the transform here and let the page scroll naturally.
+    const tooShort = window.innerHeight < 500;
+    const scale = tooShort ? 1 : Math.min(1, (window.innerHeight - 90) / 738);
     slide.style.setProperty('--slide-scale', scale);
     slide.classList.add('scaled');
   }

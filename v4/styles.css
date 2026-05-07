@@ -1595,6 +1595,25 @@ body {
 
 }
 
+/* Short viewports (e.g. iPhone landscape ~390px tall): the height-based JS
+   scale shrinks the deck to ~40% — too aggressive. Drop the fixed 738px slide
+   height and the transform here so the page just scrolls naturally. */
+@media (max-height: 500px) {
+  body { overflow: auto; display: block; }
+  .deck {
+    padding: 16px 24px;
+    min-height: 0;
+    display: block;
+  }
+  .slide,
+  .slide-hero {
+    height: auto;
+    transform: none;
+    margin-bottom: 0;
+    visibility: visible;
+  }
+}
+
 /* S3: Gap analogy block */
 .gap-analogy {
   margin: 28px 0;
