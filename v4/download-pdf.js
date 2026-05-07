@@ -77,6 +77,9 @@
 
     htmls.forEach((html) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
+      // Fetched DOMs don't run nav.js, so their .slide-label / .slide-number
+      // are empty. Populate them from PITCH_SLIDES before rendering.
+      if (window.PITCH_FILL_SLIDE) window.PITCH_FILL_SLIDE(doc);
       const slide = doc.querySelector('.slide');
       if (!slide) return;
       const slideName = doc.body && doc.body.getAttribute('data-slide');

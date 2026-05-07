@@ -7,20 +7,17 @@
   var MAX_SLIDE_SECS = 30 * 60; // cap at 30 min — handles tabs left open for days
   // ─────────────────────────────────────────────────────────────────────
 
-  var SLIDES = {
-    'index.html':    '00 · Cover',
-    'slide-1.html':  '01 · The Thesis',
-    'slide-2.html':  '02 · The Independents',
-    'slide-3.html':  '03 · The Market',
-    'slide-4.html':  '04 · The Channels',
-    'slide-5.html':  '05 · The Insight',
-    'slide-6.html':  '06 · The Proof',
-    'slide-7.html':  '07 · The Mechanism',
-    'slide-8.html':  '08 · The Segment',
-    'slide-9.html':  '09 · The Plan',
-    'slide-10.html': '10 · The Team',
-    'slide-backup.html': 'Backup · Trust, faster'
-  };
+  // Derive slide labels from the canonical PITCH_SLIDES array (defined in nav.js,
+  // which is loaded before analytics.js). Format: "00 · Title". Cover is indexed 0;
+  // anything not in PITCH_SLIDES (e.g., backup slide) falls through to a manual override.
+  var SLIDES = {};
+  if (window.PITCH_SLIDES) {
+    window.PITCH_SLIDES.forEach(function (s, i) {
+      var name = i === 0 ? 'Cover' : s.title;
+      SLIDES[s.file] = String(i).padStart(2, '0') + ' · ' + name;
+    });
+  }
+  SLIDES['slide-backup.html'] = 'Backup · Trust, faster';
 
   var COOKIE = 'pitch_viewer';
   var LS_KEY = 'pitch_analytics';
