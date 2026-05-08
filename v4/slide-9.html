@@ -115,6 +115,19 @@ body[data-slide="slide-9"] .stop-wrap {
   text-align: center;
   line-height: 1.35;
 }
+
+/* Test 3 sits in the rightmost column. Long single-line stats would
+   overflow past the slide's right edge, so right-anchor the slot — the
+   text grows leftward into the empty adjacent slot instead. */
+body[data-slide="slide-9"] .active-slot,
+body[data-slide="slide-9"] .active-slot .stop-text {
+  align-items: flex-end;
+}
+body[data-slide="slide-9"] .active-slot .stop-label,
+body[data-slide="slide-9"] .active-slot .stop-stat,
+body[data-slide="slide-9"] .active-slot .stop-fine {
+  text-align: right;
+}
 </style>
 </head>
 <body data-slide="slide-9">
@@ -173,6 +186,7 @@ body[data-slide="slide-9"] .stop-wrap {
           <div class="stop-stat">Test 3 · Referral Circles</div>
           <div class="stop-fine">✓ Onboarding email replies more than doubled (+133%)</div>
           <div class="stop-fine">✓ Outreach email reply rate more than doubled (+100%)</div>
+          <div class="stop-fine">✓ +16 interviews per week from new customer focus</div>
         </div>
       </div>
     </div>
