@@ -54,6 +54,10 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
   object-fit: cover;
   filter: grayscale(100%);
 }
+.s6-icon-gold img {
+  border: 2px solid var(--gold);
+  box-sizing: border-box;
+}
 
 .s6-pro-name {
   font-family: var(--font-display);
@@ -118,14 +122,16 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
   <div class="slide-label"></div>
   <h2 class="slide-title">BNI's <span class="gold">$26.4B</span> secret</h2>
 
-  <p class="s6-hero">One independent professional knows when their customer needs <span class="gold">another service</span>.</p>
+  <p class="s6-hero">One independent professional knows <span class="gold">when</span> their customer needs another service.</p>
 
   <div class="s6-cards">
 
     <div class="s6-card">
       <div class="s6-pro">
         <div class="s6-icon">
-          <img src="ami.png" alt="Ami B.">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4 H21 L14 12 V20 L10 18 V12 Z"/>
+          </svg>
         </div>
         <div class="s6-pro-name">Fractional CRO</div>
         <div class="s6-pro-context">builds a pipeline</div>
@@ -140,10 +146,7 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
       </div>
       <div class="s6-pro">
         <div class="s6-icon s6-icon-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="m3 11 18-5v12L3 14v-3z"/>
-            <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-          </svg>
+          <img src="ami.png" alt="Ami B.">
         </div>
         <div class="s6-pro-name gold">Fractional VP Marketing</div>
         <div class="s6-pro-value"><strong>~$60K</strong> bridge engagement</div>
