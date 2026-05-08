@@ -5,16 +5,17 @@
   const SLIDES = [
     { file: 'index.html',    title: 'Overview' },
     { file: 'slide-1.html',  title: 'The thesis' },
-    { file: 'slide-2.html',  title: 'The customer' },
-    { file: 'slide-3.html',  title: 'The market' },
-    { file: 'slide-4.html',  title: 'The problem' },
-    { file: 'slide-5.html',  title: 'The insight' },
-    { file: 'slide-6.html',  title: 'The proof' },
-    { file: 'slide-7.html',  title: 'The solution' },
-    { file: 'slide-8.html',  title: 'The GTM' },
-    { file: 'slide-9.html',  title: 'The traction' },
-    { file: 'slide-10.html', title: 'The round' },
-    { file: 'slide-11.html', title: 'The team' }
+    { file: 'slide-2.html',  title: 'The dinosaur' },
+    { file: 'slide-3.html',  title: 'The customer' },
+    { file: 'slide-4.html',  title: 'The market' },
+    { file: 'slide-5.html',  title: 'The problem' },
+    { file: 'slide-6.html',  title: 'The insight' },
+    { file: 'slide-7.html',  title: 'The proof' },
+    { file: 'slide-8.html',  title: 'The solution' },
+    { file: 'slide-9.html',  title: 'The GTM' },
+    { file: 'slide-10.html', title: 'The traction' },
+    { file: 'slide-11.html', title: 'The round' },
+    { file: 'slide-12.html', title: 'The team' }
   ];
   window.PITCH_SLIDES = SLIDES;
 
@@ -128,7 +129,7 @@
 
   function go(delta) {
     if (isBackup) {
-      location.href = delta < 0 ? 'slide-7.html' : 'slide-8.html';
+      location.href = delta < 0 ? 'slide-8.html' : 'slide-9.html';
       return;
     }
     if (idx < 0) return;

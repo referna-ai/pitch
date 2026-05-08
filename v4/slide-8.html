@@ -3,91 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · The GTM — InTouch Pitch</title>
+<title>S8 · The solution — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
+:root { --green: #7BC47F; --red: #D4645C; --border-soft: rgba(212, 165, 116, 0.12); }
 
-/* WEDGE BOX — title + metric tags + profession pill row */
-.wedge-box {
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
-  border-radius: 8px;
-  padding: 18px 22px;
-  margin-bottom: 18px;
-}
-.wedge-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.wedge-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; flex: 1; }
-.wedge-metrics { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: flex-end; }
-.wedge-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
-  color: var(--gold); border: 1px solid var(--gold); border-radius: 6px;
-  padding: 5px 12px; white-space: nowrap;
-}
-.wedge-tag-secondary {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em;
-  color: var(--gray); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px;
-  padding: 5px 12px; white-space: nowrap;
-}
+body[data-slide="slide-8"] .slide-title { margin-bottom: 28px; }
 
-.profession-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
-.profession-cell {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px; padding: 7px 12px;
-}
-.profession-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--gold); width: 18px; height: 18px; }
-.profession-icon svg { width: 18px; height: 18px; }
-.profession-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
-.segment-more { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gray-mid); font-style: italic; }
+.mechanism-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin: 0; }
+.mech-col { display: flex; flex-direction: column; gap: 14px; }
 
-/* SECTION HEADING */
-.section-heading {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gray-mid); margin: 0 0 10px 0;
-}
+.col-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; display: flex; align-items: center; gap: 12px; line-height: 1.3; }
+.col-title::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: var(--gold); }
+.col-caption { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.55; }
+.col-caption strong { color: var(--white); font-weight: 600; }
+.col-caption .ami { color: var(--white); font-weight: 600; }
 
-/* REASONS GRID — 3 cards, no per-card evidence */
-.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.reason-card {
-  background: var(--black-soft); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px; padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 10px;
-}
-.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
-.reason-stats { display: flex; gap: 24px; }
-.reason-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--gold); letter-spacing: -0.02em; line-height: 1.05; }
-.reason-stat-label { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); margin-top: 4px; }
-.reason-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--gray); }
-.reason-desc strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
+.col-visual { margin-top: 8px; }
 
-/* AMI EVIDENCE — single block under cards */
-.ami-evidence {
-  display: flex; align-items: center; gap: 16px; margin-top: 18px;
-  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
-  border-radius: 6px; padding: 14px 18px;
-}
-.ami-mini {
-  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
-  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
-}
-.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
-.ami-evidence-attrib {
-  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
-  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
-}
+.col-hero { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; color: var(--white); margin-bottom: 14px; }
+.col-hero .gold { color: var(--gold); }
 
-@media (max-width: 900px) {
-  .reasons-grid { grid-template-columns: 1fr; }
-  body[data-slide="slide-8"] .slide-title { font-size: 30px; }
-  .wedge-header { flex-direction: column; }
-  .wedge-metrics { flex-wrap: wrap; }
+.col-quote { position: relative; padding: 4px 0 0 24px; border-left: 2px solid var(--gold); }
+.col-quote-text { font-family: var(--font-body); font-weight: 500; font-size: 18px; line-height: 1.5; color: var(--white); letter-spacing: -0.005em; }
+.col-quote-attr { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
+.col-quote-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
+.col-quote-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gold); letter-spacing: 0.02em; }
+.col-quote-name span { color: var(--gray-mid); font-weight: 400; }
+
+.browser-frame { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.browser-chrome { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
+.browser-dots { display: flex; gap: 5px; }
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+.browser-dot.red { background: #FF5F57; }
+.browser-dot.yellow { background: #FFBD2E; }
+.browser-dot.green { background: #28C840; }
+.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.04em; }
+.browser-body { padding: 14px 16px 16px; }
+
+.credits-ledger { width: 100%; font-family: var(--font-display); }
+.credits-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
+.credits-header strong { color: var(--white); font-weight: 600; }
+.credits-rows { padding: 4px 0; }
+.credits-row { display: grid; grid-template-columns: 60px 1fr; gap: 10px; padding: 5px 0; align-items: baseline; }
+.credits-amt { font-family: var(--font-display); font-weight: 700; font-size: 14px; text-align: right; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
+.credits-give .credits-amt { color: var(--green); }
+.credits-receive .credits-amt { color: var(--red); }
+.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
+.credits-text strong { color: var(--white); font-weight: 600; }
+.credits-balance { display: grid; grid-template-columns: 60px 1fr; gap: 10px; align-items: baseline; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--border-soft); }
+.credits-balance-num { text-align: right; font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
+.credits-balance-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+
+.col-note { margin-top: 12px; font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
+.col-note strong { color: var(--white); font-weight: 600; }
+
+.gordy-card { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
+.gordy-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
+.gordy-content { flex: 1; }
+.gordy-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.gordy-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); }
+.gordy-time { font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
+.gordy-body { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
+.gordy-body strong { color: var(--white); font-weight: 600; }
+.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 5px; }
+
+@media (max-width: 768px) {
+  body[data-slide="slide-8"] .slide-title { font-size: 30px; margin-bottom: 20px; }
+  .mechanism-cols { grid-template-columns: 1fr; gap: 24px; }
 }
 </style>
 </head>
@@ -99,99 +86,76 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The segment we win first</h2>
+  <h2 class="slide-title">InTouch is BNI's formula, but online</h2>
 
-  <div class="wedge-box">
-    <div class="wedge-header">
-      <div class="wedge-title">14 vendor categories targeting just-funded founders</div>
-      <div class="wedge-metrics">
-        <div class="wedge-tag">$6B / yr</div>
-        <div class="wedge-tag-secondary">125K independents</div>
+  <div class="mechanism-cols">
+
+    <div class="mech-col">
+      <div class="col-title">Find referrers + build trust</div>
+      <div class="col-caption"><strong>Density does the work.</strong> A network that's deep enough surfaces referrers who target the same customer — and shows how members are already connected.</div>
+      <div class="col-visual">
+        <div class="col-hero">Network builds <span class="gold">trust</span>.</div>
+        <div class="col-quote">
+          <div class="col-quote-text">"I trust these people. I can see how we're connected — and the trust just grows as we start collaborating."</div>
+          <div class="col-quote-attr">
+            <img class="col-quote-photo" src="ami.png" alt="Ami B.">
+            <div class="col-quote-name">Ami B. <span>· Fractional VP of Marketing</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="profession-grid">
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-        </span>
-        <span class="profession-name">Fractional CMO</span>
-      </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
-        </span>
-        <span class="profession-name">Startup lawyer</span>
-      </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-        </span>
-        <span class="profession-name">PR agent</span>
-      </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </span>
-        <span class="profession-name">Recruiter</span>
-      </div>
-      <div class="segment-more">+ 10 more</div>
-    </div>
-  </div>
 
-  <div class="section-heading">Early signals support fast growth</div>
-
-  <div class="reasons-grid">
-
-    <div class="reason-card">
-      <div class="reason-title">Weekly growth</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">14.8%</div>
-          <div class="reason-stat-label">W/W user growth</div>
+    <div class="mech-col">
+      <div class="col-title">Keep them motivated</div>
+      <div class="col-caption">Leveraging <strong>gamification methods</strong> to keep score and challenge circle members.</div>
+      <div class="col-visual">
+        <div class="browser-frame">
+          <div class="browser-chrome">
+            <div class="browser-dots">
+              <span class="browser-dot red"></span>
+              <span class="browser-dot yellow"></span>
+              <span class="browser-dot green"></span>
+            </div>
+            <div class="browser-url">intouch.app · ami's circle</div>
+          </div>
+          <div class="browser-body">
+            <div class="credits-ledger">
+              <div class="credits-header"><span><strong>Ami</strong> · Credits</span><span>This week</span></div>
+              <div class="credits-rows">
+                <div class="credits-row credits-give"><span class="credits-amt">+1,200</span><span class="credits-text">Referred CEO to <strong>Sarah</strong> (lawyer)</span></div>
+                <div class="credits-row credits-give"><span class="credits-amt">+800</span><span class="credits-text">Referred founder to <strong>Tom</strong> (PR)</span></div>
+                <div class="credits-row credits-receive"><span class="credits-amt">−1,500</span><span class="credits-text"><strong>Sarah</strong> referred Acme to Ami</span></div>
+              </div>
+              <div class="credits-balance"><span class="credits-balance-num">500</span><span class="credits-balance-label">Balance</span></div>
+            </div>
+          </div>
         </div>
+        <div class="col-note">Once the network is dense enough, these credits also become InTouch's monetization.</div>
       </div>
-      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
     </div>
 
-    <div class="reason-card">
-      <div class="reason-title">Acquisition efficiency</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">$5–$10</div>
-          <div class="reason-stat-label">per signup</div>
-        </div>
-        <div class="reason-stat">
-          <div class="reason-stat-num">42%</div>
-          <div class="reason-stat-label">reply → signup</div>
-        </div>
-      </div>
-      <div class="reason-desc"><strong>Cheap to reach. Quick to convert.</strong></div>
-    </div>
-
-    <div class="reason-card">
-      <div class="reason-title">Virality</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">3.5</div>
-          <div class="reason-stat-label">invites / user</div>
-        </div>
-        <div class="reason-stat">
-          <div class="reason-stat-num">29%</div>
-          <div class="reason-stat-label">acceptance</div>
+    <div class="mech-col">
+      <div class="col-title">Trigger at the right moment</div>
+      <div class="col-caption"><strong>Gordy (AI)</strong> watches what's happening in the circle and online to identify the right timing for referrals.</div>
+      <div class="col-visual">
+        <div class="gordy-card">
+          <div class="gordy-avatar">G</div>
+          <div class="gordy-content">
+            <div class="gordy-meta">
+              <span class="gordy-name">Gordy</span>
+              <span class="gordy-time">now</span>
+            </div>
+            <div class="gordy-body">Acme call in 15m. Their founder posted a hiring memo on LinkedIn — <strong>Tom</strong> (your circle) is the recruiter <strong>Sarah</strong> referred to her last 3 founders.</div>
+            <div class="gordy-action">Refer Tom →</div>
+          </div>
         </div>
       </div>
-      <div class="reason-desc"><strong>K = 1.0 · 5× the B2B median (0.20).</strong></div>
     </div>
 
   </div>
 
-  <div class="ami-evidence">
-    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
-    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
-  </div>
-
-  <div class="conclusion">Three pre-funding signals — all pointing to fast distribution.</div>
-  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Saxifrage K-factor benchmarks · Ami B. interview (Apr 2026)</div>
+  <div class="conclusion">BNI proved the formula at $65K/user/year. InTouch makes it online, smart and fun.</div>
+  <div class="sources">Sources: InTouch product data (n=64), BNI Mid-Year Report 2025 (n=340K)</div>
 </div>
 
 </div>

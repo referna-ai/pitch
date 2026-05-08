@@ -3,117 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S9 · The traction — InTouch Pitch</title>
+<title>S9 · The GTM — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* Keep timeline columns equal but let long single-line stats overflow into the
-   adjacent (empty) slots without wrapping. Content slots alternate with empty
-   slots, so symmetric overflow has room on each side. */
-body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-body[data-slide="slide-9"] .timeline-axis { grid-template-columns: repeat(4, 1fr); }
-body[data-slide="slide-9"] .axis-line-past { left: 12.5%; width: 75%; }
-body[data-slide="slide-9"] .journey-timeline { margin-top: 80px; }
+body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
 
-/* Flex-center each line on the dot. align-items:center on a flex column
-   centers items horizontally even when their intrinsic (nowrap) width
-   exceeds the column — overflow goes symmetric instead of right-only. */
-body[data-slide="slide-9"] .timeline-slot,
-body[data-slide="slide-9"] .stop-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: visible;
+/* WEDGE BOX — title + metric tags + profession pill row */
+.wedge-box {
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 18px 22px;
+  margin-bottom: 18px;
 }
-
-/* Unify timeline text on Manrope, drop italic everywhere */
-body[data-slide="slide-9"] .stop-text,
-body[data-slide="slide-9"] .stop-stat,
-body[data-slide="slide-9"] .stop-fine,
-body[data-slide="slide-9"] .future-slot .stop-text,
-body[data-slide="slide-9"] .future-slot .stop-fine,
-body[data-slide="slide-9"] .stop-text-now {
-  font-family: var(--font-display);
-  font-style: normal;
+.wedge-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.wedge-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; flex: 1; }
+.wedge-metrics { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: flex-end; }
+.wedge-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
+  color: var(--gold); border: 1px solid var(--gold); border-radius: 6px;
+  padding: 5px 12px; white-space: nowrap;
+}
+.wedge-tag-secondary {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em;
+  color: var(--gray); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px;
+  padding: 5px 12px; white-space: nowrap;
 }
 
-body[data-slide="slide-9"] .stop-fine {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--gray-mid);
+.profession-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 14px; }
+.profession-cell {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px; padding: 7px 12px;
+}
+.profession-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--gold); width: 18px; height: 18px; }
+.profession-icon svg { width: 18px; height: 18px; }
+.profession-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
+.segment-more { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gray-mid); font-style: italic; }
+
+/* SECTION HEADING */
+.section-heading {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-mid); margin: 0 0 10px 0;
 }
 
-body[data-slide="slide-9"] .stop-stat { font-size: 17px; font-weight: 600; }
-body[data-slide="slide-9"] .stop-desc { font-weight: 400; color: var(--gray); }
+/* REASONS GRID — 3 cards, no per-card evidence */
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.reason-card {
+  background: var(--black-soft); border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px; padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--gold); letter-spacing: -0.02em; line-height: 1.05; }
+.reason-stat-label { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); margin-top: 4px; }
+.reason-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--gray); }
+.reason-desc strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
 
-/* Plan box — large variant */
-body[data-slide="slide-9"] .plan-milestone-large {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  padding: 0;
-  margin: 4px 0;
+/* AMI EVIDENCE — single block under cards */
+.ami-evidence {
+  display: flex; align-items: center; gap: 16px; margin-top: 18px;
+  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
+  border-radius: 6px; padding: 14px 18px;
 }
-body[data-slide="slide-9"] .plan-milestone-large .plan-label {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
+.ami-mini {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
 }
-body[data-slide="slide-9"] .plan-milestone-large .plan-row {
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.45;
-  padding: 5px 0;
-  color: var(--white);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
-}
-body[data-slide="slide-9"] .plan-milestone-large .plan-row:last-child { border-bottom: none; }
-body[data-slide="slide-9"] .plan-milestone-large .plan-key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-block;
-  width: 170px;
-}
-body[data-slide="slide-9"] .plan-milestone-large .plan-milestone-notes {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 6px;
-  padding-left: 24px;
-  border-left: 1px solid rgba(212, 165, 116, 0.18);
-}
-body[data-slide="slide-9"] .plan-milestone-large .plan-note {
-  font-family: var(--font-body);
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--gray-mid);
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
+.ami-evidence-attrib {
+  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
 }
 
-/* Default: single-line, overflow symmetric around the dot */
-body[data-slide="slide-9"] .stop-label,
-body[data-slide="slide-9"] .stop-stat,
-body[data-slide="slide-9"] .stop-fine {
-  white-space: nowrap;
-  text-align: center;
-}
-
-/* Opt-in wrap for lines that should break at column width */
-body[data-slide="slide-9"] .stop-wrap {
-  white-space: normal;
-  max-width: 100%;
-  text-align: center;
-  line-height: 1.35;
+@media (max-width: 900px) {
+  .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-9"] .slide-title { font-size: 30px; }
+  .wedge-header { flex-direction: column; }
+  .wedge-metrics { flex-wrap: wrap; }
 }
 </style>
 </head>
@@ -125,63 +99,102 @@ body[data-slide="slide-9"] .stop-wrap {
 <div class="slide" id="slide-9">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Already moving fast</h2>
+  <h2 class="slide-title">The segment we win first</h2>
 
-  <div class="journey-timeline">
-    <div class="timeline-row timeline-above">
-      <div class="timeline-slot">
-        <div class="stop-label">Feb 2026</div>
-        <div class="stop-text">
-          <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
-          <div class="stop-fine">92 interviews</div>
-        </div>
+  <div class="wedge-box">
+    <div class="wedge-header">
+      <div class="wedge-title">14 vendor categories targeting just-funded founders</div>
+      <div class="wedge-metrics">
+        <div class="wedge-tag">$6B / yr</div>
+        <div class="wedge-tag-secondary">125K independents</div>
       </div>
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot">
-        <div class="stop-label">Apr 1</div>
-        <div class="stop-text">
-          <div class="stop-stat">Test 2 · Intro Circles</div>
-          <div class="stop-fine">✓ All 5 acquisition KPIs hit (slide 8)</div>
-          <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
-        </div>
-      </div>
-      <div class="timeline-slot"></div>
     </div>
-
-    <div class="timeline-axis">
-      <div class="axis-line-past"></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot dot-now"></span></div>
-    </div>
-
-    <div class="timeline-row timeline-below">
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot">
-        <div class="stop-label">Feb 22</div>
-        <div class="stop-text">
-          <div class="stop-stat">Test 1 · Intro brief</div>
-          <div class="stop-fine">✓ +50% connect calendar</div>
-          <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
-        </div>
+    <div class="profession-grid">
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </span>
+        <span class="profession-name">Fractional CMO</span>
       </div>
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot active-slot">
-        <div class="stop-label stop-label-now">This week</div>
-        <div class="stop-text stop-text-now">
-          <div class="stop-stat">Test 3 · Referral Circles</div>
-        </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
+        </span>
+        <span class="profession-name">Startup lawyer</span>
       </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </span>
+        <span class="profession-name">PR agent</span>
+      </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="profession-name">Recruiter</span>
+      </div>
+      <div class="segment-more">+ 10 more</div>
     </div>
   </div>
 
-  <div class="conclusion">Three tests in ten weeks. Closing in on what works.</div>
-  <div class="sources">Sources: InTouch product data</div>
+  <div class="section-heading">Early signals support fast growth</div>
+
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-title">Weekly growth</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">14.8%</div>
+          <div class="reason-stat-label">W/W user growth</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-title">Acquisition efficiency</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">$5–$10</div>
+          <div class="reason-stat-label">per signup</div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">42%</div>
+          <div class="reason-stat-label">reply → signup</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>Cheap to reach. Quick to convert.</strong></div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-title">Virality</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">3.5</div>
+          <div class="reason-stat-label">invites / user</div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">29%</div>
+          <div class="reason-stat-label">acceptance</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>K = 1.0 · 5× the B2B median (0.20).</strong></div>
+    </div>
+
+  </div>
+
+  <div class="ami-evidence">
+    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — all pointing to fast distribution.</div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Saxifrage K-factor benchmarks · Ami B. interview (Apr 2026)</div>
 </div>
 
 </div>
-
 
 <script src="nav.js"></script>
 </body>
