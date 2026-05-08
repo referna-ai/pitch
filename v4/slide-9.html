@@ -16,7 +16,10 @@
 body[data-slide="slide-9"] .timeline-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 body[data-slide="slide-9"] .timeline-axis { grid-template-columns: repeat(4, 1fr); }
 body[data-slide="slide-9"] .axis-line-past { left: 12.5%; width: 75%; }
-body[data-slide="slide-9"] .journey-timeline { margin-top: 80px; }
+/* Shrink the timeline 10% from the right so Test 3's rightmost slot has
+   room for long bullets to overflow symmetrically without hitting the
+   slide edge. Left endpoint stays anchored to the slide's left padding. */
+body[data-slide="slide-9"] .journey-timeline { margin-top: 80px; padding-right: 10%; }
 
 /* Flex-center each line on the dot. align-items:center on a flex column
    centers items horizontally even when their intrinsic (nowrap) width
@@ -141,7 +144,7 @@ body[data-slide="slide-9"] .stop-wrap {
         <div class="stop-label">Apr 1</div>
         <div class="stop-text">
           <div class="stop-stat">Test 2 · Intro Circles</div>
-          <div class="stop-fine">✓ All 5 acquisition KPIs hit (slide 8)</div>
+          <div class="stop-fine">✓ All 5 acquisition targets hit (slide 8)</div>
           <div class="stop-fine" style="color:#D4645C;">✗ &lt;5% asked for intros</div>
         </div>
       </div>
@@ -162,15 +165,18 @@ body[data-slide="slide-9"] .stop-wrap {
         <div class="stop-label">Feb 22</div>
         <div class="stop-text">
           <div class="stop-stat">Test 1 · Intro brief</div>
-          <div class="stop-fine">✓ +50% connect calendar</div>
-          <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% virality</div>
+          <div class="stop-fine">✓ +50% connected their calendar</div>
+          <div class="stop-fine" style="color:#D4645C;">✗ &lt;10% invited a friend</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
       <div class="timeline-slot active-slot">
-        <div class="stop-label stop-label-now">This week</div>
+        <div class="stop-label stop-label-now">May 4</div>
         <div class="stop-text stop-text-now">
           <div class="stop-stat">Test 3 · Referral Circles</div>
+          <div class="stop-fine">✓ 2.3× Onboarding completion rate (from replies)</div>
+          <div class="stop-fine">✓ Outreach email reply rate 2× higher</div>
+          <div class="stop-fine">✓ +16 interviews per week from new customer focus</div>
         </div>
       </div>
     </div>
