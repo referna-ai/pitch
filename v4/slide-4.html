@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · The problem — InTouch Pitch</title>
+<title>S4 · The market — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -12,32 +12,266 @@
 <style>
 body[data-slide="slide-4"] .slide-title { margin-bottom: 22px; }
 
-.channels-list { display: flex; flex-direction: column; }
+/* OUTER box: 130M Global */
+.box-global {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(212, 165, 116, 0.025);
+  padding: 22px 24px 24px;
+}
 
-.channel-row { display: grid; grid-template-columns: 96px 220px 1fr; gap: 28px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
-.channel-row:first-child { padding-top: 4px; }
-.channel-row:last-child { border-bottom: none; }
+/* INNER box: 9.26M US */
+.box-us {
+  margin: 18px auto 0;
+  width: 96%;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: rgba(212, 165, 116, 0.05);
+  padding: 18px 22px 20px;
+}
 
-.donut-cell { display: flex; align-items: center; justify-content: center; }
+/* Single-line headline pattern (used by both boxes) */
+.line {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: nowrap;
+}
 
-.channel-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.01em; }
-.channel-row.referrals .channel-name { color: var(--gold); }
+.line-main {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  min-width: 0;
+}
 
-.channel-desc { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.5; }
-.channel-desc strong { color: var(--white); font-weight: 600; }
+.big-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 42px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  line-height: 1;
+  flex-shrink: 0;
+}
 
-.ami-quote-box { margin-top: 10px; display: flex; align-items: center; gap: 18px; background: var(--black-soft); border-left: 2px solid var(--gold); border-radius: 0 6px 6px 0; padding: 16px 20px; }
-.ami-quote-photo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--black); border: 2px solid var(--gold); }
-.ami-quote-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
-.ami-quote-text { font-family: var(--font-body); font-size: 18px; font-style: italic; color: var(--white); line-height: 1.45; }
-.ami-quote-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-mid); margin-top: 6px; letter-spacing: 0.04em; }
-.ami-quote-attr strong { color: var(--white); font-weight: 600; }
+.box-us .big-num { font-size: 32px; }
 
-@media (max-width: 768px) {
-  .channel-row { grid-template-columns: 72px 1fr; gap: 16px; }
-  .channel-row .channel-name { grid-column: 2; }
-  .channel-row .channel-desc { grid-column: 1 / -1; }
-  .ami-quote-box { flex-direction: column; align-items: flex-start; }
+.line-text {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.3;
+}
+
+.box-us .line-text { font-size: 15px; }
+
+.line-tag {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Carousel */
+.segments-carousel {
+  position: relative;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 8px;
+  padding: 4px 0;
+}
+
+.segments-track {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  width: max-content;
+  min-width: 100%;
+  margin: 0 auto;
+}
+
+.segment-box {
+  flex: 0 0 318px;
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px 18px 14px;
+  display: flex;
+  flex-direction: column;
+}
+
+.segment-box.featured {
+  border-color: var(--gold);
+  background: rgba(212, 165, 116, 0.08);
+}
+
+.segment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  gap: 10px;
+}
+
+.segment-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+
+.segment-count {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  white-space: nowrap;
+}
+
+/* Estate count is shown only on phone (where stacked cards make a blank
+   header look broken next to the others) */
+.segment-count-mobile { display: none; }
+
+.profession-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--gold);
+  margin-left: 4px;
+}
+
+.segment-professions {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profession-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 5px 0;
+}
+
+.profession-icon {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.profession-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.profession-name {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: var(--gray);
+  line-height: 1.3;
+}
+
+.segment-more {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-dark);
+  margin-top: 8px;
+  letter-spacing: 0.02em;
+}
+
+/* Edge fades — solid color matches the box-us bg over the slide bg */
+.segments-carousel::before,
+.segments-carousel::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 110px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.segments-carousel::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    #1B1816 0%,
+    rgba(27, 24, 22, 0.85) 40%,
+    rgba(27, 24, 22, 0) 100%
+  );
+}
+
+.segments-carousel::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    #1B1816 0%,
+    rgba(27, 24, 22, 0.85) 40%,
+    rgba(27, 24, 22, 0) 100%
+  );
+}
+
+@media (max-width: 760px) {
+  .big-num { font-size: 32px; }
+  .box-us .big-num { font-size: 26px; }
+  .segment-box { flex: 0 0 260px; }
+}
+
+/* Phone: stack cards full-width and drop the horizontal carousel */
+@media (max-width: 560px) {
+  body[data-slide="slide-4"] .slide {
+    height: auto;
+    padding: 28px 18px 24px;
+  }
+
+  .box-global { padding: 16px 14px 18px; border-radius: 12px; }
+  .box-us {
+    width: 100%;
+    margin-top: 14px;
+    padding: 14px 14px 16px;
+    border-radius: 10px;
+  }
+
+  /* Headline rows wrap so the $926B tag drops below */
+  .line { flex-wrap: wrap; row-gap: 6px; }
+  .line-tag { margin-left: 0; }
+
+  .big-num { font-size: 28px; }
+  .box-us .big-num { font-size: 24px; }
+  .line-text { font-size: 14px; }
+  .box-us .line-text { font-size: 13px; }
+
+  /* Stack segment cards vertically, full width, no carousel scroll */
+  .segments-carousel { overflow: visible; padding: 0; margin-top: 14px; }
+  .segments-carousel::before,
+  .segments-carousel::after { display: none; }
+  .segments-track {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+  .segment-box {
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 14px 14px 12px;
+  }
+  .segment-count-mobile { display: block; }
 }
 </style>
 </head>
@@ -49,73 +283,195 @@ body[data-slide="slide-4"] .slide-title { margin-bottom: 22px; }
 <div class="slide" id="slide-4">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Referrals are critical, but unreliable.</h2>
+  <h2 class="slide-title">Millions of independents are struggling</h2>
 
-  <div class="channels-list">
-
-    <div class="channel-row">
-      <div class="donut-cell">
-        <svg width="84" height="84" viewBox="0 0 84 84">
-          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
-          <circle cx="42" cy="42" r="34"
-                  stroke="#D4645C" stroke-width="9" fill="none"
-                  stroke-dasharray="213.63"
-                  stroke-dashoffset="141.0"
-                  stroke-linecap="round"
-                  transform="rotate(-90 42 42)"/>
-          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">34%</text>
-        </svg>
+  <!-- OUTER: 130M Global -->
+  <div class="box-global">
+    <div class="line">
+      <div class="line-main">
+        <span class="big-num">~130M</span>
+        <span class="line-text">independent professionals worldwide</span>
       </div>
-      <div class="channel-name">Digital</div>
-      <div class="channel-desc">Too noisy to break through. <strong>Bigger players have AI budgets that solo professionals can't match.</strong></div>
     </div>
 
-    <div class="channel-row">
-      <div class="donut-cell">
-        <svg width="84" height="84" viewBox="0 0 84 84">
-          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
-          <circle cx="42" cy="42" r="34"
-                  stroke="#737373" stroke-width="9" fill="none"
-                  stroke-dasharray="213.63"
-                  stroke-dashoffset="211.5"
-                  stroke-linecap="round"
-                  transform="rotate(-90 42 42)"/>
-          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">1%</text>
-        </svg>
+    <!-- INNER: 9.26M US -->
+    <div class="box-us">
+      <div class="line">
+        <div class="line-main">
+          <span class="big-num">9.26M</span>
+          <span class="line-text">in the US, across 21 segments</span>
+        </div>
+        <div class="line-tag">$926B at stake</div>
       </div>
-      <div class="channel-name">Intros</div>
-      <div class="channel-desc">Coffee chats, networking — <strong>too much effort, too little volume.</strong></div>
-    </div>
 
-    <div class="channel-row referrals">
-      <div class="donut-cell">
-        <svg width="84" height="84" viewBox="0 0 84 84">
-          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
-          <circle cx="42" cy="42" r="34"
-                  stroke="#D4A574" stroke-width="9" fill="none"
-                  stroke-dasharray="213.63"
-                  stroke-dashoffset="74.77"
-                  stroke-linecap="round"
-                  transform="rotate(-90 42 42)"/>
-          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">65%</text>
-        </svg>
+      <!-- Carousel -->
+      <div class="segments-carousel">
+        <div class="segments-track">
+
+          <!-- Wedding -->
+          <div class="segment-box">
+            <div class="segment-header">
+              <div class="segment-name">Wedding-focused</div>
+              <div class="segment-count">813K</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="8" y="2" width="8" height="4" rx="1"/>
+                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                    <path d="m9 14 2 2 4-4"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Wedding planner</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Photographer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="9" r="3"/>
+                    <path d="M12 12v10"/>
+                    <path d="M9 22h6"/>
+                    <path d="M7 7c-1.5 1.5-2 3-1 5 1.5 0 3-.5 4.5-2"/>
+                    <path d="M17 7c1.5 1.5 2 3 1 5-1.5 0-3-.5-4.5-2"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Florist</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
+                    <path d="M7 2v20"/>
+                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Caterer</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 4 more</div>
+          </div>
+
+          <!-- Startup (Ami's) -->
+          <div class="segment-box featured">
+            <div class="segment-header">
+              <div class="segment-name">Startup-focused</div>
+              <div class="segment-count">125K</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m3 11 18-5v12L3 14v-3z"/>
+                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Fractional CMO</span>
+                <img class="profession-avatar" src="ami.png" alt="Ami">
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
+                    <path d="M7 21h10"/>
+                    <path d="M12 3v18"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Startup lawyer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="9" y="2" width="6" height="13" rx="3"/>
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
+                    <line x1="12" y1="19" x2="12" y2="22"/>
+                  </svg>
+                </span>
+                <span class="profession-name">PR agent</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                    <circle cx="9" cy="7" r="4"/>
+                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Recruiter</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 10 more</div>
+          </div>
+
+          <!-- Estate -->
+          <div class="segment-box">
+            <div class="segment-header">
+              <div class="segment-name">Estate-focused</div>
+              <div class="segment-count segment-count-mobile">82K</div>
+            </div>
+            <div class="segment-professions">
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
+                    <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate lawyer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Grief therapist</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate organizer</span>
+              </div>
+              <div class="profession-item">
+                <span class="profession-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="4" y="2" width="16" height="20" rx="2"/>
+                    <line x1="8" y1="6" x2="16" y2="6"/>
+                    <line x1="8" y1="14" x2="8.01" y2="14"/>
+                    <line x1="12" y1="14" x2="12.01" y2="14"/>
+                    <line x1="16" y1="14" x2="16.01" y2="14"/>
+                    <line x1="8" y1="18" x2="8.01" y2="18"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18"/>
+                    <line x1="16" y1="18" x2="16.01" y2="18"/>
+                  </svg>
+                </span>
+                <span class="profession-name">Estate accountant</span>
+              </div>
+            </div>
+            <div class="segment-more">+ 4 more</div>
+          </div>
+
+        </div>
       </div>
-      <div class="channel-name">Referrals</div>
-      <div class="channel-desc">When they come, they close — <strong>but no one controls when.</strong></div>
-    </div>
 
+    </div>
   </div>
 
-  <div class="ami-quote-box">
-    <div class="ami-quote-photo"><img src="ami.png" alt="Ami B."></div>
-    <div>
-      <div class="ami-quote-text">"Would love to find someone who can refer business for cash."</div>
-      <div class="ami-quote-attr"><strong>Ami B.</strong> · Fractional VP of Marketing · last week, unprompted</div>
-    </div>
-  </div>
-
-  <div class="conclusion">Independent professionals rely on referrals — <strong>a channel no one controls.</strong></div>
-  <div class="sources">Sources: 22 interviews; Sales So, Straits Research, MailerLite, AuthoredUp/Sales So; Seer Interactive (3,119 queries, 25.1M impressions, Sep 2025); Firework/industry data (82%)</div>
+  <div class="conclusion">For millions of people — <strong>finding the next customer is problem #1.</strong></div>
+  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), InTouch market analysis</div>
 </div>
 
 </div>
