@@ -162,18 +162,19 @@
     }
   });
 
-  // Left click → forward (unless on link/button or selecting text)
+  // Left click on the slide pulses the next-indicator so viewers notice
+  // the affordance — click no longer advances. Skip when the user is
+  // interacting with a real control or selecting text.
   document.addEventListener('click', (e) => {
     if (e.button !== 0) return;
     if (isInteractive(e.target)) return;
     if (hasSelection()) return;
-    forward();
-  });
-
-  // Right click → back (suppress context menu)
-  document.addEventListener('contextmenu', (e) => {
-    e.preventDefault();
-    back();
+    const next = document.querySelector('.nav-indicator-next:not(.nav-indicator-disabled)');
+    if (!next) return;
+    next.classList.remove('is-pulsing');
+    // Force reflow so the animation restarts on rapid clicks.
+    void next.offsetWidth;
+    next.classList.add('is-pulsing');
   });
 
   // Touch: swipe left → forward, swipe right → back
@@ -229,23 +230,53 @@
       e.preventDefault();
       if (canGo) handler();
     });
-    btn.addEventListener('contextmenu', (e) => {
-      e.stopPropagation();
-      e.preventDefault();
-      back();
-    });
     document.body.appendChild(btn);
+  }
+
+  // Bottom prev/next chips, sitting just under the slide frame.
+  function makeIndicators(canBack, canForward) {
+    const slide = document.querySelector('.slide, .slide-hero');
+    if (!slide || !slide.parentNode) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'nav-indicators';
+    wrap.setAttribute('data-nav-ignore', '');
+
+    function chip(side, label, canGo, handler) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'nav-indicator nav-indicator-' + side + (canGo ? '' : ' nav-indicator-disabled');
+      btn.setAttribute('aria-label', side === 'prev' ? 'Previous slide' : 'Next slide');
+      btn.setAttribute('data-nav-ignore', '');
+      const arrow = side === 'prev'
+        ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5 L8 12 L15 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
+        : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5 L16 12 L9 19" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+      btn.innerHTML = side === 'prev'
+        ? arrow + '<span>' + label + '</span>'
+        : '<span>' + label + '</span>' + arrow;
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        if (canGo) handler();
+      });
+      return btn;
+    }
+
+    wrap.appendChild(chip('prev', 'Prev', canBack, back));
+    wrap.appendChild(chip('next', 'Next', canForward, forward));
+    slide.parentNode.insertBefore(wrap, slide.nextSibling);
   }
 
   function init() {
     if (isBackup) {
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
+      makeIndicators(true, true);
       return;
     }
     if (idx < 0) return;
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
+    makeIndicators(idx > 0, idx < slideFiles.length - 1);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
