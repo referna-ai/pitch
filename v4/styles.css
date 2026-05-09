@@ -1415,6 +1415,24 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 .nav-arrow-left:hover svg { transform: translateX(-2px); }
 .nav-arrow-right:hover svg { transform: translateX(2px); }
 
+.nav-arrow-right.is-pulsing {
+  background: linear-gradient(to left, rgba(212, 165, 116, 0.08), transparent);
+  animation: nav-arrow-pulse-bg 900ms ease-out;
+}
+.nav-arrow-right.is-pulsing svg {
+  animation: nav-arrow-pulse-svg 900ms ease-out;
+}
+@keyframes nav-arrow-pulse-bg {
+  0%   { background: linear-gradient(to left, rgba(212, 165, 116, 0), transparent); }
+  20%  { background: linear-gradient(to left, rgba(212, 165, 116, 0.08), transparent); }
+  100% { background: linear-gradient(to left, rgba(212, 165, 116, 0), transparent); }
+}
+@keyframes nav-arrow-pulse-svg {
+  0%   { opacity: 0;    transform: translateX(0); }
+  20%  { opacity: 0.75; transform: translateX(2px); }
+  100% { opacity: 0;    transform: translateX(0); }
+}
+
 .nav-arrow-disabled { cursor: default; }
 .nav-arrow-disabled:hover { background: transparent; }
 .nav-arrow-disabled:hover svg { opacity: 0.15; transform: none; }
@@ -1422,6 +1440,70 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 @media (max-width: 768px) {
   .nav-arrow { width: 44px; }
   .nav-arrow svg { width: 20px; height: 20px; }
+}
+
+/* Bottom prev/next indicators — subtle by default, brighten on hover. */
+.nav-indicators {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 0 8px;
+  pointer-events: none;
+}
+.nav-indicator {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  margin: 0;
+  cursor: pointer;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
+  opacity: 0.7;
+  transition: color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-indicator svg {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+.nav-indicator:hover,
+.nav-indicator.is-pulsing {
+  color: var(--gold);
+  opacity: 1;
+}
+.nav-indicator-prev:hover svg,
+.nav-indicator-prev.is-pulsing svg { transform: translateX(-3px); }
+.nav-indicator-next:hover svg,
+.nav-indicator-next.is-pulsing svg { transform: translateX(3px); }
+.nav-indicator.is-pulsing { animation: nav-indicator-pulse 900ms ease-out; }
+.nav-indicator-disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+.nav-indicator-disabled:hover {
+  color: var(--gray-dark);
+  opacity: 0.25;
+}
+.nav-indicator-disabled:hover svg { transform: none; }
+@keyframes nav-indicator-pulse {
+  0%   { color: var(--gray-dark); opacity: 0.7; }
+  20%  { color: var(--gold); opacity: 1; }
+  100% { color: var(--gray-dark); opacity: 0.7; }
+}
+
+@media (max-width: 768px) {
+  .nav-indicators { margin-top: 8px; padding: 0 4px; }
+  .nav-indicator { font-size: 11px; padding: 6px 8px; }
 }
 
 /* Top bar sitting outside the slide frame, holds back-link + version ribbon */
