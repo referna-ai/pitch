@@ -3,78 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · The solution — InTouch Pitch</title>
+<title>S8 · The blueprint — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-:root { --green: #7BC47F; --red: #D4645C; --border-soft: rgba(212, 165, 116, 0.12); }
+body[data-slide="slide-8"] .slide-title { margin-bottom: 24px; }
+body[data-slide="slide-8"] .slide-title .gold { color: var(--gold); }
 
-body[data-slide="slide-8"] .slide-title { margin-bottom: 28px; }
+.s6-hero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  max-width: 980px;
+  margin: 0 auto 28px;
+  text-align: center;
+}
+.s6-hero .gold { color: var(--gold); }
 
-.mechanism-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin: 0; }
-.mech-col { display: flex; flex-direction: column; gap: 14px; }
+.s6-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
-.col-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; display: flex; align-items: center; gap: 12px; line-height: 1.3; }
-.col-title::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: var(--gold); }
-.col-caption { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.55; }
-.col-caption strong { color: var(--white); font-weight: 600; }
-.col-caption .ami { color: var(--white); font-weight: 600; }
+.s6-card {
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-.col-visual { margin-top: 8px; }
+.s6-pro { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
 
-.col-hero { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; color: var(--white); margin-bottom: 14px; }
-.col-hero .gold { color: var(--gold); }
+.s6-icon {
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white);
+}
+.s6-icon-gold { color: var(--gold); }
+.s6-icon svg { width: 100%; height: 100%; }
+.s6-icon img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+.s6-icon-gold img {
+  border: 2px solid var(--gold);
+  box-sizing: border-box;
+}
 
-.col-quote { position: relative; padding: 4px 0 0 24px; border-left: 2px solid var(--gold); }
-.col-quote-text { font-family: var(--font-body); font-weight: 500; font-size: 18px; line-height: 1.5; color: var(--white); letter-spacing: -0.005em; }
-.col-quote-attr { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
-.col-quote-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
-.col-quote-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gold); letter-spacing: 0.02em; }
-.col-quote-name span { color: var(--gray-mid); font-weight: 400; }
+.s6-pro-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.s6-pro-name.gold { color: var(--gold); }
 
-.browser-frame { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
-.browser-chrome { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
-.browser-dots { display: flex; gap: 5px; }
-.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
-.browser-dot.red { background: #FF5F57; }
-.browser-dot.yellow { background: #FFBD2E; }
-.browser-dot.green { background: #28C840; }
-.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.04em; }
-.browser-body { padding: 14px 16px 16px; }
+.s6-pro-context {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--gray-mid);
+  line-height: 1.4;
+}
 
-.credits-ledger { width: 100%; font-family: var(--font-display); }
-.credits-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
-.credits-header strong { color: var(--white); font-weight: 600; }
-.credits-rows { padding: 4px 0; }
-.credits-row { display: grid; grid-template-columns: 60px 1fr; gap: 10px; padding: 5px 0; align-items: baseline; }
-.credits-amt { font-family: var(--font-display); font-weight: 700; font-size: 14px; text-align: right; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
-.credits-give .credits-amt { color: var(--green); }
-.credits-receive .credits-amt { color: var(--red); }
-.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
-.credits-text strong { color: var(--white); font-weight: 600; }
-.credits-balance { display: grid; grid-template-columns: 60px 1fr; gap: 10px; align-items: baseline; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--border-soft); }
-.credits-balance-num { text-align: right; font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.credits-balance-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+.s6-pro-value {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--gray);
+  letter-spacing: -0.005em;
+  line-height: 1.4;
+}
+.s6-pro-value strong { color: var(--white); font-weight: 700; }
 
-.col-note { margin-top: 12px; font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
-.col-note strong { color: var(--white); font-weight: 600; }
+.s6-arrow-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 2px 0;
+}
+.s6-arrow-line { flex: 1; height: 1px; background: var(--border); }
+.s6-arrow-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.s6-arrow-label svg { width: 14px; height: 14px; }
 
-.gordy-card { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
-.gordy-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
-.gordy-content { flex: 1; }
-.gordy-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-.gordy-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); }
-.gordy-time { font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-.gordy-body { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
-.gordy-body strong { color: var(--white); font-weight: 600; }
-.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 5px; }
-
-@media (max-width: 768px) {
-  body[data-slide="slide-8"] .slide-title { font-size: 30px; margin-bottom: 20px; }
-  .mechanism-cols { grid-template-columns: 1fr; gap: 24px; }
+@media (max-width: 820px) {
+  .s6-hero { font-size: 26px; }
+  .s6-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -86,76 +120,108 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 28px; }
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">InTouch is BNI's formula, but online</h2>
+  <h2 class="slide-title">BNI's <span class="gold">$26.4B</span> secret</h2>
 
-  <div class="mechanism-cols">
+  <p class="s6-hero">One independent professional knows <span class="gold">when</span> their customer needs another service.</p>
 
-    <div class="mech-col">
-      <div class="col-title">Find referrers + build trust</div>
-      <div class="col-caption"><strong>Density does the work.</strong> A network that's deep enough surfaces referrers who target the same customer — and shows how members are already connected.</div>
-      <div class="col-visual">
-        <div class="col-hero">Network builds <span class="gold">trust</span>.</div>
-        <div class="col-quote">
-          <div class="col-quote-text">"I trust these people. I can see how we're connected — and the trust just grows as we start collaborating."</div>
-          <div class="col-quote-attr">
-            <img class="col-quote-photo" src="ami.png" alt="Ami B.">
-            <div class="col-quote-name">Ami B. <span>· Fractional VP of Marketing</span></div>
-          </div>
+  <div class="s6-cards">
+
+    <div class="s6-card">
+      <div class="s6-pro">
+        <div class="s6-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 4 H21 L14 12 V20 L10 18 V12 Z"/>
+          </svg>
         </div>
+        <div class="s6-pro-name">Fractional CRO</div>
+        <div class="s6-pro-context">builds a pipeline</div>
+      </div>
+      <div class="s6-arrow-divider">
+        <div class="s6-arrow-line"></div>
+        <div class="s6-arrow-label">
+          Referral
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </div>
+        <div class="s6-arrow-line"></div>
+      </div>
+      <div class="s6-pro">
+        <div class="s6-icon s6-icon-gold">
+          <img src="ami.png" alt="Ami B.">
+        </div>
+        <div class="s6-pro-name gold">Fractional VP Marketing</div>
+        <div class="s6-pro-value"><strong>~$60K</strong> bridge engagement</div>
       </div>
     </div>
 
-    <div class="mech-col">
-      <div class="col-title">Keep them motivated</div>
-      <div class="col-caption">Leveraging <strong>gamification methods</strong> to keep score and challenge circle members.</div>
-      <div class="col-visual">
-        <div class="browser-frame">
-          <div class="browser-chrome">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
-            </div>
-            <div class="browser-url">intouch.app · ami's circle</div>
-          </div>
-          <div class="browser-body">
-            <div class="credits-ledger">
-              <div class="credits-header"><span><strong>Ami</strong> · Credits</span><span>This week</span></div>
-              <div class="credits-rows">
-                <div class="credits-row credits-give"><span class="credits-amt">+1,200</span><span class="credits-text">Referred CEO to <strong>Sarah</strong> (lawyer)</span></div>
-                <div class="credits-row credits-give"><span class="credits-amt">+800</span><span class="credits-text">Referred founder to <strong>Tom</strong> (PR)</span></div>
-                <div class="credits-row credits-receive"><span class="credits-amt">−1,500</span><span class="credits-text"><strong>Sarah</strong> referred Acme to Ami</span></div>
-              </div>
-              <div class="credits-balance"><span class="credits-balance-num">500</span><span class="credits-balance-label">Balance</span></div>
-            </div>
-          </div>
+    <div class="s6-card">
+      <div class="s6-pro">
+        <div class="s6-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 10.5 L12 3 L21 10.5 V20 a1 1 0 0 1 -1 1 H4 a1 1 0 0 1 -1 -1 Z"/>
+          </svg>
         </div>
-        <div class="col-note">Once the network is dense enough, these credits also become InTouch's monetization.</div>
+        <div class="s6-pro-name">Real estate agent</div>
+        <div class="s6-pro-context">closes a home sale</div>
+      </div>
+      <div class="s6-arrow-divider">
+        <div class="s6-arrow-line"></div>
+        <div class="s6-arrow-label">
+          Referral
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </div>
+        <div class="s6-arrow-line"></div>
+      </div>
+      <div class="s6-pro">
+        <div class="s6-icon s6-icon-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="15" r="5"/>
+            <line x1="11.6" y1="11.4" x2="22" y2="1"/>
+            <line x1="18" y1="5" x2="21" y2="8"/>
+            <line x1="15" y1="8" x2="18" y2="11"/>
+          </svg>
+        </div>
+        <div class="s6-pro-name gold">Mortgage broker</div>
+        <div class="s6-pro-value"><strong>~$5K</strong> loan origination fee</div>
       </div>
     </div>
 
-    <div class="mech-col">
-      <div class="col-title">Trigger at the right moment</div>
-      <div class="col-caption"><strong>Gordy (AI)</strong> watches what's happening in the circle and online to identify the right timing for referrals.</div>
-      <div class="col-visual">
-        <div class="gordy-card">
-          <div class="gordy-avatar">G</div>
-          <div class="gordy-content">
-            <div class="gordy-meta">
-              <span class="gordy-name">Gordy</span>
-              <span class="gordy-time">now</span>
-            </div>
-            <div class="gordy-body">Acme call in 15m. Their founder posted a hiring memo on LinkedIn — <strong>Tom</strong> (your circle) is the recruiter <strong>Sarah</strong> referred to her last 3 founders.</div>
-            <div class="gordy-action">Refer Tom →</div>
-          </div>
+    <div class="s6-card">
+      <div class="s6-pro">
+        <div class="s6-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3 H15 L18 6 V21 H6 Z"/>
+            <line x1="9" y1="9" x2="15" y2="9"/>
+            <line x1="9" y1="13" x2="15" y2="13"/>
+            <line x1="9" y1="17" x2="13" y2="17"/>
+          </svg>
         </div>
+        <div class="s6-pro-name">Estate lawyer</div>
+        <div class="s6-pro-context">settles an estate</div>
+      </div>
+      <div class="s6-arrow-divider">
+        <div class="s6-arrow-line"></div>
+        <div class="s6-arrow-label">
+          Referral
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+        </div>
+        <div class="s6-arrow-line"></div>
+      </div>
+      <div class="s6-pro">
+        <div class="s6-icon s6-icon-gold">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="3 18 9 12 13 16 21 6"/>
+            <polyline points="15 6 21 6 21 12"/>
+          </svg>
+        </div>
+        <div class="s6-pro-name gold">Financial advisor</div>
+        <div class="s6-pro-value"><strong>~$10K/yr</strong> on inherited wealth</div>
       </div>
     </div>
 
   </div>
 
-  <div class="conclusion">BNI proved the formula at $65K/user/year. InTouch makes it online, smart and fun.</div>
-  <div class="sources">Sources: InTouch product data (n=64), BNI Mid-Year Report 2025 (n=340K)</div>
+  <div class="conclusion">This insight built a <strong>$26.4B analog business.</strong></div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 (n=340K); industry pricing data (fractional executive engagement benchmarks, NAR/CFPB mortgage origination, advisor AUM benchmarks)</div>
 </div>
 
 </div>
