@@ -29,6 +29,9 @@ See **`docs/navigation.md`** for a full explanation of how navigation works, the
 ## Copy HTML button
 See **`docs/copy-deck.md`**. The button on each version's `index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in every version's `copy-deck.js` (`v1/`, `v2/`, `v3/`, `v4/`) or the button breaks silently.
 
+## Tables
+Use Manrope (`var(--font-display)`) for all table content — headers, row names, cells, and verdict pills. Don't mix in `var(--font-body)` (IBM Plex Serif) inside a table; that font is for prose only.
+
 ## Standardized slide elements
 Applies to **both `v3/` and `v4/`** (the active deck versions). Every slide must use the same four elements in the same place, with the same classes and styles. Do **not** restyle them inline or invent new class names — change the canonical rule in the version's `styles.css` if a global update is needed, and mirror the change to the other version unless the divergence is intentional.
 
