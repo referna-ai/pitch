@@ -118,6 +118,76 @@ body[data-slide="slide-10"] .stop-wrap {
   text-align: center;
   line-height: 1.35;
 }
+
+/* Mobile: collapse the horizontal 4-column timeline into a vertical rail.
+   The desktop layout has empty alternating slots that overlap on narrow
+   screens. On mobile, hide the empty slots and the axis, then re-flow the
+   four real stops into chronological order down a single rail. */
+@media (max-width: 768px) {
+  body[data-slide="slide-10"] .journey-timeline {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 0;
+    padding: 0 0 0 24px;
+    border-left: 1px solid rgba(212, 165, 116, 0.35);
+  }
+  body[data-slide="slide-10"] .timeline-row,
+  body[data-slide="slide-10"] .timeline-axis { display: contents; }
+  body[data-slide="slide-10"] .timeline-axis .axis-slot,
+  body[data-slide="slide-10"] .axis-line-past,
+  body[data-slide="slide-10"] .axis-line-future { display: none; }
+
+  body[data-slide="slide-10"] .timeline-slot {
+    padding: 0 0 22px 0;
+    text-align: left;
+    align-self: stretch;
+    align-items: flex-start;
+    position: relative;
+    min-height: 0;
+  }
+  body[data-slide="slide-10"] .timeline-slot:empty { display: none; }
+
+  body[data-slide="slide-10"] .timeline-above .timeline-slot:nth-child(1) { order: 1; }
+  body[data-slide="slide-10"] .timeline-below .timeline-slot:nth-child(2) { order: 2; }
+  body[data-slide="slide-10"] .timeline-above .timeline-slot:nth-child(3) { order: 3; }
+  body[data-slide="slide-10"] .timeline-below .timeline-slot:nth-child(4) { order: 4; }
+
+  body[data-slide="slide-10"] .timeline-slot::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--black-mid);
+    box-sizing: content-box;
+  }
+  body[data-slide="slide-10"] .active-slot::before {
+    width: 14px;
+    height: 14px;
+    left: -31px;
+    top: 2px;
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.2);
+  }
+
+  body[data-slide="slide-10"] .timeline-slot,
+  body[data-slide="slide-10"] .stop-text {
+    align-items: flex-start;
+  }
+  body[data-slide="slide-10"] .stop-label,
+  body[data-slide="slide-10"] .stop-stat,
+  body[data-slide="slide-10"] .stop-fine {
+    white-space: normal;
+    text-align: left;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  body[data-slide="slide-10"] .stop-label { margin-bottom: 4px; }
+  body[data-slide="slide-10"] .stop-stat { font-size: 16px; margin-top: 0; }
+  body[data-slide="slide-10"] .stop-fine { font-size: 13px; }
+}
 </style>
 </head>
 <body data-slide="slide-10">
