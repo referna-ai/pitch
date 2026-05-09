@@ -162,19 +162,22 @@
     }
   });
 
-  // Left click on the slide pulses the next-indicator so viewers notice
-  // the affordance — click no longer advances. Skip when the user is
-  // interacting with a real control or selecting text.
+  // Left click on the slide pulses the next-indicator and the right edge
+  // arrow so viewers notice the affordances — click no longer advances.
+  // Skip when the user is interacting with a real control or selecting text.
   document.addEventListener('click', (e) => {
     if (e.button !== 0) return;
     if (isInteractive(e.target)) return;
     if (hasSelection()) return;
-    const next = document.querySelector('.nav-indicator-next:not(.nav-indicator-disabled)');
-    if (!next) return;
-    next.classList.remove('is-pulsing');
-    // Force reflow so the animation restarts on rapid clicks.
-    void next.offsetWidth;
-    next.classList.add('is-pulsing');
+    const targets = document.querySelectorAll(
+      '.nav-indicator-next:not(.nav-indicator-disabled), .nav-arrow-right:not(.nav-arrow-disabled)'
+    );
+    targets.forEach((el) => {
+      el.classList.remove('is-pulsing');
+      // Force reflow so the animation restarts on rapid clicks.
+      void el.offsetWidth;
+      el.classList.add('is-pulsing');
+    });
   });
 
   // Touch: swipe left → forward, swipe right → back
