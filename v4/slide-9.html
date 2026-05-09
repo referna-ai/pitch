@@ -10,152 +10,688 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-:root { --green: #7BC47F; --red: #D4645C; --border-soft: rgba(212, 165, 116, 0.12); }
+body[data-slide="slide-9"] {
+  --black-bubble: #1F1F1F;
+  --border-soft: rgba(255,255,255,0.06);
+  --border-input: rgba(255,255,255,0.10);
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
 
-body[data-slide="slide-9"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-9"] .slide-title .gold { color: var(--gold); }
 
-.mechanism-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 36px; margin: 0; }
-.mech-col { display: flex; flex-direction: column; gap: 14px; }
+/* LAYOUT */
+.s9-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  flex: 1;
+  align-items: start;
+  position: relative;
+  min-height: 0;
+}
 
-.col-title { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.14em; display: flex; align-items: center; gap: 12px; line-height: 1.3; }
-.col-title::before { content: ""; flex-shrink: 0; width: 20px; height: 1px; background: var(--gold); }
-.col-caption { font-family: var(--font-body); font-size: 17px; color: var(--gray); line-height: 1.55; }
-.col-caption strong { color: var(--white); font-weight: 600; }
-.col-caption .ami { color: var(--white); font-weight: 600; }
+/* TEXT COLUMN */
+.s9-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 4px;
+}
+.s9-pillar-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; }
+.s9-pillar-bullets li {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--gray);
+  padding: 9px 0 9px 22px;
+  border-top: 1px solid var(--border-soft);
+  position: relative;
+}
+.s9-pillar-bullets li:first-child { border-top: none; padding-top: 4px; }
+.s9-pillar-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0; top: 9px;
+  color: var(--gold);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+.s9-pillar-bullets li:first-child::before { top: 4px; }
+.s9-pillar-bullets li strong { color: var(--white); font-weight: 600; }
 
-.col-visual { margin-top: 8px; }
+/* VISUAL CLUSTER */
+.s9-visual {
+  position: relative;
+  height: 100%;
+  min-height: 460px;
+}
 
-.col-hero { font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.2; letter-spacing: -0.015em; color: var(--white); margin-bottom: 14px; }
-.col-hero .gold { color: var(--gold); }
+/* DESKTOP FORM (LEFT, behind) */
+.s9-browser-wrap {
+  position: absolute;
+  left: 0;
+  top: 38px;
+  width: 570px;
+  z-index: 1;
+}
+.s9-browser {
+  background: var(--black);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 0 60px rgba(212,165,116,0.18),
+    0 0 24px rgba(212,165,116,0.10),
+    0 25px 50px rgba(0,0,0,0.55);
+}
+.s9-browser-chrome {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  background: #161616;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s9-browser-dots { display: flex; gap: 5px; }
+.s9-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+.s9-browser-dot.red { background: #FF5F57; }
+.s9-browser-dot.yellow { background: #FEBC2E; }
+.s9-browser-dot.green { background: #28C840; }
+.s9-browser-url {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-family: var(--font-system);
+  font-size: 10px;
+  color: var(--gray-mid);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
 
-.col-quote { position: relative; padding: 4px 0 0 24px; border-left: 2px solid var(--gold); }
-.col-quote-text { font-family: var(--font-body); font-weight: 500; font-size: 18px; line-height: 1.5; color: var(--white); letter-spacing: -0.005em; }
-.col-quote-attr { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
-.col-quote-photo { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; filter: grayscale(100%); }
-.col-quote-name { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gold); letter-spacing: 0.02em; }
-.col-quote-name span { color: var(--gray-mid); font-weight: 400; }
+.s9-form-app { background: var(--black); }
+.s9-form-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s9-form-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 13px; color: white;
+  letter-spacing: -0.02em;
+}
+.s9-form-mark {
+  width: 18px; height: 18px; background: white; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black); font-weight: 800; font-size: 11px;
+  font-family: var(--font-display);
+}
+.s9-form-status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+}
+.s9-form-status::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--error);
+}
+.s9-form-body {
+  display: grid; grid-template-columns: 200px 1fr;
+  min-height: 300px;
+}
+.s9-form-side {
+  padding: 16px 14px;
+  border-right: 1px solid var(--border-soft);
+}
+.s9-form-side-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-mid);
+  margin-bottom: 8px;
+}
+.s9-form-progress {
+  height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px;
+  overflow: hidden; margin-bottom: 10px;
+}
+.s9-form-progress::after {
+  content: ""; display: block; height: 100%; width: 70%;
+  background: var(--gold);
+}
+.s9-form-status-num {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.s9-form-status-sub {
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-dark); margin-bottom: 14px;
+}
+.s9-form-step {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 8px; border-radius: 5px;
+  font-family: var(--font-display);
+  font-size: 10.5px; color: var(--gray); font-weight: 500;
+  margin-bottom: 2px;
+  border: 1px solid transparent;
+}
+.s9-form-step.active {
+  border-color: var(--border);
+  background: rgba(212,165,116,0.04);
+}
+.s9-form-step-left { display: flex; align-items: center; gap: 7px; }
+.s9-form-check { color: #7BC47F; font-weight: 700; font-size: 10px; width: 9px; }
+.s9-form-num { color: var(--gray-dark); font-weight: 600; font-size: 10px; width: 9px; text-align: center; }
+.s9-form-badge {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; color: var(--error);
+  background: rgba(212,100,92,0.08);
+  border: 1px solid rgba(212,100,92,0.30);
+  border-radius: 3px; padding: 1px 5px;
+}
 
-.browser-frame { width: 100%; background: var(--black); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
-.browser-chrome { display: flex; align-items: center; gap: 10px; padding: 8px 12px; background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border-soft); }
-.browser-dots { display: flex; gap: 5px; }
-.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
-.browser-dot.red { background: #FF5F57; }
-.browser-dot.yellow { background: #FFBD2E; }
-.browser-dot.green { background: #28C840; }
-.browser-url { flex: 1; text-align: center; font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.04em; }
-.browser-body { padding: 14px 16px 16px; }
+.s9-form-detail { padding: 18px 22px; }
+.s9-form-title {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
+  color: white; margin-bottom: 4px;
+}
+.s9-form-step-label {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-dark);
+  margin-bottom: 14px;
+}
+.s9-form-instruct {
+  border-left: 2px solid var(--gold);
+  padding: 2px 0 2px 12px;
+  margin-bottom: 16px;
+}
+.s9-form-instruct-text {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
+  color: white; margin-bottom: 6px;
+}
+.s9-form-instruct-sub {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-input);
+  border-radius: 4px; padding: 3px 7px;
+}
+.s9-form-fields {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px;
+}
+.s9-field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500; font-size: 10px;
+  color: white; margin-bottom: 5px;
+}
+.s9-field-input {
+  width: 100%; background: transparent;
+  border: 1px solid var(--border-input);
+  border-radius: 5px; padding: 7px 9px;
+  font-family: var(--font-body); font-size: 11px; color: white;
+}
 
-.credits-ledger { width: 100%; font-family: var(--font-display); }
-.credits-header { display: flex; justify-content: space-between; align-items: baseline; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); padding-bottom: 10px; border-bottom: 1px solid var(--border-soft); }
-.credits-header strong { color: var(--white); font-weight: 600; }
-.credits-rows { padding: 4px 0; }
-.credits-row { display: grid; grid-template-columns: 60px 1fr; gap: 10px; padding: 5px 0; align-items: baseline; }
-.credits-amt { font-family: var(--font-display); font-weight: 700; font-size: 14px; text-align: right; letter-spacing: 0.01em; font-variant-numeric: tabular-nums; }
-.credits-give .credits-amt { color: var(--green); }
-.credits-receive .credits-amt { color: var(--red); }
-.credits-text { color: var(--gray); font-family: var(--font-body); font-size: 14px; line-height: 1.4; }
-.credits-text strong { color: var(--white); font-weight: 600; }
-.credits-balance { display: grid; grid-template-columns: 60px 1fr; gap: 10px; align-items: baseline; margin-top: 6px; padding-top: 10px; border-top: 1px solid var(--border-soft); }
-.credits-balance-num { text-align: right; font-size: 20px; font-weight: 800; color: var(--gold); letter-spacing: -0.01em; font-variant-numeric: tabular-nums; }
-.credits-balance-label { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gray-mid); font-weight: 600; }
+/* MOBILE PHONE (RIGHT, in front) */
+.s9-phone-wrap {
+  position: absolute;
+  right: 12px;
+  top: -2px;
+  width: 240px;
+  z-index: 2;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.65));
+}
+.s9-phone {
+  width: 100%;
+  background: var(--white);
+  border: 7px solid #1a1a1a;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  height: 484px;
+  display: flex; flex-direction: column;
+}
+.s9-phone-notch {
+  position: absolute;
+  top: 7px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 17px;
+  background: #050505; border-radius: 9px;
+  z-index: 5;
+}
+.s9-phone-statusbar {
+  position: absolute;
+  top: 13px; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 19px;
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 8.5px;
+  color: #000; z-index: 4;
+}
 
-.col-note { margin-top: 12px; font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; }
-.col-note strong { color: var(--white); font-weight: 600; }
+/* CHAT HEADER */
+.s9-chat-header {
+  padding: 34px 9px 7px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid #E5E5EA;
+  background: #F6F6F8;
+  flex-shrink: 0;
+}
+.s9-chat-back {
+  font-size: 16px; color: #007AFF; font-weight: 300;
+  line-height: 1; flex-shrink: 0; width: 9px;
+}
+.s9-chat-avatar {
+  width: 23px; height: 23px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 9px; color: #fff;
+  flex-shrink: 0;
+}
+.s9-chat-info { flex: 1; min-width: 0; }
+.s9-chat-name {
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 10px; color: #1C1C1E;
+  letter-spacing: -0.01em;
+}
+.s9-chat-sub {
+  font-family: var(--font-system);
+  font-size: 8.5px; color: #6B6B70;
+}
+.s9-chat-more { color: #007AFF; font-size: 13px; flex-shrink: 0; }
 
-.gordy-card { width: 100%; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-soft); border-radius: 12px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start; box-shadow: 0 12px 32px -16px rgba(0, 0, 0, 0.6); }
-.gordy-avatar { flex-shrink: 0; width: 36px; height: 36px; border-radius: 50%; background: var(--gold); color: var(--black); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 800; font-size: 15px; }
-.gordy-content { flex: 1; }
-.gordy-meta { display: flex; align-items: baseline; gap: 8px; margin-bottom: 6px; }
-.gordy-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--white); }
-.gordy-time { font-family: var(--font-display); font-size: 12px; color: var(--gray-mid); letter-spacing: 0.06em; text-transform: uppercase; }
-.gordy-body { font-family: var(--font-body); font-size: 15px; color: var(--gray); line-height: 1.5; margin-bottom: 12px; }
-.gordy-body strong { color: var(--white); font-weight: 600; }
-.gordy-action { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: var(--gold); color: var(--black); font-family: var(--font-display); font-weight: 700; font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; border-radius: 5px; }
+/* CHAT BODY */
+.s9-chat-body {
+  flex: 1;
+  overflow: hidden;
+  padding: 8px 7px 0;
+  background: #FFFFFF;
+  position: relative;
+}
+.s9-chat-date {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8px; color: #8E8E93; font-weight: 600;
+  margin-bottom: 8px;
+}
+.s9-chat-date strong { color: #1C1C1E; }
+.s9-chat-sys {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8.5px; color: #8E8E93; margin-bottom: 8px;
+  line-height: 1.3; padding: 0 6px;
+}
 
-@media (max-width: 768px) {
-  body[data-slide="slide-9"] .slide-title { font-size: 30px; margin-bottom: 20px; }
-  .mechanism-cols { grid-template-columns: 1fr; gap: 24px; }
+.s9-chat-msg {
+  display: flex; gap: 5px; align-items: flex-end;
+  margin-bottom: 6px;
+}
+.s9-chat-msg-avatar {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 8px; color: #fff;
+  flex-shrink: 0;
+}
+.s9-chat-msg-avatar.hidden { visibility: hidden; }
+.s9-chat-msg-content { flex: 1; min-width: 0; max-width: 80%; }
+.s9-chat-msg-name {
+  font-family: var(--font-system);
+  font-size: 8px; font-weight: 500;
+  color: #6B6B70; margin-bottom: 2px; margin-left: 3px;
+}
+.s9-chat-bubble {
+  background: #E9E9EB; border-radius: 11px;
+  padding: 5px 8px;
+  font-family: var(--font-system);
+  font-size: 10px; line-height: 1.32;
+  color: #000; display: inline-block;
+  max-width: 100%; word-wrap: break-word;
+}
+
+/* IMAGE ATTACHMENT */
+.s9-chat-attachment {
+  border-radius: 11px; overflow: hidden;
+  background: var(--black-bubble);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  font-family: var(--font-display);
+}
+.s9-att-section { padding: 7px 8px; }
+.s9-att-section + .s9-att-section { border-top: 1px solid var(--border-soft); }
+.s9-att-label {
+  font-size: 7px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #999; margin-bottom: 6px;
+}
+
+.s9-att-customer {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(212,165,116,0.06);
+  border: 1px solid var(--border);
+  border-radius: 7px; padding: 5px 7px;
+}
+.s9-att-customer-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--black);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.s9-att-customer-icon svg { width: 12px; height: 12px; }
+.s9-att-customer-info { flex: 1; min-width: 0; }
+.s9-att-customer-title {
+  font-weight: 700; font-size: 8.5px; color: white;
+  letter-spacing: -0.005em; line-height: 1.2;
+}
+.s9-att-customer-sub {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+
+.s9-att-members { display: flex; flex-direction: column; gap: 5px; }
+.s9-att-member { display: flex; align-items: center; gap: 5px; }
+.s9-att-member-avatar {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: linear-gradient(135deg,#2d2d2d,#161616);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 7.5px; color: var(--gold);
+  flex-shrink: 0; letter-spacing: 0.02em;
+}
+.s9-att-member-info { flex: 1; min-width: 0; }
+.s9-att-member-name {
+  font-weight: 600; font-size: 8.5px; color: #fff;
+  line-height: 1.2;
+}
+.s9-att-member-name .role { font-weight: 500; color: #999; }
+.s9-att-member-trigger {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+.s9-att-member-trigger::before {
+  content: "→ "; color: var(--gold);
+  font-style: normal; font-family: var(--font-display);
+  font-weight: 700;
 }
 </style>
 </head>
 <body data-slide="slide-9">
-
 
 <div class="deck">
 
 <div class="slide" id="slide-9">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">InTouch is BNI's formula, but online</h2>
+  <h2 class="slide-title">InTouch is transforming BNI into <span class="gold">online dating</span></h2>
 
-  <div class="mechanism-cols">
+  <div class="s9-layout">
 
-    <div class="mech-col">
-      <div class="col-title">Find referrers + build trust</div>
-      <div class="col-caption"><strong>Density does the work.</strong> A network that's deep enough surfaces referrers who target the same customer — and shows how members are already connected.</div>
-      <div class="col-visual">
-        <div class="col-hero">Network builds <span class="gold">trust</span>.</div>
-        <div class="col-quote">
-          <div class="col-quote-text">"I trust these people. I can see how we're connected — and the trust just grows as we start collaborating."</div>
-          <div class="col-quote-attr">
-            <img class="col-quote-photo" src="ami.png" alt="Ami B.">
-            <div class="col-quote-name">Ami B. <span>· Fractional VP of Marketing</span></div>
-          </div>
-        </div>
+    <!-- LEFT: TEXT (Matching first, Trust second) -->
+    <div class="s9-text-col">
+
+      <div class="s9-pillar">
+        <h3 class="s9-pillar-title">Matched members help each other</h3>
+        <ul class="s9-pillar-bullets">
+          <li>Same customer, <strong>different services</strong></li>
+          <li>Matched by <strong>who they serve</strong>, not where they live</li>
+          <li>A circle of 8 <strong>helping each other</strong></li>
+        </ul>
       </div>
+
+      <div class="s9-pillar">
+        <h3 class="s9-pillar-title">Vetted members earn the trust</h3>
+        <ul class="s9-pillar-bullets">
+          <li>Every member <strong>passed the same vetting</strong></li>
+          <li>Matched with peers of <strong>equal standing + shared values</strong></li>
+          <li><strong>Gordy</strong> ensures balanced contribution from everyone</li>
+        </ul>
+      </div>
+
     </div>
 
-    <div class="mech-col">
-      <div class="col-title">Keep them motivated</div>
-      <div class="col-caption">Leveraging <strong>gamification methods</strong> to keep score and challenge circle members.</div>
-      <div class="col-visual">
-        <div class="browser-frame">
-          <div class="browser-chrome">
-            <div class="browser-dots">
-              <span class="browser-dot red"></span>
-              <span class="browser-dot yellow"></span>
-              <span class="browser-dot green"></span>
+    <!-- RIGHT: VISUALS -->
+    <div class="s9-visual">
+
+      <!-- DESKTOP FORM IN BROWSER FRAME -->
+      <div class="s9-browser-wrap">
+        <div class="s9-browser">
+          <div class="s9-browser-chrome">
+            <div class="s9-browser-dots">
+              <span class="s9-browser-dot red"></span>
+              <span class="s9-browser-dot yellow"></span>
+              <span class="s9-browser-dot green"></span>
             </div>
-            <div class="browser-url">intouch.app · ami's circle</div>
+            <div class="s9-browser-url">app.intouch.network · review your application</div>
           </div>
-          <div class="browser-body">
-            <div class="credits-ledger">
-              <div class="credits-header"><span><strong>Ami</strong> · Credits</span><span>This week</span></div>
-              <div class="credits-rows">
-                <div class="credits-row credits-give"><span class="credits-amt">+1,200</span><span class="credits-text">Referred CEO to <strong>Sarah</strong> (lawyer)</span></div>
-                <div class="credits-row credits-give"><span class="credits-amt">+800</span><span class="credits-text">Referred founder to <strong>Tom</strong> (PR)</span></div>
-                <div class="credits-row credits-receive"><span class="credits-amt">−1,500</span><span class="credits-text"><strong>Sarah</strong> referred Acme to Ami</span></div>
+          <div class="s9-form-app">
+            <div class="s9-form-header">
+              <div class="s9-form-brand">
+                <div class="s9-form-mark">1</div>
+                InTouch
               </div>
-              <div class="credits-balance"><span class="credits-balance-num">500</span><span class="credits-balance-label">Balance</span></div>
+              <div class="s9-form-status">6 items left to review</div>
             </div>
-          </div>
-        </div>
-        <div class="col-note">Once the network is dense enough, these credits also become InTouch's monetization.</div>
-      </div>
-    </div>
+            <div class="s9-form-body">
+              <aside class="s9-form-side">
+                <div class="s9-form-side-eyebrow">Review Progress</div>
+                <div class="s9-form-progress"></div>
+                <div class="s9-form-status-num">6 remaining</div>
+                <div class="s9-form-status-sub">2 of 8 sections need attention</div>
 
-    <div class="mech-col">
-      <div class="col-title">Trigger at the right moment</div>
-      <div class="col-caption"><strong>Gordy (AI)</strong> watches what's happening in the circle and online to identify the right timing for referrals.</div>
-      <div class="col-visual">
-        <div class="gordy-card">
-          <div class="gordy-avatar">G</div>
-          <div class="gordy-content">
-            <div class="gordy-meta">
-              <span class="gordy-name">Gordy</span>
-              <span class="gordy-time">now</span>
+                <div class="s9-form-step active">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Applicant Profile</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Services</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Typical Clients</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Ideal Referral</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Referral Baseline</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">6</span> Constraints &amp; Trust</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">7</span> Contribution Signals</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Trusted Peers</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">9</span> Final Review</div>
+                  <span class="s9-form-badge">6</span>
+                </div>
+              </aside>
+
+              <main class="s9-form-detail">
+                <h1 class="s9-form-title">Applicant Profile</h1>
+                <div class="s9-form-step-label">Step 1 of 8</div>
+                <div class="s9-form-instruct">
+                  <p class="s9-form-instruct-text">Review your profile so we can map you accurately in the referral circle.</p>
+                  <span class="s9-form-instruct-sub">You can edit anything below.</span>
+                </div>
+                <div class="s9-form-fields">
+                  <div>
+                    <label class="s9-field-label">Full name</label>
+                    <input class="s9-field-input" value="Ami Burstin" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">Work email</label>
+                    <input class="s9-field-input" value="ami@amiburstin.me" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">LinkedIn</label>
+                    <input class="s9-field-input" value="linkedin.com/in/amibu" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">Title</label>
+                    <input class="s9-field-input" value="Fractional CMO" readonly>
+                  </div>
+                </div>
+              </main>
             </div>
-            <div class="gordy-body">Acme call in 15m. Their founder posted a hiring memo on LinkedIn — <strong>Tom</strong> (your circle) is the recruiter <strong>Sarah</strong> referred to her last 3 founders.</div>
-            <div class="gordy-action">Refer Tom →</div>
           </div>
         </div>
       </div>
+
+      <!-- MOBILE PHONE (front, right) -->
+      <div class="s9-phone-wrap">
+        <div class="s9-phone">
+          <div class="s9-phone-notch"></div>
+          <div class="s9-phone-statusbar">
+            <span>9:41</span>
+            <span>●●●  ▣</span>
+          </div>
+
+          <header class="s9-chat-header">
+            <span class="s9-chat-back">‹</span>
+            <div class="s9-chat-avatar">8</div>
+            <div class="s9-chat-info">
+              <div class="s9-chat-name">Seed–A · Circle 47</div>
+              <div class="s9-chat-sub">8 members</div>
+            </div>
+            <span class="s9-chat-more">ⓘ</span>
+          </header>
+
+          <main class="s9-chat-body">
+
+            <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
+            <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar">G</div>
+              <div class="s9-chat-msg-content">
+                <div class="s9-chat-msg-name">Gordy</div>
+                <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
+              </div>
+            </div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar">G</div>
+              <div class="s9-chat-msg-content">
+                <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
+              </div>
+            </div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar hidden">G</div>
+              <div class="s9-chat-msg-content" style="max-width:90%">
+                <div class="s9-chat-attachment">
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">Your shared customer</div>
+                    <div class="s9-att-customer">
+                      <div class="s9-att-customer-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <circle cx="12" cy="12" r="6"/>
+                          <circle cx="12" cy="12" r="2" fill="#D4A574"/>
+                        </svg>
+                      </div>
+                      <div class="s9-att-customer-info">
+                        <div class="s9-att-customer-title">Seed–A B2B Tech Founder</div>
+                        <div class="s9-att-customer-sub">Closing through warm intros</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">8 pros · watching for</div>
+                    <div class="s9-att-members">
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AB</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Ami <span class="role">· Fractional CMO</span></div>
+                          <div class="s9-att-member-trigger">Founder mentions GTM</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">SM</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Sarah <span class="role">· Lawyer</span></div>
+                          <div class="s9-att-member-trigger">Founder is fundraising</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">TR</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Tom <span class="role">· Recruiter</span></div>
+                          <div class="s9-att-member-trigger">Founder needs to hire</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">MK</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Mia <span class="role">· Fractional CFO</span></div>
+                          <div class="s9-att-member-trigger">Preparing financials</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">DP</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Dan <span class="role">· PR &amp; Comms</span></div>
+                          <div class="s9-att-member-trigger">Founder is launching</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AL</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Alex <span class="role">· Brand Designer</span></div>
+                          <div class="s9-att-member-trigger">Founder is rebranding</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">LG</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Lior <span class="role">· Growth Marketer</span></div>
+                          <div class="s9-att-member-trigger">Founder needs demand gen</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">YN</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Yaniv <span class="role">· Investor Relations</span></div>
+                          <div class="s9-att-member-trigger">Founder is raising Series A</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </main>
+        </div>
+      </div>
+
     </div>
 
   </div>
 
-  <div class="conclusion">BNI proved the formula at $65K/user/year. InTouch makes it online, smart and fun.</div>
-  <div class="sources">Sources: InTouch product data (n=64), BNI Mid-Year Report 2025 (n=340K)</div>
+  <div class="conclusion">Two pillars — <strong>match by shared customer, earn trust through depth</strong>. Same playbook online dating used.</div>
+  <div class="sources">Sources: Match.com (1995), eHarmony (2000), InTouch product · n=64</div>
 </div>
 
 </div>
