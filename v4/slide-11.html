@@ -3,132 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S11 · The traction — InTouch Pitch</title>
+<title>S11 · The GTM — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* Keep timeline columns equal but let long single-line stats overflow into the
-   adjacent (empty) slots without wrapping. Content slots alternate with empty
-   slots, so symmetric overflow has room on each side. */
-body[data-slide="slide-11"] .timeline-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-body[data-slide="slide-11"] .timeline-axis { grid-template-columns: repeat(4, 1fr); }
-body[data-slide="slide-11"] .axis-line-past { left: 12.5%; width: 75%; }
-/* Shrink the timeline 10% from the right so Test 3's rightmost slot has
-   room for long bullets to overflow symmetrically without hitting the
-   slide edge. Left endpoint stays anchored to the slide's left padding. */
-body[data-slide="slide-11"] .journey-timeline { margin-top: 40px; padding-right: 10%; }
+body[data-slide="slide-11"] .slide-title { margin-bottom: 22px; }
 
-body[data-slide="slide-11"] .stop-fine.stop-learned {
-  color: var(--gold);
+/* WEDGE BOX — title + metric tags + profession pill row */
+.wedge-box {
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  border-radius: 8px;
+  padding: 12px 22px;
+  margin-bottom: 14px;
 }
-body[data-slide="slide-11"] .icon-bulb {
-  width: 13px;
-  height: 13px;
-  vertical-align: -2px;
-  margin-right: 5px;
-  stroke: currentColor;
-  fill: none;
+.wedge-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.wedge-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; flex: 1; }
+.wedge-metrics { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: flex-end; }
+.wedge-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
+  color: var(--gold); border: 1px solid var(--gold); border-radius: 6px;
+  padding: 5px 12px; white-space: nowrap;
 }
-
-/* Flex-center each line on the dot. align-items:center on a flex column
-   centers items horizontally even when their intrinsic (nowrap) width
-   exceeds the column — overflow goes symmetric instead of right-only. */
-body[data-slide="slide-11"] .timeline-slot,
-body[data-slide="slide-11"] .stop-text {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  overflow: visible;
+.wedge-tag-secondary {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em;
+  color: var(--gray); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px;
+  padding: 5px 12px; white-space: nowrap;
 }
 
-/* Unify timeline text on Manrope, drop italic everywhere */
-body[data-slide="slide-11"] .stop-text,
-body[data-slide="slide-11"] .stop-stat,
-body[data-slide="slide-11"] .stop-fine,
-body[data-slide="slide-11"] .future-slot .stop-text,
-body[data-slide="slide-11"] .future-slot .stop-fine,
-body[data-slide="slide-11"] .stop-text-now {
-  font-family: var(--font-display);
-  font-style: normal;
+.profession-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
+.profession-cell {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px; padding: 7px 12px;
+}
+.profession-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--gold); width: 18px; height: 18px; }
+.profession-icon svg { width: 18px; height: 18px; }
+.profession-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
+.segment-more { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gray-mid); font-style: italic; }
+
+/* SECTION HEADING */
+.section-heading {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--gray-mid); margin: 0 0 10px 0;
 }
 
-body[data-slide="slide-11"] .stop-fine {
-  font-size: 16px;
-  font-weight: 500;
-  color: var(--gray-mid);
+/* REASONS GRID — 3 cards, no per-card evidence */
+.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.reason-card {
+  background: var(--black-soft); border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px; padding: 16px 18px;
+  display: flex; flex-direction: column; gap: 10px;
+}
+.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--gold); letter-spacing: -0.02em; line-height: 1.05; }
+.reason-stat-label { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); margin-top: 4px; }
+.reason-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--gray); }
+.reason-desc strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
+
+/* AMI EVIDENCE — single block under cards */
+.ami-evidence {
+  display: flex; align-items: center; gap: 16px; margin-top: 18px;
+  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
+  border-radius: 6px; padding: 14px 18px;
+}
+.ami-mini {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
+}
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
+.ami-evidence-attrib {
+  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
 }
 
-body[data-slide="slide-11"] .stop-stat { font-size: 17px; font-weight: 600; }
-body[data-slide="slide-11"] .stop-desc { font-weight: 400; color: var(--gray); }
-
-/* Plan box — large variant */
-body[data-slide="slide-11"] .plan-milestone-large {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 32px;
-  padding: 0;
-  margin: 4px 0;
-}
-body[data-slide="slide-11"] .plan-milestone-large .plan-label {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 16px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 10px;
-}
-body[data-slide="slide-11"] .plan-milestone-large .plan-row {
-  font-family: var(--font-body);
-  font-size: 17px;
-  line-height: 1.45;
-  padding: 5px 0;
-  color: var(--white);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
-}
-body[data-slide="slide-11"] .plan-milestone-large .plan-row:last-child { border-bottom: none; }
-body[data-slide="slide-11"] .plan-milestone-large .plan-key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  display: inline-block;
-  width: 170px;
-}
-body[data-slide="slide-11"] .plan-milestone-large .plan-milestone-notes {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  gap: 6px;
-  padding-left: 24px;
-  border-left: 1px solid rgba(212, 165, 116, 0.18);
-}
-body[data-slide="slide-11"] .plan-milestone-large .plan-note {
-  font-family: var(--font-body);
-  font-size: 12px;
-  line-height: 1.5;
-  color: var(--gray-mid);
+@media (max-width: 900px) {
+  .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-11"] .slide-title { font-size: 30px; }
+  .wedge-header { flex-direction: column; }
+  .wedge-metrics { flex-wrap: wrap; }
 }
 
-/* Default: single-line, overflow symmetric around the dot */
-body[data-slide="slide-11"] .stop-label,
-body[data-slide="slide-11"] .stop-stat,
-body[data-slide="slide-11"] .stop-fine {
-  white-space: nowrap;
-  text-align: center;
-}
+/* Mobile: collapse the horizontal 4-column timeline into a vertical rail.
+   The desktop layout has empty alternating slots that overlap on narrow
+   screens. On mobile, hide the empty slots and the axis, then re-flow the
+   four real stops into chronological order down a single rail. */
+@media (max-width: 768px) {
+  body[data-slide="slide-11"] .journey-timeline {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0 0;
+    padding: 0 0 0 24px;
+    border-left: 1px solid rgba(212, 165, 116, 0.35);
+  }
+  body[data-slide="slide-11"] .timeline-row,
+  body[data-slide="slide-11"] .timeline-axis { display: contents; }
+  body[data-slide="slide-11"] .timeline-axis .axis-slot,
+  body[data-slide="slide-11"] .axis-line-past,
+  body[data-slide="slide-11"] .axis-line-future { display: none; }
 
-/* Opt-in wrap for lines that should break at column width */
-body[data-slide="slide-11"] .stop-wrap {
-  white-space: normal;
-  max-width: 100%;
-  text-align: center;
-  line-height: 1.35;
+  body[data-slide="slide-11"] .timeline-slot {
+    padding: 0 0 22px 0;
+    text-align: left;
+    align-self: stretch;
+    align-items: flex-start;
+    position: relative;
+    min-height: 0;
+  }
+  body[data-slide="slide-11"] .timeline-slot:empty { display: none; }
+
+  body[data-slide="slide-11"] .timeline-above .timeline-slot:nth-child(1) { order: 1; }
+  body[data-slide="slide-11"] .timeline-below .timeline-slot:nth-child(2) { order: 2; }
+  body[data-slide="slide-11"] .timeline-above .timeline-slot:nth-child(3) { order: 3; }
+  body[data-slide="slide-11"] .timeline-below .timeline-slot:nth-child(4) { order: 4; }
+
+  body[data-slide="slide-11"] .timeline-slot::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--gold);
+    border: 2px solid var(--black-mid);
+    box-sizing: content-box;
+  }
+  body[data-slide="slide-11"] .active-slot::before {
+    width: 14px;
+    height: 14px;
+    left: -31px;
+    top: 2px;
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.2);
+  }
+
+  body[data-slide="slide-11"] .timeline-slot,
+  body[data-slide="slide-11"] .stop-text {
+    align-items: flex-start;
+  }
+  body[data-slide="slide-11"] .stop-label,
+  body[data-slide="slide-11"] .stop-stat,
+  body[data-slide="slide-11"] .stop-fine {
+    white-space: normal;
+    text-align: left;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+  }
+  body[data-slide="slide-11"] .stop-label { margin-bottom: 4px; }
+  body[data-slide="slide-11"] .stop-stat { font-size: 16px; margin-top: 0; }
+  body[data-slide="slide-11"] .stop-fine { font-size: 13px; }
 }
 </style>
 </head>
@@ -140,69 +169,102 @@ body[data-slide="slide-11"] .stop-wrap {
 <div class="slide" id="slide-11">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Learning fast. Next: scale + members referring.</h2>
+  <h2 class="slide-title">The segment we win first</h2>
 
-  <div class="journey-timeline">
-    <div class="timeline-row timeline-above">
-      <div class="timeline-slot">
-        <div class="stop-label">Feb 2026</div>
-        <div class="stop-text">
-          <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
-          <div class="stop-fine">92 interviews</div>
-          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: one persona, one problem — getting the next customer.</div>
-        </div>
+  <div class="wedge-box">
+    <div class="wedge-header">
+      <div class="wedge-title">14 types of independent professionals that founders contract after raising money</div>
+      <div class="wedge-metrics">
+        <div class="wedge-tag">$6B / yr</div>
+        <div class="wedge-tag-secondary">125K independents</div>
       </div>
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot">
-        <div class="stop-label">Apr 1</div>
-        <div class="stop-text">
-          <div class="stop-stat">Test 2 · Intro Circles</div>
-          <div class="stop-fine">✓ 14.8% W/W growth</div>
-          <div class="stop-fine">✓ $5–10 cost per signup · 42% reply → signup</div>
-          <div class="stop-fine">✓ 3.5 invites/user · 29% acceptance</div>
-          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: members want referrals, not intros.</div>
-        </div>
-      </div>
-      <div class="timeline-slot"></div>
     </div>
-
-    <div class="timeline-axis">
-      <div class="axis-line-past"></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot"></span></div>
-      <div class="axis-slot"><span class="stop-dot dot-now"></span></div>
-    </div>
-
-    <div class="timeline-row timeline-below">
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot">
-        <div class="stop-label">Feb 22</div>
-        <div class="stop-text">
-          <div class="stop-stat">Test 1 · Intro brief</div>
-          <div class="stop-fine">✓ +50% connected their calendar</div>
-          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: random intros aren't helpful enough.</div>
-        </div>
+    <div class="profession-grid">
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+        </span>
+        <span class="profession-name">Fractional CMO</span>
       </div>
-      <div class="timeline-slot"></div>
-      <div class="timeline-slot active-slot">
-        <div class="stop-label stop-label-now">May 4</div>
-        <div class="stop-text stop-text-now">
-          <div class="stop-stat">Test 3 · Referral Circles</div>
-          <div class="stop-fine">✓ 2.3× Onboarding completion rate (from replies)</div>
-          <div class="stop-fine">✓ Signup cost halved</div>
-          <div class="stop-fine">✓ +16 interviews from new customer focus</div>
-        </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
+        </span>
+        <span class="profession-name">Startup lawyer</span>
       </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
+        </span>
+        <span class="profession-name">PR agent</span>
+      </div>
+      <div class="profession-cell">
+        <span class="profession-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </span>
+        <span class="profession-name">Recruiter</span>
+      </div>
+      <div class="segment-more">+ 10 more</div>
     </div>
   </div>
 
-  <div class="conclusion">Signs of <strong>rapid growth potential</strong>. Next: Prove scale + get members to refer each other.</div>
-  <div class="sources">Sources: InTouch product data</div>
+  <div class="section-heading">Early signals support fast growth</div>
+
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-title">Weekly growth</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">14.8%</div>
+          <div class="reason-stat-label">W/W user growth</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-title">Cost to get a user</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">$5–$10</div>
+          <div class="reason-stat-label">per signup</div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">42%</div>
+          <div class="reason-stat-label">reply → signup</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>Cheap to reach. Quick to convert.</strong></div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-title">Virality</div>
+      <div class="reason-stats">
+        <div class="reason-stat">
+          <div class="reason-stat-num">3.5</div>
+          <div class="reason-stat-label">invites / user</div>
+        </div>
+        <div class="reason-stat">
+          <div class="reason-stat-num">29%</div>
+          <div class="reason-stat-label">acceptance</div>
+        </div>
+      </div>
+      <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
+    </div>
+
+  </div>
+
+  <div class="ami-evidence">
+    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — all pointing to fast growth.</div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Ami B. interview (Apr 2026)</div>
 </div>
 
 </div>
-
 
 <script src="nav.js"></script>
 </body>

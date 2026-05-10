@@ -7,16 +7,16 @@
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The proof' },
     { file: 'slide-3.html',  title: 'The summary' },
-    { file: 'slide-4.html',  title: 'The customer' },
-    { file: 'slide-5.html',  title: 'The market' },
-    { file: 'slide-6.html',  title: 'The problem' },
-    { file: 'slide-7.html',  title: 'The insight' },
-    { file: 'slide-8.html',  title: 'The blueprint' },
-    { file: 'slide-9.html',  title: 'The solution' },
-    { file: 'slide-10.html', title: 'The GTM' },
-    { file: 'slide-11.html', title: 'The traction' },
-    { file: 'slide-12.html', title: 'The round' },
-    { file: 'slide-13.html', title: 'The team' }
+    { file: 'slide-4.html',  title: 'The team' },
+    { file: 'slide-5.html',  title: 'The customer' },
+    { file: 'slide-6.html',  title: 'The market' },
+    { file: 'slide-7.html',  title: 'The problem' },
+    { file: 'slide-8.html',  title: 'The insight' },
+    { file: 'slide-9.html',  title: 'The blueprint' },
+    { file: 'slide-10.html', title: 'The solution' },
+    { file: 'slide-11.html', title: 'The GTM' },
+    { file: 'slide-12.html', title: 'The traction' },
+    { file: 'slide-13.html', title: 'The round' }
   ];
   window.PITCH_SLIDES = SLIDES;
 

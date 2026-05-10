@@ -3,265 +3,702 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S10 · The GTM — InTouch Pitch</title>
+<title>S10 · The solution — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-10"] {
+  --black-bubble: #1F1F1F;
+  --border-soft: rgba(255,255,255,0.06);
+  --border-input: rgba(255,255,255,0.10);
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+}
 
-/* WEDGE BOX — title + metric tags + profession pill row */
-.wedge-box {
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-left: 3px solid var(--gold);
+body[data-slide="slide-10"] .slide { overflow: hidden; }
+body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-10"] .slide-title .gold { color: var(--gold); }
+body[data-slide="slide-10"] .conclusion,
+body[data-slide="slide-10"] .sources {
+  position: relative;
+  z-index: 5;
+  background: var(--black-mid);
+}
+
+/* LAYOUT */
+.s9-layout {
+  display: grid;
+  grid-template-columns: 360px 1fr;
+  gap: 32px;
+  flex: 1;
+  align-items: start;
+  position: relative;
+  min-height: 0;
+}
+
+/* TEXT COLUMN */
+.s9-text-col {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding-top: 4px;
+}
+.s9-pillar-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; }
+.s9-pillar-bullets li {
+  font-family: var(--font-body);
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--gray);
+  padding: 9px 0 9px 22px;
+  border-top: 1px solid var(--border-soft);
+  position: relative;
+}
+.s9-pillar-bullets li:first-child { border-top: none; padding-top: 4px; }
+.s9-pillar-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0; top: 9px;
+  color: var(--gold);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 13px;
+}
+.s9-pillar-bullets li:first-child::before { top: 4px; }
+.s9-pillar-bullets li strong { color: inherit; font-weight: inherit; }
+
+/* VISUAL CLUSTER */
+.s9-visual {
+  position: relative;
+  height: 100%;
+  min-height: 460px;
+}
+
+/* DESKTOP FORM (LEFT, behind) */
+.s9-browser-wrap {
+  position: absolute;
+  left: 10px;
+  top: 38px;
+  width: 570px;
+  z-index: 1;
+}
+.s9-browser {
+  background: var(--black);
   border-radius: 8px;
-  padding: 12px 22px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.10);
+  box-shadow:
+    0 0 60px rgba(212,165,116,0.18),
+    0 0 24px rgba(212,165,116,0.10),
+    0 25px 50px rgba(0,0,0,0.55);
+}
+.s9-browser-chrome {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
+  background: #2d2d2d;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s9-browser-dots { display: flex; gap: 5px; }
+.s9-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+.s9-browser-dot.red { background: #FF5F57; }
+.s9-browser-dot.yellow { background: #FEBC2E; }
+.s9-browser-dot.green { background: #28C840; }
+.s9-browser-url {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-family: var(--font-system);
+  font-size: 10px;
+  color: var(--gray-mid);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+.s9-form-app { background: var(--black); }
+.s9-form-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s9-form-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 13px; color: white;
+  letter-spacing: -0.02em;
+}
+.s9-form-mark {
+  width: 18px; height: 18px; background: white; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black); font-weight: 800; font-size: 11px;
+  font-family: var(--font-display);
+}
+.s9-form-status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+}
+.s9-form-status::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--error);
+}
+.s9-form-body {
+  display: grid; grid-template-columns: 200px 1fr;
+  min-height: 300px;
+}
+.s9-form-side {
+  padding: 16px 14px;
+  border-right: 1px solid var(--border-soft);
+}
+.s9-form-side-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-mid);
+  margin-bottom: 8px;
+}
+.s9-form-progress {
+  height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px;
+  overflow: hidden; margin-bottom: 10px;
+}
+.s9-form-progress::after {
+  content: ""; display: block; height: 100%; width: 70%;
+  background: var(--gold);
+}
+.s9-form-status-num {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.s9-form-status-sub {
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-dark); margin-bottom: 14px;
+}
+.s9-form-step {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 8px; border-radius: 5px;
+  font-family: var(--font-display);
+  font-size: 10.5px; color: var(--gray); font-weight: 500;
+  margin-bottom: 2px;
+  border: 1px solid transparent;
+}
+.s9-form-step.active {
+  border-color: var(--border);
+  background: rgba(212,165,116,0.04);
+}
+.s9-form-step-left { display: flex; align-items: center; gap: 7px; }
+.s9-form-check { color: #7BC47F; font-weight: 700; font-size: 10px; width: 9px; }
+.s9-form-num { color: var(--gray-dark); font-weight: 600; font-size: 10px; width: 9px; text-align: center; }
+.s9-form-badge {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; color: var(--error);
+  background: rgba(212,100,92,0.08);
+  border: 1px solid rgba(212,100,92,0.30);
+  border-radius: 3px; padding: 1px 5px;
+}
+
+.s9-form-detail { padding: 18px 22px; }
+.s9-form-title {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
+  color: white; margin-bottom: 4px;
+}
+.s9-form-step-label {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-dark);
   margin-bottom: 14px;
 }
-.wedge-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.wedge-title { font-family: var(--font-display); font-weight: 700; font-size: 20px; line-height: 1.25; color: var(--white); letter-spacing: -0.01em; flex: 1; }
-.wedge-metrics { display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; align-items: flex-end; }
-.wedge-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px; letter-spacing: 0.04em;
-  color: var(--gold); border: 1px solid var(--gold); border-radius: 6px;
-  padding: 5px 12px; white-space: nowrap;
+.s9-form-instruct {
+  border-left: 2px solid var(--gold);
+  padding: 2px 0 2px 12px;
+  margin-bottom: 16px;
 }
-.wedge-tag-secondary {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.04em;
-  color: var(--gray); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 6px;
-  padding: 5px 12px; white-space: nowrap;
+.s9-form-instruct-text {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
+  color: white; margin-bottom: 6px;
 }
-
-.profession-grid { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin-top: 10px; }
-.profession-cell {
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 6px; padding: 7px 12px;
+.s9-form-instruct-sub {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-input);
+  border-radius: 4px; padding: 3px 7px;
 }
-.profession-icon { display: inline-flex; align-items: center; justify-content: center; color: var(--gold); width: 18px; height: 18px; }
-.profession-icon svg { width: 18px; height: 18px; }
-.profession-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
-.segment-more { font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--gray-mid); font-style: italic; }
-
-/* SECTION HEADING */
-.section-heading {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gray-mid); margin: 0 0 10px 0;
+.s9-form-fields {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px;
 }
-
-/* REASONS GRID — 3 cards, no per-card evidence */
-.reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.reason-card {
-  background: var(--black-soft); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px; padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 10px;
+.s9-field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500; font-size: 10px;
+  color: white; margin-bottom: 5px;
 }
-.reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
-.reason-stats { display: flex; gap: 24px; }
-.reason-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--gold); letter-spacing: -0.02em; line-height: 1.05; }
-.reason-stat-label { font-family: var(--font-display); font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-mid); margin-top: 4px; }
-.reason-desc { font-family: var(--font-body); font-size: 14px; line-height: 1.5; color: var(--gray); }
-.reason-desc strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
-
-/* AMI EVIDENCE — single block under cards */
-.ami-evidence {
-  display: flex; align-items: center; gap: 16px; margin-top: 18px;
-  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
-  border-radius: 6px; padding: 14px 18px;
-}
-.ami-mini {
-  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
-  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
-}
-.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
-.ami-evidence-attrib {
-  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
-  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
+.s9-field-input {
+  width: 100%; background: transparent;
+  border: 1px solid var(--border-input);
+  border-radius: 5px; padding: 7px 9px;
+  font-family: var(--font-body); font-size: 11px; color: white;
 }
 
-@media (max-width: 900px) {
-  .reasons-grid { grid-template-columns: 1fr; }
-  body[data-slide="slide-10"] .slide-title { font-size: 30px; }
-  .wedge-header { flex-direction: column; }
-  .wedge-metrics { flex-wrap: wrap; }
+/* MOBILE PHONE (RIGHT, in front) */
+.s9-phone-wrap {
+  position: absolute;
+  right: 2px;
+  top: -2px;
+  width: 240px;
+  z-index: 2;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.65));
+}
+.s9-phone {
+  width: 100%;
+  background: var(--white);
+  border: 7px solid #1a1a1a;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  height: 484px;
+  display: flex; flex-direction: column;
+}
+.s9-phone-notch {
+  position: absolute;
+  top: 7px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 17px;
+  background: #050505; border-radius: 9px;
+  z-index: 5;
+}
+.s9-phone-statusbar {
+  position: absolute;
+  top: 13px; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 19px;
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 8.5px;
+  color: #000; z-index: 4;
 }
 
-/* Mobile: collapse the horizontal 4-column timeline into a vertical rail.
-   The desktop layout has empty alternating slots that overlap on narrow
-   screens. On mobile, hide the empty slots and the axis, then re-flow the
-   four real stops into chronological order down a single rail. */
-@media (max-width: 768px) {
-  body[data-slide="slide-10"] .journey-timeline {
-    display: flex;
-    flex-direction: column;
-    margin: 20px 0 0;
-    padding: 0 0 0 24px;
-    border-left: 1px solid rgba(212, 165, 116, 0.35);
-  }
-  body[data-slide="slide-10"] .timeline-row,
-  body[data-slide="slide-10"] .timeline-axis { display: contents; }
-  body[data-slide="slide-10"] .timeline-axis .axis-slot,
-  body[data-slide="slide-10"] .axis-line-past,
-  body[data-slide="slide-10"] .axis-line-future { display: none; }
+/* CHAT HEADER */
+.s9-chat-header {
+  padding: 34px 9px 7px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid #E5E5EA;
+  background: #F6F6F8;
+  flex-shrink: 0;
+}
+.s9-chat-back {
+  font-size: 16px; color: #007AFF; font-weight: 300;
+  line-height: 1; flex-shrink: 0; width: 9px;
+}
+.s9-chat-avatar {
+  width: 23px; height: 23px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 9px; color: #fff;
+  flex-shrink: 0;
+}
+.s9-chat-info { flex: 1; min-width: 0; }
+.s9-chat-name {
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 10px; color: #1C1C1E;
+  letter-spacing: -0.01em;
+}
+.s9-chat-sub {
+  font-family: var(--font-system);
+  font-size: 8.5px; color: #6B6B70;
+}
+.s9-chat-more { color: #007AFF; font-size: 13px; flex-shrink: 0; }
 
-  body[data-slide="slide-10"] .timeline-slot {
-    padding: 0 0 22px 0;
-    text-align: left;
-    align-self: stretch;
-    align-items: flex-start;
-    position: relative;
-    min-height: 0;
-  }
-  body[data-slide="slide-10"] .timeline-slot:empty { display: none; }
+/* CHAT BODY */
+.s9-chat-body {
+  flex: 1;
+  overflow: hidden;
+  padding: 8px 7px 0;
+  background: #FFFFFF;
+  position: relative;
+}
+.s9-chat-date {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8px; color: #8E8E93; font-weight: 600;
+  margin-bottom: 8px;
+}
+.s9-chat-date strong { color: #1C1C1E; }
+.s9-chat-sys {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8.5px; color: #8E8E93; margin-bottom: 8px;
+  line-height: 1.3; padding: 0 6px;
+}
 
-  body[data-slide="slide-10"] .timeline-above .timeline-slot:nth-child(1) { order: 1; }
-  body[data-slide="slide-10"] .timeline-below .timeline-slot:nth-child(2) { order: 2; }
-  body[data-slide="slide-10"] .timeline-above .timeline-slot:nth-child(3) { order: 3; }
-  body[data-slide="slide-10"] .timeline-below .timeline-slot:nth-child(4) { order: 4; }
+.s9-chat-msg {
+  display: flex; gap: 5px; align-items: flex-end;
+  margin-bottom: 6px;
+}
+.s9-chat-msg-avatar {
+  width: 18px; height: 18px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 8px; color: #fff;
+  flex-shrink: 0;
+}
+.s9-chat-msg-avatar.hidden { visibility: hidden; }
+.s9-chat-msg-content { flex: 1; min-width: 0; max-width: 80%; }
+.s9-chat-msg-name {
+  font-family: var(--font-system);
+  font-size: 8px; font-weight: 500;
+  color: #6B6B70; margin-bottom: 2px; margin-left: 3px;
+}
+.s9-chat-bubble {
+  background: #E9E9EB; border-radius: 11px;
+  padding: 5px 8px;
+  font-family: var(--font-system);
+  font-size: 10px; line-height: 1.32;
+  color: #000; display: inline-block;
+  max-width: 100%; word-wrap: break-word;
+}
 
-  body[data-slide="slide-10"] .timeline-slot::before {
-    content: "";
-    position: absolute;
-    left: -29px;
-    top: 4px;
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--gold);
-    border: 2px solid var(--black-mid);
-    box-sizing: content-box;
-  }
-  body[data-slide="slide-10"] .active-slot::before {
-    width: 14px;
-    height: 14px;
-    left: -31px;
-    top: 2px;
-    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.2);
-  }
+/* IMAGE ATTACHMENT */
+.s9-chat-attachment {
+  border-radius: 11px; overflow: hidden;
+  background: var(--black-bubble);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  font-family: var(--font-display);
+}
+.s9-att-section { padding: 7px 8px; }
+.s9-att-section + .s9-att-section { border-top: 1px solid var(--border-soft); }
+.s9-att-label {
+  font-size: 7px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #999; margin-bottom: 6px;
+}
 
-  body[data-slide="slide-10"] .timeline-slot,
-  body[data-slide="slide-10"] .stop-text {
-    align-items: flex-start;
-  }
-  body[data-slide="slide-10"] .stop-label,
-  body[data-slide="slide-10"] .stop-stat,
-  body[data-slide="slide-10"] .stop-fine {
-    white-space: normal;
-    text-align: left;
-    overflow-wrap: anywhere;
-    max-width: 100%;
-  }
-  body[data-slide="slide-10"] .stop-label { margin-bottom: 4px; }
-  body[data-slide="slide-10"] .stop-stat { font-size: 16px; margin-top: 0; }
-  body[data-slide="slide-10"] .stop-fine { font-size: 13px; }
+.s9-att-customer {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(212,165,116,0.06);
+  border: 1px solid var(--border);
+  border-radius: 7px; padding: 5px 7px;
+}
+.s9-att-customer-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--black);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.s9-att-customer-icon svg { width: 12px; height: 12px; }
+.s9-att-customer-info { flex: 1; min-width: 0; }
+.s9-att-customer-title {
+  font-weight: 700; font-size: 8.5px; color: white;
+  letter-spacing: -0.005em; line-height: 1.2;
+}
+.s9-att-customer-sub {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+
+.s9-att-members { display: flex; flex-direction: column; gap: 5px; }
+.s9-att-member { display: flex; align-items: center; gap: 5px; }
+.s9-att-member-avatar {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: linear-gradient(135deg,#2d2d2d,#161616);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 7.5px; color: var(--gold);
+  flex-shrink: 0; letter-spacing: 0.02em;
+}
+.s9-att-member-info { flex: 1; min-width: 0; }
+.s9-att-member-name {
+  font-weight: 600; font-size: 8.5px; color: #fff;
+  line-height: 1.2;
+}
+.s9-att-member-name .role { font-weight: 500; color: #999; }
+.s9-att-member-trigger {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+.s9-att-member-trigger::before {
+  content: "→ "; color: var(--gold);
+  font-style: normal; font-family: var(--font-display);
+  font-weight: 700;
 }
 </style>
 </head>
 <body data-slide="slide-10">
-
 
 <div class="deck">
 
 <div class="slide" id="slide-10">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The segment we win first</h2>
+  <h2 class="slide-title">InTouch is transforming BNI into <span class="gold">online dating</span></h2>
 
-  <div class="wedge-box">
-    <div class="wedge-header">
-      <div class="wedge-title">14 types of independent professionals that founders contract after raising money</div>
-      <div class="wedge-metrics">
-        <div class="wedge-tag">$6B / yr</div>
-        <div class="wedge-tag-secondary">125K independents</div>
+  <div class="s9-layout">
+
+    <!-- LEFT: TEXT (Matching first, Trust second) -->
+    <div class="s9-text-col">
+
+      <div class="s9-pillar">
+        <h3 class="s9-pillar-title">Matched members help each other</h3>
+        <ul class="s9-pillar-bullets">
+          <li>Matched by <strong>who they serve</strong>, not where they live</li>
+          <li>Selected by ability to <strong>spot buying moments for each other</strong></li>
+          <li>A circle of 8-12 <strong>helping each other</strong></li>
+        </ul>
       </div>
+
+      <div class="s9-pillar">
+        <h3 class="s9-pillar-title">Vetted members earn the trust</h3>
+        <ul class="s9-pillar-bullets">
+          <li>Every member <strong>passed the same vetting</strong></li>
+          <li>Matched with peers of <strong>equal standing + shared values</strong></li>
+          <li><strong>Gordy</strong> ensures balanced contribution from everyone</li>
+        </ul>
+      </div>
+
     </div>
-    <div class="profession-grid">
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-        </span>
-        <span class="profession-name">Fractional CMO</span>
+
+    <!-- RIGHT: VISUALS -->
+    <div class="s9-visual">
+
+      <!-- DESKTOP FORM IN BROWSER FRAME -->
+      <div class="s9-browser-wrap">
+        <div class="s9-browser">
+          <div class="s9-browser-chrome">
+            <div class="s9-browser-dots">
+              <span class="s9-browser-dot red"></span>
+              <span class="s9-browser-dot yellow"></span>
+              <span class="s9-browser-dot green"></span>
+            </div>
+            <div class="s9-browser-url">app.intouch.network · review your application</div>
+          </div>
+          <div class="s9-form-app">
+            <div class="s9-form-header">
+              <div class="s9-form-brand">
+                <div class="s9-form-mark">1</div>
+                InTouch
+              </div>
+              <div class="s9-form-status">6 items left to review</div>
+            </div>
+            <div class="s9-form-body">
+              <aside class="s9-form-side">
+                <div class="s9-form-side-eyebrow">Review Progress</div>
+                <div class="s9-form-progress"></div>
+                <div class="s9-form-status-num">6 remaining</div>
+                <div class="s9-form-status-sub">2 of 8 sections need attention</div>
+
+                <div class="s9-form-step active">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Applicant Profile</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Services</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Typical Clients</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Ideal Referral</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Referral Baseline</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">6</span> Constraints &amp; Trust</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">7</span> Contribution Signals</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Trusted Peers</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">9</span> Final Review</div>
+                  <span class="s9-form-badge">6</span>
+                </div>
+              </aside>
+
+              <main class="s9-form-detail">
+                <h1 class="s9-form-title">Applicant Profile</h1>
+                <div class="s9-form-step-label">Step 1 of 8</div>
+                <div class="s9-form-instruct">
+                  <p class="s9-form-instruct-text">Review your profile so we can map you accurately in the referral circle.</p>
+                  <span class="s9-form-instruct-sub">You can edit anything below.</span>
+                </div>
+                <div class="s9-form-fields">
+                  <div>
+                    <label class="s9-field-label">Full name</label>
+                    <input class="s9-field-input" value="Ami Burstin" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">Work email</label>
+                    <input class="s9-field-input" value="ami@amiburstin.me" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">LinkedIn</label>
+                    <input class="s9-field-input" value="linkedin.com/in/amibu" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">Title</label>
+                    <input class="s9-field-input" value="Fractional CMO" readonly>
+                  </div>
+                </div>
+              </main>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/></svg>
-        </span>
-        <span class="profession-name">Startup lawyer</span>
+
+      <!-- MOBILE PHONE (front, right) -->
+      <div class="s9-phone-wrap">
+        <div class="s9-phone">
+          <div class="s9-phone-notch"></div>
+          <div class="s9-phone-statusbar">
+            <span>9:41</span>
+            <span>●●●  ▣</span>
+          </div>
+
+          <header class="s9-chat-header">
+            <span class="s9-chat-back">‹</span>
+            <div class="s9-chat-avatar">8</div>
+            <div class="s9-chat-info">
+              <div class="s9-chat-name">Seed–A · Circle 47</div>
+              <div class="s9-chat-sub">8 members</div>
+            </div>
+            <span class="s9-chat-more">ⓘ</span>
+          </header>
+
+          <main class="s9-chat-body">
+
+            <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
+            <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar">G</div>
+              <div class="s9-chat-msg-content">
+                <div class="s9-chat-msg-name">Gordy</div>
+                <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
+              </div>
+            </div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar">G</div>
+              <div class="s9-chat-msg-content">
+                <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
+              </div>
+            </div>
+
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar hidden">G</div>
+              <div class="s9-chat-msg-content" style="max-width:90%">
+                <div class="s9-chat-attachment">
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">Your shared customer</div>
+                    <div class="s9-att-customer">
+                      <div class="s9-att-customer-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <circle cx="12" cy="12" r="6"/>
+                          <circle cx="12" cy="12" r="2" fill="#D4A574"/>
+                        </svg>
+                      </div>
+                      <div class="s9-att-customer-info">
+                        <div class="s9-att-customer-title">Seed–A B2B Tech Founder</div>
+                        <div class="s9-att-customer-sub">Closing through warm intros</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">8 pros · watching for</div>
+                    <div class="s9-att-members">
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AB</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Ami <span class="role">· Fractional CMO</span></div>
+                          <div class="s9-att-member-trigger">Founder mentions GTM</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">SM</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Sarah <span class="role">· Lawyer</span></div>
+                          <div class="s9-att-member-trigger">Founder is fundraising</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">TR</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Tom <span class="role">· Recruiter</span></div>
+                          <div class="s9-att-member-trigger">Founder needs to hire</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">MK</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Mia <span class="role">· Fractional CFO</span></div>
+                          <div class="s9-att-member-trigger">Preparing financials</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">DP</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Dan <span class="role">· PR &amp; Comms</span></div>
+                          <div class="s9-att-member-trigger">Founder is launching</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AL</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Alex <span class="role">· Brand Designer</span></div>
+                          <div class="s9-att-member-trigger">Founder is rebranding</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">LG</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Lior <span class="role">· Growth Marketer</span></div>
+                          <div class="s9-att-member-trigger">Founder needs demand gen</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">YN</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Yaniv <span class="role">· Investor Relations</span></div>
+                          <div class="s9-att-member-trigger">Founder is raising Series A</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </main>
+        </div>
       </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="13" rx="3"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>
-        </span>
-        <span class="profession-name">PR agent</span>
-      </div>
-      <div class="profession-cell">
-        <span class="profession-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        </span>
-        <span class="profession-name">Recruiter</span>
-      </div>
-      <div class="segment-more">+ 10 more</div>
+
     </div>
+
   </div>
 
-  <div class="section-heading">Early signals support fast growth</div>
-
-  <div class="reasons-grid">
-
-    <div class="reason-card">
-      <div class="reason-title">Weekly growth</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">14.8%</div>
-          <div class="reason-stat-label">W/W user growth</div>
-        </div>
-      </div>
-      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
-    </div>
-
-    <div class="reason-card">
-      <div class="reason-title">Cost to get a user</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">$5–$10</div>
-          <div class="reason-stat-label">per signup</div>
-        </div>
-        <div class="reason-stat">
-          <div class="reason-stat-num">42%</div>
-          <div class="reason-stat-label">reply → signup</div>
-        </div>
-      </div>
-      <div class="reason-desc"><strong>Cheap to reach. Quick to convert.</strong></div>
-    </div>
-
-    <div class="reason-card">
-      <div class="reason-title">Virality</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">3.5</div>
-          <div class="reason-stat-label">invites / user</div>
-        </div>
-        <div class="reason-stat">
-          <div class="reason-stat-num">29%</div>
-          <div class="reason-stat-label">acceptance</div>
-        </div>
-      </div>
-      <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
-    </div>
-
-  </div>
-
-  <div class="ami-evidence">
-    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
-    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
-  </div>
-
-  <div class="conclusion">Three pre-funding signals — all pointing to fast growth.</div>
-  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Ami B. interview (Apr 2026)</div>
+  <div class="conclusion">Matching + trust — <strong>enabled online dating</strong>. Now enables online BNI.</div>
+  <div class="sources">Sources: Match.com (1995), eHarmony (2000), InTouch product · n=64</div>
 </div>
 
 </div>
