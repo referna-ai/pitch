@@ -437,6 +437,71 @@ body[data-slide="slide-10"] .sources {
   font-style: normal; font-family: var(--font-display);
   font-weight: 700;
 }
+
+/* MOCKUP LABELS */
+.s9-label {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  line-height: 1;
+}
+.s9-label-browser { top: 40px; left: 10px; }
+.s9-label-phone   { top: 0px;  right: 2px; }
+
+/* Push mockups down to make room for labels */
+.s9-browser-wrap { top: 58px; }
+.s9-phone-wrap   { top: 16px; }
+
+/* FULL-SCREEN MATCH OVERLAY */
+.s9-match-full {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #0d0a06;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.s9-match-icon {
+  width: 52px;
+  height: 52px;
+  color: var(--gold);
+  animation: s9-icon-pulse 1.2s ease-in-out infinite;
+}
+.s9-match-full-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+.s9-match-full-sub {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(212,165,116,0.55);
+  letter-spacing: 0.04em;
+}
+
+@keyframes s9-icon-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1;    }
+  50%       { transform: scale(1.18); opacity: 0.85; }
+}
+
+/* SEQUENTIAL REVEAL */
+.s9-reveal-item {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.s9-reveal-item.s9-shown {
+  opacity: 1;
+}
 </style>
 </head>
 <body data-slide="slide-10">
@@ -476,6 +541,7 @@ body[data-slide="slide-10"] .sources {
     <!-- RIGHT: VISUALS -->
     <div class="s9-visual">
 
+      <div class="s9-label s9-label-browser">Dating profile</div>
       <!-- DESKTOP FORM IN BROWSER FRAME -->
       <div class="s9-browser-wrap">
         <div class="s9-browser">
@@ -565,6 +631,7 @@ body[data-slide="slide-10"] .sources {
         </div>
       </div>
 
+      <div class="s9-label s9-label-phone">After the match</div>
       <!-- MOBILE PHONE (front, right) -->
       <div class="s9-phone-wrap">
         <div class="s9-phone">
@@ -572,6 +639,15 @@ body[data-slide="slide-10"] .sources {
           <div class="s9-phone-statusbar">
             <span>9:41</span>
             <span>●●●  ▣</span>
+          </div>
+
+          <div id="s9MatchFull" class="s9-match-full">
+            <svg class="s9-match-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+              <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
+            </svg>
+            <div class="s9-match-full-title">It's a match</div>
+            <div class="s9-match-full-sub">Seed-A · Circle 47</div>
           </div>
 
           <header class="s9-chat-header">
@@ -586,24 +662,31 @@ body[data-slide="slide-10"] .sources {
 
           <main class="s9-chat-body">
 
-            <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
-            <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
+            <div class="s9-reveal-item">
+              <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
+              <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
+            </div>
 
-            <div class="s9-chat-msg">
-              <div class="s9-chat-msg-avatar">G</div>
-              <div class="s9-chat-msg-content">
-                <div class="s9-chat-msg-name">Gordy</div>
-                <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
+            <div class="s9-reveal-item">
+              <div class="s9-chat-msg">
+                <div class="s9-chat-msg-avatar">G</div>
+                <div class="s9-chat-msg-content">
+                  <div class="s9-chat-msg-name">Gordy</div>
+                  <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
+                </div>
               </div>
             </div>
 
-            <div class="s9-chat-msg">
-              <div class="s9-chat-msg-avatar">G</div>
-              <div class="s9-chat-msg-content">
-                <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
+            <div class="s9-reveal-item">
+              <div class="s9-chat-msg">
+                <div class="s9-chat-msg-avatar">G</div>
+                <div class="s9-chat-msg-content">
+                  <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
+                </div>
               </div>
             </div>
 
+            <div class="s9-reveal-item">
             <div class="s9-chat-msg">
               <div class="s9-chat-msg-avatar hidden">G</div>
               <div class="s9-chat-msg-content" style="max-width:90%">
@@ -688,6 +771,7 @@ body[data-slide="slide-10"] .sources {
                 </div>
               </div>
             </div>
+            </div>
 
           </main>
         </div>
@@ -704,5 +788,58 @@ body[data-slide="slide-10"] .sources {
 </div>
 
 <script src="nav.js"></script>
+<script>
+(function () {
+  var MATCH_SHOW_MS  = 3000;
+  var FADE_MS        = 500;
+  var MSG_INTERVAL   = 800;
+  var CHAT_LINGER_MS = 2500;
+
+  var overlay = document.getElementById('s9MatchFull');
+  var items   = Array.from(document.querySelectorAll('#slide-10 .s9-reveal-item'));
+
+  function resetChat() {
+    items.forEach(function (el) { el.classList.remove('s9-shown'); });
+  }
+
+  function showOverlay() {
+    overlay.style.transition = 'none';
+    overlay.style.opacity    = '1';
+    overlay.style.pointerEvents = '';
+  }
+
+  function hideOverlay(cb) {
+    overlay.style.transition    = 'opacity ' + FADE_MS + 'ms ease';
+    overlay.style.opacity       = '0';
+    setTimeout(function () {
+      overlay.style.pointerEvents = 'none';
+      cb();
+    }, FADE_MS);
+  }
+
+  function revealMessages(cb) {
+    var i = 0;
+    function next() {
+      if (i >= items.length) { setTimeout(cb, CHAT_LINGER_MS); return; }
+      items[i].classList.add('s9-shown');
+      i++;
+      setTimeout(next, MSG_INTERVAL);
+    }
+    next();
+  }
+
+  function loop() {
+    resetChat();
+    showOverlay();
+    setTimeout(function () {
+      hideOverlay(function () {
+        revealMessages(loop);
+      });
+    }, MATCH_SHOW_MS);
+  }
+
+  setTimeout(loop, 600);
+}());
+</script>
 </body>
 </html>

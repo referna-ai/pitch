@@ -169,6 +169,12 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
 }
 .s5-row-cell-gold { color: var(--gold); font-weight: 600; }
 .s5-row-cell-error { color: var(--error); font-weight: 600; }
+.s5-row-cell-gray { color: var(--gray-mid); }
+.s5-verdict-gray {
+  background: rgba(119, 119, 119, 0.10);
+  border: 1px solid rgba(119, 119, 119, 0.35);
+  color: var(--gray-mid);
+}
 
 @media (max-width: 820px) {
   .s5-setup-requirements { flex-direction: column; }
@@ -218,10 +224,10 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
     <div class="s5-comparison-row">
       <div class="s5-row-name-cell">
         <div class="s5-row-name">Random intros</div>
-        <span class="s5-row-verdict s5-verdict-low">Low value for Ami</span>
+        <span class="s5-row-verdict s5-verdict-gray">Are not referrals!</span>
       </div>
-      <div class="s5-row-cell s5-row-cell-error">Random</div>
-      <div class="s5-row-cell s5-row-cell-error">Random</div>
+      <div class="s5-row-cell s5-row-cell-error">Random timing</div>
+      <div class="s5-row-cell s5-row-cell-gray">—</div>
     </div>
 
     <div class="s5-comparison-row">
@@ -229,7 +235,7 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
         <div class="s5-row-name">Customer referrals</div>
         <span class="s5-row-verdict s5-verdict-warning">Unreliable</span>
       </div>
-      <div class="s5-row-cell s5-row-cell-gold">When customer is ready to buy</div>
+      <div class="s5-row-cell s5-row-cell-gold">At the buying moment</div>
       <div class="s5-row-cell">Customer</div>
     </div>
 
@@ -238,7 +244,7 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
         <div class="s5-row-name">Peer referrals</div>
         <span class="s5-row-verdict s5-verdict-winner">BNI made this reliable</span>
       </div>
-      <div class="s5-row-cell s5-row-cell-gold">When customer is ready to buy</div>
+      <div class="s5-row-cell s5-row-cell-gold">At the buying moment</div>
       <div class="s5-row-cell">Another independent professional</div>
     </div>
   </div>
