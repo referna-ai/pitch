@@ -7,16 +7,16 @@
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The proof' },
     { file: 'slide-3.html',  title: 'The summary' },
-    { file: 'slide-4.html',  title: 'The customer' },
-    { file: 'slide-5.html',  title: 'The market' },
-    { file: 'slide-6.html',  title: 'The problem' },
-    { file: 'slide-7.html',  title: 'The insight' },
-    { file: 'slide-8.html',  title: 'The blueprint' },
-    { file: 'slide-9.html',  title: 'The solution' },
-    { file: 'slide-10.html', title: 'The GTM' },
-    { file: 'slide-11.html', title: 'The traction' },
-    { file: 'slide-12.html', title: 'The round' },
-    { file: 'slide-13.html', title: 'The team' }
+    { file: 'slide-4.html',  title: 'The team' },
+    { file: 'slide-5.html',  title: 'The customer' },
+    { file: 'slide-6.html',  title: 'The market' },
+    { file: 'slide-7.html',  title: 'The problem' },
+    { file: 'slide-8.html',  title: 'The insight' },
+    { file: 'slide-9.html',  title: 'The blueprint' },
+    { file: 'slide-10.html', title: 'The solution' },
+    { file: 'slide-11.html', title: 'The GTM' },
+    { file: 'slide-12.html', title: 'The traction' },
+    { file: 'slide-13.html', title: 'The round' }
   ];
   window.PITCH_SLIDES = SLIDES;
 
@@ -48,6 +48,9 @@
 // Scale slides to fit short viewports (e.g. 1366x768 laptops). Design height = 738px.
 // .slide and .slide-hero are visibility:hidden until we add .scaled, so we
 // never flash an unscaled frame.
+// applyScale is NOT called here — it is called at the end of init() so the slide
+// only becomes visible after nav-indicators are already in the DOM, preventing
+// the layout-shift that would otherwise occur when indicators are inserted post-render.
 (function () {
   function applyScale() {
     const slide = document.querySelector('.slide, .slide-hero');
@@ -60,7 +63,7 @@
     slide.style.setProperty('--slide-scale', scale);
     slide.classList.add('scaled');
   }
-  applyScale();
+  window.PITCH_APPLY_SCALE = applyScale;
   window.addEventListener('resize', applyScale);
 })();
 
@@ -275,12 +278,14 @@
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
       makeIndicators(true, true);
+      window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
       return;
     }
-    if (idx < 0) return;
+    if (idx < 0) { window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE(); return; }
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
     makeIndicators(idx > 0, idx < slideFiles.length - 1);
+    window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
