@@ -48,6 +48,9 @@
 // Scale slides to fit short viewports (e.g. 1366x768 laptops). Design height = 738px.
 // .slide and .slide-hero are visibility:hidden until we add .scaled, so we
 // never flash an unscaled frame.
+// applyScale is NOT called here — it is called at the end of init() so the slide
+// only becomes visible after nav-indicators are already in the DOM, preventing
+// the layout-shift that would otherwise occur when indicators are inserted post-render.
 (function () {
   function applyScale() {
     const slide = document.querySelector('.slide, .slide-hero');
@@ -60,7 +63,7 @@
     slide.style.setProperty('--slide-scale', scale);
     slide.classList.add('scaled');
   }
-  applyScale();
+  window.PITCH_APPLY_SCALE = applyScale;
   window.addEventListener('resize', applyScale);
 })();
 
@@ -275,12 +278,14 @@
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
       makeIndicators(true, true);
+      window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
       return;
     }
-    if (idx < 0) return;
+    if (idx < 0) { window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE(); return; }
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
     makeIndicators(idx > 0, idx < slideFiles.length - 1);
+    window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
