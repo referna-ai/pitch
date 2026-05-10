@@ -19,7 +19,19 @@ body[data-slide="slide-11"] .axis-line-past { left: 12.5%; width: 75%; }
 /* Shrink the timeline 10% from the right so Test 3's rightmost slot has
    room for long bullets to overflow symmetrically without hitting the
    slide edge. Left endpoint stays anchored to the slide's left padding. */
-body[data-slide="slide-11"] .journey-timeline { margin-top: 80px; padding-right: 10%; }
+body[data-slide="slide-11"] .journey-timeline { margin-top: 40px; padding-right: 10%; }
+
+body[data-slide="slide-11"] .stop-learned {
+  color: var(--gold);
+}
+body[data-slide="slide-11"] .icon-bulb {
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  margin-right: 5px;
+  stroke: currentColor;
+  fill: none;
+}
 
 /* Flex-center each line on the dot. align-items:center on a flex column
    centers items horizontally even when their intrinsic (nowrap) width
@@ -137,7 +149,7 @@ body[data-slide="slide-11"] .stop-wrap {
         <div class="stop-text">
           <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
           <div class="stop-fine">92 interviews</div>
-          <div class="stop-fine stop-wrap">💡 Learned: one persona, one problem — getting the next customer.</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: one persona, one problem — getting the next customer.</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
@@ -146,10 +158,9 @@ body[data-slide="slide-11"] .stop-wrap {
         <div class="stop-text">
           <div class="stop-stat">Test 2 · Intro Circles</div>
           <div class="stop-fine">✓ 14.8% W/W growth</div>
-          <div class="stop-fine">✓ $5–10 CAC</div>
-          <div class="stop-fine">✓ 42% reply → signup</div>
+          <div class="stop-fine">✓ $5–10 cost per signup · 42% reply → signup</div>
           <div class="stop-fine">✓ 3.5 invites/user · 29% acceptance</div>
-          <div class="stop-fine stop-wrap">💡 Learned: members want referrals, not intros.</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: members want referrals, not intros.</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
@@ -170,7 +181,7 @@ body[data-slide="slide-11"] .stop-wrap {
         <div class="stop-text">
           <div class="stop-stat">Test 1 · Intro brief</div>
           <div class="stop-fine">✓ +50% connected their calendar</div>
-          <div class="stop-fine stop-wrap">💡 Learned: random intros aren't helpful enough.</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: random intros aren't helpful enough.</div>
         </div>
       </div>
       <div class="timeline-slot"></div>
