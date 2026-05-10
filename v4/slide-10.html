@@ -437,6 +437,57 @@ body[data-slide="slide-10"] .sources {
   font-style: normal; font-family: var(--font-display);
   font-weight: 700;
 }
+
+/* MOCKUP LABELS */
+.s9-label {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  line-height: 1;
+}
+.s9-label-browser { top: 40px; left: 10px; }
+.s9-label-phone   { top: 0px;  right: 2px; }
+
+/* Push mockups down to make room for labels */
+.s9-browser-wrap { top: 58px; }
+.s9-phone-wrap   { top: 16px; }
+
+/* MATCH BANNER */
+.s9-match-banner {
+  text-align: center;
+  padding: 14px 0;
+  margin: -8px -7px 8px;
+  border-bottom: 1px solid rgba(212,165,116,0.3);
+  animation:
+    s9-match-reveal 400ms ease-out 200ms both,
+    s9-match-glow 1.2s ease-out 600ms forwards;
+}
+.s9-match-line1 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: #D4A574;
+}
+.s9-match-line2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 10px;
+  color: #999999;
+  margin-top: 4px;
+}
+
+@keyframes s9-match-reveal {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes s9-match-glow {
+  from { box-shadow: 0 0 0 0 rgba(212,165,116,0.5); }
+  to   { box-shadow: 0 0 16px 4px rgba(212,165,116,0); }
+}
 </style>
 </head>
 <body data-slide="slide-10">
@@ -476,6 +527,7 @@ body[data-slide="slide-10"] .sources {
     <!-- RIGHT: VISUALS -->
     <div class="s9-visual">
 
+      <div class="s9-label s9-label-browser">Dating profile</div>
       <!-- DESKTOP FORM IN BROWSER FRAME -->
       <div class="s9-browser-wrap">
         <div class="s9-browser">
@@ -565,6 +617,7 @@ body[data-slide="slide-10"] .sources {
         </div>
       </div>
 
+      <div class="s9-label s9-label-phone">After the match</div>
       <!-- MOBILE PHONE (front, right) -->
       <div class="s9-phone-wrap">
         <div class="s9-phone">
@@ -585,6 +638,11 @@ body[data-slide="slide-10"] .sources {
           </header>
 
           <main class="s9-chat-body">
+
+            <div class="s9-match-banner">
+              <div class="s9-match-line1">✨ It's a match</div>
+              <div class="s9-match-line2">Seed-A · Circle 47</div>
+            </div>
 
             <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
             <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
