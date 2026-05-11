@@ -29,6 +29,9 @@ See **`docs/navigation.md`** for a full explanation of how navigation works, the
 ## Copy HTML button
 See **`docs/copy-deck.md`**. The button on each version's `index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in every version's `copy-deck.js` (`v1/`, `v2/`, `v3/`, `v4/`) or the button breaks silently.
 
+## Minimum font size: 14px
+No text anywhere in the deck (any version) may be set below 14px. This applies to labels, links, captions, source lines, tooltips, and any other text element — including uppercase/small-caps styles where small sizes are tempting. If a design calls for a smaller size, use 14px and adjust letter-spacing or weight instead.
+
 ## Tables: always single-font (Manrope)
 The deck uses two type families: `var(--font-display)` (Manrope, sans-serif) and `var(--font-body)` (IBM Plex Serif). They have different x-heights and baselines, so **mixing them inside a single tabular layout** (a `<table>` or any grid/flex "row" pattern with aligned columns — `.channel-row`, `.bni-cheat-row`, `.s5-comparison-row`, `.transform-table`, etc.) makes the columns look misaligned even when the px sizes match.
 
