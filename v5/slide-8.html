@@ -70,7 +70,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
 .line-tag {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   color: var(--gold);
   text-transform: uppercase;
@@ -84,38 +84,68 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   margin-top: 16px;
   overflow: hidden;
   border-radius: 8px;
-  padding: 4px 0;
+  padding: 12px 0 4px;
 }
 
 .segments-track {
   display: flex;
-  gap: 16px;
-  justify-content: center;
   width: max-content;
-  min-width: 100%;
-  margin: 0 auto;
+  animation: scroll-segments 90s linear infinite;
+}
+
+.segments-carousel:hover .segments-track,
+.segments-carousel:focus-within .segments-track {
+  animation-play-state: paused;
+}
+
+@keyframes scroll-segments {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
 .segment-box {
-  flex: 0 0 318px;
+  flex: 0 0 240px;
+  margin-right: 12px;
   background: var(--black-soft);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 16px 18px 14px;
+  padding: 14px 16px 12px;
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  min-height: 132px;
 }
 
 .segment-box.featured {
-  border-color: var(--gold);
+  border: 1.5px solid var(--gold);
   background: rgba(212, 165, 116, 0.08);
+  position: relative;
+}
+
+.featured-ami {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  overflow: hidden;
+  background: var(--black-soft);
+  z-index: 1;
+}
+.featured-ami img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1);
+  display: block;
 }
 
 .segment-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 10px;
+  align-items: baseline;
   gap: 10px;
 }
 
@@ -131,59 +161,29 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
 .segment-count {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   letter-spacing: 0.02em;
   color: var(--gold);
   white-space: nowrap;
 }
 
-/* Estate count is shown only on phone (where stacked cards make a blank
-   header look broken next to the others) */
-.segment-count-mobile { display: none; }
-
-.profession-avatar {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  object-fit: cover;
-  flex-shrink: 0;
-  border: 1px solid var(--gold);
-  margin-left: 4px;
-}
-
-.segment-professions {
+.segment-vendors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.4;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
-.profession-item {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 5px 0;
-}
-
-.profession-icon {
-  width: 20px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.segment-vendors li::before {
+  content: "·  ";
   color: var(--gold);
-  flex-shrink: 0;
-}
-
-.profession-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.profession-name {
-  font-family: var(--font-body);
-  font-size: 14.5px;
-  color: var(--gray);
-  line-height: 1.3;
+  font-weight: 700;
 }
 
 .segment-more {
@@ -191,7 +191,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   font-weight: 500;
   font-size: 14px;
   color: var(--gray-dark);
-  margin-top: 8px;
+  margin-top: auto;
   letter-spacing: 0.02em;
 }
 
@@ -202,7 +202,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 110px;
+  width: 90px;
   z-index: 2;
   pointer-events: none;
 }
@@ -227,10 +227,15 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   );
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .segments-track { animation: none; }
+  .segments-carousel { overflow-x: auto; }
+}
+
 @media (max-width: 760px) {
   .big-num { font-size: 32px; }
   .box-us .big-num { font-size: 26px; }
-  .segment-box { flex: 0 0 260px; }
+  .segment-box { flex: 0 0 220px; }
 }
 
 /* Phone: stack cards full-width and drop the horizontal carousel */
@@ -248,30 +253,33 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
     border-radius: 10px;
   }
 
-  /* Headline rows wrap so the $926B tag drops below */
   .line { flex-wrap: wrap; row-gap: 6px; }
   .line-tag { margin-left: 0; }
 
   .big-num { font-size: 28px; }
   .box-us .big-num { font-size: 24px; }
   .line-text { font-size: 14px; }
-  .box-us .line-text { font-size: 13px; }
+  .box-us .line-text { font-size: 14px; }
 
-  /* Stack segment cards vertically, full width, no carousel scroll */
+  /* Stop the marquee and stack the first set vertically; hide the duplicate. */
   .segments-carousel { overflow: visible; padding: 0; margin-top: 14px; }
   .segments-carousel::before,
   .segments-carousel::after { display: none; }
   .segments-track {
     flex-direction: column;
     width: 100%;
-    gap: 12px;
+    animation: none;
   }
   .segment-box {
     flex: 0 0 auto;
     width: 100%;
-    padding: 14px 14px 12px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    min-height: 0;
+    padding: 12px 14px;
   }
-  .segment-count-mobile { display: block; }
+  .segment-box[aria-hidden="true"] { display: none; }
+  .featured-ami { top: -8px; right: 10px; }
 }
 </style>
 </head>
@@ -304,165 +312,55 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
         <div class="line-tag">$926B at stake</div>
       </div>
 
-      <!-- Carousel -->
-      <div class="segments-carousel">
+      <!-- Carousel: 21 segments, duplicated for a seamless marquee loop -->
+      <div class="segments-carousel" tabindex="0" aria-label="21 ICP segments, scrolling marquee">
         <div class="segments-track">
 
-          <!-- Wedding -->
-          <div class="segment-box">
-            <div class="segment-header">
-              <div class="segment-name">Wedding-focused</div>
-              <div class="segment-count">813K</div>
-            </div>
-            <div class="segment-professions">
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="8" y="2" width="8" height="4" rx="1"/>
-                    <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
-                    <path d="m9 14 2 2 4-4"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Wedding planner</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
-                    <circle cx="12" cy="13" r="4"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Photographer</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="9" r="3"/>
-                    <path d="M12 12v10"/>
-                    <path d="M9 22h6"/>
-                    <path d="M7 7c-1.5 1.5-2 3-1 5 1.5 0 3-.5 4.5-2"/>
-                    <path d="M17 7c1.5 1.5 2 3 1 5-1.5 0-3-.5-4.5-2"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Florist</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/>
-                    <path d="M7 2v20"/>
-                    <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Caterer</span>
-              </div>
-            </div>
-            <div class="segment-more">+ 4 more</div>
-          </div>
+          <!-- Set A -->
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Wedding-focused</div><div class="segment-count">813K</div></div><ul class="segment-vendors"><li>Wedding planner</li><li>Photographer</li><li>Florist</li></ul><div class="segment-more">+ 12 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">New-parent-focused</div><div class="segment-count">130K</div></div><ul class="segment-vendors"><li>Pediatrician</li><li>Lactation consultant</li><li>Sleep coach</li></ul><div class="segment-more">+ 8 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Home-buyer-focused</div><div class="segment-count">1.36M</div></div><ul class="segment-vendors"><li>Realtor</li><li>Mortgage broker</li><li>Home inspector</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Custom-build-focused</div><div class="segment-count">1.03M</div></div><ul class="segment-vendors"><li>Architect</li><li>General contractor</li><li>Landscape designer</li></ul><div class="segment-more">+ 14 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Renovation-focused</div><div class="segment-count">117K</div></div><ul class="segment-vendors"><li>Interior designer</li><li>Kitchen/bath</li><li>General contractor</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Divorce-focused</div><div class="segment-count">86K</div></div><ul class="segment-vendors"><li>Family lawyer</li><li>Mediator</li><li>Financial planner (CDFA)</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Fertility-focused</div><div class="segment-count">11K</div></div><ul class="segment-vendors"><li>Fertility clinic</li><li>Acupuncturist</li><li>Nutritionist</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Relocation-focused</div><div class="segment-count">52K</div></div><ul class="segment-vendors"><li>Immigration lawyer</li><li>Cross-border tax</li><li>Relocation realtor</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">College-prep-focused</div><div class="segment-count">118K</div></div><ul class="segment-vendors"><li>College counselor</li><li>Test prep tutor</li><li>Teen therapist</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Estate-focused</div><div class="segment-count">102K</div></div><ul class="segment-vendors"><li>Estate lawyer</li><li>Estate accountant</li><li>Grief therapist</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Downsizer-focused</div><div class="segment-count">68K</div></div><ul class="segment-vendors"><li>Retirement planner</li><li>Professional organizer</li><li>Downsizing consultant</li></ul></div>
+          <div class="segment-box featured"><div class="featured-ami"><img src="ami.png" alt="Ami"></div><div class="segment-header"><div class="segment-name">Startup-focused</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Scale-up-focused</div><div class="segment-count">53K</div></div><ul class="segment-vendors"><li>Executive search</li><li>CRE broker</li><li>Complex tax advisor</li></ul><div class="segment-more">+ 4 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Executive onboarding</div><div class="segment-count">34K</div></div><ul class="segment-vendors"><li>Leadership consultant</li><li>Comms coach</li><li>Board advisor</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Wealth-event-focused</div><div class="segment-count">182K</div></div><ul class="segment-vendors"><li>Wealth manager</li><li>Luxury realtor</li><li>Estate planner</li></ul><div class="segment-more">+ 4 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Pre-IPO-focused</div><div class="segment-count">4K</div></div><ul class="segment-vendors"><li>RSU/QSBS specialist</li><li>Secondary market broker</li></ul></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Career transition</div><div class="segment-count">10K</div></div><ul class="segment-vendors"><li>Executive career coach</li><li>Outplacement firm</li></ul></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Solopreneur-focused</div><div class="segment-count">180K</div></div><ul class="segment-vendors"><li>Small-business lawyer</li><li>Bookkeeper</li></ul></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">Franchise-focused</div><div class="segment-count">5K</div></div><ul class="segment-vendors"><li>Franchise lawyer</li><li>Franchise accountant</li></ul></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">RE-investor-focused</div><div class="segment-count">58K</div></div><ul class="segment-vendors"><li>Property manager</li><li>Title company</li><li>Hard-money lender</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box"><div class="segment-header"><div class="segment-name">First-time-leader</div><div class="segment-count">26K</div></div><ul class="segment-vendors"><li>Content agency</li><li>Performance agency</li><li>Sales training</li></ul></div>
 
-          <!-- Startup (Ami's) -->
-          <div class="segment-box featured">
-            <div class="segment-header">
-              <div class="segment-name">Startup-focused</div>
-              <div class="segment-count">125K</div>
-            </div>
-            <div class="segment-professions">
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m3 11 18-5v12L3 14v-3z"/>
-                    <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Fractional CMO</span>
-                <img class="profession-avatar" src="ami.png" alt="Ami">
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
-                    <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/>
-                    <path d="M7 21h10"/>
-                    <path d="M12 3v18"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Startup lawyer</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="9" y="2" width="6" height="13" rx="3"/>
-                    <path d="M19 10v2a7 7 0 0 1-14 0v-2"/>
-                    <line x1="12" y1="19" x2="12" y2="22"/>
-                  </svg>
-                </span>
-                <span class="profession-name">PR agent</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
-                    <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Recruiter</span>
-              </div>
-            </div>
-            <div class="segment-more">+ 10 more</div>
-          </div>
-
-          <!-- Estate -->
-          <div class="segment-box">
-            <div class="segment-header">
-              <div class="segment-name">Estate-focused</div>
-              <div class="segment-count segment-count-mobile">82K</div>
-            </div>
-            <div class="segment-professions">
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 17V5a2 2 0 0 0-2-2H4"/>
-                    <path d="M8 21h12a2 2 0 0 0 2-2v-1a1 1 0 0 0-1-1H11a1 1 0 0 0-1 1v1a2 2 0 1 1-4 0V5a2 2 0 1 0-4 0v2a1 1 0 0 0 1 1h3"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Estate lawyer</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Grief therapist</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Estate organizer</span>
-              </div>
-              <div class="profession-item">
-                <span class="profession-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="4" y="2" width="16" height="20" rx="2"/>
-                    <line x1="8" y1="6" x2="16" y2="6"/>
-                    <line x1="8" y1="14" x2="8.01" y2="14"/>
-                    <line x1="12" y1="14" x2="12.01" y2="14"/>
-                    <line x1="16" y1="14" x2="16.01" y2="14"/>
-                    <line x1="8" y1="18" x2="8.01" y2="18"/>
-                    <line x1="12" y1="18" x2="12.01" y2="18"/>
-                    <line x1="16" y1="18" x2="16.01" y2="18"/>
-                  </svg>
-                </span>
-                <span class="profession-name">Estate accountant</span>
-              </div>
-            </div>
-            <div class="segment-more">+ 4 more</div>
-          </div>
+          <!-- Set B (duplicate for seamless loop, aria-hidden for accessibility) -->
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Wedding-focused</div><div class="segment-count">813K</div></div><ul class="segment-vendors"><li>Wedding planner</li><li>Photographer</li><li>Florist</li></ul><div class="segment-more">+ 12 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">New-parent-focused</div><div class="segment-count">130K</div></div><ul class="segment-vendors"><li>Pediatrician</li><li>Lactation consultant</li><li>Sleep coach</li></ul><div class="segment-more">+ 8 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Home-buyer-focused</div><div class="segment-count">1.36M</div></div><ul class="segment-vendors"><li>Realtor</li><li>Mortgage broker</li><li>Home inspector</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Custom-build-focused</div><div class="segment-count">1.03M</div></div><ul class="segment-vendors"><li>Architect</li><li>General contractor</li><li>Landscape designer</li></ul><div class="segment-more">+ 14 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Renovation-focused</div><div class="segment-count">117K</div></div><ul class="segment-vendors"><li>Interior designer</li><li>Kitchen/bath</li><li>General contractor</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Divorce-focused</div><div class="segment-count">86K</div></div><ul class="segment-vendors"><li>Family lawyer</li><li>Mediator</li><li>Financial planner (CDFA)</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Fertility-focused</div><div class="segment-count">11K</div></div><ul class="segment-vendors"><li>Fertility clinic</li><li>Acupuncturist</li><li>Nutritionist</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Relocation-focused</div><div class="segment-count">52K</div></div><ul class="segment-vendors"><li>Immigration lawyer</li><li>Cross-border tax</li><li>Relocation realtor</li></ul><div class="segment-more">+ 2 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">College-prep-focused</div><div class="segment-count">118K</div></div><ul class="segment-vendors"><li>College counselor</li><li>Test prep tutor</li><li>Teen therapist</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Estate-focused</div><div class="segment-count">102K</div></div><ul class="segment-vendors"><li>Estate lawyer</li><li>Estate accountant</li><li>Grief therapist</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Downsizer-focused</div><div class="segment-count">68K</div></div><ul class="segment-vendors"><li>Retirement planner</li><li>Professional organizer</li><li>Downsizing consultant</li></ul></div>
+          <div class="segment-box featured" aria-hidden="true"><div class="featured-ami"><img src="ami.png" alt=""></div><div class="segment-header"><div class="segment-name">Startup-focused</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Scale-up-focused</div><div class="segment-count">53K</div></div><ul class="segment-vendors"><li>Executive search</li><li>CRE broker</li><li>Complex tax advisor</li></ul><div class="segment-more">+ 4 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Executive onboarding</div><div class="segment-count">34K</div></div><ul class="segment-vendors"><li>Leadership consultant</li><li>Comms coach</li><li>Board advisor</li></ul><div class="segment-more">+ 3 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Wealth-event-focused</div><div class="segment-count">182K</div></div><ul class="segment-vendors"><li>Wealth manager</li><li>Luxury realtor</li><li>Estate planner</li></ul><div class="segment-more">+ 4 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Pre-IPO-focused</div><div class="segment-count">4K</div></div><ul class="segment-vendors"><li>RSU/QSBS specialist</li><li>Secondary market broker</li></ul></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Career transition</div><div class="segment-count">10K</div></div><ul class="segment-vendors"><li>Executive career coach</li><li>Outplacement firm</li></ul></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Solopreneur-focused</div><div class="segment-count">180K</div></div><ul class="segment-vendors"><li>Small-business lawyer</li><li>Bookkeeper</li></ul></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">Franchise-focused</div><div class="segment-count">5K</div></div><ul class="segment-vendors"><li>Franchise lawyer</li><li>Franchise accountant</li></ul></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">RE-investor-focused</div><div class="segment-count">58K</div></div><ul class="segment-vendors"><li>Property manager</li><li>Title company</li><li>Hard-money lender</li></ul><div class="segment-more">+ 1 more</div></div>
+          <div class="segment-box" aria-hidden="true"><div class="segment-header"><div class="segment-name">First-time-leader</div><div class="segment-count">26K</div></div><ul class="segment-vendors"><li>Content agency</li><li>Performance agency</li><li>Sales training</li></ul></div>
 
         </div>
       </div>
