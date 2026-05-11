@@ -10,80 +10,83 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-1"] .slide-title { margin-bottom: 36px; }
+body[data-slide="slide-1"] .slide-title { margin-bottom: 22px; }
 
-body[data-slide="slide-1"] .summary-beliefs {
+.es-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 28px;
+  flex: 1;
+}
+
+.es-col {
   display: flex;
   flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 8px;
-}
-body[data-slide="slide-1"] .summary-belief {
-  display: grid;
-  grid-template-columns: 36px 1fr 220px;
-  gap: 20px;
-  align-items: start;
-}
-body[data-slide="slide-1"] .summary-belief-num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--gold);
-  padding-top: 3px;
-}
-body[data-slide="slide-1"] .summary-belief-text {
-  font-family: var(--font-body);
-  font-size: 19px;
-  line-height: 1.5;
-  color: var(--gray);
-}
-body[data-slide="slide-1"] .summary-belief-text strong {
-  color: var(--white);
-  font-weight: 600;
-}
-body[data-slide="slide-1"] .summary-belief-payoff {
-  display: block;
-  margin-top: 8px;
-}
-body[data-slide="slide-1"] .summary-belief-payoff::before {
-  content: "→";
-  color: var(--gold);
-  font-family: var(--font-display);
-  font-weight: 700;
-  margin-right: 10px;
-}
-body[data-slide="slide-1"] .summary-belief-link {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(212, 165, 116, 0.6);
-  text-decoration: none;
-  padding-top: 6px;
-  padding-left: 20px;
-  border-left: 1px solid rgba(212, 165, 116, 0.2);
-  display: block;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-body[data-slide="slide-1"] .summary-belief-link:hover {
-  color: var(--gold);
-  border-left-color: var(--gold);
+  border-top: 2px solid rgba(212, 165, 116, 0.35);
+  padding-top: 16px;
 }
 
+.es-col-header {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.es-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 14px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.es-row:last-child { border-bottom: none; }
+
+.es-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.es-row-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+
+.es-row-text {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--gray);
+}
+
+.es-row-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(212, 165, 116, 0.5);
+  text-decoration: none;
+  white-space: nowrap;
+  padding-top: 3px;
+  transition: color 0.15s;
+}
+
+.es-row-link:hover { color: var(--gold); }
+
 @media (max-width: 860px) {
-  body[data-slide="slide-1"] .summary-belief {
-    grid-template-columns: 36px 1fr;
-  }
-  body[data-slide="slide-1"] .summary-belief-link {
-    grid-column: 2;
-    padding-left: 0;
-    padding-top: 4px;
-    border-left: none;
-    color: var(--gold);
-  }
+  .es-grid { grid-template-columns: 1fr; gap: 20px 0; }
+  .es-col { border-top-width: 1px; }
 }
 </style>
 </head>
@@ -95,42 +98,83 @@ body[data-slide="slide-1"] .summary-belief-link:hover {
 <div class="slide" id="slide-1">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The argument in six claims — each one proven ahead</h2>
+  <h2 class="slide-title">The business at a glance</h2>
 
-  <div class="summary-beliefs">
-    <div class="summary-belief">
-      <div class="summary-belief-num">1</div>
-      <div class="summary-belief-text">Two founders, <strong>two exits</strong>, second startup together.</div>
-      <a href="slide-4.html" class="summary-belief-link">The team →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">2</div>
-      <div class="summary-belief-text">Millions of <strong>independent professionals</strong> — they sell a service and need customers.</div>
-      <a href="slide-5.html" class="summary-belief-link">The customer →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">3</div>
-      <div class="summary-belief-text">Most of their customers come from referrals. But referrals are <strong>unreliable</strong> — their #1 problem.</div>
-      <a href="slide-7.html" class="summary-belief-link">The problem →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">4</div>
-      <div class="summary-belief-text">The secret to reliable referrals: trusted peers spotting buying moments for each other.</div>
-      <a href="slide-8.html" class="summary-belief-link">The insight →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">5</div>
-      <div class="summary-belief-text">BNI proved it ($26.4B/yr, offline). We're building these circles online by solving matching and trust at scale.</div>
-      <a href="slide-9.html" class="summary-belief-link">The blueprint →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">6</div>
-      <div class="summary-belief-text">
-        Early tests: <strong>14.8% W/W growth</strong>, each user brings another.
-        <span class="summary-belief-payoff">This week: signup cost <strong>halved</strong>, onboarding rate <strong>doubled</strong>.</span>
+  <div class="es-grid">
+
+    <div class="es-col">
+      <div class="es-col-header">What is InTouch</div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-label">Problem</div>
+          <div class="es-row-text">Independent professionals' #1 problem is getting the next customer.</div>
+        </div>
+        <a href="slide-2.html" class="es-row-link">The customer →</a>
       </div>
-      <a href="slide-11.html" class="summary-belief-link">The GTM →</a>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-label">Solution</div>
+          <div class="es-row-text">We match them into circles of trusted peers who refer customers to each other.</div>
+        </div>
+        <a href="slide-5.html" class="es-row-link">The solution →</a>
+      </div>
     </div>
+
+    <div class="es-col">
+      <div class="es-col-header">How big can InTouch be</div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-text">9.26M independent professionals in the US.</div>
+        </div>
+        <a href="slide-8.html" class="es-row-link">The market →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-text">BNI's volume: $26.4B/yr in peer referrals — entirely offline.</div>
+        </div>
+        <a href="slide-9.html" class="es-row-link">The proof →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-text">Network effects make it defensible. AI can't replicate peer trust.</div>
+        </div>
+        <a href="slide-13.html" class="es-row-link">Why we win →</a>
+      </div>
+    </div>
+
+    <div class="es-col">
+      <div class="es-col-header">Why InTouch will work</div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-label">Can we get users?</div>
+          <div class="es-row-text">6.7% cold-email to onboarded. 14.8% W/W user growth.</div>
+        </div>
+        <a href="slide-10.html" class="es-row-link">The GTM →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-label">Will they refer each other?</div>
+          <div class="es-row-text">340K BNI members refer business to each other weekly.</div>
+        </div>
+        <a href="slide-9.html" class="es-row-link">The proof →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-row-body">
+          <div class="es-row-label">Can we iterate fast?</div>
+          <div class="es-row-text">Two post-exit founders. In market. New test every two weeks.</div>
+        </div>
+        <a href="slide-11.html" class="es-row-link">The traction →</a>
+      </div>
+    </div>
+
   </div>
 </div>
 
