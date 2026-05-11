@@ -441,6 +441,12 @@ body[data-slide="slide-10"] .sources {
   font-weight: 700;
 }
 
+/* MOCKUP CLUSTER — transparent on desktop, scaled on mobile */
+.s9-mockup-cluster {
+  position: absolute;
+  inset: 0;
+}
+
 /* MOCKUP LABELS */
 .s9-label {
   position: absolute;
@@ -507,6 +513,11 @@ body[data-slide="slide-10"] .sources {
 }
 
 /* ── PORTRAIT MOBILE (≤ 768 px wide) ────────────────────────────────── */
+/*
+ * Scale the entire cluster as one unit so the browser/phone overlap
+ * is preserved exactly as on desktop. Cluster width 680px mirrors the
+ * desktop visual column size; scale(0.46) fits it into ~310px.
+ */
 @media (max-width: 768px) {
   .s9-layout { grid-template-columns: 1fr; gap: 12px; }
   .s9-text-col { gap: 12px; }
@@ -514,15 +525,19 @@ body[data-slide="slide-10"] .sources {
   .s9-pillar-bullets li { font-size: 12px; padding: 4px 0 4px 16px; }
   .s9-pillar-bullets li:first-child { padding-top: 0; }
 
-  .s9-visual { min-height: 0; height: 260px; }
+  .s9-visual { min-height: 0; height: 248px; overflow: visible; }
 
-  /* Browser: scale to ~30%, anchor top-left */
+  .s9-mockup-cluster {
+    inset: auto;
+    top: 6px; left: 0;
+    width: 680px;
+    transform: scale(0.46);
+    transform-origin: top left;
+  }
+
+  /* Labels stay outside the cluster, positioned over the scaled mockups */
   .s9-label-browser { top: 0; left: 10px; }
-  .s9-browser-wrap  { top: 18px; transform: scale(0.3); transform-origin: top left; }
-
-  /* Phone: scale to 50%, anchor top-right */
-  .s9-label-phone { top: 0; right: 0; left: auto; transform: none; white-space: nowrap; }
-  .s9-phone-wrap  { top: 18px; right: 0; left: auto; transform: scale(0.5); transform-origin: top right; }
+  .s9-label-phone   { top: 0; right: 0; left: auto; transform: none; white-space: nowrap; }
 }
 
 /* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────── */
@@ -533,15 +548,18 @@ body[data-slide="slide-10"] .sources {
   .s9-pillar-title { font-size: 16px; margin-bottom: 4px; }
   .s9-pillar-bullets li { font-size: 12.5px; padding: 5px 0 5px 16px; }
 
-  .s9-visual { min-height: 0; height: 300px; }
+  .s9-visual { min-height: 0; height: 272px; overflow: visible; }
 
-  /* Browser: scale to ~33%, anchor top-left */
+  .s9-mockup-cluster {
+    inset: auto;
+    top: 6px; left: 0;
+    width: 680px;
+    transform: scale(0.52);
+    transform-origin: top left;
+  }
+
   .s9-label-browser { top: 0; left: 10px; }
-  .s9-browser-wrap  { top: 18px; transform: scale(0.33); transform-origin: top left; }
-
-  /* Phone: scale to 55%, anchor top-right */
-  .s9-label-phone { top: 0; right: 0; left: auto; transform: none; white-space: nowrap; }
-  .s9-phone-wrap  { top: 18px; right: 0; left: auto; transform: scale(0.55); transform-origin: top right; }
+  .s9-label-phone   { top: 0; right: 0; left: auto; transform: none; white-space: nowrap; }
 }
 </style>
 </head>
@@ -583,6 +601,9 @@ body[data-slide="slide-10"] .sources {
     <div class="s9-visual">
 
       <div class="s9-label s9-label-browser">Dating profile</div>
+      <div class="s9-label s9-label-phone">After the match</div>
+      <!-- MOCKUP CLUSTER — scaled as a unit on mobile to preserve overlap -->
+      <div class="s9-mockup-cluster">
       <!-- DESKTOP FORM IN BROWSER FRAME -->
       <div class="s9-browser-wrap">
         <div class="s9-browser">
@@ -672,7 +693,6 @@ body[data-slide="slide-10"] .sources {
         </div>
       </div>
 
-      <div class="s9-label s9-label-phone">After the match</div>
       <!-- MOBILE PHONE (front, right) -->
       <div class="s9-phone-wrap">
         <div class="s9-phone">
@@ -817,6 +837,7 @@ body[data-slide="slide-10"] .sources {
           </main>
         </div>
       </div>
+      </div><!-- /.s9-mockup-cluster -->
 
     </div>
 
