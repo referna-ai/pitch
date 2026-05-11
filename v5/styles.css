@@ -570,8 +570,8 @@ body {
 .slide-hero .tagline {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 52px;
-  line-height: 1.1;
+  font-size: 44px;
+  line-height: 1.15;
   letter-spacing: -0.02em;
   color: var(--white);
   margin-bottom: 24px;
