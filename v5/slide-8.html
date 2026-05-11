@@ -92,95 +92,58 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
   filter: grayscale(100%);
 }
 
-.s5-comparison { display: flex; flex-direction: column; }
-.s5-comparison-header,
-.s5-comparison-row {
+/* Star rating cards */
+.s5-cards {
   display: grid;
-  grid-template-columns: 1.9fr 1.3fr 1.4fr;
-  align-items: center;
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  flex: 1;
 }
-.s5-comparison-header {
-  padding: 0 22px 12px;
-  border-bottom: 1px solid var(--border);
-}
-.s5-header-cell {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--gray-mid);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-}
-.s5-comparison-row {
-  padding: 16px 22px;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.08);
-}
-.s5-row-winner {
-  border-bottom: none;
-}
-.s5-row-name-cell {
+.s5-card {
+  background: var(--black-soft);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 18px 20px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
 }
-.s5-row-name {
+.s5-card-winner {
+  border-color: var(--gold);
+  background: rgba(212, 165, 116, 0.05);
+}
+.s5-card-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
   color: var(--white);
-  letter-spacing: -0.005em;
+  letter-spacing: -0.01em;
 }
-.s5-row-winner .s5-row-name { color: var(--gold); }
-.s5-row-cell {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: 1.4;
-  color: var(--gray);
-}
-.s5-row-verdict {
-  display: inline-flex;
+.s5-card-winner .s5-card-name { color: var(--gold); }
+.s5-stars {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  padding: 8px 16px;
-  border-radius: 999px;
+  gap: 5px;
+}
+.s5-star {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+.s5-star-filled { color: var(--gold); }
+.s5-star-empty { color: rgba(212, 165, 116, 0.22); }
+.s5-card-desc {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 0.04em;
-  text-align: center;
-  line-height: 1.25;
-  white-space: nowrap;
-}
-.s5-verdict-low,
-.s5-verdict-warning {
-  background: rgba(212, 100, 92, 0.10);
-  border: 1px solid rgba(212, 100, 92, 0.45);
-  color: var(--error);
-}
-.s5-verdict-winner {
-  background: rgba(212, 165, 116, 0.14);
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  box-shadow: 0 0 14px rgba(212, 165, 116, 0.25);
-}
-.s5-row-cell-gold { color: var(--gold); font-weight: 600; }
-.s5-row-cell-error { color: var(--error); font-weight: 600; }
-.s5-row-cell-gray { color: var(--gray-mid); }
-.s5-verdict-gray {
-  background: rgba(119, 119, 119, 0.10);
-  border: 1px solid rgba(119, 119, 119, 0.35);
-  color: var(--gray-mid);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  font-weight: 500;
 }
 
 @media (max-width: 820px) {
   .s5-setup-requirements { flex-direction: column; }
   .s5-req-plus { width: auto; transform: rotate(90deg); }
-  .s5-comparison-header,
-  .s5-comparison-row { grid-template-columns: 1fr; gap: 6px; }
+  .s5-cards { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -214,39 +177,38 @@ body[data-slide="slide-8"] .slide-title .gold-accent { color: var(--gold); }
     </div>
   </div>
 
-  <div class="s5-comparison">
-    <div class="s5-comparison-header">
-      <div class="s5-header-cell"></div>
-      <div class="s5-header-cell">Timing</div>
-      <div class="s5-header-cell">Referrer</div>
+  <div class="s5-cards">
+
+    <div class="s5-card">
+      <div class="s5-card-name">Random intros</div>
+      <div class="s5-stars">
+        <svg class="s5-star s5-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+      </div>
+      <div class="s5-card-desc">Not even trying to be referrals.</div>
     </div>
 
-    <div class="s5-comparison-row">
-      <div class="s5-row-name-cell">
-        <div class="s5-row-name">Random intros</div>
-        <span class="s5-row-verdict s5-verdict-gray">Are not referrals!</span>
+    <div class="s5-card">
+      <div class="s5-card-name">Customer referrals</div>
+      <div class="s5-stars">
+        <svg class="s5-star s5-star-filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-empty" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
       </div>
-      <div class="s5-row-cell s5-row-cell-error">Random timing</div>
-      <div class="s5-row-cell s5-row-cell-gray">—</div>
+      <div class="s5-card-desc">Right timing — customer is buying. But spotting Ami's moment is accidental.</div>
     </div>
 
-    <div class="s5-comparison-row">
-      <div class="s5-row-name-cell">
-        <div class="s5-row-name">Customer referrals</div>
-        <span class="s5-row-verdict s5-verdict-warning">Unreliable</span>
+    <div class="s5-card s5-card-winner">
+      <div class="s5-card-name">Peer referrals</div>
+      <div class="s5-stars">
+        <svg class="s5-star s5-star-filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
+        <svg class="s5-star s5-star-filled" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 17l-6.2 4.3 2.4-7.4L2 9.4h7.6z"/></svg>
       </div>
-      <div class="s5-row-cell s5-row-cell-gold">At the buying moment</div>
-      <div class="s5-row-cell">Customer</div>
+      <div class="s5-card-desc">Peers are in those conversations all day, know who Ami serves, and spot the moment for her. BNI engineered this.</div>
     </div>
 
-    <div class="s5-comparison-row s5-row-winner">
-      <div class="s5-row-name-cell">
-        <div class="s5-row-name">Peer referrals</div>
-        <span class="s5-row-verdict s5-verdict-winner">BNI made this reliable</span>
-      </div>
-      <div class="s5-row-cell s5-row-cell-gold">At the buying moment</div>
-      <div class="s5-row-cell">Another independent professional</div>
-    </div>
   </div>
 
   <div class="conclusion">Referrals get reliable when trusted peers spot <strong>buying moments</strong> for each other.</div>

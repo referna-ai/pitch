@@ -6,7 +6,7 @@
     { file: 'index.html',    title: 'Overview' },
     { file: 'slide-1.html',  title: 'The thesis' },
     { file: 'slide-2.html',  title: 'The proof' },
-    { file: 'slide-3.html',  title: 'The summary' },
+    { file: 'slide-3.html',  title: 'Executive summary' },
     { file: 'slide-4.html',  title: 'The team' },
     { file: 'slide-5.html',  title: 'The customer' },
     { file: 'slide-6.html',  title: 'The market' },

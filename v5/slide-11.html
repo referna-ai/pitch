@@ -56,8 +56,27 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 22px; }
 .reasons-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
 .reason-card {
   background: var(--black-soft); border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px; padding: 16px 18px;
-  display: flex; flex-direction: column; gap: 10px;
+  border-radius: 8px; padding: 0;
+  display: flex; flex-direction: column; gap: 0;
+  overflow: hidden;
+}
+.reason-ribbon {
+  padding: 6px 18px;
+  background: rgba(212, 165, 116, 0.06);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: 7px 7px 0 0;
+  font-family: var(--font-display);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(212, 165, 116, 0.6);
+}
+.reason-card-body {
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .reason-title { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--white); letter-spacing: -0.01em; }
 .reason-stats { display: flex; gap: 24px; }
@@ -213,40 +232,49 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 22px; }
   <div class="reasons-grid">
 
     <div class="reason-card">
-      <div class="reason-title">Weekly growth</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">14.8%</div>
-          <div class="reason-stat-label">W/W user growth</div>
+      <div class="reason-ribbon">Small sample</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Weekly growth</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">14.8%</div>
+            <div class="reason-stat-label">W/W user growth</div>
+          </div>
         </div>
+        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
       </div>
-      <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
     </div>
 
     <div class="reason-card">
-      <div class="reason-title">Cold email → onboarded</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">6.7%</div>
-          <div class="reason-stat-label">of emails reach onboarded</div>
+      <div class="reason-ribbon">Hundreds of emails</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Cold email → onboarded</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">6.7%</div>
+            <div class="reason-stat-label">of emails reach onboarded</div>
+          </div>
         </div>
+        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
       </div>
-      <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
     </div>
 
     <div class="reason-card">
-      <div class="reason-title">Virality</div>
-      <div class="reason-stats">
-        <div class="reason-stat">
-          <div class="reason-stat-num">3.5</div>
-          <div class="reason-stat-label">invites / user</div>
+      <div class="reason-ribbon">Tiny sample — early signal</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Virality</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">3.5</div>
+            <div class="reason-stat-label">invites / user</div>
+          </div>
+          <div class="reason-stat">
+            <div class="reason-stat-num">29%</div>
+            <div class="reason-stat-label">acceptance</div>
+          </div>
         </div>
-        <div class="reason-stat">
-          <div class="reason-stat-num">29%</div>
-          <div class="reason-stat-label">acceptance</div>
-        </div>
+        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
       </div>
-      <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
     </div>
 
   </div>
