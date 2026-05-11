@@ -173,7 +173,7 @@ body[data-slide="slide-12"] .stop-wrap {
     grid-template-columns: 50px 1fr;
     gap: 0 14px;
     align-items: start;
-    padding: 10px 0;
+    padding: 16px 0;
     position: relative;
     overflow: visible;
   }
@@ -234,6 +234,17 @@ body[data-slide="slide-12"] .stop-wrap {
   }
   body[data-slide="slide-12"] .stop-stat { font-size: 12px; margin-top: 0; }
   body[data-slide="slide-12"] .stop-fine { font-size: 10.5px; line-height: 1.4; }
+}
+
+/* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────────
+ * All timeline text −2px vs desktop values (stop-stat 17→15, stop-fine 16→14,
+ * stop-label 14→12). The slide-12 scoped rules have higher specificity than the
+ * global max-height:500px rules, so we must re-declare them here.
+ */
+@media (max-height: 500px) and (min-width: 769px) {
+  body[data-slide="slide-12"] .stop-stat  { font-size: 15px; }
+  body[data-slide="slide-12"] .stop-fine  { font-size: 14px; }
+  body[data-slide="slide-12"] .stop-label { font-size: 12px; }
 }
 </style>
 </head>
