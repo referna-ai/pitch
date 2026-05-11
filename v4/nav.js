@@ -12,7 +12,7 @@
     { file: 'slide-6.html',  title: 'The market' },
     { file: 'slide-7.html',  title: 'The problem' },
     { file: 'slide-8.html',  title: 'The insight' },
-    { file: 'slide-9.html',  title: 'The blueprint' },
+    { file: 'slide-9.html',  title: 'The solution' },
     { file: 'slide-10.html', title: 'The solution' },
     { file: 'slide-11.html', title: 'The GTM' },
     { file: 'slide-12.html', title: 'The traction' },
