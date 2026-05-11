@@ -159,6 +159,14 @@ body[data-slide="slide-12"] .stop-wrap {
   body[data-slide="slide-12"] .timeline-above .timeline-slot:nth-child(3) { order: 3; } /* Apr 1    */
   body[data-slide="slide-12"] .timeline-below .timeline-slot:nth-child(4) { order: 4; } /* May 4    */
 
+  /* Reset desktop per-row alignment/padding that shifts above-slots to the right */
+  body[data-slide="slide-12"] .timeline-above .timeline-slot,
+  body[data-slide="slide-12"] .timeline-below .timeline-slot {
+    align-self: stretch;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
   /* Each stop: two-column row (date | content) */
   body[data-slide="slide-12"] .timeline-slot {
     display: grid !important;
