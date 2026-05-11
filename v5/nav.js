@@ -4,19 +4,19 @@
 (function () {
   const SLIDES = [
     { file: 'index.html',    title: 'Overview' },
-    { file: 'slide-1.html',  title: 'The thesis' },
-    { file: 'slide-2.html',  title: 'The proof' },
-    { file: 'slide-3.html',  title: 'Executive summary' },
-    { file: 'slide-4.html',  title: 'The team' },
-    { file: 'slide-5.html',  title: 'The customer' },
-    { file: 'slide-6.html',  title: 'The market' },
-    { file: 'slide-7.html',  title: 'The problem' },
-    { file: 'slide-8.html',  title: 'The insight' },
-    { file: 'slide-9.html',  title: 'The blueprint' },
-    { file: 'slide-10.html', title: 'The solution' },
-    { file: 'slide-11.html', title: 'The GTM' },
-    { file: 'slide-12.html', title: 'The traction' },
-    { file: 'slide-13.html', title: 'The round' }
+    { file: 'slide-1.html',  title: 'Executive summary' },
+    { file: 'slide-2.html',  title: 'Customer' },
+    { file: 'slide-3.html',  title: 'Problem' },
+    { file: 'slide-4.html',  title: 'Insight' },
+    { file: 'slide-5.html',  title: 'Solution' },
+    { file: 'slide-6.html',  title: 'Product' },
+    { file: 'slide-7.html',  title: 'Team' },
+    { file: 'slide-8.html',  title: 'Market' },
+    { file: 'slide-9.html',  title: 'Proof' },
+    { file: 'slide-10.html', title: 'GTM' },
+    { file: 'slide-11.html', title: 'Traction' },
+    { file: 'slide-12.html', title: 'Round' },
+    { file: 'slide-13.html', title: 'Why we win' }
   ];
   window.PITCH_SLIDES = SLIDES;
 

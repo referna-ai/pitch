@@ -3,113 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S9 · The blueprint — InTouch Pitch</title>
+<title>S9 · Proof — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-9"] .slide-title { margin-bottom: 24px; }
+body[data-slide="slide-9"] .slide-title { margin-bottom: 10px; }
 body[data-slide="slide-9"] .slide-title .gold { color: var(--gold); }
-body[data-slide="slide-9"] .conclusion .gold { color: var(--gold); }
+body[data-slide="slide-9"] .bni-subtitle { font-family: var(--font-body); font-size: 18px; line-height: 1.55; color: var(--gray); max-width: 820px; margin: 6px 0 28px; }
 
-.s6-hero {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 38px;
-  line-height: 1.18;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  max-width: 980px;
-  margin: 0 auto 28px;
-  text-align: center;
-}
-.s6-hero .gold { color: var(--gold); }
-
-.s6-cards { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
-
-.s6-card {
+body[data-slide="slide-9"] .bni-cheatsheet {
   background: var(--black-soft);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  border-radius: 8px;
+  padding: 4px 28px;
+  margin-bottom: 24px;
 }
-
-.s6-pro { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
-
-.s6-icon {
-  width: 32px; height: 32px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--white);
+body[data-slide="slide-9"] .bni-cheat-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  align-items: baseline;
 }
-.s6-icon-gold { color: var(--gold); }
-.s6-icon svg { width: 100%; height: 100%; }
-.s6-icon img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  filter: grayscale(100%);
-}
-.s6-icon-gold img {
-  border: 2px solid var(--gold);
-  box-sizing: border-box;
-}
-
-.s6-pro-name {
+body[data-slide="slide-9"] .bni-cheat-row:last-child { border-bottom: none; }
+body[data-slide="slide-9"] .bni-cheat-label {
   font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+body[data-slide="slide-9"] .bni-cheat-value {
+  font-family: var(--font-display);
   font-size: 18px;
   color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
+  line-height: 1.4;
 }
-.s6-pro-name.gold { color: var(--gold); }
 
-.s6-pro-context {
-  font-family: var(--font-body);
-  font-size: 16px;
+body[data-slide="slide-9"] .bni-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 24px;
+}
+body[data-slide="slide-9"] .bni-metric {
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 22px 16px;
+  text-align: center;
+}
+body[data-slide="slide-9"] .bni-metric-highlight {
+  background: rgba(212, 165, 116, 0.06);
+  border-color: rgba(212, 165, 116, 0.5);
+}
+body[data-slide="slide-9"] .bni-metric-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+body[data-slide="slide-9"] .bni-metric-num.gold { color: var(--gold); }
+body[data-slide="slide-9"] .bni-metric-label {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.01em;
   color: var(--gray-mid);
   line-height: 1.4;
 }
 
-.s6-pro-value {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 16px;
-  color: var(--gray);
-  letter-spacing: -0.005em;
-  line-height: 1.4;
-}
-.s6-pro-value strong { color: var(--white); font-weight: 700; }
-
-.s6-arrow-divider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 2px 0;
-}
-.s6-arrow-line { flex: 1; height: 1px; background: var(--border); }
-.s6-arrow-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.16em;
-  color: var(--gold);
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-.s6-arrow-label svg { width: 14px; height: 14px; }
-
-@media (max-width: 820px) {
-  .s6-hero { font-size: 26px; }
-  .s6-cards { grid-template-columns: 1fr; }
+@media (max-width: 720px) {
+  body[data-slide="slide-9"] .bni-cheat-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  body[data-slide="slide-9"] .bni-metrics { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -121,108 +94,45 @@ body[data-slide="slide-9"] .conclusion .gold { color: var(--gold); }
 <div class="slide" id="slide-9">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">BNI's <span class="gold">$26.4B</span> secret</h2>
+  <h2 class="slide-title">BNI did <span class="gold">$26.4B</span> in referrals last year</h2>
+  <p class="bni-subtitle">The world's largest referral network for independent professionals.  But the model is constrained by manual matching and weekly in-person meetings.</p>
 
-  <p class="s6-hero">One trusted peer spots the <span class="gold">buying moment</span> for another peer.</p>
-
-  <div class="s6-cards">
-
-    <div class="s6-card">
-      <div class="s6-pro">
-        <div class="s6-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 4 H21 L14 12 V20 L10 18 V12 Z"/>
-          </svg>
-        </div>
-        <div class="s6-pro-name">Fractional CRO</div>
-        <div class="s6-pro-context">builds a pipeline</div>
-      </div>
-      <div class="s6-arrow-divider">
-        <div class="s6-arrow-line"></div>
-        <div class="s6-arrow-label">
-          Referral
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-        </div>
-        <div class="s6-arrow-line"></div>
-      </div>
-      <div class="s6-pro">
-        <div class="s6-icon s6-icon-gold">
-          <img src="ami.png" alt="Ami B.">
-        </div>
-        <div class="s6-pro-name gold">Fractional VP Marketing</div>
-        <div class="s6-pro-value"><strong>~$60K</strong> bridge engagement</div>
-      </div>
+  <div class="bni-cheatsheet">
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">BNI's customer</div>
+      <div class="bni-cheat-value">Independent professionals</div>
     </div>
-
-    <div class="s6-card">
-      <div class="s6-pro">
-        <div class="s6-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 10.5 L12 3 L21 10.5 V20 a1 1 0 0 1 -1 1 H4 a1 1 0 0 1 -1 -1 Z"/>
-          </svg>
-        </div>
-        <div class="s6-pro-name">Real estate agent</div>
-        <div class="s6-pro-context">closes a home sale</div>
-      </div>
-      <div class="s6-arrow-divider">
-        <div class="s6-arrow-line"></div>
-        <div class="s6-arrow-label">
-          Referral
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-        </div>
-        <div class="s6-arrow-line"></div>
-      </div>
-      <div class="s6-pro">
-        <div class="s6-icon s6-icon-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="8" cy="15" r="5"/>
-            <line x1="11.6" y1="11.4" x2="22" y2="1"/>
-            <line x1="18" y1="5" x2="21" y2="8"/>
-            <line x1="15" y1="8" x2="18" y2="11"/>
-          </svg>
-        </div>
-        <div class="s6-pro-name gold">Mortgage broker</div>
-        <div class="s6-pro-value"><strong>~$5K</strong> loan origination fee</div>
-      </div>
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">Value to customers</div>
+      <div class="bni-cheat-value">Referrals from trusted peers</div>
     </div>
-
-    <div class="s6-card">
-      <div class="s6-pro">
-        <div class="s6-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M6 3 H15 L18 6 V21 H6 Z"/>
-            <line x1="9" y1="9" x2="15" y2="9"/>
-            <line x1="9" y1="13" x2="15" y2="13"/>
-            <line x1="9" y1="17" x2="13" y2="17"/>
-          </svg>
-        </div>
-        <div class="s6-pro-name">Estate lawyer</div>
-        <div class="s6-pro-context">settles an estate</div>
-      </div>
-      <div class="s6-arrow-divider">
-        <div class="s6-arrow-line"></div>
-        <div class="s6-arrow-label">
-          Referral
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-        </div>
-        <div class="s6-arrow-line"></div>
-      </div>
-      <div class="s6-pro">
-        <div class="s6-icon s6-icon-gold">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="3 18 9 12 13 16 21 6"/>
-            <polyline points="15 6 21 6 21 12"/>
-          </svg>
-        </div>
-        <div class="s6-pro-name gold">Financial advisor</div>
-        <div class="s6-pro-value"><strong>~$10K/yr</strong> on inherited wealth</div>
-      </div>
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">How BNI works</div>
+      <div class="bni-cheat-value">Members meet weekly for breakfast to refer business to each other</div>
     </div>
-
   </div>
 
-  <div class="conclusion">BNI reduced referrals from a timing problem to a <span class="gold">dating problem</span>.</div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025 (n=340K); industry pricing data (fractional executive engagement benchmarks, NAR/CFPB mortgage origination, advisor AUM benchmarks)</div>
+  <div class="bni-metrics">
+    <div class="bni-metric bni-metric-highlight">
+      <div class="bni-metric-num gold">$26.4B</div>
+      <div class="bni-metric-label">in member-generated referrals (2024)</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">340K</div>
+      <div class="bni-metric-label">members · 11K chapters</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">~$800</div>
+      <div class="bni-metric-label">annual membership fee</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">$65K</div>
+      <div class="bni-metric-label">referred business per member / year</div>
+    </div>
+  </div>
+
+  <div class="conclusion">A <strong>$26.4B network business</strong> hiding in plain sight — entirely offline.</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025; bni.com; BNI US membership fees ($575–$849/yr, 1-year participation)</div>
 </div>
 
 </div>

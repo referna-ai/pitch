@@ -3,84 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S13 · The round — InTouch Pitch</title>
+<title>S13 · Why we win — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-13"] .slide-title { margin-bottom: 28px; }
-
-.s10-goal {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--white);
-  text-align: center;
-  max-width: 920px;
-  margin: 18px auto 40px;
-}
-.s10-goal-num { color: var(--gold); }
-
-.s10-rows {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 28px;
-}
-.s10-row {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 24px;
-  padding: 14px 4px;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.14);
-  align-items: baseline;
-}
-.s10-row:last-child { border-bottom: none; }
-.s10-row-key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.s10-row-val {
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--white);
-}
-.s10-row-val em {
-  font-style: normal;
-  color: var(--gray-mid);
-  font-size: 17px;
-}
-
-.s10-notes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px 28px;
-  padding: 14px 18px;
-  background: rgba(212, 165, 116, 0.04);
-  border-left: 2px solid rgba(212, 165, 116, 0.4);
-  border-radius: 6px;
-}
-.s10-note {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--gray-mid);
-}
-.s10-note strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
-
-@media (max-width: 820px) {
-  .s10-goal { font-size: 24px; }
-  .s10-row { grid-template-columns: 1fr; gap: 4px; }
-  .s10-notes { grid-template-columns: 1fr; }
-}
+body[data-slide="slide-13"] .thesis-beliefs { display: flex; flex-direction: column; margin: 28px 0 24px; }
+body[data-slide="slide-13"] .thesis-group { padding: 14px 0; }
+body[data-slide="slide-13"] .thesis-group + .thesis-group { border-top: 1px solid var(--border); }
+body[data-slide="slide-13"] .thesis-group-items { display: flex; flex-direction: column; gap: 14px; }
+body[data-slide="slide-13"] .thesis-belief { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start; padding: 0; border-bottom: none; }
+body[data-slide="slide-13"] .thesis-belief-num { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--gold); padding-top: 3px; }
+body[data-slide="slide-13"] .thesis-belief-text { font-family: var(--font-body); font-size: 19px; line-height: 1.5; color: var(--gray); }
+body[data-slide="slide-13"] .thesis-belief-text strong { color: var(--white); font-weight: 600; }
+body[data-slide="slide-13"] .thesis-belief-payoff { display: block; margin-top: 6px; color: var(--white); }
+body[data-slide="slide-13"] .thesis-belief-payoff::before { content: "→"; color: var(--gold); font-family: var(--font-display); font-weight: 700; margin-right: 10px; }
+body[data-slide="slide-13"] .thesis-belief-payoff strong { font-family: var(--font-display); font-weight: 800; color: var(--white); }
 </style>
 </head>
 <body data-slide="slide-13">
@@ -91,32 +31,65 @@ body[data-slide="slide-13"] .slide-title { margin-bottom: 28px; }
 <div class="slide" id="slide-13">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Pre-seed for 24 months</h2>
+  <h2 class="slide-title">Offline to network is a great play</h2>
 
-  <p class="s10-goal">12-month milestone: <span class="s10-goal-num">4,000 Weekly Active Users</span> · 500 weekly referrals</p>
+  <div class="thesis-beliefs">
 
-  <div class="s10-rows">
-    <div class="s10-row">
-      <div class="s10-row-key">It's achievable</div>
-      <div class="s10-row-val">131K × 6.7% email → onboarded × 50% WAU = ~4.4K WAU.</div>
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">1</div>
+          <div class="thesis-belief-text">
+            OpenAI won't replace Uber. Anthropic won't replace Airbnb.
+            <span class="thesis-belief-payoff">The AI giants can't easily copy a <strong>network business</strong>.</span>
+          </div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">2</div>
+          <div class="thesis-belief-text">Uber and Airbnb both took something offline and put it online — and built <strong>massive new businesses</strong> doing it.</div>
+        </div>
+      </div>
     </div>
-    <div class="s10-row">
-      <div class="s10-row-key">It's enough for seed</div>
-      <div class="s10-row-val">Network businesses routinely raise seed at this active-user scale. <em>≈$130M annualized referral value (500/week × $5K × 52).</em></div>
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">3</div>
+          <div class="thesis-belief-text">
+            We found a <strong>huge business still done offline</strong>.
+            <span class="thesis-belief-payoff">A network of independent professionals referring customers to each other.</span>
+          </div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">4</div>
+          <div class="thesis-belief-text">If history repeats itself: a <strong>massive network business</strong> will be built by digitizing referrals — and it'll be <strong>hard to copy</strong>.</div>
+        </div>
+      </div>
     </div>
-    <div class="s10-row">
-      <div class="s10-row-key">What we need</div>
-      <div class="s10-row-val">Pre-seed · 24 months runway · team of 4 (12m buffer before seed).</div>
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">5</div>
+          <div class="thesis-belief-text">Such a business will <strong>make a lot of money</strong> because it sits right next to where deals happen.</div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">6</div>
+          <div class="thesis-belief-text">Whoever wins the <strong>top segment</strong> wins the category.</div>
+        </div>
+      </div>
     </div>
+
   </div>
 
-  <div class="s10-notes">
-    <div class="s10-note"><strong>Active</strong> = engaged with another user in the last 7 days</div>
-    <div class="s10-note"><strong>Referral</strong> = introduction at the moment of need (proof: the call)</div>
+  <div class="thesis-counter">
+    <div class="thesis-counter-label">We're wrong if:</div>
+    <div class="thesis-counter-items">
+      <div class="thesis-counter-item">Big AI will take everything, including networks</div>
+      <div class="thesis-counter-item">All offline businesses are already online</div>
+      <div class="thesis-counter-item">Independent professionals can't be monetized</div>
+    </div>
   </div>
-
-  <div class="conclusion">4,000 active is <strong>seed-ready scale</strong> for a network business — and we have the path.</div>
-  <div class="sources">Sources: InTouch product data; segment sizing (slide 8)</div>
 </div>
 
 </div>

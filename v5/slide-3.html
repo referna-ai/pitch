@@ -3,87 +3,41 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S3 · The summary — InTouch Pitch</title>
+<title>S3 · Problem — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-3"] .slide-title { margin-bottom: 36px; }
+body[data-slide="slide-3"] .slide-title { margin-bottom: 22px; }
 
-body[data-slide="slide-3"] .summary-beliefs {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-  justify-content: space-between;
-  gap: 20px;
-  padding-bottom: 8px;
-}
-body[data-slide="slide-3"] .summary-belief {
-  display: grid;
-  grid-template-columns: 36px 1fr 220px;
-  gap: 20px;
-  align-items: start;
-}
-body[data-slide="slide-3"] .summary-belief-num {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--gold);
-  padding-top: 3px;
-}
-body[data-slide="slide-3"] .summary-belief-text {
-  font-family: var(--font-body);
-  font-size: 19px;
-  line-height: 1.5;
-  color: var(--gray);
-}
-body[data-slide="slide-3"] .summary-belief-text strong {
-  color: var(--white);
-  font-weight: 600;
-}
-body[data-slide="slide-3"] .summary-belief-payoff {
-  display: block;
-  margin-top: 8px;
-}
-body[data-slide="slide-3"] .summary-belief-payoff::before {
-  content: "→";
-  color: var(--gold);
-  font-family: var(--font-display);
-  font-weight: 700;
-  margin-right: 10px;
-}
-body[data-slide="slide-3"] .summary-belief-link {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(212, 165, 116, 0.6);
-  text-decoration: none;
-  padding-top: 6px;
-  padding-left: 20px;
-  border-left: 1px solid rgba(212, 165, 116, 0.2);
-  display: block;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-body[data-slide="slide-3"] .summary-belief-link:hover {
-  color: var(--gold);
-  border-left-color: var(--gold);
-}
+.channels-list { display: flex; flex-direction: column; }
 
-@media (max-width: 860px) {
-  body[data-slide="slide-3"] .summary-belief {
-    grid-template-columns: 36px 1fr;
-  }
-  body[data-slide="slide-3"] .summary-belief-link {
-    grid-column: 2;
-    padding-left: 0;
-    padding-top: 4px;
-    border-left: none;
-    color: var(--gold);
-  }
+.channel-row { display: grid; grid-template-columns: 96px 220px 1fr; gap: 28px; align-items: center; padding: 16px 0; border-bottom: 1px solid var(--border); }
+.channel-row:first-child { padding-top: 4px; }
+.channel-row:last-child { border-bottom: none; }
+
+.donut-cell { display: flex; align-items: center; justify-content: center; }
+
+.channel-name { font-family: var(--font-display); font-weight: 700; font-size: 22px; color: var(--white); letter-spacing: -0.01em; }
+.channel-row.referrals .channel-name { color: var(--gold); }
+
+.channel-desc { font-family: var(--font-display); font-weight: 400; font-size: 22px; color: var(--gray); line-height: 1.5; }
+.channel-desc strong { color: var(--white); font-weight: 600; }
+
+.ami-quote-box { margin-top: 10px; display: flex; align-items: center; gap: 18px; background: var(--black-soft); border-left: 2px solid var(--gold); border-radius: 0 6px 6px 0; padding: 16px 20px; }
+.ami-quote-photo { width: 56px; height: 56px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: var(--black); border: 2px solid var(--gold); }
+.ami-quote-photo img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+.ami-quote-text { font-family: var(--font-body); font-size: 18px; font-style: italic; color: var(--white); line-height: 1.45; }
+.ami-quote-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-mid); margin-top: 6px; letter-spacing: 0.04em; }
+.ami-quote-attr strong { color: var(--white); font-weight: 600; }
+
+@media (max-width: 768px) {
+  .channel-row { grid-template-columns: 72px 1fr; gap: 16px; }
+  .channel-row .channel-name { grid-column: 2; }
+  .channel-row .channel-desc { grid-column: 1 / -1; }
+  .ami-quote-box { flex-direction: column; align-items: flex-start; }
 }
 </style>
 </head>
@@ -95,47 +49,76 @@ body[data-slide="slide-3"] .summary-belief-link:hover {
 <div class="slide" id="slide-3">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The argument in six claims — each one proven ahead</h2>
+  <h2 class="slide-title">Referrals are critical, but unreliable.</h2>
 
-  <div class="summary-beliefs">
-    <div class="summary-belief">
-      <div class="summary-belief-num">1</div>
-      <div class="summary-belief-text">Two founders, <strong>two exits</strong>, second startup together.</div>
-      <a href="slide-4.html" class="summary-belief-link">The team →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">2</div>
-      <div class="summary-belief-text">Millions of <strong>independent professionals</strong> — they sell a service and need customers.</div>
-      <a href="slide-5.html" class="summary-belief-link">The customer →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">3</div>
-      <div class="summary-belief-text">Most of their customers come from referrals. But referrals are <strong>unreliable</strong> — their #1 problem.</div>
-      <a href="slide-7.html" class="summary-belief-link">The problem →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">4</div>
-      <div class="summary-belief-text">The secret to reliable referrals: trusted peers spotting buying moments for each other.</div>
-      <a href="slide-8.html" class="summary-belief-link">The insight →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">5</div>
-      <div class="summary-belief-text">BNI proved it ($26.4B/yr, offline). We're building these circles online by solving matching and trust at scale.</div>
-      <a href="slide-9.html" class="summary-belief-link">The blueprint →</a>
-    </div>
-    <div class="summary-belief">
-      <div class="summary-belief-num">6</div>
-      <div class="summary-belief-text">
-        Early tests: <strong>14.8% W/W growth</strong>, each user brings another.
-        <span class="summary-belief-payoff">This week: signup cost <strong>halved</strong>, onboarding rate <strong>doubled</strong>.</span>
+  <div class="channels-list">
+
+    <div class="channel-row">
+      <div class="donut-cell">
+        <svg width="84" height="84" viewBox="0 0 84 84">
+          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
+          <circle cx="42" cy="42" r="34"
+                  stroke="#D4645C" stroke-width="9" fill="none"
+                  stroke-dasharray="213.63"
+                  stroke-dashoffset="141.0"
+                  stroke-linecap="round"
+                  transform="rotate(-90 42 42)"/>
+          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">34%</text>
+        </svg>
       </div>
-      <a href="slide-11.html" class="summary-belief-link">The GTM →</a>
+      <div class="channel-name">Digital</div>
+      <div class="channel-desc">Too noisy to break through. <strong>Bigger players have AI budgets that solo professionals can't match.</strong></div>
+    </div>
+
+    <div class="channel-row">
+      <div class="donut-cell">
+        <svg width="84" height="84" viewBox="0 0 84 84">
+          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
+          <circle cx="42" cy="42" r="34"
+                  stroke="#737373" stroke-width="9" fill="none"
+                  stroke-dasharray="213.63"
+                  stroke-dashoffset="211.5"
+                  stroke-linecap="round"
+                  transform="rotate(-90 42 42)"/>
+          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">1%</text>
+        </svg>
+      </div>
+      <div class="channel-name">Intros</div>
+      <div class="channel-desc">Coffee chats, networking — <strong>too much effort, too little volume.</strong></div>
+    </div>
+
+    <div class="channel-row referrals">
+      <div class="donut-cell">
+        <svg width="84" height="84" viewBox="0 0 84 84">
+          <circle cx="42" cy="42" r="34" stroke="rgba(255,255,255,0.06)" stroke-width="9" fill="none"/>
+          <circle cx="42" cy="42" r="34"
+                  stroke="#D4A574" stroke-width="9" fill="none"
+                  stroke-dasharray="213.63"
+                  stroke-dashoffset="74.77"
+                  stroke-linecap="round"
+                  transform="rotate(-90 42 42)"/>
+          <text x="42" y="48" text-anchor="middle" font-family="Manrope" font-weight="700" font-size="18" fill="#FFFFFF">65%</text>
+        </svg>
+      </div>
+      <div class="channel-name">Referrals</div>
+      <div class="channel-desc">When they come, they close — <strong>but no one controls when.</strong></div>
+    </div>
+
+  </div>
+
+  <div class="ami-quote-box">
+    <div class="ami-quote-photo"><img src="ami.png" alt="Ami B."></div>
+    <div>
+      <div class="ami-quote-text">"Would love to find someone who can refer business for cash."</div>
+      <div class="ami-quote-attr"><strong>Ami B.</strong> · Fractional VP of Marketing · last week, unprompted</div>
     </div>
   </div>
+
+  <div class="conclusion">Independent professionals rely on referrals — <strong>a channel no one controls.</strong></div>
+  <div class="sources">Sources: 22 interviews; Sales So, Straits Research, MailerLite, AuthoredUp/Sales So; Seer Interactive (3,119 queries, 25.1M impressions, Sep 2025); Firework/industry data (82%)</div>
 </div>
 
 </div>
-
 
 <script src="nav.js"></script>
 </body>
