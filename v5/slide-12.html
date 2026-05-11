@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S12 · The traction — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Keep timeline columns equal but let long single-line stats overflow into the
+   adjacent (empty) slots without wrapping. Content slots alternate with empty
+   slots, so symmetric overflow has room on each side. */
+body[data-slide="slide-12"] .timeline-row { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+body[data-slide="slide-12"] .timeline-axis { grid-template-columns: repeat(4, 1fr); }
+body[data-slide="slide-12"] .axis-line-past { left: 12.5%; width: 75%; }
+/* Shrink the timeline 10% from the right so Test 3's rightmost slot has
+   room for long bullets to overflow symmetrically without hitting the
+   slide edge. Left endpoint stays anchored to the slide's left padding. */
+body[data-slide="slide-12"] .journey-timeline { margin-top: 40px; padding-right: 10%; }
+
+body[data-slide="slide-12"] .stop-fine.stop-learned {
+  color: var(--gold);
+}
+body[data-slide="slide-12"] .icon-bulb {
+  width: 13px;
+  height: 13px;
+  vertical-align: -2px;
+  margin-right: 5px;
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Flex-center each line on the dot. align-items:center on a flex column
+   centers items horizontally even when their intrinsic (nowrap) width
+   exceeds the column — overflow goes symmetric instead of right-only. */
+body[data-slide="slide-12"] .timeline-slot,
+body[data-slide="slide-12"] .stop-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Unify timeline text on Manrope, drop italic everywhere */
+body[data-slide="slide-12"] .stop-text,
+body[data-slide="slide-12"] .stop-stat,
+body[data-slide="slide-12"] .stop-fine,
+body[data-slide="slide-12"] .future-slot .stop-text,
+body[data-slide="slide-12"] .future-slot .stop-fine,
+body[data-slide="slide-12"] .stop-text-now {
+  font-family: var(--font-display);
+  font-style: normal;
+}
+
+body[data-slide="slide-12"] .stop-fine {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gray-mid);
+}
+
+body[data-slide="slide-12"] .stop-stat { font-size: 17px; font-weight: 600; }
+body[data-slide="slide-12"] .stop-desc { font-weight: 400; color: var(--gray); }
+
+/* Plan box — large variant */
+body[data-slide="slide-12"] .plan-milestone-large {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  padding: 0;
+  margin: 4px 0;
+}
+body[data-slide="slide-12"] .plan-milestone-large .plan-label {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+body[data-slide="slide-12"] .plan-milestone-large .plan-row {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.45;
+  padding: 5px 0;
+  color: var(--white);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+}
+body[data-slide="slide-12"] .plan-milestone-large .plan-row:last-child { border-bottom: none; }
+body[data-slide="slide-12"] .plan-milestone-large .plan-key {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-block;
+  width: 170px;
+}
+body[data-slide="slide-12"] .plan-milestone-large .plan-milestone-notes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding-left: 24px;
+  border-left: 1px solid rgba(212, 165, 116, 0.18);
+}
+body[data-slide="slide-12"] .plan-milestone-large .plan-note {
+  font-family: var(--font-body);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--gray-mid);
+}
+
+/* Default: single-line, overflow symmetric around the dot */
+body[data-slide="slide-12"] .stop-label,
+body[data-slide="slide-12"] .stop-stat,
+body[data-slide="slide-12"] .stop-fine {
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* Opt-in wrap for lines that should break at column width */
+body[data-slide="slide-12"] .stop-wrap {
+  white-space: normal;
+  max-width: 100%;
+  text-align: center;
+  line-height: 1.35;
+}
+
+/* ── PORTRAIT MOBILE ─────────────────────────────────────────────────────
+ * Horizontal timeline → vertical list (dates left, content right).
+ * Stops are split between timeline-above / timeline-below in non-chronological
+ * DOM order; display:contents + order re-sequences them without touching HTML.
+ * Chronological order: Feb 2026 (above[1]) → Feb 22 (below[2]) → Apr 1 (above[3]) → May 4 (below[4])
+ */
+@media (max-width: 768px) {
+  body[data-slide="slide-12"] .journey-timeline {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+    padding-right: 0 !important;
+    position: relative;
+  }
+
+  /* Rows become transparent; their children join the flex context directly */
+  body[data-slide="slide-12"] .timeline-row  { display: contents; }
+  body[data-slide="slide-12"] .timeline-axis { display: none; }
+
+  /* Hide the empty placeholder slots — needs !important to beat display:grid !important above */
+  body[data-slide="slide-12"] .timeline-slot:not(:has(.stop-label)) { display: none !important; }
+
+  /* Chronological ordering via flex order */
+  body[data-slide="slide-12"] .timeline-above .timeline-slot:nth-child(1) { order: 1; } /* Feb 2026 */
+  body[data-slide="slide-12"] .timeline-below .timeline-slot:nth-child(2) { order: 2; } /* Feb 22   */
+  body[data-slide="slide-12"] .timeline-above .timeline-slot:nth-child(3) { order: 3; } /* Apr 1    */
+  body[data-slide="slide-12"] .timeline-below .timeline-slot:nth-child(4) { order: 4; } /* May 4    */
+
+  /* Reset desktop per-row alignment/padding; set vertical spacing here (higher
+     specificity than .timeline-slot, so padding must live here, not there) */
+  body[data-slide="slide-12"] .timeline-above .timeline-slot,
+  body[data-slide="slide-12"] .timeline-below .timeline-slot {
+    align-self: stretch;
+    padding: 28px 0;
+  }
+
+  /* Each stop: two-column row (date | content) */
+  body[data-slide="slide-12"] .timeline-slot {
+    display: grid !important;
+    grid-template-columns: 50px 1fr;
+    gap: 0 14px;
+    align-items: start;
+    padding: 28px 0; /* overridden by the above rule — kept for non-above/below slots */
+    position: relative;
+    overflow: visible;
+  }
+
+  /* Vertical gold thread running through all stops */
+  body[data-slide="slide-12"] .timeline-slot:has(.stop-label)::after {
+    content: '';
+    position: absolute;
+    left: 49px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(212, 165, 116, 0.22);
+  }
+
+  /* Dot on the thread */
+  body[data-slide="slide-12"] .timeline-slot:has(.stop-label)::before {
+    content: '';
+    position: absolute;
+    left: 45px;
+    top: 14px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    z-index: 1;
+  }
+
+  /* Larger pulse dot for the "now" stop */
+  body[data-slide="slide-12"] .active-slot::before {
+    width: 10px; height: 10px;
+    left: 44px;
+    top: 13px;
+    box-shadow: 0 0 0 4px rgba(212, 165, 116, 0.18);
+  }
+
+  /* Date label — right-aligned in left column, sits beside the dot */
+  body[data-slide="slide-12"] .stop-label {
+    text-align: right;
+    font-size: 9.5px;
+    line-height: 1.3;
+    margin-bottom: 0;
+    padding-top: 2px;
+    padding-right: 2px;
+    white-space: normal;
+    color: var(--gray-dark);
+  }
+  body[data-slide="slide-12"] .stop-label-now { color: var(--gold); }
+
+  /* Content column — left-align everything */
+  body[data-slide="slide-12"] .stop-text {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+  body[data-slide="slide-12"] .stop-stat,
+  body[data-slide="slide-12"] .stop-fine,
+  body[data-slide="slide-12"] .stop-wrap {
+    white-space: normal !important;
+    text-align: left;
+  }
+  body[data-slide="slide-12"] .stop-stat { font-size: 12px; margin-top: 0; }
+  body[data-slide="slide-12"] .stop-fine { font-size: 10.5px; line-height: 1.4; }
+}
+
+/* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────────
+ * All timeline text −2px vs desktop values (stop-stat 17→15, stop-fine 16→14,
+ * stop-label 14→12). The slide-12 scoped rules have higher specificity than the
+ * global max-height:500px rules, so we must re-declare them here.
+ */
+@media (max-height: 500px) and (min-width: 769px) {
+  body[data-slide="slide-12"] .stop-stat  { font-size: 15px; }
+  body[data-slide="slide-12"] .stop-fine  { font-size: 14px; }
+  body[data-slide="slide-12"] .stop-label { font-size: 12px; }
+}
+</style>
+</head>
+<body data-slide="slide-12">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-12">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">Learning fast. Next: scale + members referring.</h2>
+
+  <div class="journey-timeline">
+    <div class="timeline-row timeline-above">
+      <div class="timeline-slot">
+        <div class="stop-label">Feb 2026</div>
+        <div class="stop-text">
+          <div class="stop-stat stop-wrap">Decided to focus on InTouch 100%</div>
+          <div class="stop-fine">92 interviews</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: one persona, one problem — getting the next customer.</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot">
+        <div class="stop-label">Apr 1</div>
+        <div class="stop-text">
+          <div class="stop-stat">Test 2 · Intro Circles</div>
+          <div class="stop-fine">✓ 14.8% W/W growth</div>
+          <div class="stop-fine">✓ $5–10 cost per signup · 42% reply → signup</div>
+          <div class="stop-fine">✓ 3.5 invites/user · 29% acceptance</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: members want referrals, not intros.</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+    </div>
+
+    <div class="timeline-axis">
+      <div class="axis-line-past"></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot"></span></div>
+      <div class="axis-slot"><span class="stop-dot dot-now"></span></div>
+    </div>
+
+    <div class="timeline-row timeline-below">
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot">
+        <div class="stop-label">Feb 22</div>
+        <div class="stop-text">
+          <div class="stop-stat">Test 1 · Intro brief</div>
+          <div class="stop-fine">✓ +50% connected their calendar</div>
+          <div class="stop-fine stop-wrap stop-learned"><svg class="icon-bulb" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>Learned: random intros aren't helpful enough.</div>
+        </div>
+      </div>
+      <div class="timeline-slot"></div>
+      <div class="timeline-slot active-slot">
+        <div class="stop-label stop-label-now">May 4</div>
+        <div class="stop-text stop-text-now">
+          <div class="stop-stat">Test 3 · Referral Circles</div>
+          <div class="stop-fine">✓ 2.3× Onboarding completion rate (from replies)</div>
+          <div class="stop-fine">✓ Signup cost halved</div>
+          <div class="stop-fine">✓ +16 interviews from new customer focus</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conclusion">Signs of <strong>rapid growth potential</strong>. Next: Prove scale + get members to refer each other.</div>
+  <div class="sources">Sources: InTouch product data</div>
+</div>
+
+</div>
+
+
+<script src="nav.js"></script>
+</body>
+</html>

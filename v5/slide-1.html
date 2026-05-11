@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S1 · The thesis — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-1"] .thesis-beliefs { display: flex; flex-direction: column; margin: 28px 0 24px; }
+body[data-slide="slide-1"] .thesis-group { padding: 14px 0; }
+body[data-slide="slide-1"] .thesis-group + .thesis-group { border-top: 1px solid var(--border); }
+body[data-slide="slide-1"] .thesis-group-items { display: flex; flex-direction: column; gap: 14px; }
+body[data-slide="slide-1"] .thesis-belief { display: grid; grid-template-columns: 36px 1fr; gap: 14px; align-items: start; padding: 0; border-bottom: none; }
+body[data-slide="slide-1"] .thesis-belief-num { font-family: var(--font-display); font-weight: 700; font-size: 16px; color: var(--gold); padding-top: 3px; }
+body[data-slide="slide-1"] .thesis-belief-text { font-family: var(--font-body); font-size: 19px; line-height: 1.5; color: var(--gray); }
+body[data-slide="slide-1"] .thesis-belief-text strong { color: var(--white); font-weight: 600; }
+body[data-slide="slide-1"] .thesis-belief-payoff { display: block; margin-top: 6px; color: var(--white); }
+body[data-slide="slide-1"] .thesis-belief-payoff::before { content: "→"; color: var(--gold); font-family: var(--font-display); font-weight: 700; margin-right: 10px; }
+body[data-slide="slide-1"] .thesis-belief-payoff strong { font-family: var(--font-display); font-weight: 800; color: var(--white); }
+</style>
+</head>
+<body data-slide="slide-1">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-1">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">Offline to network is a great play</h2>
+
+  <div class="thesis-beliefs">
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">1</div>
+          <div class="thesis-belief-text">
+            OpenAI won't replace Uber. Anthropic won't replace Airbnb.
+            <span class="thesis-belief-payoff">The AI giants can't easily copy a <strong>network business</strong>.</span>
+          </div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">2</div>
+          <div class="thesis-belief-text">Uber and Airbnb both took something offline and put it online — and built <strong>massive new businesses</strong> doing it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">3</div>
+          <div class="thesis-belief-text">
+            We found a <strong>huge business still done offline</strong>.
+            <span class="thesis-belief-payoff">A network of independent professionals referring customers to each other.</span>
+          </div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">4</div>
+          <div class="thesis-belief-text">If history repeats itself: a <strong>massive network business</strong> will be built by digitizing referrals — and it'll be <strong>hard to copy</strong>.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="thesis-group">
+      <div class="thesis-group-items">
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">5</div>
+          <div class="thesis-belief-text">Such a business will <strong>make a lot of money</strong> because it sits right next to where deals happen.</div>
+        </div>
+        <div class="thesis-belief">
+          <div class="thesis-belief-num">6</div>
+          <div class="thesis-belief-text">Whoever wins the <strong>top segment</strong> wins the category.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="thesis-counter">
+    <div class="thesis-counter-label">We're wrong if:</div>
+    <div class="thesis-counter-items">
+      <div class="thesis-counter-item">Big AI will take everything, including networks</div>
+      <div class="thesis-counter-item">All offline businesses are already online</div>
+      <div class="thesis-counter-item">Independent professionals can't be monetized</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<script src="nav.js"></script>
+</body>
+</html>
