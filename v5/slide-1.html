@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S1 · Executive summary — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-1"] .slide-title { margin-bottom: 36px; }
+
+body[data-slide="slide-1"] .summary-beliefs {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 8px;
+}
+body[data-slide="slide-1"] .summary-belief {
+  display: grid;
+  grid-template-columns: 36px 1fr 220px;
+  gap: 20px;
+  align-items: start;
+}
+body[data-slide="slide-1"] .summary-belief-num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--gold);
+  padding-top: 3px;
+}
+body[data-slide="slide-1"] .summary-belief-text {
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+body[data-slide="slide-1"] .summary-belief-text strong {
+  color: var(--white);
+  font-weight: 600;
+}
+body[data-slide="slide-1"] .summary-belief-payoff {
+  display: block;
+  margin-top: 8px;
+}
+body[data-slide="slide-1"] .summary-belief-payoff::before {
+  content: "→";
+  color: var(--gold);
+  font-family: var(--font-display);
+  font-weight: 700;
+  margin-right: 10px;
+}
+body[data-slide="slide-1"] .summary-belief-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(212, 165, 116, 0.6);
+  text-decoration: none;
+  padding-top: 6px;
+  padding-left: 20px;
+  border-left: 1px solid rgba(212, 165, 116, 0.2);
+  display: block;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+body[data-slide="slide-1"] .summary-belief-link:hover {
+  color: var(--gold);
+  border-left-color: var(--gold);
+}
+
+@media (max-width: 860px) {
+  body[data-slide="slide-1"] .summary-belief {
+    grid-template-columns: 36px 1fr;
+  }
+  body[data-slide="slide-1"] .summary-belief-link {
+    grid-column: 2;
+    padding-left: 0;
+    padding-top: 4px;
+    border-left: none;
+    color: var(--gold);
+  }
+}
+</style>
+</head>
+<body data-slide="slide-1">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-1">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">The argument in six claims — each one proven ahead</h2>
+
+  <div class="summary-beliefs">
+    <div class="summary-belief">
+      <div class="summary-belief-num">1</div>
+      <div class="summary-belief-text">Two founders, <strong>two exits</strong>, second startup together.</div>
+      <a href="slide-4.html" class="summary-belief-link">The team →</a>
+    </div>
+    <div class="summary-belief">
+      <div class="summary-belief-num">2</div>
+      <div class="summary-belief-text">Millions of <strong>independent professionals</strong> — they sell a service and need customers.</div>
+      <a href="slide-5.html" class="summary-belief-link">The customer →</a>
+    </div>
+    <div class="summary-belief">
+      <div class="summary-belief-num">3</div>
+      <div class="summary-belief-text">Most of their customers come from referrals. But referrals are <strong>unreliable</strong> — their #1 problem.</div>
+      <a href="slide-7.html" class="summary-belief-link">The problem →</a>
+    </div>
+    <div class="summary-belief">
+      <div class="summary-belief-num">4</div>
+      <div class="summary-belief-text">The secret to reliable referrals: trusted peers spotting buying moments for each other.</div>
+      <a href="slide-8.html" class="summary-belief-link">The insight →</a>
+    </div>
+    <div class="summary-belief">
+      <div class="summary-belief-num">5</div>
+      <div class="summary-belief-text">BNI proved it ($26.4B/yr, offline). We're building these circles online by solving matching and trust at scale.</div>
+      <a href="slide-9.html" class="summary-belief-link">The blueprint →</a>
+    </div>
+    <div class="summary-belief">
+      <div class="summary-belief-num">6</div>
+      <div class="summary-belief-text">
+        Early tests: <strong>14.8% W/W growth</strong>, each user brings another.
+        <span class="summary-belief-payoff">This week: signup cost <strong>halved</strong>, onboarding rate <strong>doubled</strong>.</span>
+      </div>
+      <a href="slide-11.html" class="summary-belief-link">The GTM →</a>
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<script src="nav.js"></script>
+</body>
+</html>

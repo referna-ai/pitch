@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backup · Trust, faster — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-backup"] .slide-title { margin-bottom: 20px; }
+
+.bk-stat-contrast { display: flex; align-items: stretch; justify-content: space-between; gap: 0; padding: 0; background: var(--black-soft); border-radius: 12px; margin-bottom: 24px; overflow: hidden; }
+.bk-stat-side { flex: 1; text-align: center; padding: 18px 24px; display: flex; flex-direction: column; justify-content: center; }
+.bk-stat-side-bni { background: var(--black-soft); }
+.bk-stat-side-intouch { background: rgba(212, 165, 116, 0.06); }
+.bk-stat-tag { font-family: var(--font-display); font-weight: 600; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; gap: 6px; }
+.bk-stat-side-bni .bk-stat-tag { color: var(--gray-mid); }
+.bk-stat-side-intouch .bk-stat-tag { color: var(--gold); }
+.bk-stat-num { font-family: var(--font-display); font-weight: 800; font-size: 32px; line-height: 1; letter-spacing: -0.03em; }
+.bk-stat-side-bni .bk-stat-num { color: var(--gray-mid); }
+.bk-stat-side-intouch .bk-stat-num { color: var(--gold); }
+.bk-stat-sub { font-family: var(--font-body); font-size: 13px; color: var(--gray-mid); margin-top: 8px; line-height: 1.4; font-style: italic; }
+.bk-stat-arrow { flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: 0 8px; font-family: var(--font-display); font-weight: 800; font-size: 24px; color: var(--gold); background: var(--black-soft); }
+
+.bk-mechs-intro { font-family: var(--font-display); font-weight: 600; font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+.bk-mechs { display: flex; flex-direction: column; gap: 0; margin-bottom: 20px; }
+.bk-mech-row { display: grid; grid-template-columns: 1fr 28px 1fr; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+.bk-mech-row:last-child { border-bottom: none; }
+.bk-mech-bni { font-family: var(--font-body); font-size: 15px; color: var(--gray-mid); text-align: right; line-height: 1.5; }
+.bk-mech-arrow { font-family: var(--font-display); font-weight: 800; font-size: 16px; color: var(--gold); text-align: center; }
+.bk-mech-intouch { font-family: var(--font-body); font-size: 15px; color: var(--white); line-height: 1.5; font-weight: 500; }
+.bk-mech-intouch strong { color: var(--gold); font-weight: 700; }
+
+.bk-mech-headers { display: grid; grid-template-columns: 1fr 28px 1fr; gap: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.bk-mech-header { font-family: var(--font-display); font-weight: 700; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; display: flex; align-items: center; gap: 8px; }
+.bk-mech-header-bni { color: var(--gray-mid); justify-content: flex-end; }
+.bk-mech-header-intouch { color: var(--gold); justify-content: flex-start; }
+.bk-mech-header-logo { display: inline-flex; align-items: center; }
+
+.conclusion .gold { color: var(--gold); }
+
+@media (max-width: 768px) {
+  .bk-stat-contrast { flex-direction: column; }
+  .bk-stat-side { padding: 18px 16px; }
+  .bk-stat-num { font-size: 28px; }
+  .bk-stat-arrow { padding: 8px; font-size: 18px; transform: rotate(90deg); }
+  .bk-mech-row, .bk-mech-headers { grid-template-columns: 1fr 20px 1fr; gap: 8px; }
+  .bk-mech-bni, .bk-mech-intouch { font-size: 13px; }
+  .bk-mech-header { font-size: 9px; letter-spacing: 0.1em; }
+}
+</style>
+</head>
+<body data-slide="slide-backup">
+
+<div class="deck">
+
+<div class="slide" id="slide-backup">
+  <div class="slide-number">Backup</div>
+  <div class="slide-label">The trust question</div>
+  <h2 class="slide-title">Trust, faster</h2>
+
+  <div class="bk-stat-contrast">
+    <div class="bk-stat-side bk-stat-side-bni">
+      <div class="bk-stat-tag">BNI</div>
+      <div class="bk-stat-num">90+ hrs</div>
+      <div class="bk-stat-sub">of breakfast meetings before<br>members refer with confidence</div>
+    </div>
+    <div class="bk-stat-arrow">→</div>
+    <div class="bk-stat-side bk-stat-side-intouch">
+      <div class="bk-stat-tag">
+        <svg width="14" height="14" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="8" fill="#D4A574"></rect>
+          <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"></path>
+        </svg>
+        InTouch
+      </div>
+      <div class="bk-stat-num">90 min</div>
+      <div class="bk-stat-sub">to a trust profile that<br>circles will refer to</div>
+    </div>
+  </div>
+
+  <div class="bk-mechs-intro">How we do it</div>
+
+  <div class="bk-mech-headers">
+    <div class="bk-mech-header bk-mech-header-bni">BNI · analog</div>
+    <div></div>
+    <div class="bk-mech-header bk-mech-header-intouch">
+      <span class="bk-mech-header-logo">
+        <svg width="14" height="14" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="4" y="4" width="40" height="40" rx="8" fill="#D4A574"></rect>
+          <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"></path>
+        </svg>
+      </span>
+      InTouch · digital
+    </div>
+  </div>
+
+  <div class="bk-mechs">
+    <div class="bk-mech-row">
+      <div class="bk-mech-bni">Show up weekly until the chapter feels you out</div>
+      <div class="bk-mech-arrow">→</div>
+      <div class="bk-mech-intouch"><strong>Member-to-member vouches</strong> from existing connections, based on past referral experience</div>
+    </div>
+    <div class="bk-mech-row">
+      <div class="bk-mech-bni">Casual word of mouth at breakfast</div>
+      <div class="bk-mech-arrow">→</div>
+      <div class="bk-mech-intouch"><strong>Customer testimonials</strong> uploaded directly into your circle</div>
+    </div>
+    <div class="bk-mech-row">
+      <div class="bk-mech-bni">Reputation stays inside one local chapter</div>
+      <div class="bk-mech-arrow">→</div>
+      <div class="bk-mech-intouch"><strong>The ledger</strong> — every referral and outcome tracked in a portable score, like a follower count for trust</div>
+    </div>
+  </div>
+
+  <div class="conclusion">BNI uses time. We use <span class="gold">signal.</span></div>
+  <div class="sources">Sources: Ivan Misner / BNI — founder's "90–200 hours before referrals flow" benchmark (5 Levels of a Referral); BNI Mid-Year Report 2025; InTouch product design</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>
