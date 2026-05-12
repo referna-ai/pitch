@@ -10,46 +10,59 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-13"] .slide-title { margin-bottom: 28px; }
-body[data-slide="slide-13"] .conclusion { margin-top: 28px; }
+body[data-slide="slide-13"] .slide-label { text-align: center; }
+body[data-slide="slide-13"] .slide-title { text-align: center; margin-bottom: 44px; }
+body[data-slide="slide-13"] .conclusion {
+  text-align: center;
+  border-top: none;
+  padding-top: 0;
+  margin-top: auto;
+  font-size: 28px;
+}
+body[data-slide="slide-13"] .conclusion::before { display: none; }
 
-.opp-items {
-  display: flex;
-  flex-direction: column;
+.opp-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
   flex: 1;
+  align-items: stretch;
 }
 
-.opp-item {
+.opp-pillar {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  padding: 20px 0 20px 28px;
-  border-left: 3px solid rgba(212, 165, 116, 0.35);
-  flex: 1;
+  align-items: center;
+  text-align: center;
+  padding: 36px 28px;
+  background: var(--black-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  gap: 16px;
   justify-content: center;
 }
 
-.opp-title {
+.opp-pillar-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 28px;
+  font-size: 26px;
   color: var(--white);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-.opp-desc {
+.opp-pillar-desc {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 18px;
-  line-height: 1.45;
+  line-height: 1.5;
   color: var(--gray);
 }
 
 @media (max-width: 820px) {
-  .opp-title { font-size: 22px; }
-  .opp-desc  { font-size: 16px; }
-  .opp-item  { padding: 20px 0 20px 20px; gap: 8px; }
+  .opp-pillars { grid-template-columns: 1fr; }
+  .opp-pillar-title { font-size: 22px; }
+  .opp-pillar-desc  { font-size: 16px; }
 }
 </style>
 </head>
@@ -63,27 +76,26 @@ body[data-slide="slide-13"] .conclusion { margin-top: 28px; }
   <div class="slide-label"></div>
   <h2 class="slide-title">Why this is a great opportunity</h2>
 
-  <div class="opp-items">
+  <div class="opp-pillars">
 
-    <div class="opp-item">
-      <div class="opp-title">Proven model.</div>
-      <div class="opp-desc">BNI runs the offline version at $26.4B/yr — 340K members.</div>
+    <div class="opp-pillar">
+      <div class="opp-pillar-title">Proven model.</div>
+      <div class="opp-pillar-desc">BNI runs the offline version at $26.4B/yr — 340K members.</div>
     </div>
 
-    <div class="opp-item">
-      <div class="opp-title">Fast growth.</div>
-      <div class="opp-desc">14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth.</div>
+    <div class="opp-pillar">
+      <div class="opp-pillar-title">Fast growth.</div>
+      <div class="opp-pillar-desc">14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth.</div>
     </div>
 
-    <div class="opp-item">
-      <div class="opp-title">Winning team.</div>
-      <div class="opp-desc">Two post-exit founders. Second startup together. 3.5 years of cohesion.</div>
+    <div class="opp-pillar">
+      <div class="opp-pillar-title">Winning team.</div>
+      <div class="opp-pillar-desc">Two post-exit founders. Second startup together. 3.5 years of cohesion.</div>
     </div>
 
   </div>
 
   <div class="conclusion"><strong>We're moving fast.</strong> Move with us.</div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025; InTouch product data (n=64)</div>
 </div>
 
 </div>
