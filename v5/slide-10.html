@@ -13,37 +13,70 @@
 body[data-slide="slide-10"] .slide-title { margin-bottom: 14px; }
 body[data-slide="slide-10"] .slide-subtitle { margin-bottom: 28px; }
 
-body[data-slide="slide-10"] .reasons-grid { gap: 18px; align-items: stretch; }
-body[data-slide="slide-10"] .reason-card { padding: 0; overflow: hidden; }
-body[data-slide="slide-10"] .reason-card-body {
-  padding: 22px 22px 24px;
+/* REASONS GRID — 3 cards with ribbon + stats */
+body[data-slide="slide-10"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+body[data-slide="slide-10"] .reason-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.reason-ribbon {
+  padding: 6px 18px;
+  background: rgba(212, 165, 116, 0.06);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: 7px 7px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(212, 165, 116, 0.6);
+}
+.reason-card-body {
+  padding: 16px 20px 18px;
   display: flex;
   flex-direction: column;
   gap: 12px;
-  height: 100%;
-}
-body[data-slide="slide-10"] .reason-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 44px;
-  line-height: 1;
-  color: var(--gold);
-  letter-spacing: -0.02em;
-  opacity: 0.85;
+  flex: 1;
 }
 body[data-slide="slide-10"] .reason-title {
-  font-size: 19px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
   line-height: 1.25;
 }
-body[data-slide="slide-10"] .reason-text {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--gray);
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
-body[data-slide="slide-10"] .reason-text strong {
+.reason-stat-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 4px;
+}
+body[data-slide="slide-10"] .reason-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-top: auto;
+}
+body[data-slide="slide-10"] .reason-desc strong {
   color: var(--white);
   font-weight: 600;
+  font-family: var(--font-display);
 }
 
 @media (max-width: 900px) {
@@ -60,40 +93,62 @@ body[data-slide="slide-10"] .reason-text strong {
 <div class="slide" id="slide-10">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Why we start here</h2>
+  <h2 class="slide-title">We can move fast in this segment</h2>
 
-  <p class="slide-subtitle">14 professionals founders hire after raising money · 131K independents · $6B/yr</p>
+  <p class="slide-subtitle">131K independents · 14 professions founders hire after raising · $6B/yr</p>
 
   <div class="reasons-grid">
 
     <div class="reason-card">
+      <div class="reason-ribbon">Small sample</div>
       <div class="reason-card-body">
-        <div class="reason-num">1</div>
-        <div class="reason-title">Top of the pyramid</div>
-        <div class="reason-text">Highest-income, highest-status independents. <strong>They are who the next segment sells to</strong> — and who every other segment wants as clients.</div>
+        <div class="reason-title">Weekly growth</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">14.8%</div>
+            <div class="reason-stat-label">W/W user growth</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
       </div>
     </div>
 
     <div class="reason-card">
+      <div class="reason-ribbon">Hundreds of emails</div>
       <div class="reason-card-body">
-        <div class="reason-num">2</div>
-        <div class="reason-title">Graduating demand</div>
-        <div class="reason-text">Funded founders progress seed → A → B → exit. The provider mix <strong>recomposes at each stage</strong> — one wedge opens a sequence of circles.</div>
+        <div class="reason-title">Cold email → onboarded</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">6.7%</div>
+            <div class="reason-stat-label">of emails reach onboarded</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
       </div>
     </div>
 
     <div class="reason-card">
+      <div class="reason-ribbon">Tiny sample — early signal</div>
       <div class="reason-card-body">
-        <div class="reason-num">3</div>
-        <div class="reason-title">Built to be acquired</div>
-        <div class="reason-text">LinkedIn-native, tech-comfortable, <strong>publicly trackable</strong> — every funding round is a customer-demand signal. The easiest segment to onboard.</div>
+        <div class="reason-title">Virality</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">3.5</div>
+            <div class="reason-stat-label">invites / user</div>
+          </div>
+          <div class="reason-stat">
+            <div class="reason-stat-num">29%</div>
+            <div class="reason-stat-label">acceptance</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
       </div>
     </div>
 
   </div>
 
-  <div class="conclusion">Win the top first — <strong>every adjacent segment wants in.</strong></div>
-  <div class="sources">Sources: BLS occupational wage data; segment sizing (slide 8)</div>
+  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
 </div>
 
 </div>
