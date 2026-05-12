@@ -61,6 +61,9 @@
     const tooShort = window.innerHeight < 500;
     const scale = tooShort ? 1 : Math.min(1, (window.innerHeight - 90) / 738);
     slide.style.setProperty('--slide-scale', scale);
+    // Force a reflow so the transform is fully computed before we flip
+    // visibility from hidden to visible — prevents a one-frame size flash.
+    void slide.offsetHeight;
     slide.classList.add('scaled');
   }
   window.PITCH_APPLY_SCALE = applyScale;
@@ -278,14 +281,29 @@
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
       makeIndicators(true, true);
-      window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
+      revealSlide();
       return;
     }
-    if (idx < 0) { window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE(); return; }
+    if (idx < 0) { revealSlide(); return; }
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
     makeIndicators(idx > 0, idx < slideFiles.length - 1);
-    window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
+    revealSlide();
+  }
+
+  // Defer the scale+reveal until fonts are ready so there's no FOUT-caused
+  // layout shift. A 100ms timeout fires first if fonts take longer than that.
+  function revealSlide() {
+    var done = false;
+    function go() {
+      if (done) return;
+      done = true;
+      window.PITCH_APPLY_SCALE && window.PITCH_APPLY_SCALE();
+    }
+    setTimeout(go, 100);
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(go);
+    }
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
