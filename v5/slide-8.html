@@ -366,7 +366,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   // Phones get the stacked layout — no animation.
   if (matchMedia('(max-width: 560px)').matches) return;
 
-  const SPEED_PX_PER_SEC = 120; // 2x the marquee speed (was effectively ~58 px/s)
+  const SPEED_PX_PER_SEC = 180; // 3x the original marquee speed (~58 px/s)
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const settle = () => {
