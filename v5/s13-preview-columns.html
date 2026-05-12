@@ -3,27 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S13 · Opportunity — InTouch Pitch</title>
+<title>S13 Preview — Columns</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-13"] .slide {
-  background: var(--black);
-  justify-content: center;
-}
-body[data-slide="slide-13"] .slide-label { display: none; }
+/* Cover-style overrides */
+body[data-slide="slide-13"] .slide { background: var(--black); }
+body[data-slide="slide-13"] .slide-label { text-align: center; }
 body[data-slide="slide-13"] .slide-title {
   text-align: center;
-  margin-bottom: 64px;
+  margin-bottom: 56px;
 }
 body[data-slide="slide-13"] .conclusion {
   text-align: center;
   border-top: none;
   padding-top: 0;
-  margin-top: 64px;
+  margin-top: auto;
   font-size: 28px;
 }
 body[data-slide="slide-13"] .conclusion::before { display: none; }
@@ -32,7 +30,8 @@ body[data-slide="slide-13"] .conclusion::before { display: none; }
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 48px;
-  align-items: start;
+  flex: 1;
+  align-items: center;
 }
 
 .opp-col {
@@ -74,9 +73,7 @@ body[data-slide="slide-13"] .conclusion::before { display: none; }
 </head>
 <body data-slide="slide-13">
 
-
 <div class="deck">
-
 <div class="slide" id="slide-13">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
@@ -106,9 +103,7 @@ body[data-slide="slide-13"] .conclusion::before { display: none; }
 
   <div class="conclusion"><strong>We're moving fast.</strong> Move with us.</div>
 </div>
-
 </div>
-
 
 <script src="nav.js"></script>
 </body>
