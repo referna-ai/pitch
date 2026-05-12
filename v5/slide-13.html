@@ -10,59 +10,62 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
+body[data-slide="slide-13"] .slide { background: var(--black); }
 body[data-slide="slide-13"] .slide-label { text-align: center; }
-body[data-slide="slide-13"] .slide-title { text-align: center; margin-bottom: 44px; }
+body[data-slide="slide-13"] .slide-title {
+  text-align: center;
+  margin-bottom: 36px;
+}
 body[data-slide="slide-13"] .conclusion {
   text-align: center;
   border-top: none;
   padding-top: 0;
-  margin-top: auto;
+  margin-top: 36px;
   font-size: 28px;
 }
 body[data-slide="slide-13"] .conclusion::before { display: none; }
 
-.opp-pillars {
+.opp-cols {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  flex: 1;
-  align-items: stretch;
+  gap: 48px;
+  align-items: start;
 }
 
-.opp-pillar {
+.opp-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 36px 28px;
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 12px;
   gap: 16px;
-  justify-content: center;
 }
 
-.opp-pillar-title {
+.opp-col-rule {
+  width: 44px;
+  height: 2px;
+  background: var(--gold);
+  flex-shrink: 0;
+}
+
+.opp-col-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 26px;
+  font-size: 28px;
   color: var(--white);
   letter-spacing: -0.02em;
   line-height: 1.1;
 }
 
-.opp-pillar-desc {
+.opp-col-desc {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 18px;
-  line-height: 1.5;
+  line-height: 1.55;
   color: var(--gray);
 }
 
 @media (max-width: 820px) {
-  .opp-pillars { grid-template-columns: 1fr; }
-  .opp-pillar-title { font-size: 22px; }
-  .opp-pillar-desc  { font-size: 16px; }
+  .opp-cols { grid-template-columns: 1fr; gap: 32px; }
 }
 </style>
 </head>
@@ -76,21 +79,24 @@ body[data-slide="slide-13"] .conclusion::before { display: none; }
   <div class="slide-label"></div>
   <h2 class="slide-title">Why this is a great opportunity</h2>
 
-  <div class="opp-pillars">
+  <div class="opp-cols">
 
-    <div class="opp-pillar">
-      <div class="opp-pillar-title">Proven model.</div>
-      <div class="opp-pillar-desc">BNI runs the offline version at $26.4B/yr — 340K members.</div>
+    <div class="opp-col">
+      <div class="opp-col-rule"></div>
+      <div class="opp-col-title">Proven model.</div>
+      <div class="opp-col-desc">BNI runs the offline version at $26.4B/yr — 340K members.</div>
     </div>
 
-    <div class="opp-pillar">
-      <div class="opp-pillar-title">Fast growth.</div>
-      <div class="opp-pillar-desc">14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth.</div>
+    <div class="opp-col">
+      <div class="opp-col-rule"></div>
+      <div class="opp-col-title">Fast growth.</div>
+      <div class="opp-col-desc">14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth.</div>
     </div>
 
-    <div class="opp-pillar">
-      <div class="opp-pillar-title">Winning team.</div>
-      <div class="opp-pillar-desc">Two post-exit founders. Second startup together. 3.5 years of cohesion.</div>
+    <div class="opp-col">
+      <div class="opp-col-rule"></div>
+      <div class="opp-col-title">Winning team.</div>
+      <div class="opp-col-desc">Two post-exit founders. Second startup together. 3.5 years of cohesion.</div>
     </div>
 
   </div>
