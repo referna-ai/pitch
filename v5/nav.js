@@ -16,7 +16,7 @@
     { file: 'slide-10.html', title: 'GTM' },
     { file: 'slide-11.html', title: 'Traction' },
     { file: 'slide-12.html', title: 'Round' },
-    { file: 'slide-13.html', title: 'Why we win' }
+    { file: 'slide-13.html', title: 'Opportunity' }
   ];
   window.PITCH_SLIDES = SLIDES;
 
