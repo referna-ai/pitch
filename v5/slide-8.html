@@ -3,319 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S9 · Market — InTouch Pitch</title>
+<title>S8 · Precedent — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-8"] .slide-title { margin-bottom: 10px; }
+body[data-slide="slide-8"] .slide-title .gold { color: var(--gold); }
+body[data-slide="slide-8"] .bni-subtitle { font-family: var(--font-body); font-size: 18px; line-height: 1.55; color: var(--gray); max-width: 820px; margin: 6px 0 28px; }
 
-/* OUTER box: 130M Global */
-.box-global {
+body[data-slide="slide-8"] .bni-cheatsheet {
+  background: var(--black-soft);
   border: 1px solid var(--border);
-  border-radius: 16px;
-  background: rgba(212, 165, 116, 0.025);
-  padding: 22px 24px 24px;
+  border-radius: 8px;
+  padding: 4px 28px;
+  margin-bottom: 24px;
 }
-
-/* INNER box: 9.26M US */
-.box-us {
-  margin: 18px auto 0;
-  width: 96%;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgba(212, 165, 116, 0.05);
-  padding: 18px 22px 20px;
-}
-
-/* Single-line headline pattern (used by both boxes) */
-.line {
-  display: flex;
+body[data-slide="slide-8"] .bni-cheat-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
   align-items: baseline;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: nowrap;
 }
-
-.line-main {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  min-width: 0;
-}
-
-.big-num {
+body[data-slide="slide-8"] .bni-cheat-row:last-child { border-bottom: none; }
+body[data-slide="slide-8"] .bni-cheat-label {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 42px;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.box-us .big-num { font-size: 32px; }
-
-.line-text {
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--gray);
-  line-height: 1.3;
-}
-
-.box-us .line-text { font-size: 15px; }
-
-.line-tag {
-  font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.08em;
-  color: var(--gray);
   text-transform: uppercase;
-  flex-shrink: 0;
-  text-align: right;
-  line-height: 1.45;
+  color: var(--gold);
 }
-.line-tag .tag-num { color: var(--gold); }
-.line-tag .tag-sub {
-  display: block;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
-  color: var(--gray-dark);
+body[data-slide="slide-8"] .bni-cheat-value {
+  font-family: var(--font-display);
+  font-size: 18px;
+  color: var(--white);
+  line-height: 1.4;
 }
 
-/* Carousel — one-shot drift that comes to rest on the featured (Startup) card */
-.segments-carousel {
-  position: relative;
-  margin-top: 16px;
-  overflow: hidden;
-  border-radius: 8px;
-  padding: 12px 0 4px;
+body[data-slide="slide-8"] .bni-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 14px;
 }
-
-.segments-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  /* transform + transition are applied by inline script after layout */
-}
-
-.segment-box {
-  position: relative;
-  flex: 0 0 240px;
-  margin-right: 12px;
+body[data-slide="slide-8"] .bni-metric {
   background: var(--black-soft);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 14px 16px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  min-height: 132px;
+  padding: 14px 16px;
+  text-align: center;
 }
-
-.segment-box.featured {
-  border: 1.5px solid var(--gold);
-  background: rgba(212, 165, 116, 0.08);
+body[data-slide="slide-8"] .bni-metric-highlight {
+  background: rgba(212, 165, 116, 0.06);
+  border-color: rgba(212, 165, 116, 0.5);
 }
-
-.card-logo {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  height: 22px;
-  padding: 0 10px;
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 1;
-  box-sizing: border-box;
-}
-.card-logo img {
-  height: 11px;
-  width: auto;
-  display: block;
-  filter: brightness(0) invert(1);
-}
-.segment-box.featured .card-logo {
-  border-color: var(--gold);
-  height: 26px;
-  padding: 0 12px 0 6px;
-  top: -13px;
-}
-.segment-box.featured .card-logo svg {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.segment-box.featured .card-logo .it-text {
+body[data-slide="slide-8"] .bni-metric-num {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 14px;
+  font-size: 26px;
+  letter-spacing: -0.02em;
   color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1;
+  margin-bottom: 4px;
 }
-
-.segment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.segment-name {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--white);
-  letter-spacing: -0.005em;
-  line-height: 1.2;
-}
-
-.segment-count {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--gold);
-  white-space: nowrap;
-}
-
-.segment-vendors {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--gray);
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.segment-vendors li::before {
-  content: "·  ";
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.segment-more {
+body[data-slide="slide-8"] .bni-metric-num.gold { color: var(--gold); }
+body[data-slide="slide-8"] .bni-metric-label {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 14px;
-  color: var(--gray-dark);
-  margin-top: auto;
-  padding-right: 56px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  color: var(--gray-mid);
+  line-height: 1.4;
 }
 
-/* Cards with no "+N more" still pin the number to the bottom-right */
-.segment-box:not(:has(.segment-more)) .segment-num { margin-top: auto; }
-
-.segment-num {
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: var(--gold);
-  opacity: 0.55;
-}
-
-.segment-box.featured .segment-num { opacity: 0.9; }
-
-/* Edge fades — solid color matches the box-us bg over the slide bg */
-.segments-carousel::before,
-.segments-carousel::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 90px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.segments-carousel::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    #1B1816 0%,
-    rgba(27, 24, 22, 0.85) 40%,
-    rgba(27, 24, 22, 0) 100%
-  );
-}
-
-.segments-carousel::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    #1B1816 0%,
-    rgba(27, 24, 22, 0.85) 40%,
-    rgba(27, 24, 22, 0) 100%
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .segments-carousel { overflow-x: auto; }
-}
-
-@media (max-width: 760px) {
-  .big-num { font-size: 32px; }
-  .box-us .big-num { font-size: 26px; }
-  .segment-box { flex: 0 0 220px; }
-}
-
-/* Phone: stack cards full-width and drop the horizontal carousel */
-@media (max-width: 560px) {
-  body[data-slide="slide-8"] .slide {
-    height: auto;
-    padding: 28px 18px 24px;
-  }
-
-  .box-global { padding: 16px 14px 18px; border-radius: 12px; }
-  .box-us {
-    width: 100%;
-    margin-top: 14px;
-    padding: 14px 14px 16px;
-    border-radius: 10px;
-  }
-
-  .line { flex-wrap: wrap; row-gap: 6px; }
-  .line-tag { margin-left: 0; }
-
-  .big-num { font-size: 28px; }
-  .box-us .big-num { font-size: 24px; }
-  .line-text { font-size: 14px; }
-  .box-us .line-text { font-size: 14px; }
-
-  .segments-carousel { overflow: visible; padding: 0; margin-top: 14px; }
-  .segments-carousel::before,
-  .segments-carousel::after { display: none; }
-  .segments-track {
-    flex-direction: column;
-    width: 100%;
-  }
-  .segment-box {
-    flex: 0 0 auto;
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
-    min-height: 0;
-    padding: 12px 14px;
-  }
-  .card-logo { top: -8px; right: 10px; }
-  .segment-box.featured .card-logo { top: -11px; }
+@media (max-width: 720px) {
+  body[data-slide="slide-8"] .bni-cheat-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
+  body[data-slide="slide-8"] .bni-metrics { grid-template-columns: repeat(2, 1fr); }
 }
 </style>
 </head>
@@ -327,98 +94,53 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Millions of independents are struggling</h2>
+  <h2 class="slide-title">BNI did <span class="gold">$26.4B</span> in referrals last year</h2>
+  <p class="bni-subtitle">The world's largest referral network for independent professionals.  But the model is constrained by manual matching and weekly in-person meetings.</p>
 
-  <!-- OUTER: 130M Global -->
-  <div class="box-global">
-    <div class="line">
-      <div class="line-main">
-        <span class="big-num">~130M</span>
-        <span class="line-text">independent professionals worldwide</span>
-      </div>
+  <div class="bni-cheatsheet">
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">BNI's customer</div>
+      <div class="bni-cheat-value">Independent professionals</div>
     </div>
-
-    <!-- INNER: 9.26M US -->
-    <div class="box-us">
-      <div class="line">
-        <div class="line-main">
-          <span class="big-num">9.26M</span>
-          <span class="line-text">in the US, across 21 segments</span>
-        </div>
-        <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
-      </div>
-
-      <!-- Carousel: drifts once and comes to rest centered on the featured (Startup) card -->
-      <div class="segments-carousel" aria-label="21 ICP segments">
-        <div class="segments-track">
-
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Wedding circles</div><div class="segment-count">813K</div></div><ul class="segment-vendors"><li>Wedding planner</li><li>Photographer</li><li>Florist</li></ul><div class="segment-more">+ 12 more</div><div class="segment-num">01 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">New-parent circles</div><div class="segment-count">130K</div></div><ul class="segment-vendors"><li>Pediatrician</li><li>Lactation consultant</li><li>Sleep coach</li></ul><div class="segment-more">+ 8 more</div><div class="segment-num">02 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Home-buyer circles</div><div class="segment-count">1.36M</div></div><ul class="segment-vendors"><li>Realtor</li><li>Mortgage broker</li><li>Home inspector</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">03 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Custom-build circles</div><div class="segment-count">1.03M</div></div><ul class="segment-vendors"><li>Architect</li><li>General contractor</li><li>Landscape designer</li></ul><div class="segment-more">+ 14 more</div><div class="segment-num">04 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Renovation circles</div><div class="segment-count">117K</div></div><ul class="segment-vendors"><li>Interior designer</li><li>Kitchen/bath</li><li>General contractor</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">05 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Divorce circles</div><div class="segment-count">86K</div></div><ul class="segment-vendors"><li>Family lawyer</li><li>Mediator</li><li>Financial planner (CDFA)</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">06 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Fertility circles</div><div class="segment-count">11K</div></div><ul class="segment-vendors"><li>Fertility clinic</li><li>Acupuncturist</li><li>Nutritionist</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">07 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Relocation circles</div><div class="segment-count">52K</div></div><ul class="segment-vendors"><li>Immigration lawyer</li><li>Cross-border tax</li><li>Relocation realtor</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">08 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">College-prep circles</div><div class="segment-count">118K</div></div><ul class="segment-vendors"><li>College counselor</li><li>Test prep tutor</li><li>Teen therapist</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">09 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Estate circles</div><div class="segment-count">102K</div></div><ul class="segment-vendors"><li>Estate lawyer</li><li>Estate accountant</li><li>Grief therapist</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">10 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Downsizer circles</div><div class="segment-count">68K</div></div><ul class="segment-vendors"><li>Retirement planner</li><li>Professional organizer</li><li>Downsizing consultant</li></ul><div class="segment-num">11 / 21</div></div>
-          <div class="segment-box featured"><div class="card-logo card-logo-intouch"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/><path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/></svg><span class="it-text">InTouch</span></div><div class="segment-header"><div class="segment-name">Startup circles</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div><div class="segment-num">12 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Scale-up circles</div><div class="segment-count">53K</div></div><ul class="segment-vendors"><li>Executive search</li><li>CRE broker</li><li>Complex tax advisor</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">13 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Executive-onboarding circles</div><div class="segment-count">34K</div></div><ul class="segment-vendors"><li>Leadership consultant</li><li>Comms coach</li><li>Board advisor</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">14 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Wealth-event circles</div><div class="segment-count">182K</div></div><ul class="segment-vendors"><li>Wealth manager</li><li>Luxury realtor</li><li>Estate planner</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">15 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Pre-IPO circles</div><div class="segment-count">4K</div></div><ul class="segment-vendors"><li>RSU/QSBS specialist</li><li>Secondary market broker</li></ul><div class="segment-num">16 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Career-transition circles</div><div class="segment-count">10K</div></div><ul class="segment-vendors"><li>Executive career coach</li><li>Outplacement firm</li></ul><div class="segment-num">17 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Solopreneur circles</div><div class="segment-count">180K</div></div><ul class="segment-vendors"><li>Small-business lawyer</li><li>Bookkeeper</li></ul><div class="segment-num">18 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Franchise circles</div><div class="segment-count">5K</div></div><ul class="segment-vendors"><li>Franchise lawyer</li><li>Franchise accountant</li></ul><div class="segment-num">19 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">RE-investor circles</div><div class="segment-count">58K</div></div><ul class="segment-vendors"><li>Property manager</li><li>Title company</li><li>Hard-money lender</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">20 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">First-time-leader circles</div><div class="segment-count">26K</div></div><ul class="segment-vendors"><li>Content agency</li><li>Performance agency</li><li>Sales training</li></ul><div class="segment-num">21 / 21</div></div>
-
-        </div>
-      </div>
-
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">Value to customers</div>
+      <div class="bni-cheat-value">Referrals from trusted peers</div>
+    </div>
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">How BNI works</div>
+      <div class="bni-cheat-value">Members meet weekly for breakfast to refer business to each other</div>
+    </div>
+    <div class="bni-cheat-row">
+      <div class="bni-cheat-label">BNI's segments</div>
+      <div class="bni-cheat-value">Home-buyer · Wedding · Divorce · Estate · Solopreneur circles</div>
     </div>
   </div>
 
-  <div class="conclusion">For millions of people — <strong>finding the next customer is problem #1.</strong></div>
-  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), InTouch market analysis</div>
+  <div class="bni-metrics">
+    <div class="bni-metric bni-metric-highlight">
+      <div class="bni-metric-num gold">$26.4B</div>
+      <div class="bni-metric-label">in member-generated referrals</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">340K</div>
+      <div class="bni-metric-label">members · 11K chapters</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">~$800</div>
+      <div class="bni-metric-label">annual membership fee</div>
+    </div>
+    <div class="bni-metric">
+      <div class="bni-metric-num">$65K</div>
+      <div class="bni-metric-label">referred business per member / year</div>
+    </div>
+  </div>
+
+  <div class="conclusion">BNI proved <strong>5 of our 21 ICPs</strong> work — entirely offline.</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025; bni.com; BNI US membership fees ($575–$849/yr, 1-year participation)</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
-<script>
-(() => {
-  const carousel = document.querySelector('.segments-carousel');
-  const track = carousel && carousel.querySelector('.segments-track');
-  const featured = track && track.querySelector('.segment-box.featured');
-  if (!carousel || !track || !featured) return;
-
-  // Phones get the stacked layout — no animation.
-  if (matchMedia('(max-width: 560px)').matches) return;
-
-  const SPEED_PX_PER_SEC = 180; // 3x the original marquee speed (~58 px/s)
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const settle = () => {
-    const carouselW = carousel.clientWidth;
-    const featuredCenter = featured.offsetLeft + featured.offsetWidth / 2;
-    const target = Math.round((carouselW / 2) - featuredCenter);
-    const distance = Math.max(0, -target);
-    const duration = reducedMotion ? 0 : Math.max(4, distance / SPEED_PX_PER_SEC);
-
-    track.style.transition = `transform ${duration}s linear`;
-    requestAnimationFrame(() => {
-      track.style.transform = `translateX(${target}px)`;
-    });
-  };
-
-  if (document.readyState === 'complete') {
-    requestAnimationFrame(settle);
-  } else {
-    window.addEventListener('load', () => requestAnimationFrame(settle));
-  }
-})();
-</script>
 </body>
 </html>
