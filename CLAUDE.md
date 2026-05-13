@@ -5,7 +5,7 @@ Before giving a PR link at the end of any task:
 1. Check whether the last PR on this repo is already merged: `gh pr list --state merged --limit 1` or `gh pr view <number> --json state`
 2. If the previous PR was merged, pull main first (`git checkout main && git pull origin main`), then create a new branch and open a fresh PR for the current work
 3. Always give the PR link at the end of the response
-4. Always give the Cloudflare Pages preview link too. The bot posts it as a PR comment shortly after the push (look for `cloudflare-workers-and-pages[bot]`); the per-branch URL pattern is `https://<branch-slug>.intouch-short-deck.pages.dev`. When the task touches a specific slide, append the slide slug: e.g. `https://<branch-slug>.intouch-short-deck.pages.dev/v4/slide-2`. If the comment hasn't shown up yet, poll PR comments until it does (or note that the preview is still building).
+4. Always give the Cloudflare Pages preview link too. **Never guess the slug** — always read the bot's actual `Branch Preview URL` from the `cloudflare-workers-and-pages[bot]` PR comment. If the comment hasn't appeared yet, poll PR comments until it does (or note that the preview is still building) — do not synthesize a URL from the branch name. Once you have it, append the slide path when relevant: e.g. `https://<bot-slug>.intouch-short-deck.pages.dev/v4/slide-2`. Reason: Cloudflare truncates the branch slug to 28 characters and lowercases it, so naive `claude/update-team-slide-5HDPY` → `claude-update-team-slide-5hdpy` is wrong (real slug is `claude-update-team-slide-5hd`). The truncation point isn't always predictable, so always copy from the bot.
 
 ## Branch naming
 Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
