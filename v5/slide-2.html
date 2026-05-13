@@ -26,14 +26,22 @@
 .problem-statement { font-family: var(--font-display); font-weight: 800; font-size: 64px; letter-spacing: -0.035em; line-height: 1; color: var(--white); }
 .problem-statement .gold-period { color: var(--gold); }
 
+.quote-row { display: grid; grid-template-columns: 1fr auto 1fr; gap: 32px; align-items: center; }
 .quote { border-left: 2px solid var(--gold); padding: 6px 22px; }
 .quote-text { font-family: var(--font-body); font-size: 19px; font-style: italic; color: var(--white); line-height: 1.5; margin-bottom: 6px; letter-spacing: -0.005em; }
 .quote-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-dark); letter-spacing: 0.04em; }
+.quote-divider { width: 1px; height: 64px; background: var(--border); }
+.pillar { text-align: left; padding: 6px 22px; border-left: 2px solid var(--gold); }
+.pillar-num { font-family: var(--font-display); font-weight: 800; font-size: 36px; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
+.pillar-num strong { color: var(--gold); font-weight: 800; }
+.pillar-label { font-family: var(--font-display); font-size: 15px; color: var(--gray); line-height: 1.4; }
 
 @media (max-width: 760px) {
   .problem-statement { font-size: 40px; }
   .identity-strip { grid-template-columns: auto 1fr; gap: 18px; }
   .id-revenue { grid-column: 1 / -1; text-align: left; padding-left: 0; padding-top: 14px; border-left: 0; border-top: 1px solid var(--border); }
+  .quote-row { grid-template-columns: 1fr; gap: 20px; }
+  .quote-divider { display: none; }
 }
 </style>
 </head>
@@ -65,12 +73,19 @@
     <div class="problem-statement">Getting the next customer<span class="gold-period">.</span></div>
   </div>
 
-  <div class="quote">
-    <div class="quote-text">"That's my #1 problem — isn't it everyone's top one?"</div>
-    <div class="quote-attr">Ami B. · April 2026</div>
+  <div class="quote-row">
+    <div class="quote">
+      <div class="quote-text">"That's my #1 problem — isn't it everyone's top one?"</div>
+      <div class="quote-attr">Ami B. · April 2026</div>
+    </div>
+    <div class="quote-divider"></div>
+    <div class="pillar">
+      <div class="pillar-num"><strong>24 of 26</strong></div>
+      <div class="pillar-label">independent professionals interviewed<br>agreed with Ami</div>
+    </div>
   </div>
 
-  <div class="conclusion">One profession. One customer type. <strong>One problem that matters.</strong></div>
+  <div class="conclusion">For independent professionals like Ami — <strong>getting the next customer is the top problem.</strong></div>
   <div class="sources">Source: Ami B. interview (Apr 2026)</div>
 </div>
 
