@@ -26,14 +26,11 @@
 .problem-statement { font-family: var(--font-display); font-weight: 800; font-size: 64px; letter-spacing: -0.035em; line-height: 1; color: var(--white); }
 .problem-statement .gold-period { color: var(--gold); }
 
-.quote-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; }
-.quote { border-left: 2px solid var(--gold); padding: 6px 22px; }
-.quote-text { font-family: var(--font-body); font-size: 19px; font-style: italic; color: var(--white); line-height: 1.5; margin-bottom: 6px; letter-spacing: -0.005em; }
-.quote-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-dark); letter-spacing: 0.04em; }
-.pillar { text-align: left; padding: 6px 22px; border-left: 2px solid var(--gold); }
-.pillar-num { font-family: var(--font-display); font-weight: 800; font-size: 36px; color: var(--white); letter-spacing: -0.02em; line-height: 1; margin-bottom: 8px; }
-.pillar-num strong { color: var(--gold); font-weight: 800; }
-.pillar-label { font-family: var(--font-display); font-size: 15px; color: var(--gray); line-height: 1.4; }
+.quote-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; }
+.quote, .pillar { border-left: 2px solid var(--gold); padding: 6px 22px; display: flex; flex-direction: column; justify-content: center; }
+.quote-text, .pillar-text { font-family: var(--font-body); font-size: 19px; font-style: italic; color: var(--white); line-height: 1.5; margin-bottom: 8px; letter-spacing: -0.005em; }
+.pillar-text strong { color: var(--gold); font-style: normal; font-weight: 700; }
+.quote-attr, .pillar-attr { font-family: var(--font-display); font-size: 14px; color: var(--gray-dark); letter-spacing: 0.04em; }
 
 @media (max-width: 760px) {
   .problem-statement { font-size: 40px; }
@@ -77,8 +74,8 @@
       <div class="quote-attr">Ami B. · April 2026</div>
     </div>
     <div class="pillar">
-      <div class="pillar-num"><strong>24 of 26</strong></div>
-      <div class="pillar-label">independent professionals interviewed<br>agreed with Ami</div>
+      <div class="pillar-text"><strong>24 of 26</strong> independent professionals interviewed agreed with Ami.</div>
+      <div class="pillar-attr">InTouch interviews · April 2026</div>
     </div>
   </div>
 
