@@ -72,10 +72,19 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.08em;
-  color: var(--gold);
+  color: var(--gray);
   text-transform: uppercase;
-  white-space: nowrap;
   flex-shrink: 0;
+  text-align: right;
+  line-height: 1.45;
+}
+.line-tag .tag-num { color: var(--gold); }
+.line-tag .tag-sub {
+  display: block;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+  color: var(--gray-dark);
 }
 
 /* Carousel — one-shot drift that comes to rest on the featured (Startup) card */
@@ -336,7 +345,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
           <span class="big-num">9.26M</span>
           <span class="line-text">in the US, across 21 segments</span>
         </div>
-        <div class="line-tag">$926B referral market volume (math: ~$100K per professional)</div>
+        <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
       </div>
 
       <!-- Carousel: drifts once and comes to rest centered on the featured (Startup) card -->
