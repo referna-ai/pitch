@@ -6,8 +6,6 @@
     { file: 'index.html',    title: 'Overview' },
     { file: 'slide-1.html',  title: 'Executive summary' },
     { file: 'slide-2.html',  title: 'Customer' },
-    { file: 'slide-3.html',  title: 'Problem' },
-    { file: 'slide-4.html',  title: 'Insight' },
     { file: 'slide-5.html',  title: 'Solution' },
     { file: 'slide-6.html',  title: 'Product' },
     { file: 'slide-7.html',  title: 'Team' },
