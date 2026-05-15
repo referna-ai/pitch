@@ -31,6 +31,7 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   align-items: center;
   justify-content: center;
   min-height: 0;
+  overflow: hidden;
 }
 .carousel-scene {
   width: 1100px;
@@ -40,23 +41,6 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   perspective-origin: 50% 50%;
   position: relative;
 }
-.carousel-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 0;
-  height: 0;
-  transform-style: preserve-3d;
-  transform: rotateY(40deg);
-  opacity: 0;
-  animation: ring-enter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
-}
-@keyframes ring-enter {
-  from { opacity: 0; transform: rotateY(52deg); }
-  to   { opacity: 1; transform: rotateY(40deg); }
-}
-.carousel-ring.is-rotating { will-change: transform; }
-
 .carousel-glow {
   position: absolute;
   left: 50%;
@@ -67,6 +51,21 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   background: radial-gradient(ellipse, rgba(212, 165, 116, 0.10) 0%, rgba(212, 165, 116, 0) 70%);
   pointer-events: none;
   z-index: 0;
+}
+.carousel-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform-style: preserve-3d;
+  animation: ring-show 4.2s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+}
+@keyframes ring-show {
+  0%   { transform: rotateY(52deg); opacity: 0; }
+  18%  { transform: rotateY(40deg); opacity: 1; }
+  38%  { transform: rotateY(40deg); opacity: 1; }
+  100% { transform: rotateY(0deg);  opacity: 1; }
 }
 
 .carousel-card {
@@ -84,7 +83,13 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   transform: rotateY(var(--angle)) translateZ(440px);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
   opacity: 0;
-  will-change: opacity;
+  animation: card-show 4.2s cubic-bezier(0.4, 0, 0.2, 1) 0.25s both;
+}
+@keyframes card-show {
+  0%   { opacity: 0; }
+  18%  { opacity: var(--o-start, 1); }
+  38%  { opacity: var(--o-start, 1); }
+  100% { opacity: var(--o-end, 1); }
 }
 
 .carousel-card.ami {
@@ -195,8 +200,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   margin-top: 4px;
 }
 .ami-avatar {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 1.5px solid var(--gold);
   overflow: hidden;
@@ -230,10 +235,19 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   <div class="carousel-area">
     <div class="carousel-scene">
       <div class="carousel-glow"></div>
-      <div class="carousel-ring" id="carouselRing">
+      <div class="carousel-ring">
 
-        <!-- Executive Coach: starts mid-left (world -40), exits off-screen left -->
-        <div class="carousel-card" style="--angle:-80deg">
+        <!--
+          Card seats are fixed positions on the 3D ring. Ring starts at rotateY(40deg)
+          so Startup Lawyer (seat -40) is at world 0 (center) with Executive Coach
+          and Fractional CFO visible on its left. Ring then rotates to rotateY(0deg)
+          so Ami (seat 0) becomes center, with the reference 7-card arc filled out.
+          --o-start / --o-end opacity values track each card's depth at the two
+          endpoints (front=1.0, near=0.96, mid=0.84, far=0.66, off-screen=0).
+        -->
+
+        <!-- Executive Coach (left, fades off-screen): seat -80, world -40 → -80 -->
+        <div class="carousel-card" style="--angle:-80deg; --o-start:0.84; --o-end:0">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -257,8 +271,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- Fractional CFO: starts near-left (world -20), ends far-left (world -60) -->
-        <div class="carousel-card" style="--angle:-60deg">
+        <!-- Fractional CFO: seat -60, world -20 → -60 -->
+        <div class="carousel-card" style="--angle:-60deg; --o-start:0.96; --o-end:0.66">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -282,8 +296,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- Startup Lawyer: starts as center (world 0), ends mid-left (world -40) -->
-        <div class="carousel-card" style="--angle:-40deg">
+        <!-- Startup Lawyer: seat -40, world 0 (initial CENTER) → -40 -->
+        <div class="carousel-card" style="--angle:-40deg; --o-start:1; --o-end:0.84">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -307,8 +321,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- Fractional CRO: starts near-right (world +20), ends near-left (world -20) -->
-        <div class="carousel-card" style="--angle:-20deg">
+        <!-- Fractional CRO: seat -20, world +20 → -20 -->
+        <div class="carousel-card" style="--angle:-20deg; --o-start:0.96; --o-end:0.96">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -332,8 +346,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- Ami: starts mid-right (world +40), ends center (world 0) -->
-        <div class="carousel-card ami" style="--angle:0deg">
+        <!-- Ami: seat 0, world +40 → 0 (final CENTER) -->
+        <div class="carousel-card ami" style="--angle:0deg; --o-start:0.84; --o-end:1">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -355,8 +369,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- PR Agent: starts far-right (world +60), ends near-right (world +20) -->
-        <div class="carousel-card" style="--angle:20deg">
+        <!-- PR Agent: seat +20, world +60 → +20 -->
+        <div class="carousel-card" style="--angle:20deg; --o-start:0.66; --o-end:0.96">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -380,8 +394,8 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
-        <!-- Recruiter: starts off-screen right (world +80), ends mid-right (world +40) -->
-        <div class="carousel-card" style="--angle:40deg">
+        <!-- Recruiter: seat +40, world +80 (off-screen) → +40 (slides in from right) -->
+        <div class="carousel-card" style="--angle:40deg; --o-start:0; --o-end:0.84">
           <div class="card-flow card-flow-top">
             <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
             <div class="flow-text">
@@ -405,6 +419,31 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
           </div>
         </div>
 
+        <!-- Executive Coach wrap-around: seat +60, world +100 → +60 (re-appears on the right, closing the circle) -->
+        <div class="carousel-card" style="--angle:60deg; --o-start:0; --o-end:0.66">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Recruiter</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>
+            </div>
+            <div class="card-profession">Executive Coach</div>
+            <div class="card-context">develops the new VP</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Fractional CFO</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -415,70 +454,6 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
 
 </div>
 
-<script>
-(function () {
-  var ring = document.getElementById('carouselRing');
-  if (!ring) return;
-  var cards = ring.querySelectorAll('.carousel-card');
-
-  // Opacity falls off smoothly with distance from the viewer's center (world angle 0).
-  function opacityFor(worldAngle) {
-    var a = Math.abs(worldAngle);
-    if (a <= 60) return 1 - (a / 60) * 0.34;        // 1.0 at center → 0.66 at ±60
-    if (a <= 80) return 0.66 - ((a - 60) / 20) * 0.66; // fade to 0 by ±80
-    return 0;
-  }
-
-  // Each card's --angle is its fixed seat on the ring. Initial ring rotation is +40
-  // (so Startup Lawyer's seat at --angle:-40 lands at world 0). The ring then
-  // rotates to 0 → Ami's seat (--angle:0) becomes the new world 0.
-  function paint(ringRotation) {
-    ring.style.transform = 'rotateY(' + ringRotation.toFixed(2) + 'deg)';
-    cards.forEach(function (c) {
-      var seat = parseFloat((c.style.getPropertyValue('--angle') || '0').replace('deg', ''));
-      var world = seat + ringRotation;
-      c.style.opacity = opacityFor(world).toFixed(3);
-    });
-  }
-
-  // Show cards at the initial layout (Startup Lawyer centered).
-  paint(40);
-
-  var enterDelay = 1100; // ms — lets the ring fade in first
-  var duration = 2400;
-  var start = null;
-
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
-  function frame(t) {
-    if (!start) start = t;
-    var elapsed = t - start;
-    if (elapsed < enterDelay) {
-      requestAnimationFrame(frame);
-      return;
-    }
-    var p = Math.min(1, (elapsed - enterDelay) / duration);
-    var eased = easeInOutCubic(p);
-    var rotation = 40 - 40 * eased;
-    paint(rotation);
-    if (p < 1) requestAnimationFrame(frame);
-  }
-
-  function startAnimation() {
-    ring.classList.add('is-rotating');
-    requestAnimationFrame(frame);
-  }
-
-  // Wait until fonts/layout are settled before kicking off motion.
-  if (document.readyState === 'complete') {
-    startAnimation();
-  } else {
-    window.addEventListener('load', startAnimation, { once: true });
-  }
-})();
-</script>
 <script src="nav.js"></script>
 </body>
 </html>
