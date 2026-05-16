@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S5 · Solution — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-5"] .slide-title { margin-bottom: 14px; }
+body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
+
+.s5-hero {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 1.4;
+  color: var(--gray);
+  max-width: 880px;
+  margin-bottom: 8px;
+}
+.s5-hero .gold { color: var(--gold); font-weight: 600; }
+
+/* ── Carousel container ── */
+.carousel-area {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.carousel-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 760px;
+  height: 260px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(212,165,116,0.10) 0%, rgba(212,165,116,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* The 3-D stage — perspective lives here so all cards share one vanishing point */
+.s5-track {
+  position: relative;
+  width: 100%;
+  height: 248px;
+  perspective: 900px;
+  perspective-origin: 50% 50%;
+  z-index: 1;
+}
+
+/* Each card wrapper — positioned absolutely, centred on the stage */
+.s5-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 188px;
+  height: 240px;
+  /* No initial transform — JS sets it immediately */
+  transition: transform 2.64s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity   2.64s ease;
+  will-change: transform, opacity;
+}
+
+/* ── Card face ── */
+.card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #141312 0%, #0e0e0d 100%);
+  border: 1px solid rgba(212,165,116,0.18);
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.5);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Active (center) card gets gold glow */
+.s5-wrap.is-center .card {
+  border: 1.5px solid var(--gold);
+  background: linear-gradient(180deg, #1f1610 0%, #14100c 100%);
+  box-shadow: 0 18px 48px rgba(212,165,116,0.26), inset 0 0 0 1px rgba(212,165,116,0.10);
+}
+.s5-wrap.is-center .card-profession     { color: var(--gold); }
+.s5-wrap.is-center .card-flow-top,
+.s5-wrap.is-center .card-flow-bottom    { border-color: rgba(212,165,116,0.30); }
+.s5-wrap.is-center .flow-arrow,
+.s5-wrap.is-center .flow-label         { color: rgba(212,165,116,0.9); }
+
+/* ── Card internals ── */
+.card-flow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-display);
+  padding: 3px 0;
+  min-height: 26px;
+}
+.card-flow-top {
+  border-bottom: 1px solid rgba(212,165,116,0.12);
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+.card-flow-bottom {
+  margin-top: auto;
+  border-top: 1px solid rgba(212,165,116,0.12);
+  padding-top: 5px;
+}
+.flow-arrow {
+  width: 12px; height: 12px; flex: none;
+  color: rgba(212,165,116,0.6);
+}
+.flow-arrow svg {
+  width: 100%; height: 100%;
+  fill: none; stroke: currentColor;
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
+}
+.flow-text {
+  display: flex; flex-direction: column;
+  line-height: 1.1; min-width: 0; flex: 1;
+}
+.flow-label {
+  font-size: 14px; font-weight: 700;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(212,165,116,0.6); line-height: 1;
+}
+.flow-name {
+  font-size: 14px; font-weight: 600;
+  color: var(--gray); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; margin-top: 3px;
+}
+.card-body {
+  display: flex; flex-direction: column;
+  flex: 1; justify-content: center; padding: 6px 0;
+}
+.card-icon { width: 28px; height: 28px; color: var(--gold); margin-bottom: 8px; }
+.card-icon svg {
+  width: 26px; height: 26px;
+  stroke: currentColor; fill: none;
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+}
+.card-profession {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 15px;
+  color: var(--white); line-height: 1.18;
+}
+.card-context {
+  font-family: var(--font-body);
+  font-size: 14px; font-style: italic;
+  color: var(--gray-dark); line-height: 1.35; margin-top: 4px;
+}
+.ami-avatar {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1.5px solid var(--gold); overflow: hidden;
+  background: radial-gradient(circle at 35% 30%, #3a2a1c 0%, #1a120a 70%);
+  margin-bottom: 8px;
+}
+.ami-avatar img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: grayscale(100%); display: block;
+}
+
+@media (max-width: 1000px) {
+  .s5-wrap  { width: 158px; height: 210px; }
+  .card     { padding: 10px 12px; }
+}
+</style>
+</head>
+<body data-slide="slide-5">
+
+<div class="deck">
+
+<div class="slide" id="slide-5">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">Circles solve the <span class="gold">next customer</span> problem</h2>
+  <p class="s5-hero"><span class="gold">Ami</span> joins a referral circle &mdash; a group of trusted peers who refer customers to each other.</p>
+
+  <div class="carousel-area">
+    <div class="carousel-glow"></div>
+    <div class="s5-track" id="s5Track">
+
+      <!-- 0: Executive Coach (loop tail) -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Recruiter</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>
+            </div>
+            <div class="card-profession">Executive Coach</div>
+            <div class="card-context">develops the new VP</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Fractional CFO</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1: Fractional CFO -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Executive Coach</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h2M12 14h2M16 14h2M8 17h2M12 17h2"/></svg>
+            </div>
+            <div class="card-profession">Fractional CFO</div>
+            <div class="card-context">prepares the financials</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Startup Lawyer</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2: Startup Lawyer — initial center -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Fractional CFO</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10M12 3v18"/></svg>
+            </div>
+            <div class="card-profession">Startup Lawyer</div>
+            <div class="card-context">closes the funding round</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Fractional CRO</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3: Fractional CRO -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Startup Lawyer</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+            </div>
+            <div class="card-profession">Fractional CRO</div>
+            <div class="card-context">builds the sales pipeline</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Ami</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4: Ami — final center -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Fractional CRO</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="ami-avatar"><img src="ami.png" alt="Ami B."></div>
+            <div class="card-profession">Fractional VP Marketing</div>
+            <div class="card-context">drives demand</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">PR Agent</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5: PR Agent -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">Ami</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M17 8h1a3 3 0 0 1 0 6h-1"/><path d="M3 8h14v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg>
+            </div>
+            <div class="card-profession">PR Agent</div>
+            <div class="card-context">launches the product</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Recruiter</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6: Recruiter -->
+      <div class="s5-wrap">
+        <div class="card">
+          <div class="card-flow card-flow-top">
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+            <div class="flow-text">
+              <span class="flow-label">Referred by</span>
+              <span class="flow-name">PR Agent</span>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-icon">
+              <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="card-profession">Recruiter</div>
+            <div class="card-context">places a VP of Engineering</div>
+          </div>
+          <div class="card-flow card-flow-bottom">
+            <div class="flow-text">
+              <span class="flow-label">Refers to</span>
+              <span class="flow-name">Executive Coach</span>
+            </div>
+            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.s5-track -->
+  </div><!-- /.carousel-area -->
+
+  <div class="conclusion">So the only thing <strong>Ami</strong> needs is to find peers he trusts &mdash; it&rsquo;s a <strong>dating problem</strong>.</div>
+  <div class="sources">Sources: InTouch interviews; BNI Mid-Year Report 2025</div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  // ── Position slots ──────────────────────────────────────────────────────────
+  // Each entry describes one distance from center (0=center, 1=adjacent, 2=far, 3=hidden).
+  // x    : horizontal offset in px from stage centre
+  // tz   : translateZ in px (cards recede into the screen)
+  // ry   : rotateY in degrees — positive = right side recedes (outer edge smaller)
+  // op   : opacity
+  // zi   : z-index
+  var SLOTS = [
+    { x:   0, tz:   0, ry:  0,  op: 1.00, zi: 10 }, // center
+    { x: 196, tz: -38, ry: 38,  op: 0.78, zi: 8  }, // ±1
+    { x: 358, tz: -95, ry: 56,  op: 0.40, zi: 6  }, // ±2
+    { x: 500, tz:-160, ry: 70,  op: 0,    zi: 2  }, // ±3  (hidden)
+  ];
+
+  var wraps = Array.from(document.querySelectorAll('.s5-wrap'));
+
+  function applyPositions(centerIdx) {
+    wraps.forEach(function (w, i) {
+      var off = i - centerIdx;
+      var abs = Math.min(Math.abs(off), 3);
+      var s   = SLOTS[abs];
+      var sgn = off > 0 ? 1 : off < 0 ? -1 : 0;
+      var tx  = sgn * s.x;
+      // rotateY sign: positive offset → positive angle (right side of card recedes)
+      //               negative offset → negative angle (left side of card recedes)
+      // Both make the OUTER edge of the side card appear smaller — correct 3-D arc look.
+      var ry  = sgn * s.ry;
+      w.style.transform = [
+        'translate(-50%, -50%)',
+        'translateX(' + tx + 'px)',
+        'translateZ(' + s.tz + 'px)',
+        'rotateY(' + ry + 'deg)'
+      ].join(' ');
+      w.style.opacity = s.op;
+      w.style.zIndex  = s.zi;
+    });
+  }
+
+  function markCenter(centerIdx) {
+    wraps.forEach(function (w, i) {
+      w.classList.toggle('is-center', i === centerIdx);
+    });
+  }
+
+  // ── Initial state: Startup Lawyer (index 2) at centre ──────────────────────
+  // Set positions without transition first so there's no flash on load.
+  wraps.forEach(function (w) { w.style.transition = 'none'; });
+  applyPositions(2);
+  markCenter(2);
+
+  // Re-enable transitions on the next frame.
+  requestAnimationFrame(function () {
+    wraps.forEach(function (w) {
+      w.style.transition = 'transform 2.64s cubic-bezier(0.4,0,0.2,1), opacity 2.64s ease';
+    });
+  });
+
+  // ── Animate to Ami (index 4) after 1.4 s ──────────────────────────────────
+  setTimeout(function () {
+    applyPositions(4);
+    // Update gold centre glow slightly after the card arrives
+    setTimeout(function () { markCenter(4); }, 1320);
+  }, 1400);
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>

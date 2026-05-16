@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S1 · Executive summary — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Remove the h2 slot — label is enough */
+body[data-slide="slide-1"] .slide-title { display: none; }
+body[data-slide="slide-1"] .slide-label { margin-bottom: 28px; }
+
+.es-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  flex: 1;
+}
+
+.es-section {
+  display: flex;
+  flex-direction: column;
+  padding: 16px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.es-section:first-child { border-top: none; padding-top: 0; }
+
+.es-section-header {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.es-row {
+  display: grid;
+  grid-template-columns: 230px 1fr auto;
+  column-gap: 24px;
+  align-items: baseline;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.es-row:last-child { border-bottom: none; }
+
+.es-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  text-align: right;
+}
+
+.es-text {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.4;
+  color: var(--gray);
+}
+
+.es-link {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(212, 165, 116, 0.45);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s;
+}
+
+.es-link:hover { color: var(--gold); }
+
+@media (max-width: 860px) {
+  .es-row { grid-template-columns: 1fr auto; column-gap: 14px; }
+  .es-label { grid-column: 1 / -1; margin-bottom: 2px; text-align: left; }
+}
+</style>
+</head>
+<body data-slide="slide-1">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-1">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title"></h2>
+
+  <div class="es-body">
+
+    <div class="es-section">
+      <div class="es-section-header">What is InTouch</div>
+
+      <div class="es-row">
+        <div class="es-label">Problem</div>
+        <div class="es-text">Independent professionals' #1 problem is getting the next customer.</div>
+        <a href="slide-2.html" class="es-link">The customer →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-label">Solution</div>
+        <div class="es-text">We match them into circles of trusted peers who refer customers to each other.</div>
+        <a href="slide-5.html" class="es-link">The solution →</a>
+      </div>
+    </div>
+
+    <div class="es-section">
+      <div class="es-section-header">How big can InTouch be</div>
+
+      <div class="es-row">
+        <div class="es-label">Are there many customers?</div>
+        <div class="es-text">130M independent professionals globally; 9.26M addressable in the US.</div>
+        <a href="slide-9.html" class="es-link">The market →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-label">Is it a proven business?</div>
+        <div class="es-text">BNI's 340K members refer $26.4B/yr — through weekly breakfast meetings.</div>
+        <a href="slide-8.html" class="es-link">The precedent →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-label">Will it have a moat?</div>
+        <div class="es-text">Networks have great moats — and grow fast once seeded.</div>
+        <a href="slide-13.html" class="es-link">The opportunity →</a>
+      </div>
+    </div>
+
+    <div class="es-section">
+      <div class="es-section-header">Why InTouch will work</div>
+
+      <div class="es-row">
+        <div class="es-label">Can we get users?</div>
+        <div class="es-text">6.7% cold-email to onboarded. 14.8% W/W user growth.</div>
+        <a href="slide-10.html" class="es-link">The GTM →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-label">Will they refer each other?</div>
+        <div class="es-text">340K BNI members refer business weekly — for 40 years.</div>
+        <a href="slide-8.html" class="es-link">The precedent →</a>
+      </div>
+
+      <div class="es-row">
+        <div class="es-label">Can we execute?</div>
+        <div class="es-text">Two post-exit founders. In market. New test every two weeks.</div>
+        <a href="slide-11.html" class="es-link">The traction →</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+
+<script src="nav.js"></script>
+</body>
+</html>
