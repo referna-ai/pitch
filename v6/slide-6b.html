@@ -16,19 +16,23 @@ body[data-slide="slide-6b"] {
 }
 body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
-/* clip phone at slide edge; solid backdrop covers everything below conclusion */
+/* clip phone at slide edge; conclusion/sources float above as opaque wall */
 body[data-slide="slide-6b"] .slide { overflow: hidden; }
-body[data-slide="slide-6b"] .slide::after {
+body[data-slide="slide-6b"] .conclusion,
+body[data-slide="slide-6b"] .sources {
+  position: relative;
+  z-index: 5;
+  background: var(--black-mid);
+}
+/* extend sources background: upward into the margin gap + downward into slide padding */
+body[data-slide="slide-6b"] .sources::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: 0;
-  height: 130px;
+  left: -60px; right: -60px;
+  top: -24px; bottom: -44px;
   background: var(--black-mid);
-  z-index: 0;
-  pointer-events: none;
+  z-index: -1;
 }
-body[data-slide="slide-6b"] .conclusion { position: relative; z-index: 1; }
-body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
 
 /* ── Three-column layout ── */
 .t-cols {
