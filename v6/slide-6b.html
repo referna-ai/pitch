@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S6b · Product 2 — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-6b"] {
+  --success: #7BC47F;
+  --error:   #D4645C;
+}
+body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
+body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
+/* phone bleeds behind conclusion/sources — keep them as an opaque wall */
+body[data-slide="slide-6b"] .slide { overflow: hidden; }
+body[data-slide="slide-6b"] .conclusion,
+body[data-slide="slide-6b"] .sources {
+  position: relative;
+  z-index: 5;
+  background: var(--black-mid);
+}
+/* fold the 16px margin-top into padding so there is no gap between the two
+   elements where the phone could show through */
+body[data-slide="slide-6b"] .sources {
+  margin-top: 0;
+  padding-top: 28px; /* 16px former margin + 12px former padding */
+}
+/* cover the slide's 36px bottom padding below sources */
+body[data-slide="slide-6b"] .sources::after {
+  content: '';
+  position: absolute;
+  left: -60px; right: -60px;
+  top: 100%; height: 44px;
+  background: var(--black-mid);
+}
+
+/* ── Three-column layout ── */
+.t-cols {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1.3fr;
+  gap: 28px;
+  flex: 1;
+  min-height: 0;
+  align-items: start;
+  overflow: visible;
+}
+.t-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+.t-step-head {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin-top: -2px;
+}
+.t-step-desc {
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+
+/* ── Shared mockup glow + browser chrome ── */
+.t-browser-wrap {
+  border: 2px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(212,165,116,0.18),
+    0 0 22px rgba(212,165,116,0.10),
+    0 22px 44px rgba(0,0,0,0.55);
+  align-self: flex-start;
+}
+.t-chrome {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
+  background: #2d2d2d;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.t-chrome-dots { display: flex; gap: 5px; }
+.t-chrome-dot { width: 9px; height: 9px; border-radius: 50%; }
+.t-chrome-dot.r { background: #FF5F57; }
+.t-chrome-dot.y { background: #FEBC2E; }
+.t-chrome-dot.g { background: #28C840; }
+.t-chrome-url {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-mid);
+  text-align: center;
+}
+.t-chrome-gmail {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-mid);
+}
+.t-chrome-gmail .r { color: #EA4335; font-weight: 700; }
+
+/* ── zoom wrappers — fonts stay ≥14px; zoom shrinks layout footprint ── */
+.t-desk-inner  { zoom: 0.80; }
+.t-email-inner { zoom: 0.80; }
+.t-phone-inner { zoom: 0.78; }
+
+/* ── PHONE ── */
+.t-phone-outer {
+  align-self: center;
+  filter:
+    drop-shadow(0 0 22px rgba(212,165,116,0.20))
+    drop-shadow(0 0 8px  rgba(212,165,116,0.12))
+    drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+}
+.t-phone-wrap {
+  background: #1a1a1a;
+  border: 7px solid #1a1a1a;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  width: 270px;
+}
+.t-phone-screen {
+  background: var(--black);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+}
+.t-phone-notch {
+  position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 66px; height: 18px;
+  background: #000; border-radius: 10px; z-index: 5;
+}
+/* phone internals — zoom applied via shared rule above */
+
+.t-ph-status {
+  display: flex; justify-content: space-between;
+  padding: 10px 20px 4px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--white);
+}
+.t-ph-header { padding: 6px 16px 10px; }
+.t-ph-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 16px;
+  color: var(--white); letter-spacing: -0.01em;
+}
+.t-ph-toggle {
+  display: flex; background: rgba(255,255,255,0.05);
+  border-radius: 7px; padding: 2px; margin-top: 8px;
+}
+.t-ph-toggle-opt {
+  flex: 1; text-align: center;
+  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  color: var(--gray-mid); padding: 5px; border-radius: 5px;
+  letter-spacing: 0.01em;
+}
+.t-ph-toggle-opt.active { background: var(--gold); color: var(--black); }
+
+/* comparison table inside featured card */
+.t-ph-compare-head {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 8px;
+  border-bottom: 1px solid rgba(212,165,116,0.22);
+}
+.t-ph-compare-head span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.30); white-space: nowrap; overflow: hidden; }
+.t-ph-compare-head span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; }
+.t-ph-compare-row {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 500; font-size: 15px;
+  color: var(--gray); margin-bottom: 5px; line-height: 1.35;
+}
+.t-ph-compare-row span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.18); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-ph-compare-row span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-ph-compare-signal {
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+  color: var(--white); line-height: 1.4; margin-top: 10px;
+}
+.t-ph-faces-agg {
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
+}
+.t-ph-faces-label {
+  font-family: var(--font-display); font-weight: 500; font-size: 17px;
+  color: var(--gray-mid);
+}
+
+/* featured card */
+.t-ph-featured {
+  margin: 0 14px 10px;
+  background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
+  border: 1.5px solid var(--gold); border-radius: 10px;
+  padding: 14px 16px 12px;
+  box-shadow: 0 6px 18px rgba(212,165,116,0.15);
+}
+.t-ph-fc-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.t-ph-kv-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  color: var(--gray); margin-bottom: 2px;
+}
+.t-ph-kv-tag + .t-ph-kv-tag { margin-bottom: 0; }
+.t-ph-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 6px 0; }
+
+.t-ph-member {
+  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px;
+}
+.t-ph-face {
+  width: 28px; height: 28px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid rgba(212,165,116,0.25);
+  background: var(--black-soft); flex-shrink: 0;
+}
+.t-ph-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.t-ph-mname {
+  font-family: var(--font-display); font-weight: 600; font-size: 16px;
+  color: var(--white); line-height: 1.2;
+}
+.t-ph-mname .suffix { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 15px; }
+.t-ph-msignal {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gold); line-height: 1.35; margin-top: 3px;
+}
+.t-ph-apply {
+  background: var(--gold); color: var(--black);
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 9px; border-radius: 7px; text-align: center; margin-top: 8px;
+}
+
+/* collapsed match bars */
+.t-ph-more-label {
+  padding: 0 18px 6px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--gray-mid); letter-spacing: 0.14em; text-transform: uppercase;
+}
+.t-ph-collapsed {
+  margin: 0 14px 6px;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 8px 10px;
+}
+.t-ph-cf-row { display: flex; flex-shrink: 0; }
+.t-ph-cf {
+  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid var(--black); background: var(--black-soft);
+  margin-left: -5px;
+}
+.t-ph-cf:first-child { margin-left: 0; }
+.t-ph-cf img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.t-ph-cinfo { flex: 1; min-width: 0; }
+.t-ph-cname {
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  color: var(--white); line-height: 1.2;
+}
+.t-ph-cmeta {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gray-dark);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.t-ph-chev { font-size: 16px; color: var(--gray-dark); font-family: var(--font-display); }
+
+/* ── DESKTOP (Interviews) ── */
+.t-desk-app { background: var(--black); padding: 14px 18px; }
+.t-desk-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 12px;
+}
+.t-desk-brand { display: flex; align-items: center; gap: 6px; }
+.t-desk-mark {
+  width: 20px; height: 20px; border-radius: 4px; background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--black);
+}
+.t-desk-brand-name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--white); }
+.t-desk-nav {
+  display: flex; gap: 16px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gray-mid);
+}
+.t-desk-nav .active { color: var(--white); }
+.t-desk-user {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--gold);
+  color: var(--black); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 11px;
+}
+.t-desk-h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.t-desk-sub {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gray-dark); margin-bottom: 10px;
+}
+.t-desk-prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.t-desk-bar {
+  flex: 1; height: 4px; background: rgba(255,255,255,0.06);
+  border-radius: 2px; overflow: hidden;
+}
+.t-desk-bar-fill { height: 100%; background: var(--gold); width: 60%; border-radius: 2px; }
+.t-desk-prog-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--white);
+}
+.t-desk-prog-num span { color: var(--gold); }
+
+.t-desk-tasks { border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
+.t-desk-task {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.015);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.t-desk-task:first-child { border-top: none; }
+.t-desk-status {
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 10px; flex-shrink: 0;
+}
+.t-desk-status.done { background: rgba(123,196,127,0.14); color: var(--success); }
+.t-desk-status.sched { background: rgba(212,165,116,0.14); color: var(--gold); }
+.t-desk-status.pend { background: rgba(255,255,255,0.04); color: var(--gray-dark); }
+.t-desk-face {
+  width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
+  border: 1px solid rgba(212,165,116,0.22); background: var(--black-soft); flex-shrink: 0;
+}
+.t-desk-face img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+.t-desk-info { flex: 1; }
+.t-desk-name {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--white);
+}
+.t-desk-name span { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 14px; }
+.t-desk-when { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+.t-desk-when.done { color: var(--success); }
+.t-desk-when.sched { color: var(--gold); }
+.t-desk-action {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.10em;
+  padding: 4px 10px; border: 1px solid rgba(212,165,116,0.4); border-radius: 5px;
+}
+
+/* ── EMAIL ── */
+.t-email-body { background: #f5f5f5; }
+.t-email-head {
+  padding: 14px 16px 12px; background: var(--white);
+  border-bottom: 1px solid #e5e5e5;
+}
+.t-email-subj {
+  font-family: var(--font-display); font-weight: 700; font-size: 17px;
+  color: var(--black); letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.t-email-meta { display: flex; align-items: center; gap: 10px; }
+.t-email-av {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--gold);
+  color: var(--black); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 14px; flex-shrink: 0;
+}
+.t-email-from { flex: 1; }
+.t-email-from-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--black); }
+.t-email-from-to { font-family: var(--font-display); font-size: 14px; color: #737373; }
+.t-email-from-to span { color: var(--black); }
+.t-email-date { font-family: var(--font-display); font-size: 14px; color: #737373; }
+.t-email-content {
+  padding: 14px 16px 16px; background: var(--white);
+  font-family: var(--font-body); color: #404040; font-size: 14px; line-height: 1.55;
+}
+.t-email-content p { margin-bottom: 10px; }
+.t-email-content strong { color: var(--black); font-weight: 600; }
+.t-email-opt {
+  background: #fafafa; border-left: 2px solid var(--gold);
+  padding: 6px 10px; margin: 5px 0;
+  font-family: var(--font-body); font-size: 14px; color: #404040;
+}
+.t-email-event {
+  background: var(--black); color: var(--white);
+  border-radius: 8px; padding: 13px 15px; margin: 12px 0 10px;
+}
+.t-email-event-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px;
+}
+.t-email-event-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 17px;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.t-email-event-row {
+  display: flex; align-items: center; gap: 7px; margin: 4px 0;
+}
+.t-email-event-row svg {
+  width: 14px; height: 14px; stroke: var(--gold); fill: none;
+  stroke-width: 1.6; flex-shrink: 0;
+}
+.t-email-event-row-text {
+  font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--gray);
+}
+.t-email-event-row-text strong { color: var(--white); font-weight: 600; }
+.t-email-event-cta {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 6px;
+  background: var(--gold); color: var(--black);
+  display: inline-block; margin-top: 10px;
+}
+.t-email-signoff {
+  font-family: var(--font-body); font-size: 14px; color: #404040; margin-top: 10px;
+}
+.t-email-signoff strong { color: var(--black); }
+
+@media (max-width: 900px) {
+  .t-cols { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-slide="slide-6b">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-6b">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">InTouch solves trust like <span class="gold">corporate staffing</span></h2>
+
+  <div class="t-cols">
+
+    <!-- ═══ COL 1: MATCH ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami applies for circles</div>
+      <div class="t-step-desc">Mutual connections and shared context build instant trust</div>
+
+      <div class="t-phone-outer">
+        <div class="t-phone-wrap">
+          <div class="t-phone-screen">
+            <div class="t-phone-notch"></div>
+            <div class="t-phone-inner">
+              <div class="t-ph-status">
+                <span>9:41</span>
+                <span>▪▪▪ ◗ ▣</span>
+              </div>
+              <div class="t-ph-header">
+                <div class="t-ph-title">Apply for circles</div>
+              </div>
+
+              <div class="t-ph-featured">
+                <div class="t-ph-fc-tag">Top match · Atlas</div>
+
+                <!-- Side-by-side commonalities -->
+                <div class="t-ph-compare-head">
+                  <span>Atlas Circle</span>
+                  <span>Ami</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>Seed B2B Founders</span>
+                  <span>Seed Founders</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>🇮🇱</span>
+                  <span>🇮🇱</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>Acme (customer)</span>
+                  <span>Acme (customer)</span>
+                </div>
+
+                <div class="t-ph-compare-signal">+ mutual connections &amp; work history with Sarah and Tom</div>
+
+                <div class="t-ph-divider"></div>
+
+                <!-- Aggregated member faces -->
+                <div class="t-ph-faces-agg">
+                  <div class="t-ph-cf-row">
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+                  </div>
+                  <span class="t-ph-faces-label">5 members</span>
+                </div>
+
+                <div class="t-ph-apply">Apply to join</div>
+              </div>
+
+              <div class="t-ph-more-label">3 more matches</div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/4.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/77.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Lighthouse</div>
+                  <div class="t-ph-cmeta">SaaS Founders · 8 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/33.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Compass</div>
+                  <div class="t-ph-cmeta">Fintech Founders · 6 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/18.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/44.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Meridian</div>
+                  <div class="t-ph-cmeta">Legal Founders · 7 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+            </div><!-- /.t-phone-inner (zoom) -->
+          </div><!-- /.t-phone-screen -->
+        </div><!-- /.t-phone-wrap -->
+      </div><!-- /.t-phone-outer -->
+    </div><!-- /col 1 -->
+
+    <!-- ═══ COL 2: VET ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami meets every member before being accepted</div>
+      <div class="t-step-desc">Each member builds rapport and starts trusting him</div>
+
+      <div class="t-browser-wrap">
+        <div class="t-chrome">
+          <div class="t-chrome-dots">
+            <div class="t-chrome-dot r"></div>
+            <div class="t-chrome-dot y"></div>
+            <div class="t-chrome-dot g"></div>
+          </div>
+          <div class="t-chrome-url">app.intouch.network/qualify</div>
+        </div>
+        <div class="t-desk-inner">
+          <div class="t-desk-app">
+            <div class="t-desk-topbar">
+              <div class="t-desk-brand">
+                <div class="t-desk-mark">I</div>
+                <div class="t-desk-brand-name">InTouch</div>
+              </div>
+              <div class="t-desk-nav">
+                <div>Circles</div>
+                <div class="active">Qualify</div>
+                <div>Referrals</div>
+              </div>
+              <div class="t-desk-user">A</div>
+            </div>
+
+            <div class="t-desk-h1">Interviews · Atlas</div>
+            <div class="t-desk-sub">Each member interviews you 1-on-1 before voting you in.</div>
+
+            <div class="t-desk-prog-row">
+              <div class="t-desk-bar"><div class="t-desk-bar-fill"></div></div>
+              <div class="t-desk-prog-num"><span>3</span> / 5</div>
+            </div>
+
+            <div class="t-desk-tasks">
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Mia Korman <span>· CFO</span></div></div>
+                <div class="t-desk-when done">Thu, Nov 7</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Sarah Mendez <span>· Lawyer</span></div></div>
+                <div class="t-desk-when done">Fri, Nov 8</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Dan Klein <span>· CRO</span></div></div>
+                <div class="t-desk-when done">Mon, Nov 11</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status sched">●</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Tom Rosen <span>· Recruiter</span></div></div>
+                <div class="t-desk-when sched">Wed, 11:00 AM</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status pend">○</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Yuri Novak <span>· Coach</span></div></div>
+                <div class="t-desk-action">Schedule</div>
+              </div>
+            </div>
+          </div>
+        </div><!-- /.t-desk-inner -->
+      </div><!-- /.t-browser-wrap -->
+    </div><!-- /col 2 -->
+
+    <!-- ═══ COL 3: PROVE ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami shows a success story</div>
+      <div class="t-step-desc">Members learn to trust Ami's ability to deliver value</div>
+
+      <div class="t-browser-wrap">
+        <div class="t-chrome">
+          <div class="t-chrome-dots">
+            <div class="t-chrome-dot r"></div>
+            <div class="t-chrome-dot y"></div>
+            <div class="t-chrome-dot g"></div>
+          </div>
+          <div class="t-chrome-gmail"><span class="r">M</span> Gmail · Inbox</div>
+        </div>
+        <div class="t-email-inner">
+          <div class="t-email-body">
+            <div class="t-email-head">
+              <div class="t-email-subj">Customer showcase meeting</div>
+              <div class="t-email-meta">
+                <div class="t-email-av">G</div>
+                <div class="t-email-from">
+                  <div class="t-email-from-name">Gordy</div>
+                  <div class="t-email-from-to">to <span>Ami</span></div>
+                </div>
+                <div class="t-email-date">Tue, Nov 12</div>
+              </div>
+            </div>
+            <div class="t-email-content">
+              <p>Last step before joining <strong>Atlas</strong> — the <strong>Customer Showcase</strong>. Pick one:</p>
+              <div class="t-email-opt"><strong>A.</strong> Bring a customer to vouch live</div>
+              <div class="t-email-opt"><strong>B.</strong> Share a 2-min video testimonial</div>
+              <div class="t-email-event">
+                <div class="t-email-event-tag">🇮🇱 Atlas · InTouch circle</div>
+                <div class="t-email-event-title">Customer Showcase</div>
+                <div class="t-email-event-row">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <div class="t-email-event-row-text"><strong>Fri, Nov 15</strong> · 3:00 PM</div>
+                </div>
+                <div class="t-email-event-row">
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/></svg>
+                  <div class="t-email-event-row-text">5 circle members + you</div>
+                </div>
+                <div class="t-email-event-cta">Add to Calendar</div>
+              </div>
+              <div class="t-email-signoff">— <strong>Gordy</strong>, your circle host</div>
+            </div>
+          </div>
+        </div><!-- /.t-email-inner -->
+      </div><!-- /.t-browser-wrap -->
+    </div><!-- /col 3 -->
+
+  </div><!-- /.t-cols -->
+
+  <div class="conclusion">The product is designed to <strong>build trust early</strong> — the first referral <strong>kickstarts the flywheel</strong>.</div>
+  <div class="sources">Sources: InTouch product; trust formation research (Granovetter, Cialdini)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+<script>
+/* Override auto-number to show 6b / N */
+(function () {
+  var el = document.querySelector('.slide-number');
+  var label = document.querySelector('.slide-label');
+  if (el) el.textContent = '6b / 12';
+  if (label) label.textContent = 'Product 2 / 2';
+})();
+</script>
+</body>
+</html>
