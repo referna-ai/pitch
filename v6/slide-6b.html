@@ -16,6 +16,10 @@ body[data-slide="slide-6b"] {
 }
 body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
+/* clip phone at slide edge; conclusion renders on top */
+body[data-slide="slide-6b"] .slide { overflow: hidden; }
+body[data-slide="slide-6b"] .conclusion { position: relative; z-index: 1; }
+body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
 
 /* ── Three-column layout ── */
 .t-cols {
@@ -24,8 +28,8 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
   gap: 28px;
   flex: 1;
   min-height: 0;
-  align-items: start; /* TOP ALIGNED */
-  overflow: hidden; /* clip phone from overflowing into conclusion */
+  align-items: start;
+  overflow: visible;
 }
 .t-col {
   display: flex;
@@ -95,7 +99,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 /* ── zoom wrappers — fonts stay ≥14px; zoom shrinks layout footprint ── */
 .t-desk-inner  { zoom: 0.80; }
 .t-email-inner { zoom: 0.80; }
-.t-phone-inner { zoom: 0.60; }
+.t-phone-inner { zoom: 0.78; }
 
 /* ── PHONE ── */
 .t-phone-outer {
@@ -151,43 +155,45 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 
 /* comparison table inside featured card */
 .t-ph-compare-head {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
-  font-family: var(--font-display); font-weight: 700; font-size: 17px;
-  color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase;
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
   padding-bottom: 8px; margin-bottom: 8px;
   border-bottom: 1px solid rgba(212,165,116,0.22);
 }
-.t-ph-compare-head span:first-child { text-align: right; }
+.t-ph-compare-head span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.30); white-space: nowrap; overflow: hidden; }
+.t-ph-compare-head span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; }
 .t-ph-compare-row {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 6px;
-  font-family: var(--font-display); font-weight: 500; font-size: 17px;
-  color: var(--gray); margin-bottom: 4px; line-height: 1.35;
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 500; font-size: 15px;
+  color: var(--gray); margin-bottom: 5px; line-height: 1.35;
 }
-.t-ph-compare-row span:first-child { text-align: right; }
+.t-ph-compare-row span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.18); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-ph-compare-row span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .t-ph-compare-signal {
-  font-family: var(--font-display); font-size: 17px; font-weight: 500;
-  color: var(--white); line-height: 1.4; margin-top: 10px;
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+  color: var(--white); line-height: 1.4; margin-top: 14px;
 }
 .t-ph-faces-agg {
-  display: flex; align-items: center; gap: 8px; margin-top: 10px;
+  display: flex; align-items: center; gap: 10px; margin-top: 14px;
 }
 .t-ph-faces-label {
-  font-family: var(--font-display); font-weight: 500; font-size: 16px;
+  font-family: var(--font-display); font-weight: 500; font-size: 17px;
   color: var(--gray-mid);
 }
 
 /* featured card */
 .t-ph-featured {
-  margin: 0 14px 10px;
+  margin: 0 14px 14px;
   background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
   border: 1.5px solid var(--gold); border-radius: 10px;
-  padding: 14px 16px 12px;
+  padding: 18px 18px 16px;
   box-shadow: 0 6px 18px rgba(212,165,116,0.15);
 }
 .t-ph-fc-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
   color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 .t-ph-kv-tag {
   display: inline-flex; align-items: center; gap: 8px;
