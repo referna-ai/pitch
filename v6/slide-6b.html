@@ -404,7 +404,16 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 .t-email-signoff strong { color: var(--black); }
 
 @media (max-width: 900px) {
-  .t-cols { grid-template-columns: 1fr; }
+  .t-cols { grid-template-columns: 1fr; clip-path: none; }
+}
+
+@media (max-height: 500px) and (min-width: 769px) {
+  .t-desk-inner  { zoom: 0.62; }
+  .t-email-inner { zoom: 0.62; }
+  .t-phone-inner { zoom: 0.60; }
+  .t-phone-wrap  { width: 210px; }
+  .t-step-head   { font-size: 15px; }
+  .t-step-desc   { font-size: 13px; }
 }
 </style>
 </head>
