@@ -16,7 +16,7 @@ body[data-slide="slide-6b"] {
 }
 body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
-/* clip phone at slide edge; conclusion/sources float above as opaque wall */
+/* phone bleeds behind conclusion/sources — keep them as an opaque wall */
 body[data-slide="slide-6b"] .slide { overflow: hidden; }
 body[data-slide="slide-6b"] .conclusion,
 body[data-slide="slide-6b"] .sources {
@@ -24,14 +24,19 @@ body[data-slide="slide-6b"] .sources {
   z-index: 5;
   background: var(--black-mid);
 }
-/* extend sources background: upward into the margin gap + downward into slide padding */
+/* fold the 16px margin-top into padding so there is no gap between the two
+   elements where the phone could show through */
+body[data-slide="slide-6b"] .sources {
+  margin-top: 0;
+  padding-top: 28px; /* 16px former margin + 12px former padding */
+}
+/* cover the slide's 36px bottom padding below sources */
 body[data-slide="slide-6b"] .sources::after {
   content: '';
   position: absolute;
   left: -60px; right: -60px;
-  top: -24px; bottom: -44px;
+  top: 100%; height: 44px;
   background: var(--black-mid);
-  z-index: -1;
 }
 
 /* ── Three-column layout ── */
