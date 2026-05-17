@@ -3,483 +3,673 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S5 · Solution — InTouch Pitch</title>
+<title>S5 · Product 2 — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-5"] .slide-title { margin-bottom: 14px; }
+body[data-slide="slide-5"] {
+  --success: #7BC47F;
+  --error:   #D4645C;
+}
+body[data-slide="slide-5"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
 
-.s5-hero {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 19px;
-  line-height: 1.4;
-  color: var(--gray);
-  max-width: 880px;
-  margin-bottom: 8px;
-}
-.s5-hero .gold { color: var(--gold); font-weight: 600; }
-
-.s5-flywheel {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 1.4;
-  color: var(--gray);
-  text-align: center;
-  margin: 6px auto 14px;
-  max-width: 720px;
-}
-.s5-flywheel strong { color: var(--gold); font-weight: 600; }
-
-/* ── Carousel container ── */
-.carousel-area {
+/* ── Three-column layout ── */
+.t-cols {
+  display: grid;
+  grid-template-columns: 1.2fr 1.4fr 1.3fr;
+  gap: 28px;
   flex: 1;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 0;
-  overflow: hidden;
+  align-items: start;
+  clip-path: inset(-200px -200px 0 -200px);
 }
-
-.carousel-glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 760px;
-  height: 260px;
-  transform: translate(-50%, -50%);
-  background: radial-gradient(ellipse, rgba(212,165,116,0.10) 0%, rgba(212,165,116,0) 70%);
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* The 3-D stage — perspective lives here so all cards share one vanishing point */
-.s5-track {
-  position: relative;
-  width: 100%;
-  height: 248px;
-  perspective: 900px;
-  perspective-origin: 50% 50%;
-  z-index: 1;
-}
-
-/* Each card wrapper — positioned absolutely, centred on the stage */
-.s5-wrap {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 188px;
-  height: 240px;
-  /* No initial transform — JS sets it immediately */
-  transition: transform 2.64s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity   2.64s ease;
-  will-change: transform, opacity;
-}
-
-/* ── Card face ── */
-.card {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(180deg, #141312 0%, #0e0e0d 100%);
-  border: 1px solid rgba(212,165,116,0.18);
-  border-radius: 12px;
-  padding: 12px 14px;
+.t-col {
   display: flex;
   flex-direction: column;
-  box-shadow: 0 14px 36px rgba(0,0,0,0.5);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  gap: 10px;
+  align-items: stretch;
 }
-
-/* Active (center) card gets gold glow */
-.s5-wrap.is-center .card {
-  border: 1.5px solid var(--gold);
-  background: linear-gradient(180deg, #1f1610 0%, #14100c 100%);
-  box-shadow: 0 18px 48px rgba(212,165,116,0.26), inset 0 0 0 1px rgba(212,165,116,0.10);
-}
-.s5-wrap.is-center .card-profession     { color: var(--gold); }
-.s5-wrap.is-center .card-flow-top,
-.s5-wrap.is-center .card-flow-bottom    { border-color: rgba(212,165,116,0.30); }
-.s5-wrap.is-center .flow-arrow,
-.s5-wrap.is-center .flow-label         { color: rgba(212,165,116,0.9); }
-
-/* ── Card internals ── */
-.card-flow {
-  display: flex;
-  align-items: center;
-  gap: 6px;
+.t-step-head {
   font-family: var(--font-display);
-  padding: 3px 0;
-  min-height: 26px;
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  margin-top: -2px;
 }
-.card-flow-top {
-  border-bottom: 1px solid rgba(212,165,116,0.12);
-  padding-bottom: 5px;
-  margin-bottom: 5px;
-}
-.card-flow-bottom {
-  margin-top: auto;
-  border-top: 1px solid rgba(212,165,116,0.12);
-  padding-top: 5px;
-}
-.flow-arrow {
-  width: 12px; height: 12px; flex: none;
-  color: rgba(212,165,116,0.6);
-}
-.flow-arrow svg {
-  width: 100%; height: 100%;
-  fill: none; stroke: currentColor;
-  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-}
-.flow-text {
-  display: flex; flex-direction: column;
-  line-height: 1.1; min-width: 0; flex: 1;
-}
-.flow-label {
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: rgba(212,165,116,0.6); line-height: 1;
-}
-.flow-name {
-  font-size: 14px; font-weight: 600;
-  color: var(--gray); white-space: nowrap;
-  overflow: hidden; text-overflow: ellipsis; margin-top: 3px;
-}
-.card-body {
-  display: flex; flex-direction: column;
-  flex: 1; justify-content: center; padding: 6px 0;
-}
-.card-icon { width: 28px; height: 28px; color: var(--gold); margin-bottom: 8px; }
-.card-icon svg {
-  width: 26px; height: 26px;
-  stroke: currentColor; fill: none;
-  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
-}
-.card-profession {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 15px;
-  color: var(--white); line-height: 1.18;
-}
-.card-context {
+.t-step-desc {
   font-family: var(--font-body);
-  font-size: 14px; font-style: italic;
-  color: var(--gray-dark); line-height: 1.35; margin-top: 4px;
-}
-.ami-avatar {
-  width: 34px; height: 34px; border-radius: 50%;
-  border: 1.5px solid var(--gold); overflow: hidden;
-  background: radial-gradient(circle at 35% 30%, #3a2a1c 0%, #1a120a 70%);
-  margin-bottom: 8px;
-}
-.ami-avatar img {
-  width: 100%; height: 100%; object-fit: cover;
-  filter: grayscale(100%); display: block;
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.5;
+  margin-bottom: 2px;
 }
 
-@media (max-width: 1000px) {
-  .s5-wrap  { width: 158px; height: 210px; }
-  .card     { padding: 10px 12px; }
+/* ── Shared mockup glow + browser chrome ── */
+.t-browser-wrap {
+  border: 2px solid rgba(255,255,255,0.10);
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow:
+    0 0 60px rgba(212,165,116,0.18),
+    0 0 22px rgba(212,165,116,0.10),
+    0 22px 44px rgba(0,0,0,0.55);
+  align-self: flex-start;
+}
+.t-chrome {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px;
+  background: #2d2d2d;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  flex-shrink: 0;
+}
+.t-chrome-dots { display: flex; gap: 5px; }
+.t-chrome-dot { width: 9px; height: 9px; border-radius: 50%; }
+.t-chrome-dot.r { background: #FF5F57; }
+.t-chrome-dot.y { background: #FEBC2E; }
+.t-chrome-dot.g { background: #28C840; }
+.t-chrome-url {
+  flex: 1;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-mid);
+  text-align: center;
+}
+.t-chrome-gmail {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-mid);
+}
+.t-chrome-gmail .r { color: #EA4335; font-weight: 700; }
+
+/* ── zoom wrappers — fonts stay ≥14px; zoom shrinks layout footprint ── */
+.t-desk-inner  { zoom: 0.80; }
+.t-email-inner { zoom: 0.80; }
+.t-phone-inner { zoom: 0.78; }
+
+/* ── PHONE ── */
+.t-phone-outer {
+  align-self: flex-start;
+  filter:
+    drop-shadow(0 0 22px rgba(212,165,116,0.20))
+    drop-shadow(0 0 8px  rgba(212,165,116,0.12))
+    drop-shadow(0 30px 50px rgba(0,0,0,0.55));
+}
+.t-phone-wrap {
+  background: #1a1a1a;
+  border: 7px solid #1a1a1a;
+  border-radius: 34px;
+  overflow: hidden;
+  position: relative;
+  width: 270px;
+}
+.t-phone-screen {
+  background: var(--black);
+  border-radius: 26px;
+  overflow: hidden;
+  position: relative;
+}
+.t-phone-notch {
+  position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
+  width: 66px; height: 18px;
+  background: #000; border-radius: 10px; z-index: 5;
+}
+/* phone internals — zoom applied via shared rule above */
+
+.t-ph-status {
+  display: flex; justify-content: space-between;
+  padding: 10px 20px 4px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--white);
+}
+.t-ph-header { padding: 6px 16px 10px; }
+.t-ph-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 16px;
+  color: var(--white); letter-spacing: -0.01em;
+}
+.t-ph-toggle {
+  display: flex; background: rgba(255,255,255,0.05);
+  border-radius: 7px; padding: 2px; margin-top: 8px;
+}
+.t-ph-toggle-opt {
+  flex: 1; text-align: center;
+  font-family: var(--font-display); font-weight: 600; font-size: 14px;
+  color: var(--gray-mid); padding: 5px; border-radius: 5px;
+  letter-spacing: 0.01em;
+}
+.t-ph-toggle-opt.active { background: var(--gold); color: var(--black); }
+
+/* comparison table inside featured card */
+.t-ph-compare-head {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 8px;
+  border-bottom: 1px solid rgba(212,165,116,0.22);
+}
+.t-ph-compare-head span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.30); white-space: nowrap; overflow: hidden; }
+.t-ph-compare-head span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; }
+.t-ph-compare-row {
+  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
+  font-family: var(--font-display); font-weight: 500; font-size: 15px;
+  color: var(--gray); margin-bottom: 5px; line-height: 1.35;
+}
+.t-ph-compare-row span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.18); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-ph-compare-row span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.t-ph-compare-signal {
+  font-family: var(--font-display); font-size: 18px; font-weight: 500;
+  color: var(--white); line-height: 1.4; margin-top: 10px;
+}
+.t-ph-faces-agg {
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
+}
+.t-ph-faces-label {
+  font-family: var(--font-display); font-weight: 500; font-size: 14px;
+  color: var(--gray-mid); white-space: nowrap;
 }
 
-@media (max-width: 768px) {
-  .s5-hero    { font-size: 16px; margin-bottom: 4px; }
-  .s5-flywheel { font-size: 15px; margin: 4px auto 10px; }
-  /* Scale the 3-D stage so ±1 cards remain visible on narrow screens */
-  .s5-track   { transform: scale(0.72); transform-origin: center center; }
+/* featured card */
+.t-ph-featured {
+  margin: 0 14px 10px;
+  background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
+  border: 1.5px solid var(--gold); border-radius: 10px;
+  padding: 14px 16px 12px;
+  box-shadow: 0 6px 18px rgba(212,165,116,0.15);
+}
+.t-ph-fc-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 15px;
+  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.t-ph-kv-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  color: var(--gray); margin-bottom: 2px;
+}
+.t-ph-kv-tag + .t-ph-kv-tag { margin-bottom: 0; }
+.t-ph-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 6px 0; }
+
+.t-ph-member {
+  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px;
+}
+.t-ph-face {
+  width: 28px; height: 28px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid rgba(212,165,116,0.25);
+  background: var(--black-soft); flex-shrink: 0;
+}
+.t-ph-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.t-ph-mname {
+  font-family: var(--font-display); font-weight: 600; font-size: 16px;
+  color: var(--white); line-height: 1.2;
+}
+.t-ph-mname .suffix { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 15px; }
+.t-ph-msignal {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gold); line-height: 1.35; margin-top: 3px;
+}
+.t-ph-apply {
+  background: var(--gold); color: var(--black);
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 9px; border-radius: 7px; text-align: center; margin-top: 8px;
+}
+
+/* collapsed match bars */
+.t-ph-more-label {
+  padding: 0 18px 6px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--gray-mid); letter-spacing: 0.14em; text-transform: uppercase;
+}
+.t-ph-collapsed {
+  margin: 0 14px 6px;
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 8px 10px;
+}
+.t-ph-cf-row { display: flex; flex-shrink: 0; }
+.t-ph-cf {
+  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid var(--black); background: var(--black-soft);
+  margin-left: -5px;
+}
+.t-ph-cf:first-child { margin-left: 0; }
+.t-ph-cf img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.t-ph-cinfo { flex: 1; min-width: 0; }
+.t-ph-cname {
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  color: var(--white); line-height: 1.2;
+}
+.t-ph-cmeta {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gray-dark);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.t-ph-chev { font-size: 16px; color: var(--gray-dark); font-family: var(--font-display); }
+
+/* ── DESKTOP (Interviews) ── */
+.t-desk-app { background: var(--black); padding: 14px 18px; }
+.t-desk-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 12px;
+}
+.t-desk-brand { display: flex; align-items: center; gap: 6px; }
+.t-desk-mark {
+  width: 20px; height: 20px; border-radius: 4px; background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--black);
+}
+.t-desk-brand-name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--white); }
+.t-desk-nav {
+  display: flex; gap: 16px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gray-mid);
+}
+.t-desk-nav .active { color: var(--white); }
+.t-desk-user {
+  width: 22px; height: 22px; border-radius: 50%; background: var(--gold);
+  color: var(--black); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 11px;
+}
+.t-desk-h1 {
+  font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px;
+}
+.t-desk-sub {
+  font-family: var(--font-body); font-size: 14px; font-style: italic;
+  color: var(--gray-dark); margin-bottom: 10px;
+}
+.t-desk-prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.t-desk-bar {
+  flex: 1; height: 4px; background: rgba(255,255,255,0.06);
+  border-radius: 2px; overflow: hidden;
+}
+.t-desk-bar-fill { height: 100%; background: var(--gold); width: 60%; border-radius: 2px; }
+.t-desk-prog-num {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--white);
+}
+.t-desk-prog-num span { color: var(--gold); }
+
+.t-desk-tasks { border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
+.t-desk-task {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.015);
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+.t-desk-task:first-child { border-top: none; }
+.t-desk-status {
+  width: 18px; height: 18px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 10px; flex-shrink: 0;
+}
+.t-desk-status.done { background: rgba(123,196,127,0.14); color: var(--success); }
+.t-desk-status.sched { background: rgba(212,165,116,0.14); color: var(--gold); }
+.t-desk-status.pend { background: rgba(255,255,255,0.04); color: var(--gray-dark); }
+.t-desk-face {
+  width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
+  border: 1px solid rgba(212,165,116,0.22); background: var(--black-soft); flex-shrink: 0;
+}
+.t-desk-face img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
+.t-desk-info { flex: 1; }
+.t-desk-name {
+  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--white);
+}
+.t-desk-name span { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 14px; }
+.t-desk-when { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
+.t-desk-when.done { color: var(--success); }
+.t-desk-when.sched { color: var(--gold); }
+.t-desk-action {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); text-transform: uppercase; letter-spacing: 0.10em;
+  padding: 4px 10px; border: 1px solid rgba(212,165,116,0.4); border-radius: 5px;
+}
+
+/* ── EMAIL ── */
+.t-email-body { background: #f5f5f5; }
+.t-email-head {
+  padding: 14px 16px 12px; background: var(--white);
+  border-bottom: 1px solid #e5e5e5;
+}
+.t-email-subj {
+  font-family: var(--font-display); font-weight: 700; font-size: 17px;
+  color: var(--black); letter-spacing: -0.01em; margin-bottom: 10px;
+}
+.t-email-meta { display: flex; align-items: center; gap: 10px; }
+.t-email-av {
+  width: 28px; height: 28px; border-radius: 50%; background: var(--gold);
+  color: var(--black); display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 14px; flex-shrink: 0;
+}
+.t-email-from { flex: 1; }
+.t-email-from-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--black); }
+.t-email-from-to { font-family: var(--font-display); font-size: 14px; color: #737373; }
+.t-email-from-to span { color: var(--black); }
+.t-email-date { font-family: var(--font-display); font-size: 14px; color: #737373; }
+.t-email-content {
+  padding: 14px 16px 16px; background: var(--white);
+  font-family: var(--font-body); color: #404040; font-size: 14px; line-height: 1.55;
+}
+.t-email-content p { margin-bottom: 10px; }
+.t-email-content strong { color: var(--black); font-weight: 600; }
+.t-email-opt {
+  background: #fafafa; border-left: 2px solid var(--gold);
+  padding: 6px 10px; margin: 5px 0;
+  font-family: var(--font-body); font-size: 14px; color: #404040;
+}
+.t-email-event {
+  background: var(--black); color: var(--white);
+  border-radius: 8px; padding: 13px 15px; margin: 12px 0 10px;
+}
+.t-email-event-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px;
+}
+.t-email-event-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 17px;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px;
+}
+.t-email-event-row {
+  display: flex; align-items: center; gap: 7px; margin: 4px 0;
+}
+.t-email-event-row svg {
+  width: 14px; height: 14px; stroke: var(--gold); fill: none;
+  stroke-width: 1.6; flex-shrink: 0;
+}
+.t-email-event-row-text {
+  font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--gray);
+}
+.t-email-event-row-text strong { color: var(--white); font-weight: 600; }
+.t-email-event-cta {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  letter-spacing: 0.10em; text-transform: uppercase;
+  padding: 8px 14px; border-radius: 6px;
+  background: var(--gold); color: var(--black);
+  display: inline-block; margin-top: 10px;
+}
+.t-email-signoff {
+  font-family: var(--font-body); font-size: 14px; color: #404040; margin-top: 10px;
+}
+.t-email-signoff strong { color: var(--black); }
+
+@media (max-width: 900px) {
+  .t-cols { grid-template-columns: 1fr; clip-path: none; }
 }
 
 @media (max-height: 500px) and (min-width: 769px) {
-  .s5-hero    { font-size: 16px; margin-bottom: 2px; }
-  .s5-flywheel { font-size: 15px; margin: 2px auto 8px; }
-  .s5-track   { height: 200px; }
-  .s5-wrap    { height: 192px; }
+  .t-desk-inner  { zoom: 0.62; }
+  .t-email-inner { zoom: 0.62; }
+  .t-phone-inner { zoom: 0.60; }
+  .t-phone-wrap  { width: 210px; }
+  .t-step-head   { font-size: 15px; }
+  .t-step-desc   { font-size: 13px; }
 }
 </style>
 </head>
 <body data-slide="slide-5">
+
 
 <div class="deck">
 
 <div class="slide" id="slide-5">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Circles solve the <span class="gold">next customer</span> problem</h2>
-  <p class="s5-hero">Ami joins a referral circle &mdash; a group of <span class="gold">trusted peers who refer customers</span> to each other.</p>
+  <h2 class="slide-title">InTouch solves trust like <span class="gold">corporate staffing</span></h2>
 
-  <div class="carousel-area">
-    <div class="carousel-glow"></div>
-    <div class="s5-track" id="s5Track">
+  <div class="t-cols">
 
-      <!-- 0: Executive Coach (loop tail) -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Recruiter</span>
-            </div>
+    <!-- ═══ COL 1: MATCH ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami applies for circles</div>
+      <div class="t-step-desc">Mutual connections and shared context plant the first seeds of trust</div>
+
+      <div class="t-phone-outer">
+        <div class="t-phone-wrap">
+          <div class="t-phone-screen">
+            <div class="t-phone-notch"></div>
+            <div class="t-phone-inner">
+              <div class="t-ph-status">
+                <span>9:41</span>
+                <span>▪▪▪ ◗ ▣</span>
+              </div>
+              <div class="t-ph-header">
+                <div class="t-ph-title">Apply for circles</div>
+              </div>
+
+              <div class="t-ph-featured">
+                <div class="t-ph-fc-tag">Top match · Atlas</div>
+
+                <!-- Side-by-side commonalities -->
+                <div class="t-ph-compare-head">
+                  <span>Atlas Circle</span>
+                  <span>Ami</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>Seed B2B Founders</span>
+                  <span>Seed Founders</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>🇮🇱</span>
+                  <span>🇮🇱</span>
+                </div>
+                <div class="t-ph-compare-row">
+                  <span>Acme (customer)</span>
+                  <span>Acme (customer)</span>
+                </div>
+
+                <div class="t-ph-compare-signal">+ mutual connections &amp; work history with Sarah and Tom</div>
+
+                <div class="t-ph-divider"></div>
+
+                <!-- Aggregated member faces -->
+                <div class="t-ph-faces-agg">
+                  <div class="t-ph-cf-row">
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
+                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+                  </div>
+                  <span class="t-ph-faces-label">5 members · 3 openings</span>
+                </div>
+
+                <div class="t-ph-apply">Apply to join</div>
+              </div>
+
+              <div class="t-ph-more-label">3 more matches</div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/4.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/77.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Lighthouse</div>
+                  <div class="t-ph-cmeta">SaaS Founders · 8 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/33.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Compass</div>
+                  <div class="t-ph-cmeta">Fintech Founders · 6 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/18.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/44.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Meridian</div>
+                  <div class="t-ph-cmeta">Legal Founders · 7 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
+
+            </div><!-- /.t-phone-inner (zoom) -->
+          </div><!-- /.t-phone-screen -->
+        </div><!-- /.t-phone-wrap -->
+      </div><!-- /.t-phone-outer -->
+    </div><!-- /col 1 -->
+
+    <!-- ═══ COL 2: VET ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami meets every member before being accepted</div>
+      <div class="t-step-desc">Each member builds rapport and starts trusting him</div>
+
+      <div class="t-browser-wrap">
+        <div class="t-chrome">
+          <div class="t-chrome-dots">
+            <div class="t-chrome-dot r"></div>
+            <div class="t-chrome-dot y"></div>
+            <div class="t-chrome-dot g"></div>
           </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.2 1 2V18h6v-1.3c0-.8.4-1.5 1-2A7 7 0 0 0 12 2z"/></svg>
-            </div>
-            <div class="card-profession">Executive Coach</div>
-            <div class="card-context">develops the new VP</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Fractional CFO</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
+          <div class="t-chrome-url">app.intouch.network/qualify</div>
         </div>
-      </div>
+        <div class="t-desk-inner">
+          <div class="t-desk-app">
+            <div class="t-desk-topbar">
+              <div class="t-desk-brand">
+                <div class="t-desk-mark">I</div>
+                <div class="t-desk-brand-name">InTouch</div>
+              </div>
+              <div class="t-desk-nav">
+                <div>Circles</div>
+                <div class="active">Qualify</div>
+                <div>Referrals</div>
+              </div>
+              <div class="t-desk-user">A</div>
+            </div>
 
-      <!-- 1: Fractional CFO -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Executive Coach</span>
+            <div class="t-desk-h1">Interviews · Atlas</div>
+            <div class="t-desk-sub">Each member interviews you 1-on-1 before voting you in.</div>
+
+            <div class="t-desk-prog-row">
+              <div class="t-desk-bar"><div class="t-desk-bar-fill"></div></div>
+              <div class="t-desk-prog-num"><span>3</span> / 5</div>
+            </div>
+
+            <div class="t-desk-tasks">
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Mia Korman <span>· CFO</span></div></div>
+                <div class="t-desk-when done">Thu, Nov 7</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Sarah Mendez <span>· Lawyer</span></div></div>
+                <div class="t-desk-when done">Fri, Nov 8</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status done">✓</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Dan Klein <span>· CRO</span></div></div>
+                <div class="t-desk-when done">Mon, Nov 11</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status sched">●</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Tom Rosen <span>· Recruiter</span></div></div>
+                <div class="t-desk-when sched">Wed, 11:00 AM</div>
+              </div>
+              <div class="t-desk-task">
+                <div class="t-desk-status pend">○</div>
+                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+                <div class="t-desk-info"><div class="t-desk-name">Yuri Novak <span>· Coach</span></div></div>
+                <div class="t-desk-action">Schedule</div>
+              </div>
             </div>
           </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 14h2M12 14h2M16 14h2M8 17h2M12 17h2"/></svg>
-            </div>
-            <div class="card-profession">Fractional CFO</div>
-            <div class="card-context">prepares the financials</div>
+        </div><!-- /.t-desk-inner -->
+      </div><!-- /.t-browser-wrap -->
+    </div><!-- /col 2 -->
+
+    <!-- ═══ COL 3: PROVE ═══ -->
+    <div class="t-col">
+      <div class="t-step-head">Ami shows a success story</div>
+      <div class="t-step-desc">Members learn to trust Ami's ability to deliver value</div>
+
+      <div class="t-browser-wrap">
+        <div class="t-chrome">
+          <div class="t-chrome-dots">
+            <div class="t-chrome-dot r"></div>
+            <div class="t-chrome-dot y"></div>
+            <div class="t-chrome-dot g"></div>
           </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Startup Lawyer</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
+          <div class="t-chrome-gmail"><span class="r">M</span> Gmail · Inbox</div>
         </div>
-      </div>
+        <div class="t-email-inner">
+          <div class="t-email-body">
+            <div class="t-email-head">
+              <div class="t-email-subj">Customer showcase meeting</div>
+              <div class="t-email-meta">
+                <div class="t-email-av">G</div>
+                <div class="t-email-from">
+                  <div class="t-email-from-name">Gordy</div>
+                  <div class="t-email-from-to">to <span>Ami</span></div>
+                </div>
+                <div class="t-email-date">Tue, Nov 12</div>
+              </div>
+            </div>
+            <div class="t-email-content">
+              <p>Last step before joining <strong>Atlas</strong> — the <strong>Customer Showcase</strong>. Pick one:</p>
+              <div class="t-email-opt"><strong>A.</strong> Bring a customer to vouch live</div>
+              <div class="t-email-opt"><strong>B.</strong> Share a 2-min video testimonial</div>
+              <div class="t-email-event">
+                <div class="t-email-event-tag">🇮🇱 Atlas · InTouch circle</div>
+                <div class="t-email-event-title">Customer Showcase</div>
+                <div class="t-email-event-row">
+                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <div class="t-email-event-row-text"><strong>Fri, Nov 15</strong> · 3:00 PM</div>
+                </div>
+                <div class="t-email-event-row">
+                  <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/></svg>
+                  <div class="t-email-event-row-text">5 circle members + you</div>
+                </div>
+                <div class="t-email-event-cta">Add to Calendar</div>
+              </div>
+              <div class="t-email-signoff">— <strong>Gordy</strong>, your circle host</div>
+            </div>
+          </div>
+        </div><!-- /.t-email-inner -->
+      </div><!-- /.t-browser-wrap -->
+    </div><!-- /col 3 -->
 
-      <!-- 2: Startup Lawyer — initial center -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Fractional CFO</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10M12 3v18"/></svg>
-            </div>
-            <div class="card-profession">Startup Lawyer</div>
-            <div class="card-context">closes the funding round</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Fractional CRO</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
-        </div>
-      </div>
+  </div><!-- /.t-cols -->
 
-      <!-- 3: Fractional CRO -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Startup Lawyer</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
-            </div>
-            <div class="card-profession">Fractional CRO</div>
-            <div class="card-context">builds the sales pipeline</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Ami</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 4: Ami — final center -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Fractional CRO</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="ami-avatar"><img src="ami.png" alt="Ami B."></div>
-            <div class="card-profession">Fractional VP Marketing</div>
-            <div class="card-context">drives demand</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">PR Agent</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 5: PR Agent -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">Ami</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M17 8h1a3 3 0 0 1 0 6h-1"/><path d="M3 8h14v8a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V8z"/><path d="M6 2v3M10 2v3M14 2v3"/></svg>
-            </div>
-            <div class="card-profession">PR Agent</div>
-            <div class="card-context">launches the product</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Recruiter</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 6: Recruiter -->
-      <div class="s5-wrap">
-        <div class="card">
-          <div class="card-flow card-flow-top">
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-            <div class="flow-text">
-              <span class="flow-label">Referred by</span>
-              <span class="flow-name">PR Agent</span>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div class="card-profession">Recruiter</div>
-            <div class="card-context">places a VP of Engineering</div>
-          </div>
-          <div class="card-flow card-flow-bottom">
-            <div class="flow-text">
-              <span class="flow-label">Refers to</span>
-              <span class="flow-name">Executive Coach</span>
-            </div>
-            <div class="flow-arrow"><svg viewBox="0 0 16 16"><path d="M3 8 H13 M9 4 L13 8 L9 12"/></svg></div>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /.s5-track -->
-  </div><!-- /.carousel-area -->
-
-  <p class="s5-flywheel">Each referral builds more trust in the group &mdash; that&rsquo;s the <strong>flywheel</strong>.</p>
-
-  <div class="conclusion">So the only thing <strong>Ami</strong> needs is to find peers he trusts &mdash; it&rsquo;s a <strong>dating problem</strong>.</div>
-  <div class="sources">Sources: InTouch interviews; BNI Mid-Year Report 2025</div>
+  <div class="conclusion">InTouch builds trust early — the first referral <strong>kickstarts the flywheel</strong>.</div>
+  <div class="sources">Sources: InTouch product; trust formation research (Granovetter, Cialdini)</div>
 </div>
 
 </div>
 
-<script>
-(function () {
-  // ── Position slots ──────────────────────────────────────────────────────────
-  // Each entry describes one distance from center (0=center, 1=adjacent, 2=far, 3=hidden).
-  // x    : horizontal offset in px from stage centre
-  // tz   : translateZ in px (cards recede into the screen)
-  // ry   : rotateY in degrees — positive = right side recedes (outer edge smaller)
-  // op   : opacity
-  // zi   : z-index
-  var SLOTS = [
-    { x:   0, tz:   0, ry:  0,  op: 1.00, zi: 10 }, // center
-    { x: 196, tz: -38, ry: 38,  op: 0.78, zi: 8  }, // ±1
-    { x: 358, tz: -95, ry: 56,  op: 0.40, zi: 6  }, // ±2
-    { x: 500, tz:-160, ry: 70,  op: 0,    zi: 2  }, // ±3  (hidden)
-  ];
-
-  var wraps = Array.from(document.querySelectorAll('.s5-wrap'));
-
-  function applyPositions(centerIdx) {
-    wraps.forEach(function (w, i) {
-      var off = i - centerIdx;
-      var abs = Math.min(Math.abs(off), 3);
-      var s   = SLOTS[abs];
-      var sgn = off > 0 ? 1 : off < 0 ? -1 : 0;
-      var tx  = sgn * s.x;
-      // rotateY sign: positive offset → positive angle (right side of card recedes)
-      //               negative offset → negative angle (left side of card recedes)
-      // Both make the OUTER edge of the side card appear smaller — correct 3-D arc look.
-      var ry  = sgn * s.ry;
-      w.style.transform = [
-        'translate(-50%, -50%)',
-        'translateX(' + tx + 'px)',
-        'translateZ(' + s.tz + 'px)',
-        'rotateY(' + ry + 'deg)'
-      ].join(' ');
-      w.style.opacity = s.op;
-      w.style.zIndex  = s.zi;
-    });
-  }
-
-  function markCenter(centerIdx) {
-    wraps.forEach(function (w, i) {
-      w.classList.toggle('is-center', i === centerIdx);
-    });
-  }
-
-  // ── Initial state: Startup Lawyer (index 2) at centre ──────────────────────
-  // Set positions without transition first so there's no flash on load.
-  wraps.forEach(function (w) { w.style.transition = 'none'; });
-  applyPositions(2);
-  markCenter(2);
-
-  // Re-enable transitions on the next frame.
-  requestAnimationFrame(function () {
-    wraps.forEach(function (w) {
-      w.style.transition = 'transform 2.64s cubic-bezier(0.4,0,0.2,1), opacity 2.64s ease';
-    });
-  });
-
-  // ── Animate to Ami (index 4) after 1.4 s ──────────────────────────────────
-  setTimeout(function () {
-    applyPositions(4);
-    // Update gold centre glow slightly after the card arrives
-    setTimeout(function () { markCenter(4); }, 1320);
-  }, 1400);
-})();
-</script>
 <script src="nav.js"></script>
 </body>
 </html>
