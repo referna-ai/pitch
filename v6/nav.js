@@ -8,6 +8,7 @@
     { file: 'slide-2.html',  title: 'Customer' },
     { file: 'slide-5.html',  title: 'Solution' },
     { file: 'slide-6.html',  title: 'Product' },
+    { file: 'slide-6b.html', title: 'Product 2' },
     { file: 'slide-7.html',  title: 'Team' },
     { file: 'slide-8.html',  title: 'Precedent' },
     { file: 'slide-9.html',  title: 'Market' },
