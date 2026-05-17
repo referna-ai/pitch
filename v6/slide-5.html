@@ -185,6 +185,20 @@ body[data-slide="slide-5"] .slide-title .gold { color: var(--gold); }
   .s5-wrap  { width: 158px; height: 210px; }
   .card     { padding: 10px 12px; }
 }
+
+@media (max-width: 768px) {
+  .s5-hero    { font-size: 16px; margin-bottom: 4px; }
+  .s5-flywheel { font-size: 15px; margin: 4px auto 10px; }
+  /* Scale the 3-D stage so ±1 cards remain visible on narrow screens */
+  .s5-track   { transform: scale(0.72); transform-origin: center center; }
+}
+
+@media (max-height: 500px) and (min-width: 769px) {
+  .s5-hero    { font-size: 16px; margin-bottom: 2px; }
+  .s5-flywheel { font-size: 15px; margin: 2px auto 8px; }
+  .s5-track   { height: 200px; }
+  .s5-wrap    { height: 192px; }
+}
 </style>
 </head>
 <body data-slide="slide-5">

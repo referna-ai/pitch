@@ -1554,9 +1554,9 @@ img[src$="ami.png"] { filter: grayscale(100%); }
     min-height: 0;
     display: block;
   }
-  .slide { padding: 28px 20px 20px; height: auto; }
+  .slide { padding: 28px 20px 20px; height: auto; transform: none !important; margin-bottom: 0 !important; }
   .slide-title { font-size: 28px; }
-  .slide-hero { padding: 40px 20px; height: auto; }
+  .slide-hero { padding: 40px 20px; height: auto; transform: none !important; margin-bottom: 0 !important; }
   .slide-hero .tagline { font-size: 32px; }
   .conclusion { font-size: 17px; }
   .bullets li { font-size: 15px; }

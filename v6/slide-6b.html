@@ -99,7 +99,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 
 /* ── PHONE ── */
 .t-phone-outer {
-  align-self: center;
+  align-self: flex-start;
   filter:
     drop-shadow(0 0 22px rgba(212,165,116,0.20))
     drop-shadow(0 0 8px  rgba(212,165,116,0.12))
@@ -404,7 +404,16 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 .t-email-signoff strong { color: var(--black); }
 
 @media (max-width: 900px) {
-  .t-cols { grid-template-columns: 1fr; }
+  .t-cols { grid-template-columns: 1fr; clip-path: none; }
+}
+
+@media (max-height: 500px) and (min-width: 769px) {
+  .t-desk-inner  { zoom: 0.62; }
+  .t-email-inner { zoom: 0.62; }
+  .t-phone-inner { zoom: 0.60; }
+  .t-phone-wrap  { width: 210px; }
+  .t-step-head   { font-size: 15px; }
+  .t-step-desc   { font-size: 13px; }
 }
 </style>
 </head>
@@ -423,7 +432,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
     <!-- ═══ COL 1: MATCH ═══ -->
     <div class="t-col">
       <div class="t-step-head">Ami applies for circles</div>
-      <div class="t-step-desc">Mutual connections and shared context build instant trust</div>
+      <div class="t-step-desc">Mutual connections and shared context plant the first seeds of trust</div>
 
       <div class="t-phone-outer">
         <div class="t-phone-wrap">
@@ -662,14 +671,5 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 </div>
 
 <script src="nav.js"></script>
-<script>
-/* Override auto-number to show 6b / N */
-(function () {
-  var el = document.querySelector('.slide-number');
-  var label = document.querySelector('.slide-label');
-  if (el) el.textContent = '6b / 12';
-  if (label) label.textContent = 'Product 2 / 2';
-})();
-</script>
 </body>
 </html>
