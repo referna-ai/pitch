@@ -31,9 +31,10 @@ body[data-slide="slide-6"] .sources {
 .s9-layout {
   display: grid;
   grid-template-columns: 360px 1fr;
+  grid-template-rows: 1fr;
   gap: 32px;
   flex: 1;
-  align-items: start;
+  align-items: stretch;
   position: relative;
   min-height: 0;
 }
@@ -48,20 +49,24 @@ body[data-slide="slide-6"] .sources {
 .s9-pillar-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 22px;
+  font-size: 32px;
   letter-spacing: -0.015em;
   color: var(--white);
-  margin-bottom: 14px;
-  line-height: 1.2;
+  margin-bottom: 22px;
+  line-height: 1.15;
+  white-space: nowrap;
+  width: max-content;
+  position: relative;
+  z-index: 4;
 }
 .s9-pillar + .s9-pillar { margin-top: -10px; }
-.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; }
+.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; max-width: 300px; }
 .s9-pillar-bullets li {
   font-family: var(--font-body);
-  font-size: 16.5px;
-  line-height: 1.5;
+  font-size: 22px;
+  line-height: 1.45;
   color: var(--gray);
-  padding: 9px 0 9px 22px;
+  padding: 16px 0 16px 28px;
   border-top: 1px solid var(--border-soft);
   position: relative;
 }
@@ -69,11 +74,11 @@ body[data-slide="slide-6"] .sources {
 .s9-pillar-bullets li::before {
   content: "→";
   position: absolute;
-  left: 0; top: 9px;
+  left: 0; top: 16px;
   color: var(--gold);
   font-weight: 700;
   font-family: var(--font-display);
-  font-size: 13px;
+  font-size: 18px;
 }
 .s9-pillar-bullets li:first-child::before { top: 4px; }
 .s9-pillar-bullets li strong { color: inherit; font-weight: inherit; }
@@ -459,11 +464,11 @@ body[data-slide="slide-6"] .sources {
   color: var(--gold);
   line-height: 1;
 }
-.s9-label-browser { top: 40px; left: 10px; }
+.s9-label-browser { top: 80px; left: 10px; }
 .s9-label-phone   { top: 0px;  right: 2px; }
 
 /* Push mockups down to make room for labels */
-.s9-browser-wrap { top: 58px; }
+.s9-browser-wrap { top: 98px; }
 .s9-phone-wrap   { top: 16px; }
 
 /* FULL-SCREEN MATCH OVERLAY */
@@ -575,17 +580,8 @@ body[data-slide="slide-6"] .sources {
         <h3 class="s9-pillar-title">We match members to circles</h3>
         <ul class="s9-pillar-bullets">
           <li>Matched by <strong>who they serve</strong>, not where they live</li>
-          <li>Selected by ability to <strong>spot buying moments for each other</strong></li>
+          <li>Selected by ability to <strong>create trust with the circle</strong> —<br>equal standing,<br>mutual connections,<br>common interests</li>
           <li>A circle of 8-12 <strong>helping each other</strong></li>
-        </ul>
-      </div>
-
-      <div class="s9-pillar">
-        <h3 class="s9-pillar-title">We vet members to build trust</h3>
-        <ul class="s9-pillar-bullets">
-          <li>Every member <strong>passed the same vetting</strong></li>
-          <li>Matched with peers of <strong>equal standing + shared values</strong></li>
-          <li><strong>Gordy</strong> ensures balanced contribution from everyone</li>
         </ul>
       </div>
 
