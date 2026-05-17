@@ -19,6 +19,7 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
   flex: 1;
   min-height: 0;
   position: relative;
+  overflow: hidden;
 }
 .chart-wrap svg { width: 100%; height: 100%; display: block; }
 
@@ -105,6 +106,7 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
 .axis-line  { stroke: rgba(255,255,255,0.2); stroke-width: 1; }
 .axis-grid  { stroke: rgba(255,255,255,0.08); stroke-width: 1; stroke-dasharray: 2 4; }
 .axis-label { font-family: 'Manrope',sans-serif; font-size: 13px; fill: #D1D1D1; font-weight: 500; }
+.axis-title { font-family: 'Manrope',sans-serif; font-size: 11px; fill: rgba(209,209,209,0.55); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
 .lane-label { font-family: 'Manrope',sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; }
 .lane-meta  { font-family: 'Manrope',sans-serif; font-weight: 500; font-size: 14.5px; }
 .dot-muted     { fill: rgba(212,165,116,0.35); stroke: rgba(212,165,116,0.5); stroke-width: 0.5; }
@@ -130,6 +132,8 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
       <!-- Y axis -->
       <line class="axis-line" x1="62" y1="20" x2="62" y2="280"/>
       <line class="axis-line" x1="62" y1="280" x2="1170" y2="280"/>
+      <!-- Y axis title -->
+      <text class="axis-title" x="14" y="150" text-anchor="middle" transform="rotate(-90,14,150)">REPLY RATE</text>
 
       <!-- Grid lines -->
       <line class="axis-grid" x1="62" y1="210" x2="1170" y2="210"/>
@@ -264,7 +268,7 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
 
   </div>
 
-  <div class="conclusion">A <strong>20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
+  <div class="conclusion"><strong>A 20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
   <div class="sources">Sources: InTouch outbound campaigns (51 tests, May 2025 – May 2026) · n = 5,339 contacted</div>
 </div>
 
