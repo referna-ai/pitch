@@ -16,21 +16,13 @@ body[data-slide="slide-6b"] {
 }
 body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
-/* phone bleeds behind conclusion/sources — keep them as an opaque wall */
-body[data-slide="slide-6b"] .slide { overflow: hidden; }
-body[data-slide="slide-6b"] .conclusion,
-body[data-slide="slide-6b"] .sources {
-  position: relative;
-  z-index: 5;
-  background: var(--black-mid);
-}
-/* fold the 16px margin-top into padding so there is no gap between the two
-   elements where the phone could show through */
+/* phone bleeds upward through the margin gap between sources and conclusion —
+   fold the gap into padding so the two backgrounds are contiguous */
 body[data-slide="slide-6b"] .sources {
   margin-top: 0;
   padding-top: 28px; /* 16px former margin + 12px former padding */
 }
-/* cover the slide's 36px bottom padding below sources */
+/* extend sources background into the slide's 36px bottom padding */
 body[data-slide="slide-6b"] .sources::after {
   content: '';
   position: absolute;

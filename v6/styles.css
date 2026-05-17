@@ -51,6 +51,7 @@ body {
   transform: scale(var(--slide-scale));
   transform-origin: top center;
   visibility: hidden;
+  overflow: hidden;
 }
 .slide.scaled { visibility: visible; }
 
@@ -405,6 +406,9 @@ body {
 }
 
 .conclusion {
+  position: relative;
+  z-index: 5;
+  background: var(--black-mid);
   border-top: 2px solid var(--gold);
   padding-top: 22px;
   margin-top: 24px;
@@ -687,6 +691,9 @@ body {
 }
 
 .sources {
+  position: relative;
+  z-index: 5;
+  background: var(--black-mid);
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid rgba(212, 165, 116, 0.1);
