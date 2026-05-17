@@ -17,15 +17,10 @@ body[data-slide="slide-6"] {
   --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
 }
 
-body[data-slide="slide-6"] .slide { overflow: hidden; }
 body[data-slide="slide-6"] .slide-title { margin-bottom: 22px; }
 body[data-slide="slide-6"] .slide-title .gold { color: var(--gold); }
-body[data-slide="slide-6"] .conclusion,
-body[data-slide="slide-6"] .sources {
-  position: relative;
-  z-index: 5;
-  background: var(--black-mid);
-}
+/* clip phone glow only at the bottom (conclusion line); allow it on top/sides */
+body[data-slide="slide-6"] .s9-visual { clip-path: inset(-200px -200px 0 -200px); }
 
 /* LAYOUT */
 .s9-layout {
