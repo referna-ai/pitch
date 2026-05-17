@@ -53,6 +53,10 @@ body[data-slide="slide-6"] .sources {
   color: var(--white);
   margin-bottom: 22px;
   line-height: 1.15;
+  white-space: nowrap;
+  width: max-content;
+  position: relative;
+  z-index: 4;
 }
 .s9-pillar + .s9-pillar { margin-top: -10px; }
 .s9-pillar-bullets { list-style: none; padding: 0; margin: 0; max-width: 300px; }
@@ -445,7 +449,7 @@ body[data-slide="slide-6"] .sources {
 /* MOCKUP CLUSTER — transparent on desktop, scaled on mobile */
 .s9-mockup-cluster {
   position: absolute;
-  inset: 40px 0 0 0;
+  inset: 0;
 }
 
 /* MOCKUP LABELS */
@@ -459,11 +463,11 @@ body[data-slide="slide-6"] .sources {
   color: var(--gold);
   line-height: 1;
 }
-.s9-label-browser { top: 40px; left: 10px; }
+.s9-label-browser { top: 80px; left: 10px; }
 .s9-label-phone   { top: 0px;  right: 2px; }
 
 /* Push mockups down to make room for labels */
-.s9-browser-wrap { top: 58px; }
+.s9-browser-wrap { top: 98px; }
 .s9-phone-wrap   { top: 16px; }
 
 /* FULL-SCREEN MATCH OVERLAY */
