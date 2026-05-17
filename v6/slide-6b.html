@@ -16,8 +16,17 @@ body[data-slide="slide-6b"] {
 }
 body[data-slide="slide-6b"] .slide-title { margin-bottom: 16px; }
 body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
-/* clip phone at slide edge; conclusion renders on top */
+/* clip phone at slide edge; solid backdrop covers everything below conclusion */
 body[data-slide="slide-6b"] .slide { overflow: hidden; }
+body[data-slide="slide-6b"] .slide::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 130px;
+  background: var(--black-mid);
+  z-index: 0;
+  pointer-events: none;
+}
 body[data-slide="slide-6b"] .conclusion { position: relative; z-index: 1; }
 body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
 
@@ -172,10 +181,10 @@ body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
 .t-ph-compare-row span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .t-ph-compare-signal {
   font-family: var(--font-display); font-size: 18px; font-weight: 500;
-  color: var(--white); line-height: 1.4; margin-top: 14px;
+  color: var(--white); line-height: 1.4; margin-top: 10px;
 }
 .t-ph-faces-agg {
-  display: flex; align-items: center; gap: 10px; margin-top: 14px;
+  display: flex; align-items: center; gap: 10px; margin-top: 10px;
 }
 .t-ph-faces-label {
   font-family: var(--font-display); font-weight: 500; font-size: 17px;
@@ -184,16 +193,16 @@ body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
 
 /* featured card */
 .t-ph-featured {
-  margin: 0 14px 14px;
+  margin: 0 14px 10px;
   background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
   border: 1.5px solid var(--gold); border-radius: 10px;
-  padding: 18px 18px 16px;
+  padding: 14px 16px 12px;
   box-shadow: 0 6px 18px rgba(212,165,116,0.15);
 }
 .t-ph-fc-tag {
   font-family: var(--font-display); font-weight: 700; font-size: 15px;
   color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 .t-ph-kv-tag {
   display: inline-flex; align-items: center; gap: 8px;
@@ -440,10 +449,6 @@ body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
               </div>
               <div class="t-ph-header">
                 <div class="t-ph-title">Apply for circles</div>
-                <div class="t-ph-toggle">
-                  <div class="t-ph-toggle-opt active">Existing</div>
-                  <div class="t-ph-toggle-opt">Start new</div>
-                </div>
               </div>
 
               <div class="t-ph-featured">
@@ -516,6 +521,19 @@ body[data-slide="slide-6b"] .sources    { position: relative; z-index: 1; }
                 <span class="t-ph-chev">›</span>
               </div>
 
+              <div class="t-ph-collapsed">
+                <div class="t-ph-cf-row">
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/18.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/44.jpg" alt=""></div>
+                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div>
+                </div>
+                <div class="t-ph-cinfo">
+                  <div class="t-ph-cname">Meridian</div>
+                  <div class="t-ph-cmeta">Legal Founders · 7 members</div>
+                </div>
+                <span>🇮🇱</span>
+                <span class="t-ph-chev">›</span>
+              </div>
 
             </div><!-- /.t-phone-inner (zoom) -->
           </div><!-- /.t-phone-screen -->
