@@ -20,7 +20,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 /* ── Three-column layout ── */
 .t-cols {
   display: grid;
-  grid-template-columns: 1fr 1.55fr 1.45fr;
+  grid-template-columns: 1.2fr 1.4fr 1.3fr;
   gap: 28px;
   flex: 1;
   min-height: 0;
@@ -109,17 +109,17 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 .t-phone-outer {
   align-self: center;
   filter:
-    drop-shadow(0 0 22px rgba(212,165,116,0.22))
+    drop-shadow(0 0 22px rgba(212,165,116,0.20))
     drop-shadow(0 0 8px  rgba(212,165,116,0.12))
-    drop-shadow(0 28px 50px rgba(0,0,0,0.60));
+    drop-shadow(0 30px 50px rgba(0,0,0,0.55));
 }
 .t-phone-wrap {
   background: #1a1a1a;
-  border: 6px solid #1a1a1a;
-  border-radius: 32px;
+  border: 7px solid #1a1a1a;
+  border-radius: 34px;
   overflow: hidden;
   position: relative;
-  width: 240px;
+  width: 270px;
 }
 .t-phone-screen {
   background: var(--black);
@@ -162,30 +162,24 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
   margin: 0 14px 10px;
   background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
   border: 1.5px solid var(--gold); border-radius: 10px;
-  padding: 11px 13px 10px;
+  padding: 14px 16px 12px;
   box-shadow: 0 6px 18px rgba(212,165,116,0.15);
 }
 .t-ph-fc-tag {
   font-family: var(--font-display); font-weight: 700; font-size: 14px;
   color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-.t-ph-kv {
-  display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px;
+.t-ph-kv-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  color: var(--gray); margin-bottom: 2px;
 }
-.t-ph-kv-key {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px;
-  color: var(--gray-mid); letter-spacing: 0.10em; text-transform: uppercase;
-  width: 80px; flex-shrink: 0;
-}
-.t-ph-kv-val {
-  font-family: var(--font-display); font-weight: 700; font-size: 15px;
-  color: var(--white);
-}
+.t-ph-kv-tag + .t-ph-kv-tag { margin-bottom: 0; }
 .t-ph-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 6px 0; }
 
 .t-ph-member {
-  display: flex; align-items: flex-start; gap: 8px; margin-bottom: 6px;
+  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px;
 }
 .t-ph-face {
   width: 28px; height: 28px; border-radius: 50%; overflow: hidden;
@@ -194,13 +188,13 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 }
 .t-ph-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
 .t-ph-mname {
-  font-family: var(--font-display); font-weight: 600; font-size: 15px;
+  font-family: var(--font-display); font-weight: 600; font-size: 16px;
   color: var(--white); line-height: 1.2;
 }
-.t-ph-mname .suffix { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 14px; }
+.t-ph-mname .suffix { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 15px; }
 .t-ph-msignal {
   font-family: var(--font-body); font-size: 14px; font-style: italic;
-  color: var(--gold); line-height: 1.3; margin-top: 2px;
+  color: var(--gold); line-height: 1.35; margin-top: 3px;
 }
 .t-ph-apply {
   background: var(--gold); color: var(--black);
@@ -430,14 +424,8 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 
               <div class="t-ph-featured">
                 <div class="t-ph-fc-tag">Top match · Atlas</div>
-                <div class="t-ph-kv">
-                  <span class="t-ph-kv-key">Customer</span>
-                  <span class="t-ph-kv-val">Seed B2B Founders</span>
-                </div>
-                <div class="t-ph-kv">
-                  <span class="t-ph-kv-key">Locale</span>
-                  <span class="t-ph-kv-val">🇮🇱 Israel</span>
-                </div>
+                <div class="t-ph-kv-tag">Seed B2B Founders</div>
+                <div class="t-ph-kv-tag">🇮🇱 Israel</div>
                 <div class="t-ph-divider"></div>
                 <div class="t-ph-member">
                   <div class="t-ph-face"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
@@ -642,7 +630,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
 
   </div><!-- /.t-cols -->
 
-  <div class="conclusion">The product is designed to <strong>build trust early</strong> and enable the <strong>first referral</strong>.</div>
+  <div class="conclusion">The product is designed to <strong>build trust early</strong> — the first referral <strong>kickstarts the flywheel</strong>.</div>
   <div class="sources">Sources: InTouch product; trust formation research (Granovetter, Cialdini)</div>
 </div>
 
@@ -655,7 +643,7 @@ body[data-slide="slide-6b"] .slide-title .gold { color: var(--gold); }
   var el = document.querySelector('.slide-number');
   var label = document.querySelector('.slide-label');
   if (el) el.textContent = '6b / 12';
-  if (label) label.textContent = 'Product #2';
+  if (label) label.textContent = 'Product 2 / 2';
 })();
 </script>
 </body>

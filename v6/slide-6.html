@@ -898,7 +898,12 @@ body[data-slide="slide-6"] .sources {
 }());
 </script>
 <script>
-(function () { var el = document.querySelector('.slide-number'); if (el) el.textContent = '6a / 12'; }());
+(function () {
+  var el  = document.querySelector('.slide-number');
+  var lbl = document.querySelector('.slide-label');
+  if (el)  el.textContent  = '6a / 12';
+  if (lbl) lbl.textContent = 'Product 1 / 2';
+}());
 </script>
 </body>
 </html>
