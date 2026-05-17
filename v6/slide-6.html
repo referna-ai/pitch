@@ -19,8 +19,8 @@ body[data-slide="slide-6"] {
 
 body[data-slide="slide-6"] .slide-title { margin-bottom: 22px; }
 body[data-slide="slide-6"] .slide-title .gold { color: var(--gold); }
-/* clip phone + its glow at the layout boundary so nothing bleeds into the footer */
-body[data-slide="slide-6"] .s9-visual { overflow: hidden; }
+/* clip phone glow only at the bottom (conclusion line); allow it on top/sides */
+body[data-slide="slide-6"] .s9-visual { clip-path: inset(-200px -200px 0 -200px); }
 
 /* LAYOUT */
 .s9-layout {
