@@ -12,12 +12,12 @@
 <style>
 body[data-slide="slide-7"] .slide-title { margin-bottom: 20px; }
 
-/* HERO: email left, stat right */
+/* HERO: stat left, email right */
 .hero-body {
   flex: 1;
   min-height: 0;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 1.15fr 1fr;
   gap: 32px;
   align-items: start;
 }
@@ -182,7 +182,21 @@ body[data-slide="slide-7"] .slide-title { margin-bottom: 20px; }
 
   <div class="hero-body">
 
-    <!-- LEFT: email + obstacles -->
+    <!-- LEFT: hero stat + smoke test def -->
+    <div class="stat-col">
+      <div class="hero-stat">30.2%</div>
+      <div class="hero-stat-label">Reply rate to cold email campaign</div>
+      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
+      <div class="stat-divider"></div>
+      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
+      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
+
+      <div class="smoke-test-def">
+        <span class="term">Smoke test</span> — A demand validation method. Cold-email strangers a real offer, measure who replies. <span class="green-light">Anything above 10% is a green light.</span> <span class="yc-src">— YC</span>
+      </div>
+    </div>
+
+    <!-- RIGHT: email + obstacles -->
     <div class="email-column">
       <div class="email-card">
         <div class="email-subject">Looking for fractional CFO to refer</div>
@@ -217,20 +231,6 @@ body[data-slide="slide-7"] .slide-title { margin-bottom: 20px; }
         <div class="obstacles-result">
           <div class="result-stats"><span>→</span> 30% still replied. 80% positive. <span class="result-punchline">Must be the offer.</span></div>
         </div>
-      </div>
-    </div>
-
-    <!-- RIGHT: hero stat + smoke test def -->
-    <div class="stat-col">
-      <div class="hero-stat">30.2%</div>
-      <div class="hero-stat-label">Reply rate to cold email campaign</div>
-      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
-      <div class="stat-divider"></div>
-      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
-      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
-
-      <div class="smoke-test-def">
-        <span class="term">Smoke test</span> — A demand validation method. Cold-email strangers a real offer, measure who replies. <span class="green-light">Anything above 10% is a green light.</span> <span class="yc-src">— YC</span>
       </div>
     </div>
 
