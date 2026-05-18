@@ -3,118 +3,172 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S7 · Signal — InTouch Pitch</title>
+<title>S7 · Smoke Test — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-7"] .slide { padding: 32px 52px 26px; }
-body[data-slide="slide-7"] .slide-title { margin-bottom: 10px; }
-body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
+body[data-slide="slide-7"] .slide-title { margin-bottom: 20px; }
 
-/* CHART */
-.chart-wrap {
+/* HERO: email left, stat right */
+.hero-body {
   flex: 1;
   min-height: 0;
-  position: relative;
-  overflow: hidden;
-}
-.chart-wrap svg { width: 100%; height: 100%; display: block; }
-
-/* STAT CARDS */
-.stats-row {
   display: grid;
-  grid-template-columns: 1fr 1.25fr 1fr;
-  gap: 14px;
-  margin: 12px 0 10px;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 32px;
+  align-items: start;
 }
-.stat-card {
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 8px;
-  padding: 20px 18px 14px;
-  position: relative;
+
+/* LEFT COLUMN */
+.email-column {
   display: flex;
   flex-direction: column;
-  min-height: 96px;
-}
-.stat-card.featured {
-  background: rgba(212,165,116,0.08);
-  border: 1px solid rgba(212,165,116,0.35);
-  box-shadow: 0 0 16px rgba(212,165,116,0.07);
+  gap: 9px;
+  overflow: hidden; /* crops email 20% on right */
 }
 
-/* Pill badge — matches .card-logo pill style from Market slide */
-.stat-badge {
-  position: absolute;
-  top: -11px;
-  left: 14px;
-  height: 22px;
-  padding: 0 10px;
-  background: var(--black-mid);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--gray-dark);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  line-height: 1;
+/* EMAIL MOCKUP */
+.email-card {
+  background: #F0EFEE;
+  border-radius: 6px;
+  padding: 12px 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
 }
-.stat-card.featured .stat-badge {
-  border-color: rgba(212,165,116,0.55);
+.email-subject {
+  font-size: 14px; font-weight: 600; color: #555;
+  letter-spacing: -0.01em;
+  margin-bottom: 5px; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.email-meta {
+  font-size: 11px; color: #777; line-height: 1.5;
+  border-bottom: 1px solid #d8d6d3;
+  padding-bottom: 6px; margin-bottom: 8px;
+}
+.email-meta-row { display: flex; gap: 5px; align-items: center; }
+.email-meta-label { color: #a0a0a0; font-weight: 500; flex-shrink: 0; }
+.email-meta-value { color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.email-body { font-size: 11.5px; line-height: 1.5; color: #666; }
+.email-body p { margin-bottom: 5px; }
+.email-body p:last-child { margin-bottom: 0; }
+.email-signoff { margin-top: 6px; font-size: 11.5px; color: #666; line-height: 1.4; }
+.email-signoff-title { color: #888; font-size: 11px; }
+.email-pop {
+  background: rgba(212,165,116,0.32);
+  color: #0d0d0d;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.email-num {
+  display: inline-block;
+  width: 15px; height: 15px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 50%;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 9px;
+  text-align: center; line-height: 15px;
+  margin-left: 3px;
+  position: relative; top: -2px;
+  font-style: normal;
+}
+
+/* OBSTACLE LIST */
+.email-obstacles {
+  padding: 10px 14px;
+  border-left: 2px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.025);
+}
+.obstacle-item {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--font-display); font-size: 14px;
+  font-weight: 600; color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.obstacle-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 50%;
+  font-size: 11px; font-weight: 800;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+}
+.obstacles-result {
+  margin-top: 8px; padding-top: 7px;
+  border-top: 1px dashed rgba(255,255,255,0.12);
+}
+.result-stats {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
   color: var(--gold);
+  display: flex; align-items: center; gap: 8px; line-height: 1.4;
+}
+.result-punchline {
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+  color: var(--white); font-style: italic;
 }
 
-.stat-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
-  color: var(--gray);
-  margin-bottom: 8px;
-  letter-spacing: 0.01em;
+/* RIGHT COLUMN */
+.stat-col {
+  display: flex;
+  flex-direction: column;
 }
-.stat-card.featured .stat-title { color: var(--white); font-size: 16px; }
+.hero-stat {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 110px; line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+.hero-stat-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--white); letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 12px; line-height: 1.35;
+}
+.comparison-line {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  color: var(--white); line-height: 1.35;
+  margin-bottom: 10px;
+}
+.comparison-line .mult { color: var(--gold); font-weight: 800; }
+.stat-divider {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 4px 0 8px;
+}
+.stat-line {
+  font-family: var(--font-display); font-size: 14px; color: var(--gray-dark);
+  line-height: 1.55; margin-bottom: 3px;
+}
+.stat-line strong { color: var(--white); font-weight: 600; }
 
-.stat-values { display: flex; align-items: baseline; gap: 20px; flex: 1; }
-.stat-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 34px;
-  letter-spacing: -0.02em;
-  line-height: 1;
+/* SMOKE TEST DEF — sits below the stats */
+.smoke-test-def {
+  margin-top: 14px;
+  padding-top: 11px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-family: var(--font-body); font-size: 14px;
+  color: var(--gray-dark);
+  line-height: 1.55;
+}
+.smoke-test-def .term {
+  font-family: var(--font-display); font-weight: 700;
   color: var(--white);
 }
-.stat-card.featured .stat-num { font-size: 40px; color: var(--gold); }
-.stat-pair { display: flex; flex-direction: column; }
-.stat-pair .stat-num { font-size: 28px; }
-.stat-label {
-  font-family: var(--font-body);
-  font-size: 14px;
-  color: var(--gray-dark);
-  line-height: 1.3;
-  margin-top: 6px;
+.smoke-test-def .green-light {
+  color: var(--white); font-weight: 600;
+  font-family: var(--font-display);
 }
-
-/* SVG chart classes */
-.axis-line  { stroke: rgba(255,255,255,0.2); stroke-width: 1; }
-.axis-grid  { stroke: rgba(255,255,255,0.08); stroke-width: 1; stroke-dasharray: 2 4; }
-.axis-label { font-family: 'Manrope',sans-serif; font-size: 13px; fill: #D1D1D1; font-weight: 500; }
-.axis-title { font-family: 'Manrope',sans-serif; font-size: 11px; fill: rgba(209,209,209,0.55); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
-.lane-label { font-family: 'Manrope',sans-serif; font-weight: 700; font-size: 17px; letter-spacing: 0.08em; text-transform: uppercase; }
-.lane-meta  { font-family: 'Manrope',sans-serif; font-weight: 500; font-size: 14.5px; }
-.dot-muted     { fill: rgba(212,165,116,0.35); stroke: rgba(212,165,116,0.5); stroke-width: 0.5; }
-.dot-referrals { fill: #D4A574; stroke: #E5B584; stroke-width: 1; filter: drop-shadow(0 0 3px rgba(212,165,116,0.5)); }
-
-/* 5,339 callout — smaller, dimmer, thinner dashed border */
-.callout-num   { font-family: 'Manrope',sans-serif; font-weight: 800; font-size: 28px; fill: rgba(212,165,116,0.50); letter-spacing: -0.02em; }
-.callout-label { font-family: 'Manrope',sans-serif; font-weight: 700; font-size: 12px;  fill: rgba(212,165,116,0.40); letter-spacing: 0.18em; }
+.smoke-test-def .yc-src {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
+  margin-left: 3px;
+}
 </style>
 </head>
 <body data-slide="slide-7">
@@ -124,156 +178,71 @@ body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
 <div class="slide" id="slide-7">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">51 tests. Referrals hit <span class="gold">20× reply rates</span>.</h2>
+  <h2 class="slide-title">What we know that others missed.</h2>
 
-  <div class="chart-wrap">
-    <svg viewBox="0 0 1180 380" preserveAspectRatio="xMidYMid meet">
+  <div class="hero-body">
 
-      <!-- Y axis -->
-      <line class="axis-line" x1="62" y1="20" x2="62" y2="280"/>
-      <line class="axis-line" x1="62" y1="280" x2="1170" y2="280"/>
-      <!-- Y axis title -->
-      <text class="axis-title" x="14" y="150" text-anchor="middle" transform="rotate(-90,14,150)">REPLY RATE</text>
+    <!-- LEFT: email + obstacles -->
+    <div class="email-column">
+      <div class="email-card">
+        <div class="email-subject">Looking for fractional CFO to refer</div>
+        <div class="email-meta">
+          <div class="email-meta-row">
+            <span class="email-meta-label">From:</span>
+            <span class="email-meta-value">gordy@joinintrocircle.com<span class="email-num">1</span></span>
+          </div>
+          <div class="email-meta-row">
+            <span class="email-meta-label">To:</span>
+            <span class="email-meta-value">shelly@topdoggaragedoorsnc.com</span>
+          </div>
+        </div>
+        <div class="email-body">
+          <p>Hi Shelly,</p>
+          <p>Gordy here — AI that helps with referrals.<span class="email-num">2</span></p>
+          <p>We have a <span class="email-pop">group (we call them circles) of professionals who refer business to each other</span>, and they need a fractional CFO to refer work to. They asked me to help find one — and I think you could be a fit.</p>
+          <p>If you'd like to apply, just reply and I'll help you through it.<span class="email-num">3</span></p>
+          <p>Or pass if this isn't for you.</p>
+          <div class="email-signoff">
+            Gordy<br>
+            <span class="email-signoff-title">Referral Circle Keeper, InTouch<span class="email-num">4</span></span>
+          </div>
+        </div>
+      </div>
 
-      <!-- Grid lines -->
-      <line class="axis-grid" x1="62" y1="210" x2="1170" y2="210"/>
-      <line class="axis-grid" x1="62" y1="140" x2="1170" y2="140"/>
-      <line class="axis-grid" x1="62" y1="70"  x2="1170" y2="70"/>
-
-      <!-- Y axis labels -->
-      <text class="axis-label" x="54" y="284" text-anchor="end">0%</text>
-      <text class="axis-label" x="54" y="214" text-anchor="end">10%</text>
-      <text class="axis-label" x="54" y="144" text-anchor="end">20%</text>
-      <text class="axis-label" x="54" y="74"  text-anchor="end">30%</text>
-      <text class="axis-label" x="54" y="22"  text-anchor="end">40%</text>
-
-      <!-- Referrals highlight zone -->
-      <rect x="822" y="10" width="320" height="280" fill="#D4A574" fill-opacity="0.05" rx="6"/>
-      <line x1="822" y1="10" x2="822" y2="280" stroke="rgba(212,165,116,0.3)" stroke-width="1" stroke-dasharray="3 4"/>
-
-      <!-- 5,339 callout — smaller font, dimmer gold, thinner border -->
-      <g transform="translate(90,38)">
-        <rect width="172" height="72" rx="4"
-              fill="rgba(212,165,116,0.05)"
-              stroke="rgba(212,165,116,0.28)"
-              stroke-width="0.5"
-              stroke-dasharray="4 4"/>
-        <text class="callout-num"   x="86" y="40" text-anchor="middle">5,339</text>
-        <text class="callout-label" x="86" y="60" text-anchor="middle">EMAILS SENT</text>
-      </g>
-
-      <!-- ── LANE 1: OTHER ── -->
-      <circle class="dot-muted" cx="170" cy="232.4" r="5"/>
-      <circle class="dot-muted" cx="320" cy="235.9" r="5"/>
-      <circle class="dot-muted" cx="220" cy="245"   r="5"/>
-      <circle class="dot-muted" cx="380" cy="253.4" r="5"/>
-      <circle class="dot-muted" cx="140" cy="261.8" r="5"/>
-      <circle class="dot-muted" cx="290" cy="263.2" r="5"/>
-      <circle class="dot-muted" cx="410" cy="266"   r="5"/>
-      <circle class="dot-muted" cx="200" cy="270.2" r="5"/>
-      <circle class="dot-muted" cx="350" cy="270.2" r="5"/>
-      <circle class="dot-muted" cx="115" cy="270.9" r="5"/>
-      <circle class="dot-muted" cx="245" cy="270.9" r="5"/>
-      <circle class="dot-muted" cx="395" cy="270.9" r="5"/>
-      <circle class="dot-muted" cx="175" cy="270.9" r="5"/>
-      <circle class="dot-muted" cx="100" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="125" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="150" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="175" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="200" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="225" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="250" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="275" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="300" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="325" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="350" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="375" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="400" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="425" cy="278"   r="5"/>
-
-      <text class="lane-label" x="260" y="313" text-anchor="middle" fill="#737373">Other</text>
-      <text class="lane-meta"  x="260" y="340" text-anchor="middle" fill="#737373">27 tests · 1.4% avg</text>
-
-      <!-- ── LANE 2: INTROS ── -->
-      <circle class="dot-muted" cx="600" cy="196"   r="5"/>
-      <circle class="dot-muted" cx="540" cy="240.1" r="5"/>
-      <circle class="dot-muted" cx="680" cy="240.8" r="5"/>
-      <circle class="dot-muted" cx="610" cy="247.1" r="5"/>
-      <circle class="dot-muted" cx="730" cy="249.2" r="5"/>
-      <circle class="dot-muted" cx="560" cy="260.4" r="5"/>
-      <circle class="dot-muted" cx="650" cy="261.1" r="5"/>
-      <circle class="dot-muted" cx="720" cy="261.8" r="5"/>
-      <circle class="dot-muted" cx="510" cy="262.5" r="5"/>
-      <circle class="dot-muted" cx="630" cy="263.2" r="5"/>
-      <circle class="dot-muted" cx="770" cy="264.6" r="5"/>
-      <circle class="dot-muted" cx="580" cy="270.9" r="5"/>
-      <circle class="dot-muted" cx="500" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="540" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="585" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="625" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="670" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="715" cy="278"   r="5"/>
-      <circle class="dot-muted" cx="760" cy="278"   r="5"/>
-
-      <text class="lane-label" x="625" y="313" text-anchor="middle" fill="#737373">Intros</text>
-      <text class="lane-meta"  x="625" y="340" text-anchor="middle" fill="#737373">19 tests · 2.6% avg · peak 12.0%</text>
-
-      <!-- ── LANE 3: REFERRALS ── -->
-      <circle class="dot-referrals" cx="900"  cy="21"    r="6"/>
-      <circle class="dot-referrals" cx="990"  cy="23.1"  r="6"/>
-      <circle class="dot-referrals" cx="1080" cy="46.9"  r="6"/>
-      <circle class="dot-referrals" cx="945"  cy="91.7"  r="6"/>
-      <circle class="dot-referrals" cx="1020" cy="159.6" r="6"/>
-
-      <text class="lane-label" x="975" y="313" text-anchor="middle" fill="#D4A574">Referrals</text>
-      <text class="lane-meta"  x="975" y="340" text-anchor="middle" fill="#D4A574">5 tests · 30.2% avg · peak 37.0%</text>
-
-    </svg>
-  </div>
-
-  <div class="stats-row">
-
-    <div class="stat-card">
-      <span class="stat-badge">Small sample</span>
-      <div class="stat-title">Weekly growth</div>
-      <div class="stat-values">
-        <span class="stat-num">14.8%</span>
-        <span class="stat-label">W/W user growth</span>
+      <div class="email-obstacles">
+        <div class="obstacle-item"><span class="obstacle-num">1</span> Unrecognized domain</div>
+        <div class="obstacle-item"><span class="obstacle-num">2</span> From an AI</div>
+        <div class="obstacle-item"><span class="obstacle-num">3</span> Introduces friction</div>
+        <div class="obstacle-item"><span class="obstacle-num">4</span> Unknown brand</div>
+        <div class="obstacles-result">
+          <div class="result-stats"><span>→</span> 30% still replied. 80% positive. <span class="result-punchline">Must be the offer.</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="stat-card featured">
-      <span class="stat-badge">Hundreds of emails</span>
-      <div class="stat-title">Cold email → onboarded</div>
-      <div class="stat-values">
-        <span class="stat-num">6.7%</span>
-        <span class="stat-label">of emails reach onboarded</span>
-      </div>
-    </div>
+    <!-- RIGHT: hero stat + smoke test def -->
+    <div class="stat-col">
+      <div class="hero-stat">30.2%</div>
+      <div class="hero-stat-label">Reply rate to cold email campaign</div>
+      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
+      <div class="stat-divider"></div>
+      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
+      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
 
-    <div class="stat-card">
-      <span class="stat-badge">Tiny sample</span>
-      <div class="stat-title">Virality</div>
-      <div class="stat-values">
-        <div class="stat-pair">
-          <span class="stat-num">3.5</span>
-          <span class="stat-label">invites / user</span>
-        </div>
-        <div class="stat-pair">
-          <span class="stat-num">29%</span>
-          <span class="stat-label">acceptance</span>
-        </div>
+      <div class="smoke-test-def">
+        <span class="term">Smoke test</span> — A demand validation method. Cold-email strangers a real offer, measure who replies. <span class="green-light">Anything above 10% is a green light.</span> <span class="yc-src">— YC</span>
       </div>
     </div>
 
   </div>
 
   <div class="conclusion"><strong>A 20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
-  <div class="sources">Sources: InTouch outbound campaigns (51 tests, May 2025 – May 2026) · n = 5,339 contacted</div>
+  <div class="sources">Sources: InTouch outbound · 5 referral-offer campaigns · May 2026</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
+<script>(function(){var el=document.querySelector('.slide-label');if(el)el.textContent='Smoke Test';})();</script>
 </body>
 </html>

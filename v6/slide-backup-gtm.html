@@ -3,83 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · GTM — InTouch Pitch</title>
+<title>Backup · GTM — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-8"] .slide-title { margin-bottom: 18px; }
+body[data-slide="slide-backup-gtm"] .slide-title { margin-bottom: 14px; }
+body[data-slide="slide-backup-gtm"] .slide-subtitle { margin-bottom: 28px; }
 
-.gtm-hero .gold { color: var(--gold); }
-
-.gtm-hero {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  text-align: center;
-  padding: 18px 40px;
-  margin-bottom: 20px;
-}
-
-.gtm-segment {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  margin-top: 14px;
-  margin-bottom: 6px;
-  padding: 14px 20px;
-  background: rgba(212,165,116,0.04);
-  border-left: 2px solid rgba(212,165,116,0.35);
-  border-radius: 0 6px 6px 0;
-}
-.gtm-segment-q {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.gtm-segment-a {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.gtm-segment-answer {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.gtm-segment-stats {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gray-dark);
-  letter-spacing: 0.02em;
-}
-
-.cards-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gray-dark);
-  margin-bottom: 10px;
-}
-
-body[data-slide="slide-8"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
-body[data-slide="slide-8"] .reason-card {
+body[data-slide="slide-backup-gtm"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+body[data-slide="slide-backup-gtm"] .reason-card {
   padding: 0;
   overflow: hidden;
   display: flex;
@@ -104,7 +39,7 @@ body[data-slide="slide-8"] .reason-card {
   gap: 12px;
   flex: 1;
 }
-body[data-slide="slide-8"] .reason-title {
+body[data-slide="slide-backup-gtm"] .reason-title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 17px;
@@ -130,39 +65,52 @@ body[data-slide="slide-8"] .reason-title {
   color: var(--gray-mid);
   margin-top: 4px;
 }
-body[data-slide="slide-8"] .reason-desc {
+body[data-slide="slide-backup-gtm"] .reason-desc {
   font-family: var(--font-body);
   font-size: 14px;
   line-height: 1.5;
   color: var(--gray);
   margin-top: auto;
 }
-body[data-slide="slide-8"] .reason-desc strong {
+body[data-slide="slide-backup-gtm"] .reason-desc strong {
   color: var(--white);
   font-weight: 600;
   font-family: var(--font-display);
 }
 
+.ami-evidence {
+  display: flex; align-items: center; gap: 16px; margin-top: 18px;
+  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
+  border-radius: 6px; padding: 14px 18px;
+}
+.ami-mini {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
+}
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
+.ami-evidence-attrib {
+  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
+}
 
 @media (max-width: 900px) {
-  body[data-slide="slide-8"] .reasons-grid { grid-template-columns: 1fr; }
-  body[data-slide="slide-8"] .slide-title { font-size: 30px; }
+  body[data-slide="slide-backup-gtm"] .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-backup-gtm"] .slide-title { font-size: 30px; }
 }
 </style>
 </head>
-<body data-slide="slide-8">
+<body data-slide="slide-backup-gtm">
 
 
 <div class="deck">
 
-<div class="slide" id="slide-8">
+<div class="slide" id="slide-backup-gtm">
   <div class="slide-number"></div>
-  <div class="slide-label"></div>
-  <h2 class="slide-title">3 signs we can grow even faster</h2>
+  <div class="slide-label">Backup · GTM</div>
+  <h2 class="slide-title">We can move fast in this segment</h2>
 
-  <p class="gtm-hero">The smoke test was the first signal but <span class="gold">it keeps getting better.</span></p>
-
-  <div class="cards-label">From our other tests</div>
+  <p class="slide-subtitle">131K independents · 14 professions founders hire after raising · $6B/yr</p>
 
   <div class="reasons-grid">
 
@@ -214,16 +162,13 @@ body[data-slide="slide-8"] .reason-desc strong {
 
   </div>
 
-  <div class="gtm-segment">
-    <span class="gtm-segment-q">The segment we are starting with</span>
-    <div class="gtm-segment-a">
-      <span class="gtm-segment-answer">Professionals who serve startups</span>
-      <span class="gtm-segment-stats">131K independents · 14 professions · $6B/yr market</span>
-    </div>
+  <div class="ami-evidence">
+    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
   </div>
 
   <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
-  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Ami B. interview (Apr 2026)</div>
 </div>
 
 </div>
