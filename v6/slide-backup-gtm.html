@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backup · GTM — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-backup-gtm"] .slide-title { margin-bottom: 14px; }
+body[data-slide="slide-backup-gtm"] .slide-subtitle { margin-bottom: 28px; }
+
+/* REASONS GRID — 3 cards with ribbon + stats */
+body[data-slide="slide-backup-gtm"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+body[data-slide="slide-backup-gtm"] .reason-card {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.reason-ribbon {
+  padding: 6px 18px;
+  background: rgba(212, 165, 116, 0.06);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: 7px 7px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(212, 165, 116, 0.6);
+}
+.reason-card-body {
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+body[data-slide="slide-backup-gtm"] .reason-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  color: var(--gold);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.reason-stat-label {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 4px;
+}
+body[data-slide="slide-backup-gtm"] .reason-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-top: auto;
+}
+body[data-slide="slide-backup-gtm"] .reason-desc strong {
+  color: var(--white);
+  font-weight: 600;
+  font-family: var(--font-display);
+}
+
+/* AMI EVIDENCE — single block under cards */
+.ami-evidence {
+  display: flex; align-items: center; gap: 16px; margin-top: 18px;
+  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
+  border-radius: 6px; padding: 14px 18px;
+}
+.ami-mini {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
+}
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
+.ami-evidence-attrib {
+  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  body[data-slide="slide-backup-gtm"] .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-backup-gtm"] .slide-title { font-size: 30px; }
+}
+</style>
+</head>
+<body data-slide="slide-backup-gtm">
+
+
+<div class="deck">
+
+<div class="slide" id="slide-backup-gtm">
+  <div class="slide-number"></div>
+  <div class="slide-label">Backup · GTM</div>
+  <h2 class="slide-title">We can move fast in this segment</h2>
+
+  <p class="slide-subtitle">131K independents · 14 professions founders hire after raising · $6B/yr</p>
+
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Small sample</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Weekly growth</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">14.8%</div>
+            <div class="reason-stat-label">W/W user growth</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Hundreds of emails</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Cold email → onboarded</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">6.7%</div>
+            <div class="reason-stat-label">of emails reach onboarded</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
+      </div>
+    </div>
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Tiny sample — early signal</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Virality</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">3.5</div>
+            <div class="reason-stat-label">invites / user</div>
+          </div>
+          <div class="reason-stat">
+            <div class="reason-stat-num">29%</div>
+            <div class="reason-stat-label">acceptance</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="ami-evidence">
+    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Ami B. interview (Apr 2026)</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>
