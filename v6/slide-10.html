@@ -3,55 +3,135 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S10 · Team — InTouch Pitch</title>
+<title>S10 · Business Model — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-10"] .slide-title .gold { color: var(--gold); }
+
+.bm-rows {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--border);
+  margin-bottom: 24px;
+}
+
+.bm-row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.bm-row-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--gold);
+  padding-top: 2px;
+  line-height: 1.4;
+}
+
+.bm-row-label-sub {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--gray-mid);
+  margin-top: 5px;
+  text-transform: none;
+}
+
+.bm-row-value {
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--gray);
+}
+
+.bm-row-value strong {
+  color: var(--white);
+  font-weight: 600;
+}
+
+.bm-row-value .num {
+  color: var(--white);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+
+.bm-row-value .gold-text {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.bm-row-value .muted {
+  color: var(--gray-mid);
+  font-size: 14px;
+  display: block;
+  margin-top: 6px;
+}
+</style>
 </head>
 <body data-slide="slide-10">
-
 
 <div class="deck">
 
 <div class="slide" id="slide-10">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Two founders, two exits</h2>
-  <div class="slide-subtitle">3.5 years working together</div>
+  <h2 class="slide-title">Growth first. <span class="gold">Tokens later.</span></h2>
 
-  <div class="team-grid">
-    <div class="team-card">
-      <img class="team-photo" src="team/yaniv.jpg" alt="Yaniv Nizan">
-      <div class="team-name">Yaniv Nizan</div>
-      <div class="team-role">Co-Founder &amp; CEO</div>
-      <div class="team-bullets">
-        <div class="team-bullet">CEO &amp; co-founder of SOOMLA (acquired by ironSource/Unity)</div>
-        <div class="team-bullet">Built peer networks across ads, in-game economies, and data — Kontera, ironSource, SOOMLA, EyeView</div>
-        <div class="team-bullet">20+ years selling and finding buying moments</div>
-        <div class="team-bullet">Customer in 4 referral-driven segments — startups, divorce, construction, weddings</div>
+  <div class="bm-rows">
+
+    <div class="bm-row">
+      <div class="bm-row-label">BNI's model</div>
+      <div class="bm-row-value">
+        <span class="num">$800/yr</span> membership — captures <span class="gold-text">~1%</span> of the <span class="num">$65K</span> each member refers per year.
+        <span class="muted">The fee works — but gates growth at the front door.</span>
       </div>
     </div>
-    <div class="team-card">
-      <img class="team-photo" src="team/matan.jpg" alt="Matan Protter">
-      <div class="team-name">Matan Protter</div>
-      <div class="team-role">Co-Founder &amp; CTO</div>
-      <div class="team-bullets">
-        <div class="team-bullet">CTO &amp; co-founder of Infinity (acquired by Alibaba)</div>
-        <div class="team-bullet">9 patents</div>
-        <div class="team-bullet">Talpiot graduate · PhD Technion</div>
-        <div class="team-bullet">3.5 years shipping products with Yaniv — SynqUp and InTouch</div>
+
+    <div class="bm-row">
+      <div class="bm-row-label">
+        InTouch Phase 1
+        <span class="bm-row-label-sub">Now</span>
+      </div>
+      <div class="bm-row-value">
+        <strong>Free to join.</strong> Networks compound fast when there is no fee.
+        <span class="muted">Priority is growth, not revenue.</span>
       </div>
     </div>
+
+    <div class="bm-row">
+      <div class="bm-row-label">
+        InTouch Phase 2
+        <span class="bm-row-label-sub">Once we hit scale</span>
+      </div>
+      <div class="bm-row-value">
+        <strong>Freemium, gated by referral tokens.</strong> Members earn tokens by giving referrals — and spend them to join more circles, enter higher-value circles, or hold their seat when referrals are slow.
+        <span class="muted">Specifics TBD. What we know: we sit close to real, paid transactions.</span>
+      </div>
+    </div>
+
   </div>
 
-  <div class="conclusion">Second startup together. 30+ combined years of building products.</div>
-  <div class="sources">Sources: founder track records</div>
+  <div class="conclusion">Happy with <strong>1% of referrals</strong> — from 3M users, not 340K.</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model</div>
 </div>
 
 </div>
-
 
 <script src="nav.js"></script>
 </body>
