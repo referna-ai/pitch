@@ -82,17 +82,14 @@ body[data-slide="slide-3"] .slide-title em {
   text-transform: uppercase;
 }
 
-/* Guide arc */
-.guide-arc { fill: none; stroke: rgba(212,165,116,0.15); stroke-width: 1; stroke-dasharray: 3 6; }
-
 /* Flywheel line */
 .flywheel-line {
   font-family: var(--font-body);
   font-style: italic;
-  font-size: 15px;
+  font-size: 20px;
   color: var(--gray-mid);
   text-align: center;
-  margin-bottom: 2px;
+  margin-bottom: 10px;
 }
 .flywheel-line strong { font-style: normal; font-weight: 600; color: var(--gray); }
 </style>
@@ -106,11 +103,13 @@ body[data-slide="slide-3"] .slide-title em {
   <div class="slide-label"></div>
   <h2 class="slide-title">Ami joins a circle of peers — <em>one per profession</em> — referring customers to each other.</h2>
 
+  <p class="flywheel-line">Each referral builds more trust in the circle — that's the <strong>flywheel</strong>.</p>
+
   <div class="horseshoe-stage">
     <svg viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
       <defs>
-        <!-- Grayscale filter for Ami -->
-        <filter id="gs-ami" color-interpolation-filters="sRGB">
+        <!-- Grayscale filter for all faces -->
+        <filter id="gs" color-interpolation-filters="sRGB">
           <feColorMatrix type="saturate" values="0"/>
         </filter>
         <!-- Clip paths for all faces -->
@@ -124,15 +123,12 @@ body[data-slide="slide-3"] .slide-title em {
         <clipPath id="cp-p7"><circle cx="716" cy="275" r="29"/></clipPath>
       </defs>
 
-      <!-- Guide arc for the horseshoe -->
-      <path class="guide-arc" d="M 716 66 A 128 128 0 1 1 716 304"/>
-
       <!-- ── AMI ── -->
       <circle class="ami-ring" cx="178" cy="182" r="84"/>
       <image href="ami.png"
              x="96" y="100" width="164" height="164"
              clip-path="url(#cp-ami)"
-             filter="url(#gs-ami)"
+             filter="url(#gs)"
              preserveAspectRatio="xMidYMid slice"/>
       <text class="face-label" x="178" y="296">Ami</text>
 
@@ -141,43 +137,43 @@ body[data-slide="slide-3"] .slide-title em {
       <circle class="peer-face" cx="716" cy="95" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/23.jpg"
              x="687" y="66" width="58" height="58"
-             clip-path="url(#cp-p1)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p1)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p2: 90° -->
       <circle class="peer-face" cx="808" cy="57" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/44.jpg"
              x="779" y="28" width="58" height="58"
-             clip-path="url(#cp-p2)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p2)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p3: 45° -->
       <circle class="peer-face" cx="900" cy="95" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/67.jpg"
              x="871" y="66" width="58" height="58"
-             clip-path="url(#cp-p3)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p3)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p4: 0° -->
       <circle class="peer-face" cx="938" cy="185" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/81.jpg"
              x="909" y="156" width="58" height="58"
-             clip-path="url(#cp-p4)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p4)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p5: -45° -->
       <circle class="peer-face" cx="900" cy="275" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/15.jpg"
              x="871" y="246" width="58" height="58"
-             clip-path="url(#cp-p5)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p5)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p6: -90° -->
       <circle class="peer-face" cx="808" cy="313" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/7.jpg"
              x="779" y="284" width="58" height="58"
-             clip-path="url(#cp-p6)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p6)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p7: -135° -->
       <circle class="peer-face" cx="716" cy="275" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/52.jpg"
              x="687" y="246" width="58" height="58"
-             clip-path="url(#cp-p7)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p7)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
       <text class="circle-label" x="808" y="356">Atlas Circle</text>
 
@@ -197,8 +193,6 @@ body[data-slide="slide-3"] .slide-title em {
       <text class="arrow-num" x="472" y="202">2</text>
     </svg>
   </div>
-
-  <p class="flywheel-line">Each referral builds more trust in the circle — that's the <strong>flywheel</strong>.</p>
 
   <div class="conclusion">For Ami — <strong>circles solve the next-customer problem</strong>. He just needs to find his circle.</div>
   <div class="sources">Sources: InTouch interviews · BNI Mid-Year Report 2025</div>
