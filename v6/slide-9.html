@@ -54,6 +54,12 @@ body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
   color: var(--white);
   line-height: 1;
   flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#us-count {
+  display: inline-block;
+  text-align: left;
 }
 
 .box-us .big-num { font-size: 32px; }
@@ -342,7 +348,7 @@ body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
     <div class="box-us">
       <div class="line">
         <div class="line-main">
-          <span class="big-num">9.26M</span>
+          <span class="big-num" id="us-count">9.26M</span>
           <span class="line-text">in the US, across 21 segments</span>
         </div>
         <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
@@ -392,6 +398,7 @@ body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
   const carousel = document.querySelector('.segments-carousel');
   const track = carousel && carousel.querySelector('.segments-track');
   const featured = track && track.querySelector('.segment-box.featured');
+  const counter = document.getElementById('us-count');
   if (!carousel || !track || !featured) return;
 
   // Phones get the stacked layout — no animation.
@@ -399,6 +406,33 @@ body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
 
   const SPEED_PX_PER_SEC = 180; // 3x the original marquee speed (~58 px/s)
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const TARGET_VALUE = 9.26;
+  const STEPS = 21; // one tick per segment
+
+  if (counter && !reducedMotion) counter.textContent = '0.00M';
+
+  const runCounter = (durationMs) => {
+    if (!counter) return;
+    if (reducedMotion || durationMs <= 0) {
+      counter.textContent = TARGET_VALUE.toFixed(2) + 'M';
+      return;
+    }
+    const start = performance.now();
+    counter.textContent = '0.00M';
+    let lastStep = -1;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / durationMs);
+      const step = Math.min(STEPS, Math.floor(t * STEPS) + 1);
+      if (step !== lastStep) {
+        lastStep = step;
+        const value = (step === STEPS) ? TARGET_VALUE : (TARGET_VALUE * step / STEPS);
+        counter.textContent = value.toFixed(2) + 'M';
+      }
+      if (t < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
 
   const settle = () => {
     const carouselW = carousel.clientWidth;
@@ -411,6 +445,7 @@ body[data-slide="slide-9"] .slide-title { margin-bottom: 22px; }
     requestAnimationFrame(() => {
       track.style.transform = `translateX(${target}px)`;
     });
+    runCounter(duration * 1000);
   };
 
   if (document.readyState === 'complete') {
