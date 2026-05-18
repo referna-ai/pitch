@@ -54,6 +54,12 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
   color: var(--white);
   line-height: 1;
   flex-shrink: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+#us-count {
+  display: inline-block;
+  text-align: left;
 }
 
 .box-us .big-num { font-size: 32px; }
@@ -410,12 +416,18 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
       counter.textContent = TARGET_VALUE.toFixed(2) + 'M';
       return;
     }
+    const STEPS = 21; // one tick per segment
     const start = performance.now();
     counter.textContent = '0.00M';
+    let lastStep = -1;
     const tick = (now) => {
       const t = Math.min(1, (now - start) / durationMs);
-      const value = TARGET_VALUE * t;
-      counter.textContent = value.toFixed(2) + 'M';
+      const step = Math.min(STEPS, Math.floor(t * STEPS) + 1);
+      if (step !== lastStep) {
+        lastStep = step;
+        const value = (step === STEPS) ? TARGET_VALUE : (TARGET_VALUE * step / STEPS);
+        counter.textContent = value.toFixed(2) + 'M';
+      }
       if (t < 1) requestAnimationFrame(tick);
     };
     requestAnimationFrame(tick);
