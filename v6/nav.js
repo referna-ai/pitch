@@ -10,7 +10,7 @@
     { file: 'slide-4.html',  title: 'Product 1' },
     { file: 'slide-5.html',  title: 'Product 2' },
     { file: 'slide-6.html',  title: 'Precedent' },
-    { file: 'slide-7.html',  title: 'Signal' },
+    { file: 'slide-7.html',  title: 'Smoke Test' },
     { file: 'slide-8.html',  title: 'Market' },
     { file: 'slide-9.html',  title: 'Traction' },
     { file: 'slide-10.html', title: 'Team' },
