@@ -10,12 +10,13 @@
     { file: 'slide-4.html',  title: 'Product 1' },
     { file: 'slide-5.html',  title: 'Product 2' },
     { file: 'slide-6.html',  title: 'Precedent' },
-    { file: 'slide-7.html',  title: 'Smoke Test' },
-    { file: 'slide-8.html',  title: 'Market' },
-    { file: 'slide-9.html',  title: 'Traction' },
-    { file: 'slide-10.html', title: 'Team' },
-    { file: 'slide-11.html', title: 'Round' },
-    { file: 'slide-12.html', title: 'Opportunity' }
+    { file: 'slide-7.html',  title: 'Smoke' },
+    { file: 'slide-8.html',  title: 'GTM' },
+    { file: 'slide-9.html',  title: 'Market' },
+    { file: 'slide-10.html', title: 'Traction' },
+    { file: 'slide-11.html', title: 'Team' },
+    { file: 'slide-12.html', title: 'Round' },
+    { file: 'slide-13.html', title: 'Opportunity' }
   ];
   window.PITCH_SLIDES = SLIDES;
 
@@ -135,7 +136,7 @@
 
   function go(delta) {
     if (isBackup) {
-      location.href = delta < 0 ? 'slide-8.html' : 'slide-9.html';
+      location.href = delta < 0 ? 'slide-9.html' : 'slide-10.html';
       return;
     }
     if (idx < 0) return;

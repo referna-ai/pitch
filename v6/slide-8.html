@@ -3,319 +3,100 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · Market — InTouch Pitch</title>
+<title>S8 · GTM — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-8"] .slide-title { margin-bottom: 14px; }
+body[data-slide="slide-8"] .slide-subtitle { margin-bottom: 28px; }
 
-/* OUTER box: 130M Global */
-.box-global {
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: rgba(212, 165, 116, 0.025);
-  padding: 22px 24px 24px;
-}
-
-/* INNER box: 9.26M US */
-.box-us {
-  margin: 18px auto 0;
-  width: 96%;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: rgba(212, 165, 116, 0.05);
-  padding: 18px 22px 20px;
-}
-
-/* Single-line headline pattern (used by both boxes) */
-.line {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 18px;
-  flex-wrap: nowrap;
-}
-
-.line-main {
-  display: flex;
-  align-items: baseline;
-  gap: 14px;
-  min-width: 0;
-}
-
-.big-num {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 42px;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  line-height: 1;
-  flex-shrink: 0;
-}
-
-.box-us .big-num { font-size: 32px; }
-
-.line-text {
-  font-family: var(--font-body);
-  font-size: 16px;
-  color: var(--gray);
-  line-height: 1.3;
-}
-
-.box-us .line-text { font-size: 15px; }
-
-.line-tag {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: var(--gray);
-  text-transform: uppercase;
-  flex-shrink: 0;
-  text-align: right;
-  line-height: 1.45;
-}
-.line-tag .tag-num { color: var(--gold); }
-.line-tag .tag-sub {
-  display: block;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
-  color: var(--gray-dark);
-}
-
-/* Carousel — one-shot drift that comes to rest on the featured (Startup) card */
-.segments-carousel {
-  position: relative;
-  margin-top: 16px;
+body[data-slide="slide-8"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+body[data-slide="slide-8"] .reason-card {
+  padding: 0;
   overflow: hidden;
-  border-radius: 8px;
-  padding: 12px 0 4px;
-}
-
-.segments-track {
-  display: flex;
-  width: max-content;
-  will-change: transform;
-  /* transform + transition are applied by inline script after layout */
-}
-
-.segment-box {
-  position: relative;
-  flex: 0 0 240px;
-  margin-right: 12px;
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  min-height: 132px;
 }
-
-.segment-box.featured {
-  border: 1.5px solid var(--gold);
-  background: rgba(212, 165, 116, 0.08);
-}
-
-.card-logo {
-  position: absolute;
-  top: -10px;
-  right: 10px;
-  height: 22px;
-  padding: 0 10px;
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  z-index: 1;
-  box-sizing: border-box;
-}
-.card-logo img {
-  height: 11px;
-  width: auto;
-  display: block;
-  filter: brightness(0) invert(1);
-}
-.segment-box.featured .card-logo {
-  border-color: var(--gold);
-  height: 26px;
-  padding: 0 12px 0 6px;
-  top: -13px;
-}
-.segment-box.featured .card-logo svg {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.segment-box.featured .card-logo .it-text {
+.reason-ribbon {
+  padding: 6px 18px;
+  background: rgba(212, 165, 116, 0.06);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: 7px 7px 0 0;
   font-family: var(--font-display);
-  font-weight: 800;
   font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(212, 165, 116, 0.6);
+}
+.reason-card-body {
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+body[data-slide="slide-8"] .reason-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
   color: var(--white);
   letter-spacing: -0.01em;
-  line-height: 1;
+  line-height: 1.25;
 }
-
-.segment-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 10px;
-}
-
-.segment-name {
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 16px;
-  color: var(--white);
-  letter-spacing: -0.005em;
-  line-height: 1.2;
-}
-
-.segment-count {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.02em;
+  font-weight: 800;
+  font-size: 28px;
   color: var(--gold);
-  white-space: nowrap;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
-
-.segment-vendors {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+.reason-stat-label {
   font-family: var(--font-display);
-  font-size: 14px;
-  color: var(--gray);
-  line-height: 1.4;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.segment-vendors li::before {
-  content: "·  ";
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.segment-more {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--gray-dark);
-  margin-top: auto;
-  padding-right: 56px;
-  letter-spacing: 0.02em;
-}
-
-/* Cards with no "+N more" still pin the number to the bottom-right */
-.segment-box:not(:has(.segment-more)) .segment-num { margin-top: auto; }
-
-.segment-num {
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-  font-family: var(--font-display);
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.08em;
-  color: var(--gold);
-  opacity: 0.55;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 4px;
+}
+body[data-slide="slide-8"] .reason-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-top: auto;
+}
+body[data-slide="slide-8"] .reason-desc strong {
+  color: var(--white);
+  font-weight: 600;
+  font-family: var(--font-display);
 }
 
-.segment-box.featured .segment-num { opacity: 0.9; }
-
-/* Edge fades — solid color matches the box-us bg over the slide bg */
-.segments-carousel::before,
-.segments-carousel::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 90px;
-  z-index: 2;
-  pointer-events: none;
+.ami-evidence {
+  display: flex; align-items: center; gap: 16px; margin-top: 18px;
+  background: rgba(212, 165, 116, 0.05); border-left: 2px solid var(--gold);
+  border-radius: 6px; padding: 14px 18px;
+}
+.ami-mini {
+  width: 52px; height: 52px; border-radius: 50%; flex-shrink: 0;
+  border: 2px solid var(--gold); overflow: hidden; background: var(--black);
+}
+.ami-mini img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.ami-evidence-text { font-family: var(--font-body); font-style: italic; font-size: 17px; line-height: 1.5; color: var(--white); }
+.ami-evidence-attrib {
+  display: block; font-family: var(--font-display); font-style: normal; font-weight: 600;
+  font-size: 14px; letter-spacing: 0.04em; color: var(--gray-mid); margin-top: 4px;
 }
 
-.segments-carousel::before {
-  left: 0;
-  background: linear-gradient(
-    to right,
-    #1B1816 0%,
-    rgba(27, 24, 22, 0.85) 40%,
-    rgba(27, 24, 22, 0) 100%
-  );
-}
-
-.segments-carousel::after {
-  right: 0;
-  background: linear-gradient(
-    to left,
-    #1B1816 0%,
-    rgba(27, 24, 22, 0.85) 40%,
-    rgba(27, 24, 22, 0) 100%
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .segments-carousel { overflow-x: auto; }
-}
-
-@media (max-width: 760px) {
-  .big-num { font-size: 32px; }
-  .box-us .big-num { font-size: 26px; }
-  .segment-box { flex: 0 0 220px; }
-}
-
-/* Phone: stack cards full-width and drop the horizontal carousel */
-@media (max-width: 560px) {
-  body[data-slide="slide-8"] .slide {
-    height: auto;
-    padding: 28px 18px 24px;
-  }
-
-  .box-global { padding: 16px 14px 18px; border-radius: 12px; }
-  .box-us {
-    width: 100%;
-    margin-top: 14px;
-    padding: 14px 14px 16px;
-    border-radius: 10px;
-  }
-
-  .line { flex-wrap: wrap; row-gap: 6px; }
-  .line-tag { margin-left: 0; }
-
-  .big-num { font-size: 28px; }
-  .box-us .big-num { font-size: 24px; }
-  .line-text { font-size: 14px; }
-  .box-us .line-text { font-size: 14px; }
-
-  .segments-carousel { overflow: visible; padding: 0; margin-top: 14px; }
-  .segments-carousel::before,
-  .segments-carousel::after { display: none; }
-  .segments-track {
-    flex-direction: column;
-    width: 100%;
-  }
-  .segment-box {
-    flex: 0 0 auto;
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 10px;
-    min-height: 0;
-    padding: 12px 14px;
-  }
-  .card-logo { top: -8px; right: 10px; }
-  .segment-box.featured .card-logo { top: -11px; }
+@media (max-width: 900px) {
+  body[data-slide="slide-8"] .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-8"] .slide-title { font-size: 30px; }
 }
 </style>
 </head>
@@ -327,98 +108,71 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Millions of independents are struggling</h2>
+  <h2 class="slide-title">We can move fast in this segment</h2>
 
-  <!-- OUTER: 130M Global -->
-  <div class="box-global">
-    <div class="line">
-      <div class="line-main">
-        <span class="big-num">~130M</span>
-        <span class="line-text">independent professionals worldwide</span>
+  <p class="slide-subtitle">131K independents · 14 professions founders hire after raising · $6B/yr</p>
+
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Small sample</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Weekly growth</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">14.8%</div>
+            <div class="reason-stat-label">W/W user growth</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
       </div>
     </div>
 
-    <!-- INNER: 9.26M US -->
-    <div class="box-us">
-      <div class="line">
-        <div class="line-main">
-          <span class="big-num">9.26M</span>
-          <span class="line-text">in the US, across 21 segments</span>
+    <div class="reason-card">
+      <div class="reason-ribbon">Hundreds of emails</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Cold email → onboarded</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">6.7%</div>
+            <div class="reason-stat-label">of emails reach onboarded</div>
+          </div>
         </div>
-        <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
+        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
       </div>
-
-      <!-- Carousel: drifts once and comes to rest centered on the featured (Startup) card -->
-      <div class="segments-carousel" aria-label="21 ICP segments">
-        <div class="segments-track">
-
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Wedding circles</div><div class="segment-count">813K</div></div><ul class="segment-vendors"><li>Wedding planner</li><li>Photographer</li><li>Florist</li></ul><div class="segment-more">+ 12 more</div><div class="segment-num">01 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">New-parent circles</div><div class="segment-count">130K</div></div><ul class="segment-vendors"><li>Pediatrician</li><li>Lactation consultant</li><li>Sleep coach</li></ul><div class="segment-more">+ 8 more</div><div class="segment-num">02 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Home-buyer circles</div><div class="segment-count">1.36M</div></div><ul class="segment-vendors"><li>Realtor</li><li>Mortgage broker</li><li>Home inspector</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">03 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Custom-build circles</div><div class="segment-count">1.03M</div></div><ul class="segment-vendors"><li>Architect</li><li>General contractor</li><li>Landscape designer</li></ul><div class="segment-more">+ 14 more</div><div class="segment-num">04 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Renovation circles</div><div class="segment-count">117K</div></div><ul class="segment-vendors"><li>Interior designer</li><li>Kitchen/bath</li><li>General contractor</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">05 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Divorce circles</div><div class="segment-count">86K</div></div><ul class="segment-vendors"><li>Family lawyer</li><li>Mediator</li><li>Financial planner (CDFA)</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">06 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Fertility circles</div><div class="segment-count">11K</div></div><ul class="segment-vendors"><li>Fertility clinic</li><li>Acupuncturist</li><li>Nutritionist</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">07 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Relocation circles</div><div class="segment-count">52K</div></div><ul class="segment-vendors"><li>Immigration lawyer</li><li>Cross-border tax</li><li>Relocation realtor</li></ul><div class="segment-more">+ 2 more</div><div class="segment-num">08 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">College-prep circles</div><div class="segment-count">118K</div></div><ul class="segment-vendors"><li>College counselor</li><li>Test prep tutor</li><li>Teen therapist</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">09 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Estate circles</div><div class="segment-count">102K</div></div><ul class="segment-vendors"><li>Estate lawyer</li><li>Estate accountant</li><li>Grief therapist</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">10 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Downsizer circles</div><div class="segment-count">68K</div></div><ul class="segment-vendors"><li>Retirement planner</li><li>Professional organizer</li><li>Downsizing consultant</li></ul><div class="segment-num">11 / 21</div></div>
-          <div class="segment-box featured"><div class="card-logo card-logo-intouch"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/><path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/></svg><span class="it-text">InTouch</span></div><div class="segment-header"><div class="segment-name">Startup circles</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div><div class="segment-num">12 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Scale-up circles</div><div class="segment-count">53K</div></div><ul class="segment-vendors"><li>Executive search</li><li>CRE broker</li><li>Complex tax advisor</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">13 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Executive-onboarding circles</div><div class="segment-count">34K</div></div><ul class="segment-vendors"><li>Leadership consultant</li><li>Comms coach</li><li>Board advisor</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">14 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Wealth-event circles</div><div class="segment-count">182K</div></div><ul class="segment-vendors"><li>Wealth manager</li><li>Luxury realtor</li><li>Estate planner</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">15 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Pre-IPO circles</div><div class="segment-count">4K</div></div><ul class="segment-vendors"><li>RSU/QSBS specialist</li><li>Secondary market broker</li></ul><div class="segment-num">16 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Career-transition circles</div><div class="segment-count">10K</div></div><ul class="segment-vendors"><li>Executive career coach</li><li>Outplacement firm</li></ul><div class="segment-num">17 / 21</div></div>
-          <div class="segment-box"><div class="card-logo card-logo-bni"><img src="logos/bni.png" alt="BNI"></div><div class="segment-header"><div class="segment-name">Solopreneur circles</div><div class="segment-count">180K</div></div><ul class="segment-vendors"><li>Small-business lawyer</li><li>Bookkeeper</li></ul><div class="segment-num">18 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">Franchise circles</div><div class="segment-count">5K</div></div><ul class="segment-vendors"><li>Franchise lawyer</li><li>Franchise accountant</li></ul><div class="segment-num">19 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">RE-investor circles</div><div class="segment-count">58K</div></div><ul class="segment-vendors"><li>Property manager</li><li>Title company</li><li>Hard-money lender</li></ul><div class="segment-more">+ 1 more</div><div class="segment-num">20 / 21</div></div>
-          <div class="segment-box"><div class="segment-header"><div class="segment-name">First-time-leader circles</div><div class="segment-count">26K</div></div><ul class="segment-vendors"><li>Content agency</li><li>Performance agency</li><li>Sales training</li></ul><div class="segment-num">21 / 21</div></div>
-
-        </div>
-      </div>
-
     </div>
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Tiny sample — early signal</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Virality</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">3.5</div>
+            <div class="reason-stat-label">invites / user</div>
+          </div>
+          <div class="reason-stat">
+            <div class="reason-stat-num">29%</div>
+            <div class="reason-stat-label">acceptance</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
+      </div>
+    </div>
+
   </div>
 
-  <div class="conclusion">For millions of people — <strong>finding the next customer is problem #1.</strong></div>
-  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), InTouch market analysis</div>
+  <div class="ami-evidence">
+    <div class="ami-mini"><img src="ami.png" alt="Ami B."></div>
+    <div class="ami-evidence-text">"I read every incoming email. I need to be reachable"<span class="ami-evidence-attrib">Ami B. — invited 5 friends on the first day</span></div>
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham) · Ami B. interview (Apr 2026)</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
-<script>
-(() => {
-  const carousel = document.querySelector('.segments-carousel');
-  const track = carousel && carousel.querySelector('.segments-track');
-  const featured = track && track.querySelector('.segment-box.featured');
-  if (!carousel || !track || !featured) return;
-
-  // Phones get the stacked layout — no animation.
-  if (matchMedia('(max-width: 560px)').matches) return;
-
-  const SPEED_PX_PER_SEC = 180; // 3x the original marquee speed (~58 px/s)
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const settle = () => {
-    const carouselW = carousel.clientWidth;
-    const featuredCenter = featured.offsetLeft + featured.offsetWidth / 2;
-    const target = Math.round((carouselW / 2) - featuredCenter);
-    const distance = Math.max(0, -target);
-    const duration = reducedMotion ? 0 : Math.max(4, distance / SPEED_PX_PER_SEC);
-
-    track.style.transition = `transform ${duration}s linear`;
-    requestAnimationFrame(() => {
-      track.style.transform = `translateX(${target}px)`;
-    });
-  };
-
-  if (document.readyState === 'complete') {
-    requestAnimationFrame(settle);
-  } else {
-    window.addEventListener('load', () => requestAnimationFrame(settle));
-  }
-})();
-</script>
 </body>
 </html>
