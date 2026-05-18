@@ -17,11 +17,6 @@ body[data-slide="slide-3"] .slide-title {
   margin: 0 auto 0;
   max-width: 960px;
 }
-body[data-slide="slide-3"] .slide-title em {
-  font-style: normal;
-  color: var(--gold);
-}
-
 /* Horseshoe visual — fills available space */
 .horseshoe-stage {
   flex: 1;
@@ -74,12 +69,28 @@ body[data-slide="slide-3"] .slide-title em {
 }
 .circle-label {
   font-family: 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 13px;
-  fill: rgba(212,165,116,0.7);
+  font-weight: 800;
+  font-size: 18px;
+  fill: rgba(212,165,116,0.85);
   text-anchor: middle;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.circle-sublabel {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  fill: rgba(212,165,116,0.45);
+  text-anchor: middle;
+  letter-spacing: 0.06em;
+}
+.ami-profession {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  fill: rgba(255,255,255,0.45);
+  text-anchor: middle;
+  font-style: italic;
 }
 
 /* Flywheel line */
@@ -102,7 +113,7 @@ body[data-slide="slide-3"] .slide-title em {
 <div class="slide" id="slide-3">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Ami joins a circle of peers — <em>one per profession</em> — referring customers to each other.</h2>
+  <h2 class="slide-title">Ami joins a circle of trusted peers who refer customers to each other.</h2>
 
   <div class="horseshoe-stage">
     <svg viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
@@ -130,6 +141,7 @@ body[data-slide="slide-3"] .slide-title em {
              filter="url(#gs)"
              preserveAspectRatio="xMidYMid slice"/>
       <text class="face-label" x="178" y="296">Ami</text>
+      <text class="ami-profession" x="178" y="314">The only VP Marketing in his circle</text>
 
       <!-- ── CIRCLE PEERS ── -->
       <!-- p1: 135° -->
@@ -174,22 +186,19 @@ body[data-slide="slide-3"] .slide-title em {
              x="687" y="246" width="58" height="58"
              clip-path="url(#cp-p7)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
 
-      <text class="circle-label" x="808" y="356">Atlas Circle</text>
+      <text class="circle-label" x="808" y="180">Ami's Circle</text>
+      <text class="circle-sublabel" x="808" y="200">8 people · 8 professions</text>
 
       <!-- ── ARROWS ── -->
       <!-- TOP: circle → Ami at y=162 -->
       <path class="arrow-line" d="M 674 162 L 272 162"/>
       <polygon class="arrow-head" points="262,162 277,155 277,169"/>
-      <text class="arrow-caption" x="472" y="143">Atlas refers customers to Ami</text>
-      <circle class="arrow-num-bg" cx="472" cy="162" r="12"/>
-      <text class="arrow-num" x="472" y="162">1</text>
+      <text class="arrow-caption" x="472" y="143">Refers customers to Ami</text>
 
       <!-- BOTTOM: Ami → circle at y=202 -->
       <path class="arrow-line" d="M 272 202 L 674 202"/>
       <polygon class="arrow-head" points="684,202 669,195 669,209"/>
-      <text class="arrow-caption" x="472" y="232">Ami refers customers to Atlas</text>
-      <circle class="arrow-num-bg" cx="472" cy="202" r="12"/>
-      <text class="arrow-num" x="472" y="202">2</text>
+      <text class="arrow-caption" x="472" y="232">Ami refers customers back</text>
     </svg>
   </div>
 
