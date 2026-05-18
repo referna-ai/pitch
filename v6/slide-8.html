@@ -26,14 +26,46 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 18px; }
   margin-bottom: 20px;
 }
 
-.gtm-segment-sub {
-  font-family: var(--font-display);
-  font-size: 20px;
-  font-weight: 500;
-  color: var(--gray);
-  line-height: 1.5;
+.gtm-segment {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
   margin-top: 14px;
   margin-bottom: 6px;
+  padding: 14px 20px;
+  background: rgba(212,165,116,0.04);
+  border-left: 2px solid rgba(212,165,116,0.35);
+  border-radius: 0 6px 6px 0;
+}
+.gtm-segment-q {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.gtm-segment-a {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.gtm-segment-answer {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.gtm-segment-stats {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-dark);
+  letter-spacing: 0.02em;
 }
 
 .cards-label {
@@ -182,7 +214,13 @@ body[data-slide="slide-8"] .reason-desc strong {
 
   </div>
 
-  <p class="gtm-segment-sub">We are starting with one segment — professionals who serve startups<br>131K independents · 14 professions founders hire after raising · $6B/yr</p>
+  <div class="gtm-segment">
+    <span class="gtm-segment-q">Starting with</span>
+    <div class="gtm-segment-a">
+      <span class="gtm-segment-answer">Professionals who serve startups</span>
+      <span class="gtm-segment-stats">131K independents · 14 professions · $6B/yr market</span>
+    </div>
+  </div>
 
   <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
   <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
