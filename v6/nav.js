@@ -9,7 +9,7 @@
     { file: 'slide-3.html',  title: 'Solution' },
     { file: 'slide-4.html',  title: 'Precedent' },
     { file: 'slide-5.html',  title: 'Positioning' },
-    { file: 'slide-6.html',  title: 'Smoke' },
+    { file: 'slide-6.html',  title: 'Market pull' },
     { file: 'slide-7.html',  title: 'GTM' },
     { file: 'slide-8.html',  title: 'Product 1' },
     { file: 'slide-9.html',  title: 'Product 2' },
