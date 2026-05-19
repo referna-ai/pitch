@@ -141,6 +141,18 @@
 }
 .matrix-footnote strong { color: var(--gray-mid); font-weight: 600; }
 
+.axis-bottom { max-width: 260px; }
+.axis-subtitle {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--gray-dark);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
 @media (max-width: 768px) {
   .matrix-row { position: static; padding: 0; }
   .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
@@ -169,7 +181,7 @@
           <div class="quadrant-name">Network for offline professionals</div>
           <div class="quadrant-info">
             <img class="comp-logo" src="logos/bni.png" alt="BNI">
-            <span class="sep">—</span> <span class="val">$26.4B</span> referred/yr
+            <span class="sep">—</span> <span class="val">$26.4B</span> referred/yr · <span class="val">↑ 36%</span> over 3 years
           </div>
         </div>
 
@@ -182,7 +194,7 @@
               <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
             </svg>
             <strong style="color:#fff;font-weight:700">InTouch</strong>
-            <span class="sep">—</span> The white space
+            <span class="sep">—</span> The white space — premium professions AI amplifies
           </div>
         </div>
 
@@ -196,7 +208,7 @@
             <span class="sep">·</span>
             <img class="comp-logo" src="logos/midrag.svg" alt="Midrag">
           </div>
-          <div class="quadrant-note"><span class="val">~$3B+</span> public companies (Thumbtack, Angi) · Midrag (Israel)</div>
+          <div class="quadrant-note"><span class="val">~$3B+</span> public · Angi revenue ↓ 45% (3Y)</div>
         </div>
 
         <!-- Bottom-right: Online × Marketplace -->
@@ -207,7 +219,7 @@
             <span class="sep">·</span>
             Upwork
           </div>
-          <div class="quadrant-note"><span class="val">~$1B+</span> public companies · Customer-led</div>
+          <div class="quadrant-note">Selling what AI replaces</div>
         </div>
 
       </div>
@@ -223,7 +235,7 @@
           <line x1="6" y1="50" x2="94" y2="50" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
         </svg>
       </div>
-      <div class="axis-bottom">Marketplace</div>
+      <div class="axis-bottom">Marketplace<span class="axis-subtitle">Suppliers compete on price and ranking — for commodity work</span></div>
     </div>
   </div>
 
