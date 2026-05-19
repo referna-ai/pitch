@@ -8,15 +8,16 @@
     { file: 'slide-2.html',  title: 'Customer' },
     { file: 'slide-3.html',  title: 'Solution' },
     { file: 'slide-4.html',  title: 'Precedent' },
-    { file: 'slide-5.html',  title: 'Market pull' },
-    { file: 'slide-6.html',  title: 'GTM' },
-    { file: 'slide-7.html',  title: 'Product 1' },
-    { file: 'slide-8.html',  title: 'Product 2' },
-    { file: 'slide-9.html',  title: 'Market' },
-    { file: 'slide-10.html', title: 'Biz Model' },
-    { file: 'slide-11.html', title: 'Team' },
-    { file: 'slide-12.html', title: 'Round' },
-    { file: 'slide-13.html', title: 'Opportunity' }
+    { file: 'slide-5.html',  title: 'Positioning' },
+    { file: 'slide-6.html',  title: 'Smoke' },
+    { file: 'slide-7.html',  title: 'GTM' },
+    { file: 'slide-8.html',  title: 'Product 1' },
+    { file: 'slide-9.html',  title: 'Product 2' },
+    { file: 'slide-10.html', title: 'Market' },
+    { file: 'slide-11.html', title: 'Biz Model' },
+    { file: 'slide-12.html', title: 'Team' },
+    { file: 'slide-13.html', title: 'Round' },
+    { file: 'slide-14.html', title: 'Opportunity' }
   ];
   window.PITCH_SLIDES = SLIDES;
 
@@ -155,15 +156,15 @@
     return !!(sel && sel.toString && sel.toString().length > 0);
   }
 
-  // Keyboard: right/down/space → forward; left/up/backspace/delete → back
+  // Keyboard: right/space → forward; left/backspace/delete → back
   document.addEventListener('keydown', (e) => {
     const t = e.target;
     if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
     if (e.metaKey || e.ctrlKey || e.altKey) return;
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.code === 'Space' || e.key === 'PageDown') {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space' || e.key === 'PageDown') {
       e.preventDefault();
       forward();
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'Backspace' || e.key === 'Delete' || e.key === 'PageUp') {
+    } else if (e.key === 'ArrowLeft' || e.key === 'Backspace' || e.key === 'Delete' || e.key === 'PageUp') {
       e.preventDefault();
       back();
     }

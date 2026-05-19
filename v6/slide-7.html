@@ -3,889 +3,231 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · Product — InTouch Pitch</title>
+<title>S8 · GTM — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-7"] {
-  --black-bubble: #1F1F1F;
-  --border-soft: rgba(255,255,255,0.06);
-  --border-input: rgba(255,255,255,0.10);
-  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+body[data-slide="slide-7"] .slide-title { margin-bottom: 18px; }
+
+.gtm-hero .gold { color: var(--gold); }
+
+.gtm-hero {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  text-align: center;
+  padding: 18px 40px;
+  margin-bottom: 20px;
 }
 
-body[data-slide="slide-7"] .slide-title { margin-bottom: 22px; }
-body[data-slide="slide-7"] .slide-title .gold { color: var(--gold); }
-/* clip phone glow only at the bottom (conclusion line); allow it on top/sides */
-body[data-slide="slide-7"] .s9-visual { clip-path: inset(-200px -200px 0 -200px); }
-
-/* LAYOUT */
-.s9-layout {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  grid-template-rows: 1fr;
-  gap: 32px;
-  flex: 1;
-  align-items: stretch;
-  position: relative;
-  min-height: 0;
+.gtm-segment {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-top: 14px;
+  margin-bottom: 6px;
+  padding: 14px 20px;
+  background: rgba(212,165,116,0.04);
+  border-left: 2px solid rgba(212,165,116,0.35);
+  border-radius: 0 6px 6px 0;
 }
-
-/* TEXT COLUMN */
-.s9-text-col {
+.gtm-segment-q {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.gtm-segment-a {
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  padding-top: 4px;
+  gap: 4px;
 }
-.s9-pillar-title {
+.gtm-segment-answer {
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 32px;
-  letter-spacing: -0.015em;
-  color: var(--white);
-  margin-bottom: 22px;
-  line-height: 1.15;
-  white-space: nowrap;
-  width: max-content;
-  position: relative;
-  z-index: 4;
-}
-.s9-pillar + .s9-pillar { margin-top: -10px; }
-.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; max-width: 300px; }
-.s9-pillar-bullets li {
-  font-family: var(--font-body);
-  font-size: 22px;
-  line-height: 1.45;
-  color: var(--gray);
-  padding: 16px 0 16px 28px;
-  border-top: 1px solid var(--border-soft);
-  position: relative;
-}
-.s9-pillar-bullets li:first-child { border-top: none; padding-top: 4px; }
-.s9-pillar-bullets li::before {
-  content: "→";
-  position: absolute;
-  left: 0; top: 16px;
-  color: var(--gold);
   font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.gtm-segment-stats {
   font-family: var(--font-display);
-  font-size: 18px;
-}
-.s9-pillar-bullets li:first-child::before { top: 4px; }
-.s9-pillar-bullets li strong { color: inherit; font-weight: inherit; }
-
-/* VISUAL CLUSTER */
-.s9-visual {
-  position: relative;
-  height: 100%;
-  min-height: 460px;
-}
-
-/* DESKTOP FORM (LEFT, behind) */
-.s9-browser-wrap {
-  position: absolute;
-  left: 10px;
-  top: 38px;
-  width: 570px;
-  z-index: 1;
-}
-.s9-browser {
-  background: var(--black);
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.10);
-  box-shadow:
-    0 0 60px rgba(212,165,116,0.18),
-    0 0 24px rgba(212,165,116,0.10),
-    0 25px 50px rgba(0,0,0,0.55);
-}
-.s9-browser-chrome {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 12px;
-  background: #2d2d2d;
-  border-bottom: 1px solid var(--border-soft);
-}
-.s9-browser-dots { display: flex; gap: 5px; }
-.s9-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
-.s9-browser-dot.red { background: #FF5F57; }
-.s9-browser-dot.yellow { background: #FEBC2E; }
-.s9-browser-dot.green { background: #28C840; }
-.s9-browser-url {
-  flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 5px;
-  padding: 3px 9px;
-  font-family: var(--font-system);
-  font-size: 10px;
-  color: var(--gray-mid);
-  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-dark);
   letter-spacing: 0.02em;
 }
 
-.s9-form-app { background: var(--black); }
-.s9-form-header {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border-soft);
-}
-.s9-form-brand {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 13px; color: white;
-  letter-spacing: -0.02em;
-}
-.s9-form-mark {
-  width: 18px; height: 18px; background: white; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--black); font-weight: 800; font-size: 11px;
-  font-family: var(--font-display);
-}
-.s9-form-status {
-  display: flex; align-items: center; gap: 7px;
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-mid);
-}
-.s9-form-status::before {
-  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--error);
-}
-.s9-form-body {
-  display: grid; grid-template-columns: 200px 1fr;
-  min-height: 300px;
-}
-.s9-form-side {
-  padding: 16px 14px;
-  border-right: 1px solid var(--border-soft);
-}
-.s9-form-side-eyebrow {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--gray-mid);
-  margin-bottom: 8px;
-}
-.s9-form-progress {
-  height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px;
-  overflow: hidden; margin-bottom: 10px;
-}
-.s9-form-progress::after {
-  content: ""; display: block; height: 100%; width: 70%;
-  background: var(--gold);
-}
-.s9-form-status-num {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px;
-  letter-spacing: -0.01em;
-}
-.s9-form-status-sub {
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-dark); margin-bottom: 14px;
-}
-.s9-form-step {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 5px 8px; border-radius: 5px;
-  font-family: var(--font-display);
-  font-size: 10.5px; color: var(--gray); font-weight: 500;
-  margin-bottom: 2px;
-  border: 1px solid transparent;
-}
-.s9-form-step.active {
-  border-color: var(--border);
-  background: rgba(212,165,116,0.04);
-}
-.s9-form-step-left { display: flex; align-items: center; gap: 7px; }
-.s9-form-check { color: #7BC47F; font-weight: 700; font-size: 10px; width: 9px; }
-.s9-form-num { color: var(--gray-dark); font-weight: 600; font-size: 10px; width: 9px; text-align: center; }
-.s9-form-badge {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 8.5px; color: var(--error);
-  background: rgba(212,100,92,0.08);
-  border: 1px solid rgba(212,100,92,0.30);
-  border-radius: 3px; padding: 1px 5px;
-}
-
-.s9-form-detail { padding: 18px 22px; }
-.s9-form-title {
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
-  color: white; margin-bottom: 4px;
-}
-.s9-form-step-label {
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 9px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--gray-dark);
-  margin-bottom: 14px;
-}
-.s9-form-instruct {
-  border-left: 2px solid var(--gold);
-  padding: 2px 0 2px 12px;
-  margin-bottom: 16px;
-}
-.s9-form-instruct-text {
-  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
-  color: white; margin-bottom: 6px;
-}
-.s9-form-instruct-sub {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-mid);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-input);
-  border-radius: 4px; padding: 3px 7px;
-}
-.s9-form-fields {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px;
-}
-.s9-field-label {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 500; font-size: 10px;
-  color: white; margin-bottom: 5px;
-}
-.s9-field-input {
-  width: 100%; background: transparent;
-  border: 1px solid var(--border-input);
-  border-radius: 5px; padding: 7px 9px;
-  font-family: var(--font-body); font-size: 11px; color: white;
-}
-
-/* MOBILE PHONE (RIGHT, in front) */
-.s9-phone-wrap {
-  position: absolute;
-  right: 2px;
-  top: -2px;
-  width: 240px;
-  z-index: 2;
-  filter:
-    drop-shadow(0 0 22px rgba(212,165,116,0.20))
-    drop-shadow(0 0 8px  rgba(212,165,116,0.12))
-    drop-shadow(0 30px 50px rgba(0,0,0,0.55));
-}
-.s9-phone {
-  width: 100%;
-  background: var(--white);
-  border: 7px solid #1a1a1a;
-  border-radius: 34px;
-  overflow: hidden;
-  position: relative;
-  height: 484px;
-  display: flex; flex-direction: column;
-}
-.s9-phone-notch {
-  position: absolute;
-  top: 7px; left: 50%; transform: translateX(-50%);
-  width: 64px; height: 17px;
-  background: #050505; border-radius: 9px;
-  z-index: 5;
-}
-.s9-phone-statusbar {
-  position: absolute;
-  top: 13px; left: 0; right: 0;
-  display: flex; justify-content: space-between;
-  padding: 0 19px;
-  font-family: var(--font-system);
-  font-weight: 600; font-size: 8.5px;
-  color: #000; z-index: 4;
-}
-
-/* CHAT HEADER */
-.s9-chat-header {
-  padding: 34px 9px 7px;
-  display: flex; align-items: center; gap: 6px;
-  border-bottom: 1px solid #E5E5EA;
-  background: #F6F6F8;
-  flex-shrink: 0;
-}
-.s9-chat-back {
-  font-size: 16px; color: #007AFF; font-weight: 300;
-  line-height: 1; flex-shrink: 0; width: 9px;
-}
-.s9-chat-avatar {
-  width: 23px; height: 23px; border-radius: 50%;
-  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-system);
-  font-weight: 700; font-size: 9px; color: #fff;
-  flex-shrink: 0;
-}
-.s9-chat-info { flex: 1; min-width: 0; }
-.s9-chat-name {
-  font-family: var(--font-system);
-  font-weight: 600; font-size: 10px; color: #1C1C1E;
-  letter-spacing: -0.01em;
-}
-.s9-chat-sub {
-  font-family: var(--font-system);
-  font-size: 8.5px; color: #6B6B70;
-}
-.s9-chat-more { color: #007AFF; font-size: 13px; flex-shrink: 0; }
-
-/* CHAT BODY */
-.s9-chat-body {
-  flex: 1;
-  overflow: hidden;
-  padding: 8px 7px 0;
-  background: #FFFFFF;
-  position: relative;
-}
-.s9-chat-date {
-  text-align: center; font-family: var(--font-system);
-  font-size: 8px; color: #8E8E93; font-weight: 600;
-  margin-bottom: 8px;
-}
-.s9-chat-date strong { color: #1C1C1E; }
-.s9-chat-sys {
-  text-align: center; font-family: var(--font-system);
-  font-size: 8.5px; color: #8E8E93; margin-bottom: 8px;
-  line-height: 1.3; padding: 0 6px;
-}
-
-.s9-chat-msg {
-  display: flex; gap: 5px; align-items: flex-end;
-  margin-bottom: 6px;
-}
-.s9-chat-msg-avatar {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-system);
-  font-weight: 700; font-size: 8px; color: #fff;
-  flex-shrink: 0;
-}
-.s9-chat-msg-avatar.hidden { visibility: hidden; }
-.s9-chat-msg-content { flex: 1; min-width: 0; max-width: 80%; }
-.s9-chat-msg-name {
-  font-family: var(--font-system);
-  font-size: 8px; font-weight: 500;
-  color: #6B6B70; margin-bottom: 2px; margin-left: 3px;
-}
-.s9-chat-bubble {
-  background: #E9E9EB; border-radius: 11px;
-  padding: 5px 8px;
-  font-family: var(--font-system);
-  font-size: 10px; line-height: 1.32;
-  color: #000; display: inline-block;
-  max-width: 100%; word-wrap: break-word;
-}
-
-/* IMAGE ATTACHMENT */
-.s9-chat-attachment {
-  border-radius: 11px; overflow: hidden;
-  background: var(--black-bubble);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  font-family: var(--font-display);
-}
-.s9-att-section { padding: 7px 8px; }
-.s9-att-section + .s9-att-section { border-top: 1px solid var(--border-soft); }
-.s9-att-label {
-  font-size: 7px; font-weight: 700;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: #999; margin-bottom: 6px;
-}
-
-.s9-att-customer {
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(212,165,116,0.06);
-  border: 1px solid var(--border);
-  border-radius: 7px; padding: 5px 7px;
-}
-.s9-att-customer-icon {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--black);
-  border: 1.2px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.s9-att-customer-icon svg { width: 12px; height: 12px; }
-.s9-att-customer-info { flex: 1; min-width: 0; }
-.s9-att-customer-title {
-  font-weight: 700; font-size: 8.5px; color: white;
-  letter-spacing: -0.005em; line-height: 1.2;
-}
-.s9-att-customer-sub {
-  font-family: var(--font-body);
-  font-size: 7.5px; color: #D1D1D1;
-  font-style: italic; margin-top: 1px;
-  line-height: 1.3;
-}
-
-.s9-att-members { display: flex; flex-direction: column; gap: 5px; }
-.s9-att-member { display: flex; align-items: center; gap: 5px; }
-.s9-att-member-avatar {
-  width: 20px; height: 20px; border-radius: 50%;
-  background: linear-gradient(135deg,#2d2d2d,#161616);
-  border: 1.2px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 7.5px; color: var(--gold);
-  flex-shrink: 0; letter-spacing: 0.02em;
-}
-.s9-att-member-info { flex: 1; min-width: 0; }
-.s9-att-member-name {
-  font-weight: 600; font-size: 8.5px; color: #fff;
-  line-height: 1.2;
-}
-.s9-att-member-name .role { font-weight: 500; color: #999; }
-.s9-att-member-trigger {
-  font-family: var(--font-body);
-  font-size: 7.5px; color: #D1D1D1;
-  font-style: italic; margin-top: 1px;
-  line-height: 1.3;
-}
-.s9-att-member-trigger::before {
-  content: "→ "; color: var(--gold);
-  font-style: normal; font-family: var(--font-display);
-  font-weight: 700;
-}
-
-/* MOCKUP CLUSTER — transparent on desktop, scaled on mobile */
-.s9-mockup-cluster {
-  position: absolute;
-  inset: 0;
-}
-
-/* MOCKUP LABELS */
-.s9-label {
-  position: absolute;
+.cards-label {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 10px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--gold);
-  line-height: 1;
+  color: var(--gray-dark);
+  margin-bottom: 10px;
 }
-.s9-label-browser { top: 80px; left: 10px; }
-.s9-label-phone   { top: 0px;  right: 2px; }
 
-/* Push mockups down to make room for labels */
-.s9-browser-wrap { top: 98px; }
-.s9-phone-wrap   { top: 16px; }
-
-/* FULL-SCREEN MATCH OVERLAY */
-.s9-match-full {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  background: #0d0a06;
+body[data-slide="slide-7"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
+body[data-slide="slide-7"] .reason-card {
+  padding: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
 }
-.s9-match-icon {
-  width: 52px;
-  height: 52px;
-  color: var(--gold);
-  animation: s9-icon-pulse 1.2s ease-in-out infinite;
+.reason-ribbon {
+  padding: 6px 18px;
+  background: rgba(212, 165, 116, 0.06);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+  border-radius: 7px 7px 0 0;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(212, 165, 116, 0.6);
 }
-.s9-match-full-title {
+.reason-card-body {
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+body[data-slide="slide-7"] .reason-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+}
+.reason-stats { display: flex; gap: 24px; }
+.reason-stat-num {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 20px;
+  font-size: 28px;
   color: var(--gold);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
-.s9-match-full-sub {
+.reason-stat-label {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(212,165,116,0.55);
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 4px;
+}
+body[data-slide="slide-7"] .reason-desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--gray);
+  margin-top: auto;
+}
+body[data-slide="slide-7"] .reason-desc strong {
+  color: var(--white);
+  font-weight: 600;
+  font-family: var(--font-display);
 }
 
-@keyframes s9-icon-pulse {
-  0%, 100% { transform: scale(1);    opacity: 1;    }
-  50%       { transform: scale(1.18); opacity: 0.85; }
-}
 
-/* SEQUENTIAL REVEAL */
-.s9-reveal-item {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.s9-reveal-item.s9-shown {
-  opacity: 1;
-}
-
-/* ── PORTRAIT MOBILE (≤ 768 px wide) ────────────────────────────────── */
-/*
- * Scale the entire cluster as one unit so the browser/phone overlap
- * is preserved exactly as on desktop. Cluster width 680px mirrors the
- * desktop visual column size; scale(0.46) fits it into ~310px.
- */
-@media (max-width: 768px) {
-  .s9-layout { grid-template-columns: 1fr; gap: 12px; }
-  .s9-text-col { gap: 12px; }
-  .s9-pillar-title { font-size: 15px; margin-bottom: 4px; }
-  .s9-pillar-bullets li { font-size: 12px; padding: 4px 0 4px 16px; }
-  .s9-pillar-bullets li:first-child { padding-top: 0; }
-
-  .s9-visual { min-height: 0; height: 248px; overflow: visible; }
-
-  .s9-mockup-cluster {
-    inset: auto;
-    top: 6px; left: 0;
-    width: 680px;
-    transform: scale(0.46);
-    transform-origin: top left;
-  }
-}
-
-/* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────── */
-@media (max-height: 500px) and (min-width: 769px) {
-  body[data-slide="slide-7"] .slide-title { font-size: 26px; margin-bottom: 14px; }
-  .s9-layout { grid-template-columns: 240px 1fr; gap: 20px; }
-  .s9-text-col { gap: 14px; }
-  .s9-pillar-title { font-size: 14px; margin-bottom: 4px; }
-  .s9-pillar-bullets li { font-size: 11.5px; padding: 4px 0 4px 16px; }
-
-  .s9-visual { min-height: 0; height: 320px; overflow: visible; }
-
-  .s9-mockup-cluster {
-    inset: auto;
-    top: 6px; left: 0;
-    width: 680px;
-    transform: scale(0.60);
-    transform-origin: top left;
-  }
+@media (max-width: 900px) {
+  body[data-slide="slide-7"] .reasons-grid { grid-template-columns: 1fr; }
+  body[data-slide="slide-7"] .slide-title { font-size: 30px; }
 }
 </style>
 </head>
 <body data-slide="slide-7">
 
+
 <div class="deck">
 
-<div class="slide" id="slide-4">
+<div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">InTouch solves matching like <span class="gold">online dating</span></h2>
+  <h2 class="slide-title">3 signs we can grow even faster</h2>
 
-  <div class="s9-layout">
+  <p class="gtm-hero">The smoke test was the first signal but <span class="gold">it keeps getting better.</span></p>
 
-    <!-- LEFT: TEXT (Matching first, Trust second) -->
-    <div class="s9-text-col">
+  <div class="cards-label">From our other tests</div>
 
-      <div class="s9-pillar">
-        <h3 class="s9-pillar-title">InTouch matches Ami to circles</h3>
-        <ul class="s9-pillar-bullets">
-          <li>Matched by <strong>who they serve</strong>, not where they live</li>
-          <li>Selected by ability to <strong>create trust with the circle</strong> —<br>equal standing,<br>mutual connections,<br>common interests</li>
-          <li>Ami has a circle of 8-12 <strong>helping each other</strong></li>
-        </ul>
+  <div class="reasons-grid">
+
+    <div class="reason-card">
+      <div class="reason-ribbon">Small sample</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Weekly growth</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">14.8%</div>
+            <div class="reason-stat-label">W/W user growth</div>
+          </div>
+        </div>
+        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
       </div>
-
     </div>
 
-    <!-- RIGHT: VISUALS -->
-    <div class="s9-visual">
-
-      <!-- MOCKUP CLUSTER — scaled as a unit on mobile to preserve overlap -->
-      <div class="s9-mockup-cluster">
-      <div class="s9-label s9-label-browser">Dating profile</div>
-      <div class="s9-label s9-label-phone">After the match</div>
-      <!-- DESKTOP FORM IN BROWSER FRAME -->
-      <div class="s9-browser-wrap">
-        <div class="s9-browser">
-          <div class="s9-browser-chrome">
-            <div class="s9-browser-dots">
-              <span class="s9-browser-dot red"></span>
-              <span class="s9-browser-dot yellow"></span>
-              <span class="s9-browser-dot green"></span>
-            </div>
-            <div class="s9-browser-url">app.intouch.network · review your application</div>
-          </div>
-          <div class="s9-form-app">
-            <div class="s9-form-header">
-              <div class="s9-form-brand">
-                <div class="s9-form-mark">1</div>
-                InTouch
-              </div>
-              <div class="s9-form-status">6 items left to review</div>
-            </div>
-            <div class="s9-form-body">
-              <aside class="s9-form-side">
-                <div class="s9-form-side-eyebrow">Review Progress</div>
-                <div class="s9-form-progress"></div>
-                <div class="s9-form-status-num">6 remaining</div>
-                <div class="s9-form-status-sub">2 of 8 sections need attention</div>
-
-                <div class="s9-form-step active">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Applicant Profile</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Services</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Typical Clients</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Ideal Referral</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Referral Baseline</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">6</span> Constraints &amp; Trust</div>
-                  <span class="s9-form-badge">3</span>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">7</span> Contribution Signals</div>
-                  <span class="s9-form-badge">3</span>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Trusted Peers</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">9</span> Final Review</div>
-                  <span class="s9-form-badge">6</span>
-                </div>
-              </aside>
-
-              <main class="s9-form-detail">
-                <h1 class="s9-form-title">Applicant Profile</h1>
-                <div class="s9-form-step-label">Step 1 of 8</div>
-                <div class="s9-form-instruct">
-                  <p class="s9-form-instruct-text">Review your profile so we can map you accurately in the referral circle.</p>
-                  <span class="s9-form-instruct-sub">You can edit anything below.</span>
-                </div>
-                <div class="s9-form-fields">
-                  <div>
-                    <label class="s9-field-label">Full name</label>
-                    <input class="s9-field-input" value="Ami Burstin" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">Work email</label>
-                    <input class="s9-field-input" value="ami@amiburstin.me" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">LinkedIn</label>
-                    <input class="s9-field-input" value="linkedin.com/in/amibu" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">Title</label>
-                    <input class="s9-field-input" value="Fractional CMO" readonly>
-                  </div>
-                </div>
-              </main>
-            </div>
+    <div class="reason-card">
+      <div class="reason-ribbon">Hundreds of emails</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Cold email → onboarded</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">6.7%</div>
+            <div class="reason-stat-label">of emails reach onboarded</div>
           </div>
         </div>
+        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
       </div>
+    </div>
 
-      <!-- MOBILE PHONE (front, right) -->
-      <div class="s9-phone-wrap">
-        <div class="s9-phone">
-          <div class="s9-phone-notch"></div>
-          <div class="s9-phone-statusbar">
-            <span>9:41</span>
-            <span>●●●  ▣</span>
+    <div class="reason-card">
+      <div class="reason-ribbon">Tiny sample — early signal</div>
+      <div class="reason-card-body">
+        <div class="reason-title">Virality</div>
+        <div class="reason-stats">
+          <div class="reason-stat">
+            <div class="reason-stat-num">3.5</div>
+            <div class="reason-stat-label">invites / user</div>
           </div>
-
-          <div id="s9MatchFull" class="s9-match-full">
-            <svg class="s9-match-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
-              <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
-            </svg>
-            <div class="s9-match-full-title">It's a match</div>
+          <div class="reason-stat">
+            <div class="reason-stat-num">29%</div>
+            <div class="reason-stat-label">acceptance</div>
           </div>
-
-          <header class="s9-chat-header">
-            <span class="s9-chat-back">‹</span>
-            <div class="s9-chat-avatar">8</div>
-            <div class="s9-chat-info">
-              <div class="s9-chat-name">Atlas Circle</div>
-              <div class="s9-chat-sub">5 members · 3 openings</div>
-            </div>
-            <span class="s9-chat-more">ⓘ</span>
-          </header>
-
-          <main class="s9-chat-body">
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
-              <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
-            </div>
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-msg">
-                <div class="s9-chat-msg-avatar">G</div>
-                <div class="s9-chat-msg-content">
-                  <div class="s9-chat-msg-name">Gordy</div>
-                  <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-msg">
-                <div class="s9-chat-msg-avatar">G</div>
-                <div class="s9-chat-msg-content">
-                  <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="s9-reveal-item">
-            <div class="s9-chat-msg">
-              <div class="s9-chat-msg-avatar hidden">G</div>
-              <div class="s9-chat-msg-content" style="max-width:90%">
-                <div class="s9-chat-attachment">
-                  <div class="s9-att-section">
-                    <div class="s9-att-label">Your shared customer</div>
-                    <div class="s9-att-customer">
-                      <div class="s9-att-customer-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                          <circle cx="12" cy="12" r="10"/>
-                          <circle cx="12" cy="12" r="6"/>
-                          <circle cx="12" cy="12" r="2" fill="#D4A574"/>
-                        </svg>
-                      </div>
-                      <div class="s9-att-customer-info">
-                        <div class="s9-att-customer-title">Seed B2B Founders</div>
-                        <div class="s9-att-customer-sub">Closing through warm intros</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="s9-att-section">
-                    <div class="s9-att-label">8 pros · watching for</div>
-                    <div class="s9-att-members">
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">AB</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Ami <span class="role">· Fractional CMO</span></div>
-                          <div class="s9-att-member-trigger">Founder mentions GTM</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">SM</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Sarah <span class="role">· Lawyer</span></div>
-                          <div class="s9-att-member-trigger">Founder is fundraising</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">TR</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Tom <span class="role">· Recruiter</span></div>
-                          <div class="s9-att-member-trigger">Founder needs to hire</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">MK</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Mia <span class="role">· Fractional CFO</span></div>
-                          <div class="s9-att-member-trigger">Preparing financials</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">DP</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Dan <span class="role">· PR &amp; Comms</span></div>
-                          <div class="s9-att-member-trigger">Founder is launching</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">AL</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Alex <span class="role">· Brand Designer</span></div>
-                          <div class="s9-att-member-trigger">Founder is rebranding</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">LG</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Lior <span class="role">· Growth Marketer</span></div>
-                          <div class="s9-att-member-trigger">Founder needs demand gen</div>
-                        </div>
-                      </div>
-                      <div class="s9-att-member">
-                        <div class="s9-att-member-avatar">YN</div>
-                        <div class="s9-att-member-info">
-                          <div class="s9-att-member-name">Yaniv <span class="role">· Investor Relations</span></div>
-                          <div class="s9-att-member-trigger">Founder is raising Series A</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            </div>
-
-          </main>
         </div>
+        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
       </div>
-      </div><!-- /.s9-mockup-cluster -->
-
     </div>
 
   </div>
 
-  <div class="conclusion">InTouch lets independent professionals find each other and <strong>unlocks circle creation</strong>.</div>
-  <div class="sources">Sources: Match.com (1995), eHarmony (2000), InTouch product · n=64</div>
+  <div class="gtm-segment">
+    <span class="gtm-segment-q">The segment we are starting with</span>
+    <div class="gtm-segment-a">
+      <span class="gtm-segment-answer">Professionals who serve startups</span>
+      <span class="gtm-segment-stats">131K independents · 14 professions · $6B/yr market</span>
+    </div>
+  </div>
+
+  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
+  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
-<script>
-(function () {
-  var MATCH_SHOW_MS  = 3000;
-  var FADE_MS        = 500;
-  var MSG_INTERVAL   = 800;
-  var CHAT_LINGER_MS = 2500;
-
-  var overlay = document.getElementById('s9MatchFull');
-  var items   = Array.from(document.querySelectorAll('#slide-6 .s9-reveal-item'));
-
-  function resetChat() {
-    items.forEach(function (el) { el.classList.remove('s9-shown'); });
-  }
-
-  function showOverlay() {
-    overlay.style.transition = 'none';
-    overlay.style.opacity    = '1';
-    overlay.style.pointerEvents = '';
-  }
-
-  function hideOverlay(cb) {
-    overlay.style.transition    = 'opacity ' + FADE_MS + 'ms ease';
-    overlay.style.opacity       = '0';
-    setTimeout(function () {
-      overlay.style.pointerEvents = 'none';
-      cb();
-    }, FADE_MS);
-  }
-
-  function revealMessages(cb) {
-    var i = 0;
-    function next() {
-      if (i >= items.length) { setTimeout(cb, CHAT_LINGER_MS); return; }
-      items[i].classList.add('s9-shown');
-      i++;
-      setTimeout(next, MSG_INTERVAL);
-    }
-    next();
-  }
-
-  function loop() {
-    resetChat();
-    showOverlay();
-    setTimeout(function () {
-      hideOverlay(function () {
-        revealMessages(loop);
-      });
-    }, MATCH_SHOW_MS);
-  }
-
-  setTimeout(loop, 600);
-}());
-</script>
 </body>
 </html>

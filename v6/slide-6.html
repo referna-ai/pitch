@@ -3,231 +3,246 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · GTM — InTouch Pitch</title>
+<title>S7 · Smoke Test — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-6"] .slide-title { margin-bottom: 18px; }
+body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
 
-.gtm-hero .gold { color: var(--gold); }
-
-.gtm-hero {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 32px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  text-align: center;
-  padding: 18px 40px;
-  margin-bottom: 20px;
-}
-
-.gtm-segment {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  margin-top: 14px;
-  margin-bottom: 6px;
-  padding: 14px 20px;
-  background: rgba(212,165,116,0.04);
-  border-left: 2px solid rgba(212,165,116,0.35);
-  border-radius: 0 6px 6px 0;
-}
-.gtm-segment-q {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.gtm-segment-a {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.gtm-segment-answer {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.gtm-segment-stats {
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--gray-dark);
-  letter-spacing: 0.02em;
-}
-
-.cards-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gray-dark);
-  margin-bottom: 10px;
-}
-
-body[data-slide="slide-6"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
-body[data-slide="slide-6"] .reason-card {
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.reason-ribbon {
-  padding: 6px 18px;
-  background: rgba(212, 165, 116, 0.06);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
-  border-radius: 7px 7px 0 0;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(212, 165, 116, 0.6);
-}
-.reason-card-body {
-  padding: 16px 20px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+/* HERO: stat left, email right */
+.hero-body {
   flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 32px;
+  align-items: start;
 }
-body[data-slide="slide-6"] .reason-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--white);
+
+/* LEFT COLUMN */
+.email-column {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  overflow: hidden; /* crops email 20% on right */
+}
+
+/* EMAIL MOCKUP */
+.email-card {
+  background: #F0EFEE;
+  border-radius: 6px;
+  padding: 12px 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+}
+.email-subject {
+  font-size: 14px; font-weight: 600; color: #555;
   letter-spacing: -0.01em;
-  line-height: 1.25;
+  margin-bottom: 5px; line-height: 1.25;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.reason-stats { display: flex; gap: 24px; }
-.reason-stat-num {
+.email-meta {
+  font-size: 11px; color: #777; line-height: 1.5;
+  border-bottom: 1px solid #d8d6d3;
+  padding-bottom: 6px; margin-bottom: 8px;
+}
+.email-meta-row { display: flex; gap: 5px; align-items: center; }
+.email-meta-label { color: #a0a0a0; font-weight: 500; flex-shrink: 0; }
+.email-meta-value { color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.email-body { font-size: 11.5px; line-height: 1.5; color: #666; }
+.email-body p { margin-bottom: 5px; }
+.email-body p:last-child { margin-bottom: 0; }
+.email-signoff { margin-top: 6px; font-size: 11.5px; color: #666; line-height: 1.4; }
+.email-signoff-title { color: #888; font-size: 11px; }
+.email-pop {
+  background: rgba(212,165,116,0.32);
+  color: #0d0d0d;
+  padding: 1px 4px;
+  border-radius: 2px;
+  font-weight: 500;
+}
+.email-num {
+  display: inline-block;
+  width: 15px; height: 15px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 50%;
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 9px;
+  text-align: center; line-height: 15px;
+  margin-left: 3px;
+  position: relative; top: -2px;
+  font-style: normal;
+}
+
+/* OBSTACLE LIST */
+.email-obstacles {
+  padding: 10px 14px;
+  border-left: 2px solid rgba(255,255,255,0.18);
+  background: rgba(255,255,255,0.025);
+}
+.obstacle-item {
+  display: flex; align-items: center; gap: 9px;
+  font-family: var(--font-display); font-size: 14px;
+  font-weight: 600; color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+.obstacle-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px;
+  background: var(--gold);
+  color: var(--black);
+  border-radius: 50%;
+  font-size: 11px; font-weight: 800;
+  flex-shrink: 0;
   font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 28px;
+}
+.obstacles-result {
+  margin-top: 8px; padding-top: 7px;
+  border-top: 1px dashed rgba(255,255,255,0.12);
+}
+.result-stats {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
   color: var(--gold);
-  letter-spacing: -0.02em;
-  line-height: 1.05;
+  display: flex; align-items: center; gap: 8px; line-height: 1.4;
 }
-.reason-stat-label {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray-mid);
-  margin-top: 4px;
+.result-punchline {
+  font-family: var(--font-display); font-weight: 800; font-size: 14px;
+  color: var(--white); font-style: italic;
 }
-body[data-slide="slide-6"] .reason-desc {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--gray);
-  margin-top: auto;
+
+/* RIGHT COLUMN */
+.stat-col {
+  display: flex;
+  flex-direction: column;
 }
-body[data-slide="slide-6"] .reason-desc strong {
+.hero-stat {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 110px; line-height: 0.9; letter-spacing: -0.04em;
+  color: var(--gold);
+  margin-bottom: 7px;
+}
+.hero-stat-label {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--white); letter-spacing: 0.18em; text-transform: uppercase;
+  margin-bottom: 12px; line-height: 1.35;
+}
+.comparison-line {
+  font-family: var(--font-display); font-weight: 700; font-size: 20px;
+  color: var(--white); line-height: 1.35;
+  margin-bottom: 14px;
+}
+.comparison-line .mult { color: var(--gold); font-weight: 800; }
+.stat-divider {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin: 8px 0 12px;
+}
+.stat-line {
+  font-family: var(--font-display); font-size: 16px; color: var(--gray-dark);
+  line-height: 1.6; margin-bottom: 6px;
+}
+.stat-line strong { color: var(--white); font-weight: 600; }
+
+/* SMOKE TEST DEF — sits below the stats */
+.smoke-test-def {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  font-family: var(--font-body); font-size: 16px;
+  color: var(--gray-dark);
+  line-height: 1.6;
+}
+.smoke-test-def .term {
+  font-family: var(--font-display); font-weight: 700;
   color: var(--white);
-  font-weight: 600;
+}
+.smoke-test-def .green-light {
+  color: var(--white); font-weight: 600;
   font-family: var(--font-display);
 }
-
-
-@media (max-width: 900px) {
-  body[data-slide="slide-6"] .reasons-grid { grid-template-columns: 1fr; }
-  body[data-slide="slide-6"] .slide-title { font-size: 30px; }
+.smoke-test-def .yc-src {
+  font-family: var(--font-display); font-weight: 700; font-size: 16px;
+  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
+  margin-left: 3px;
 }
 </style>
 </head>
 <body data-slide="slide-6">
 
-
 <div class="deck">
 
-<div class="slide" id="slide-8">
+<div class="slide" id="slide-7">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">3 signs we can grow even faster</h2>
+  <h2 class="slide-title">What we know that others missed.</h2>
 
-  <p class="gtm-hero">The smoke test was the first signal but <span class="gold">it keeps getting better.</span></p>
+  <div class="hero-body">
 
-  <div class="cards-label">From our other tests</div>
+    <!-- LEFT: hero stat + smoke test def -->
+    <div class="stat-col">
+      <div class="hero-stat">30.2%</div>
+      <div class="hero-stat-label">Reply rate to cold email campaign</div>
+      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
+      <div class="stat-divider"></div>
+      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
+      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
 
-  <div class="reasons-grid">
-
-    <div class="reason-card">
-      <div class="reason-ribbon">Small sample</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Weekly growth</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">14.8%</div>
-            <div class="reason-stat-label">W/W user growth</div>
-          </div>
-        </div>
-        <div class="reason-desc"><strong>2× YC's "good" threshold (5–7%).</strong></div>
+      <div class="smoke-test-def">
+        <span class="term">Smoke test</span> — A demand validation method. Cold-email strangers a real offer, measure who replies. <span class="green-light">Anything above 10% is a green light.</span> <span class="yc-src">— YC</span>
       </div>
     </div>
 
-    <div class="reason-card">
-      <div class="reason-ribbon">Hundreds of emails</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Cold email → onboarded</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">6.7%</div>
-            <div class="reason-stat-label">of emails reach onboarded</div>
+    <!-- RIGHT: email + obstacles -->
+    <div class="email-column">
+      <div class="email-card">
+        <div class="email-subject">Looking for fractional CFO to refer</div>
+        <div class="email-meta">
+          <div class="email-meta-row">
+            <span class="email-meta-label">From:</span>
+            <span class="email-meta-value">gordy@joinintrocircle.com<span class="email-num">1</span></span>
+          </div>
+          <div class="email-meta-row">
+            <span class="email-meta-label">To:</span>
+            <span class="email-meta-value">shelly@topdoggaragedoorsnc.com</span>
           </div>
         </div>
-        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
+        <div class="email-body">
+          <p>Hi Shelly,</p>
+          <p>Gordy here — AI that helps with referrals.<span class="email-num">2</span></p>
+          <p>We have a <span class="email-pop">group (we call them circles) of professionals who refer business to each other</span>, and they need a fractional CFO to refer work to. They asked me to help find one — and I think you could be a fit.</p>
+          <p>If you'd like to apply, just reply and I'll help you through it.<span class="email-num">3</span></p>
+          <p>Or pass if this isn't for you.</p>
+          <div class="email-signoff">
+            Gordy<br>
+            <span class="email-signoff-title">Referral Circle Keeper, InTouch<span class="email-num">4</span></span>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="reason-card">
-      <div class="reason-ribbon">Tiny sample — early signal</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Virality</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">3.5</div>
-            <div class="reason-stat-label">invites / user</div>
-          </div>
-          <div class="reason-stat">
-            <div class="reason-stat-num">29%</div>
-            <div class="reason-stat-label">acceptance</div>
-          </div>
+      <div class="email-obstacles">
+        <div class="obstacle-item"><span class="obstacle-num">1</span> Unrecognized domain</div>
+        <div class="obstacle-item"><span class="obstacle-num">2</span> From an AI</div>
+        <div class="obstacle-item"><span class="obstacle-num">3</span> Introduces friction</div>
+        <div class="obstacle-item"><span class="obstacle-num">4</span> Unknown brand</div>
+        <div class="obstacles-result">
+          <div class="result-stats"><span>→</span> 30% still replied. 80% positive. <span class="result-punchline">Must be the offer.</span></div>
         </div>
-        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
       </div>
     </div>
 
   </div>
 
-  <div class="gtm-segment">
-    <span class="gtm-segment-q">The segment we are starting with</span>
-    <div class="gtm-segment-a">
-      <span class="gtm-segment-answer">Professionals who serve startups</span>
-      <span class="gtm-segment-stats">131K independents · 14 professions · $6B/yr market</span>
-    </div>
-  </div>
-
-  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
-  <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
+  <div class="conclusion"><strong>A 20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
+  <div class="sources">Sources: InTouch outbound · 5 referral-offer campaigns · May 2026</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
+<script>(function(){var el=document.querySelector('.slide-label');if(el)el.textContent='Smoke Test';})();</script>
 </body>
 </html>

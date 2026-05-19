@@ -3,161 +3,162 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S7 · Smoke Test — InTouch Pitch</title>
+<title>S5 · Positioning — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-5"] .slide-title { margin-bottom: 20px; }
-
-/* HERO: stat left, email right */
-.hero-body {
+.matrix-area {
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-/* LEFT COLUMN */
-.email-column {
   display: flex;
-  flex-direction: column;
-  gap: 9px;
-  overflow: hidden; /* crops email 20% on right */
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-/* EMAIL MOCKUP */
-.email-card {
-  background: #F0EFEE;
-  border-radius: 6px;
-  padding: 12px 15px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-.email-subject {
-  font-size: 14px; font-weight: 600; color: #555;
-  letter-spacing: -0.01em;
-  margin-bottom: 5px; line-height: 1.25;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.email-meta {
-  font-size: 11px; color: #777; line-height: 1.5;
-  border-bottom: 1px solid #d8d6d3;
-  padding-bottom: 6px; margin-bottom: 8px;
-}
-.email-meta-row { display: flex; gap: 5px; align-items: center; }
-.email-meta-label { color: #a0a0a0; font-weight: 500; flex-shrink: 0; }
-.email-meta-value { color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.email-body { font-size: 11.5px; line-height: 1.5; color: #666; }
-.email-body p { margin-bottom: 5px; }
-.email-body p:last-child { margin-bottom: 0; }
-.email-signoff { margin-top: 6px; font-size: 11.5px; color: #666; line-height: 1.4; }
-.email-signoff-title { color: #888; font-size: 11px; }
-.email-pop {
-  background: rgba(212,165,116,0.32);
-  color: #0d0d0d;
-  padding: 1px 4px;
-  border-radius: 2px;
-  font-weight: 500;
-}
-.email-num {
-  display: inline-block;
-  width: 15px; height: 15px;
-  background: var(--gold);
-  color: var(--black);
-  border-radius: 50%;
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 9px;
-  text-align: center; line-height: 15px;
-  margin-left: 3px;
-  position: relative; top: -2px;
-  font-style: normal;
+.matrix-row {
+  position: relative;
+  padding: 60px 0;
+  width: 100%;
+  margin-top: -30px;
 }
 
-/* OBSTACLE LIST */
-.email-obstacles {
-  padding: 10px 14px;
-  border-left: 2px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.025);
-}
-.obstacle-item {
-  display: flex; align-items: center; gap: 9px;
-  font-family: var(--font-display); font-size: 14px;
-  font-weight: 600; color: var(--white);
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-.obstacle-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px;
-  background: var(--gold);
-  color: var(--black);
-  border-radius: 50%;
-  font-size: 11px; font-weight: 800;
-  flex-shrink: 0;
+.axis-top, .axis-bottom, .axis-left, .axis-right {
+  position: absolute;
   font-family: var(--font-display);
-}
-.obstacles-result {
-  margin-top: 8px; padding-top: 7px;
-  border-top: 1px dashed rgba(255,255,255,0.12);
-}
-.result-stats {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
   color: var(--gold);
-  display: flex; align-items: center; gap: 8px; line-height: 1.4;
+  text-transform: uppercase;
 }
-.result-punchline {
-  font-family: var(--font-display); font-weight: 800; font-size: 14px;
-  color: var(--white); font-style: italic;
+.axis-top, .axis-bottom {
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  max-width: 160px;
+  line-height: 1.35;
+}
+.axis-top    { top: 30px; }
+.axis-bottom { bottom: -10px; }
+.axis-left, .axis-right {
+  top: 50%;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+.axis-left  { left: 0; }
+.axis-right { right: 0; }
+
+.matrix {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  column-gap: 60px;
+  row-gap: 36px;
+  width: 82%;
+  margin: 0 auto;
 }
 
-/* RIGHT COLUMN */
-.stat-col {
+.center-cross {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: 75%;
+  aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.center-cross svg { width: 100%; height: 100%; display: block; overflow: visible; }
+
+.quadrant {
+  background: var(--black-mid);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 22px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  min-height: 110px;
 }
-.hero-stat {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 130px; line-height: 0.9; letter-spacing: -0.04em;
-  color: var(--gold);
-  margin-bottom: 14px;
+.quadrant.winner {
+  border-color: var(--gold);
 }
-.hero-stat-label {
-  font-family: var(--font-display); font-weight: 600; font-size: 18px;
-  color: var(--white); line-height: 1.4;
-  margin-bottom: 28px;
-  font-style: normal;
-}
-.comparison-line {
-  font-family: var(--font-display); font-weight: 700; font-size: 22px;
-  color: var(--white); line-height: 1.35;
-  margin-bottom: 14px;
-}
-.comparison-line .mult { color: var(--gold); font-weight: 800; }
-.mini-conclusion {
-  font-family: var(--font-display); font-weight: 700; font-size: 18px;
-  color: var(--gold); line-height: 1.4;
-  margin-bottom: 24px;
-}
-.stat-divider {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  margin: 8px 0 14px;
-}
-.stat-line {
-  font-family: var(--font-display); font-size: 16px; color: var(--gray-dark);
-  line-height: 1.6; margin-bottom: 6px;
-}
-.stat-line strong { color: var(--white); font-weight: 600; }
 
-/* LABEL ABOVE EMAIL */
-.email-label {
-  font-family: var(--font-display); font-weight: 600; font-size: 16px;
-  color: var(--white); line-height: 1.4;
-  margin-bottom: 4px;
+.quadrant-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+  margin-bottom: 8px;
+}
+.quadrant.winner .quadrant-name { color: var(--gold); font-size: 18px; }
+
+.quadrant-info {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-mid);
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+.quadrant-info .val { color: var(--gold); font-weight: 700; }
+.quadrant-note .val { color: var(--gold); font-weight: 700; }
+.quadrant-info .sep { color: var(--gray-dark); }
+
+.quadrant-note {
+  margin-top: 7px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-dark);
+  line-height: 1.45;
+}
+
+.comp-logo {
+  height: 17px;
+  width: auto;
+  max-width: 90px;
+  flex-shrink: 0;
+  filter: brightness(0) invert(0.55);
+  display: inline-block;
+  vertical-align: middle;
+}
+.quadrant.winner .comp-logo { filter: brightness(0) invert(1); opacity: 0.95; }
+
+/* LinkedIn footnote */
+.matrix-footnote {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-dark);
+  line-height: 1.5;
+  padding: 0 4px;
+  margin-bottom: 6px;
+}
+.matrix-footnote strong { color: var(--gray-mid); font-weight: 600; }
+
+.axis-bottom { max-width: 360px; }
+.axis-subtitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--gray-dark);
+  margin-top: 5px;
+  line-height: 1.45;
+}
+
+@media (max-width: 768px) {
+  .matrix-row { position: static; padding: 0; }
+  .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
+  .axis-top, .axis-bottom, .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; max-width: none; margin: 6px auto; }
+  .center-cross { display: none; }
 }
 </style>
 </head>
@@ -165,72 +166,88 @@ body[data-slide="slide-5"] .slide-title { margin-bottom: 20px; }
 
 <div class="deck">
 
-<div class="slide" id="slide-7">
+<div class="slide" id="slide-5">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The undeniable evidence</h2>
+  <h2 class="slide-title">Where InTouch sits</h2>
 
-  <div class="hero-body">
+  <div class="matrix-area">
+    <div class="matrix-row">
+      <div class="axis-top">Network</div>
+      <div class="axis-left">Offline professions</div>
+      <div class="matrix">
 
-    <!-- LEFT: hero stat -->
-    <div class="stat-col">
-      <div class="hero-stat">30.2%</div>
-      <div class="hero-stat-label">Reply rate to cold email campaign</div>
-      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
-      <div class="mini-conclusion">The pain is real and urgent</div>
-      <div class="stat-divider"></div>
-      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
-      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
-    </div>
-
-    <!-- RIGHT: email + obstacles -->
-    <div class="email-column">
-      <div class="email-label">The cold email we sent to test the demand</div>
-      <div class="email-card">
-        <div class="email-subject">Looking for fractional CFO to refer</div>
-        <div class="email-meta">
-          <div class="email-meta-row">
-            <span class="email-meta-label">From:</span>
-            <span class="email-meta-value">gordy@joinintrocircle.com<span class="email-num">1</span></span>
-          </div>
-          <div class="email-meta-row">
-            <span class="email-meta-label">To:</span>
-            <span class="email-meta-value">shelly@topdoggaragedoorsnc.com</span>
+        <!-- Top-left: Offline × Network -->
+        <div class="quadrant">
+          <div class="quadrant-name">Network for offline professionals</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/bni.png" alt="BNI">
+            <span class="sep">—</span> <span class="val">$26.4B</span> referred/yr · <span class="val">↑ 36%</span> over 3 years
           </div>
         </div>
-        <div class="email-body">
-          <p>Hi Shelly,</p>
-          <p>Gordy here — AI that helps with referrals.<span class="email-num">2</span></p>
-          <p>We have a <span class="email-pop">group (we call them circles) of professionals who refer business to each other</span>, and they need a fractional CFO to refer work to. They asked me to help find one — and I think you could be a fit.</p>
-          <p>If you'd like to apply, just reply and I'll help you through it.<span class="email-num">3</span></p>
-          <p>Or pass if this isn't for you.</p>
-          <div class="email-signoff">
-            Gordy<br>
-            <span class="email-signoff-title">Referral Circle Keeper, InTouch<span class="email-num">4</span></span>
+
+        <!-- Top-right: Online × Network — WINNER -->
+        <div class="quadrant winner">
+          <div class="quadrant-name">Network for online professionals</div>
+          <div class="quadrant-info">
+            <svg width="19" height="19" viewBox="0 0 48 48" fill="none" style="flex-shrink:0;vertical-align:middle">
+              <rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>
+              <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+            </svg>
+            <strong style="color:#fff;font-weight:700">InTouch</strong>
+            <span class="sep">—</span> The white space — premium professions AI amplifies
           </div>
         </div>
+
+        <!-- Bottom-left: Offline × Marketplace -->
+        <div class="quadrant">
+          <div class="quadrant-name">Offline service marketplaces</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/thumbtack.svg" alt="Thumbtack">
+            <span class="sep">·</span>
+            <img class="comp-logo" src="logos/angi.svg" alt="Angi">
+            <span class="sep">·</span>
+            <img class="comp-logo" src="logos/midrag.svg" alt="Midrag">
+          </div>
+          <div class="quadrant-note"><span class="val">~$3B+</span> public · Angi revenue ↓ 45% (3Y)</div>
+        </div>
+
+        <!-- Bottom-right: Online × Marketplace -->
+        <div class="quadrant">
+          <div class="quadrant-name">Online services marketplaces</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/fiverr.svg" alt="Fiverr">
+            <span class="sep">·</span>
+            Upwork
+          </div>
+          <div class="quadrant-note">Selling what AI replaces</div>
+        </div>
+
       </div>
-
-      <div class="email-obstacles">
-        <div class="obstacle-item"><span class="obstacle-num">1</span> Unrecognized domain</div>
-        <div class="obstacle-item"><span class="obstacle-num">2</span> From an AI</div>
-        <div class="obstacle-item"><span class="obstacle-num">3</span> Introduces friction</div>
-        <div class="obstacle-item"><span class="obstacle-num">4</span> Unknown brand</div>
-        <div class="obstacles-result">
-          <div class="result-stats"><span>→</span> 30% still replied. 80% positive. <span class="result-punchline">Must be the offer.</span></div>
-        </div>
+      <div class="axis-right">Online professions</div>
+      <div class="center-cross" aria-hidden="true">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <marker id="s5-arrow" markerWidth="6" markerHeight="6" refX="3" refY="3" orient="auto-start-reverse" markerUnits="strokeWidth">
+              <path d="M0,0 L6,3 L0,6 z" fill="rgba(212, 165, 116, 0.55)"/>
+            </marker>
+          </defs>
+          <line x1="50" y1="6" x2="50" y2="94" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+          <line x1="6" y1="50" x2="94" y2="50" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
+        </svg>
       </div>
+      <div class="axis-bottom">Marketplace<span class="axis-subtitle">Suppliers compete on price and ranking<br>— for commodity work</span></div>
     </div>
-
   </div>
 
-  <div class="conclusion"><strong>A 20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
-  <div class="sources">Sources: InTouch outbound · 5 referral-offer campaigns · May 2026</div>
+  <p class="matrix-footnote"><strong>LinkedIn</strong> = different beast — professional graph monetized by ads and recruiters, not a lead source for independent professionals.</p>
+
+  <div class="conclusion">Each corner is a billion-dollar business. <strong>The missing quadrant is ours.</strong></div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · public filings (Fiverr, Upwork, Angi) · Thumbtack last private round</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
-<script>(function(){var el=document.querySelector('.slide-label');if(el)el.textContent='Market pull';})();</script>
 </body>
 </html>
