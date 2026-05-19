@@ -15,7 +15,7 @@
   min-height: 0;
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .matrix-row {
@@ -40,7 +40,7 @@
   max-width: 160px;
   line-height: 1.35;
 }
-.axis-top  { top: 0; }
+.axis-top    { top: 0; }
 .axis-bottom { bottom: 0; }
 .axis-left, .axis-right {
   top: 50%;
@@ -89,69 +89,57 @@
 .quadrant-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--white);
   letter-spacing: -0.005em;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
-.quadrant.winner .quadrant-name { color: var(--gold); font-size: 24px; }
+.quadrant.winner .quadrant-name { color: var(--gold); font-size: 20px; }
 
 .quadrant-info {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 15px;
   color: var(--gray-mid);
-  line-height: 1.45;
-}
-.quadrant-info .val { color: var(--gold); font-weight: 700; }
-
-.quadrant-note {
-  margin-top: 8px;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--gray-mid);
-  line-height: 1.45;
-}
-.quadrant-note .highlight { color: var(--error, #e05c5c); font-weight: 700; }
-
-.ref-line {
-  margin-bottom: 5px;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--gray-mid);
-  line-height: 1.45;
-}
-.ref-line:last-child { margin-bottom: 0; }
-.ref-tag { color: var(--white); font-weight: 700; }
-.ref-method {
-  color: var(--white);
-  font-weight: 700;
-  display: inline-flex;
+  line-height: 1.5;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 5px;
-  vertical-align: middle;
 }
-.ref-stat { color: var(--gold); font-weight: 700; }
+.quadrant-info .val { color: var(--gold); font-weight: 700; }
+.quadrant-info .sep { color: var(--gray-dark); }
 
-.comp-name {
-  color: var(--white);
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+.quadrant-note {
+  margin-top: 7px;
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray-dark);
+  line-height: 1.45;
+}
+
+.comp-logo {
+  height: 17px;
+  width: auto;
+  max-width: 90px;
+  flex-shrink: 0;
+  filter: brightness(0) invert(0.55);
+  display: inline-block;
   vertical-align: middle;
 }
-.comp-logo {
-  height: 18px;
-  width: auto;
-  max-width: 110px;
-  flex-shrink: 0;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+.quadrant.winner .comp-logo { filter: brightness(0) invert(1); opacity: 0.95; }
+
+/* LinkedIn footnote */
+.matrix-footnote {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-dark);
+  line-height: 1.5;
+  padding: 0 4px;
+  margin-bottom: 6px;
 }
-.ref-method .comp-logo { height: 15px; }
+.matrix-footnote strong { color: var(--gray-mid); font-weight: 600; }
 
 @media (max-width: 768px) {
   .matrix-row { position: static; padding: 0; }
@@ -168,47 +156,63 @@
 <div class="slide" id="slide-5">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Massive outcomes follow revenue impact</h2>
+  <h2 class="slide-title">Where InTouch sits</h2>
 
   <div class="matrix-area">
     <div class="matrix-row">
-      <div class="axis-top">Relationship warm</div>
-      <div class="axis-left">Random timing</div>
+      <div class="axis-top">Network</div>
+      <div class="axis-left">Offline professions</div>
       <div class="matrix">
 
+        <!-- Top-left: Offline × Network -->
         <div class="quadrant">
-          <div class="quadrant-name">Warm intros</div>
-          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/lunchclub.png" alt="Lunchclub"></span> · <span class="val">$100M</span> valuation · <span class="val">$0</span> direct impacted rev</div>
-          <div class="quadrant-note">Unlike referrals, intros <span class="highlight">lack buying intent</span></div>
-        </div>
-
-        <div class="quadrant winner">
-          <div class="quadrant-name">Referrals</div>
-          <div class="ref-line"><span class="ref-tag">Unpredictable</span> — customers recommend</div>
-          <div class="ref-line"><span class="ref-tag">Predictable</span> —
-            <span class="ref-method"><img class="comp-logo" src="logos/bni.png" alt="BNI"></span> (analog, <span class="ref-stat">$26.4B</span> impacted rev),
-            <span class="ref-method">
-              <svg width="13" height="13" viewBox="0 0 48 48" fill="none">
-                <rect x="4" y="4" width="40" height="40" rx="8" fill="currentColor"/>
-                <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
-              </svg>
-              InTouch
-            </span> (digital)
+          <div class="quadrant-name">Network for offline professionals</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/bni.png" alt="BNI">
+            <span class="sep">—</span> <span class="val">$26.4B</span> referred/yr
           </div>
         </div>
 
-        <div class="quadrant">
-          <div class="quadrant-name">Cold outbound</div>
-          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/outreach.svg" alt="Outreach"></span> · <span class="val">$4B</span> valuation</div>
+        <!-- Top-right: Online × Network — WINNER -->
+        <div class="quadrant winner">
+          <div class="quadrant-name">Network for online professionals</div>
+          <div class="quadrant-info">
+            <svg width="13" height="13" viewBox="0 0 48 48" fill="none" style="flex-shrink:0;vertical-align:middle">
+              <rect x="4" y="4" width="40" height="40" rx="8" fill="currentColor"/>
+              <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+            </svg>
+            <strong style="color:var(--gold);font-weight:700">InTouch</strong>
+            <span class="sep">—</span> The white space
+          </div>
         </div>
 
+        <!-- Bottom-left: Offline × Marketplace -->
         <div class="quadrant">
-          <div class="quadrant-name">Signal-based outbound (AI)</div>
-          <div class="quadrant-info"><span class="comp-name"><img class="comp-logo" src="logos/6sense.svg" alt="6sense"></span> · <span class="val">$5.2B</span> valuation · <span class="val">$7.5B</span> influenced rev</div>
+          <div class="quadrant-name">Offline service marketplaces</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/thumbtack.svg" alt="Thumbtack">
+            <span class="sep">·</span>
+            <img class="comp-logo" src="logos/angi.svg" alt="Angi">
+            <span class="sep">·</span>
+            <img class="comp-logo" src="logos/midrag.svg" alt="Midrag">
+            <span class="sep">—</span> <span class="val">~$3B+</span> public companies
+          </div>
+        </div>
+
+        <!-- Bottom-right: Online × Marketplace -->
+        <div class="quadrant">
+          <div class="quadrant-name">Online services marketplaces</div>
+          <div class="quadrant-info">
+            <img class="comp-logo" src="logos/fiverr.svg" alt="Fiverr">
+            <span class="sep">·</span>
+            <img class="comp-logo" src="logos/upwork.svg" alt="Upwork">
+            <span class="sep">—</span> <span class="val">~$1B+</span> public companies
+          </div>
+          <div class="quadrant-note">Customer-led — suppliers compete on price</div>
         </div>
 
       </div>
-      <div class="axis-right">High intent timing</div>
+      <div class="axis-right">Online professions</div>
       <div class="center-cross" aria-hidden="true">
         <svg viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
           <defs>
@@ -220,12 +224,14 @@
           <line x1="6" y1="50" x2="94" y2="50" stroke="rgba(212, 165, 116, 0.55)" stroke-width="0.4" marker-start="url(#s5-arrow)" marker-end="url(#s5-arrow)"/>
         </svg>
       </div>
-      <div class="axis-bottom">Cold relationship</div>
+      <div class="axis-bottom">Marketplace</div>
     </div>
   </div>
 
-  <div class="conclusion">Massive business can be built by <strong>digitizing BNI's proven model.</strong></div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025 · 6sense Series E (Jan 2022) · Outreach Series G (May 2021) · Lunchclub Series A (2020)</div>
+  <p class="matrix-footnote"><strong>LinkedIn</strong> = different beast — professional graph monetized by ads and recruiters, not a lead source for independent professionals.</p>
+
+  <div class="conclusion">Each corner is a billion-dollar business. <strong>The missing quadrant is ours.</strong></div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · public filings (Fiverr, Upwork, Angi) · Thumbtack last private round</div>
 </div>
 
 </div>
