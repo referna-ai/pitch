@@ -5,7 +5,30 @@ Before giving a PR link at the end of any task:
 1. Check whether the last PR on this repo is already merged: `gh pr list --state merged --limit 1` or `gh pr view <number> --json state`
 2. If the previous PR was merged, pull main first (`git checkout main && git pull origin main`), then create a new branch and open a fresh PR for the current work
 3. Always give the PR link at the end of the response
-4. Always give the Cloudflare Pages preview link too. **Never guess the slug** — always read the bot's actual `Branch Preview URL` from the `cloudflare-workers-and-pages[bot]` PR comment. If the comment hasn't appeared yet, poll PR comments until it does (or note that the preview is still building) — do not synthesize a URL from the branch name. Once you have it, append the slide path when relevant: e.g. `https://<bot-slug>.intouch-short-deck.pages.dev/v4/slide-2`. Reason: Cloudflare truncates the branch slug to 28 characters and lowercases it, so naive `claude/update-team-slide-5HDPY` → `claude-update-team-slide-5hdpy` is wrong (real slug is `claude-update-team-slide-5hd`). The truncation point isn't always predictable, so always copy from the bot.
+4. Always give the Cloudflare Pages preview link too — derive it from the branch name with the rule below, no need to wait for the bot comment. Append the slide path when relevant, e.g. `https://<slug>.intouch-short-deck.pages.dev/v6/slide-2`.
+
+### Predicting the Cloudflare Pages branch preview slug
+
+The `cloudflare-workers-and-pages[bot]` `Branch Preview URL` is a pure function of the branch name. Compute it locally — don't wait for the bot.
+
+Algorithm:
+1. Replace every `/` with `-`
+2. Lowercase the whole string
+3. Truncate to **28 characters**
+4. Strip any trailing `-` (so a slug never ends in a hyphen)
+
+Then the URL is `https://<slug>.intouch-short-deck.pages.dev/`.
+
+Verified examples (branch → slug):
+- `claude/update-team-slide-5HDPY` → `claude-update-team-slide-5hd` (28 chars)
+- `claude/update-market-slide-aQotT` → `claude-update-market-slide-a` (28 chars)
+- `claude/enlarge-biz-model-fonts-qVAw3` → `claude-enlarge-biz-model-fon` (28 chars)
+- `claude/move-traction-slide-backup-Y31Q8` → `claude-move-traction-slide-b` (28 chars)
+- `claude/migrate-bni-slide-v6-C4QzU` → `claude-migrate-bni-slide-v6` (27 chars after stripping trailing `-`)
+- `claude/add-arrow-key-navigation-64Qeo` → `claude-add-arrow-key-navigat` (28 chars)
+- Short branches (≤28 chars after slugify) are used as-is, e.g. `s5-2x2-matrix` → `s5-2x2-matrix`
+
+If the bot's comment, when it lands, ever disagrees with the prediction, prefer the bot's value and update this rule.
 
 ## Branch naming
 Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
