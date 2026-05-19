@@ -3,125 +3,51 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S11 · Round — InTouch Pitch</title>
+<title>S10 · Team — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
-<style>
-body[data-slide="slide-12"] .slide-title { margin-bottom: 28px; }
-
-.s10-goal {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--white);
-  text-align: center;
-  max-width: 920px;
-  margin: 18px auto 40px;
-}
-.s10-goal-num { color: var(--gold); }
-
-.s10-rows {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 28px;
-}
-.s10-row {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 24px;
-  padding: 14px 4px;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.14);
-  align-items: baseline;
-}
-.s10-row:last-child { border-bottom: none; }
-.s10-row-key {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.s10-row-val {
-  font-family: var(--font-display);
-  font-size: 18px;
-  line-height: 1.45;
-  color: var(--white);
-  display: grid;
-  gap: 6px;
-}
-.s10-row-val em {
-  font-style: normal;
-  color: var(--white);
-  font-family: var(--font-display);
-}
-
-.s10-notes {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 8px 28px;
-  padding: 14px 18px;
-  background: rgba(212, 165, 116, 0.04);
-  border-left: 2px solid rgba(212, 165, 116, 0.4);
-  border-radius: 6px;
-}
-.s10-note {
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--gray-mid);
-}
-.s10-note strong { color: var(--white); font-weight: 600; font-family: var(--font-display); }
-
-@media (max-width: 820px) {
-  .s10-goal { font-size: 24px; }
-  .s10-row { grid-template-columns: 1fr; gap: 4px; }
-  .s10-notes { grid-template-columns: 1fr; }
-}
-</style>
 </head>
 <body data-slide="slide-12">
 
 
 <div class="deck">
 
-<div class="slide" id="slide-11">
+<div class="slide" id="slide-10">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Pre-seed for 24 months</h2>
+  <h2 class="slide-title">Two founders, two exits</h2>
+  <div class="slide-subtitle">3.5 years working together</div>
 
-  <p class="s10-goal">12-month milestone: <span class="s10-goal-num">4,000 Weekly Active Users</span></p>
-
-  <div class="s10-rows">
-    <div class="s10-row">
-      <div class="s10-row-key">It's achievable</div>
-      <div class="s10-row-val">4.4K WAU = 131K addresses × 6.7% (email → onboarded) × 50% (onboarded → weekly active).</div>
-    </div>
-    <div class="s10-row">
-      <div class="s10-row-key">It's enough for seed</div>
-      <div class="s10-row-val">
-        <div>– Network businesses raise seed at this scale (Clubhouse, Boardy, ...).</div>
-        <div>– 4,000 WAU → ~500 weekly referrals → ~$130M annualized economic value.</div>
+  <div class="team-grid">
+    <div class="team-card">
+      <img class="team-photo" src="team/yaniv.jpg" alt="Yaniv Nizan">
+      <div class="team-name">Yaniv Nizan</div>
+      <div class="team-role">Co-Founder &amp; CEO</div>
+      <div class="team-bullets">
+        <div class="team-bullet">CEO &amp; co-founder of SOOMLA (acquired by ironSource/Unity)</div>
+        <div class="team-bullet">Built peer networks across ads, in-game economies, and data — Kontera, ironSource, SOOMLA, EyeView</div>
+        <div class="team-bullet">20+ years selling and finding buying moments</div>
+        <div class="team-bullet">Customer in 4 referral-driven segments — startups, divorce, construction, weddings</div>
       </div>
     </div>
-    <div class="s10-row">
-      <div class="s10-row-key">What we need</div>
-      <div class="s10-row-val">Pre-seed · 24 months runway · Team of 4 (founders + 2 Talpiot graduates) · 12m buffer before seed.</div>
+    <div class="team-card">
+      <img class="team-photo" src="team/matan.jpg" alt="Matan Protter">
+      <div class="team-name">Matan Protter</div>
+      <div class="team-role">Co-Founder &amp; CTO</div>
+      <div class="team-bullets">
+        <div class="team-bullet">CTO &amp; co-founder of Infinity (acquired by Alibaba)</div>
+        <div class="team-bullet">9 patents</div>
+        <div class="team-bullet">Talpiot graduate · PhD Technion</div>
+        <div class="team-bullet">3.5 years shipping products with Yaniv — SynqUp and InTouch</div>
+      </div>
     </div>
   </div>
 
-  <div class="s10-notes">
-    <div class="s10-note"><strong>Active</strong> = engaged with another user in the last 7 days</div>
-    <div class="s10-note"><strong>Referral</strong> = introduction at the moment of need (proof: the call)</div>
-  </div>
-
-  <div class="conclusion">4,000 active is <strong>seed-ready scale</strong> for a network business — and we have the path.</div>
-  <div class="sources">Sources: InTouch product data; segment sizing (slide 8)</div>
+  <div class="conclusion">Second startup together. 30+ combined years of building products.</div>
+  <div class="sources">Sources: founder track records</div>
 </div>
 
 </div>

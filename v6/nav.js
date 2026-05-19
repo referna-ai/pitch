@@ -8,15 +8,16 @@
     { file: 'slide-2.html',  title: 'Customer' },
     { file: 'slide-3.html',  title: 'Solution' },
     { file: 'slide-4.html',  title: 'Precedent' },
-    { file: 'slide-5.html',  title: 'Smoke' },
-    { file: 'slide-6.html',  title: 'GTM' },
-    { file: 'slide-7.html',  title: 'Product 1' },
-    { file: 'slide-8.html',  title: 'Product 2' },
-    { file: 'slide-9.html',  title: 'Market' },
-    { file: 'slide-10.html', title: 'Biz Model' },
-    { file: 'slide-11.html', title: 'Team' },
-    { file: 'slide-12.html', title: 'Round' },
-    { file: 'slide-13.html', title: 'Opportunity' }
+    { file: 'slide-5.html',  title: 'Positioning' },
+    { file: 'slide-6.html',  title: 'Smoke' },
+    { file: 'slide-7.html',  title: 'GTM' },
+    { file: 'slide-8.html',  title: 'Product 1' },
+    { file: 'slide-9.html',  title: 'Product 2' },
+    { file: 'slide-10.html', title: 'Market' },
+    { file: 'slide-11.html', title: 'Biz Model' },
+    { file: 'slide-12.html', title: 'Team' },
+    { file: 'slide-13.html', title: 'Round' },
+    { file: 'slide-14.html', title: 'Opportunity' }
   ];
   window.PITCH_SLIDES = SLIDES;
 

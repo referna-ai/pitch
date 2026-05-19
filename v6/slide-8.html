@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S5 · Product 2 — InTouch Pitch</title>
+<title>S4 · Product — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -11,665 +11,881 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 body[data-slide="slide-8"] {
-  --success: #7BC47F;
-  --error:   #D4645C;
+  --black-bubble: #1F1F1F;
+  --border-soft: rgba(255,255,255,0.06);
+  --border-input: rgba(255,255,255,0.10);
+  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
 }
-body[data-slide="slide-8"] .slide-title { margin-bottom: 16px; }
-body[data-slide="slide-8"] .slide-title .gold { color: var(--gold); }
 
-/* ── Three-column layout ── */
-.t-cols {
+body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
+body[data-slide="slide-8"] .slide-title .gold { color: var(--gold); }
+/* clip phone glow only at the bottom (conclusion line); allow it on top/sides */
+body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px); }
+
+/* LAYOUT */
+.s9-layout {
   display: grid;
-  grid-template-columns: 1.2fr 1.4fr 1.3fr;
-  gap: 28px;
+  grid-template-columns: 360px 1fr;
+  grid-template-rows: 1fr;
+  gap: 32px;
   flex: 1;
+  align-items: stretch;
+  position: relative;
   min-height: 0;
-  align-items: start;
-  clip-path: inset(-200px -200px 0 -200px);
 }
-.t-col {
+
+/* TEXT COLUMN */
+.s9-text-col {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  align-items: stretch;
+  gap: 32px;
+  padding-top: 4px;
 }
-.t-step-head {
+.s9-pillar-title {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
+  font-weight: 800;
+  font-size: 32px;
+  letter-spacing: -0.015em;
   color: var(--white);
-  line-height: 1.3;
-  letter-spacing: -0.005em;
-  margin-top: -2px;
+  margin-bottom: 22px;
+  line-height: 1.15;
+  white-space: nowrap;
+  width: max-content;
+  position: relative;
+  z-index: 4;
 }
-.t-step-desc {
+.s9-pillar + .s9-pillar { margin-top: -10px; }
+.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; max-width: 300px; }
+.s9-pillar-bullets li {
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 22px;
+  line-height: 1.45;
   color: var(--gray);
-  line-height: 1.5;
-  margin-bottom: 2px;
+  padding: 16px 0 16px 28px;
+  border-top: 1px solid var(--border-soft);
+  position: relative;
+}
+.s9-pillar-bullets li:first-child { border-top: none; padding-top: 4px; }
+.s9-pillar-bullets li::before {
+  content: "→";
+  position: absolute;
+  left: 0; top: 16px;
+  color: var(--gold);
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 18px;
+}
+.s9-pillar-bullets li:first-child::before { top: 4px; }
+.s9-pillar-bullets li strong { color: inherit; font-weight: inherit; }
+
+/* VISUAL CLUSTER */
+.s9-visual {
+  position: relative;
+  height: 100%;
+  min-height: 460px;
 }
 
-/* ── Shared mockup glow + browser chrome ── */
-.t-browser-wrap {
-  border: 2px solid rgba(255,255,255,0.10);
-  border-radius: 10px;
+/* DESKTOP FORM (LEFT, behind) */
+.s9-browser-wrap {
+  position: absolute;
+  left: 10px;
+  top: 38px;
+  width: 570px;
+  z-index: 1;
+}
+.s9-browser {
+  background: var(--black);
+  border-radius: 8px;
   overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.10);
   box-shadow:
     0 0 60px rgba(212,165,116,0.18),
-    0 0 22px rgba(212,165,116,0.10),
-    0 22px 44px rgba(0,0,0,0.55);
-  align-self: flex-start;
+    0 0 24px rgba(212,165,116,0.10),
+    0 25px 50px rgba(0,0,0,0.55);
 }
-.t-chrome {
-  display: flex; align-items: center; gap: 8px;
-  padding: 7px 12px;
+.s9-browser-chrome {
+  display: flex; align-items: center; gap: 10px;
+  padding: 8px 12px;
   background: #2d2d2d;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  flex-shrink: 0;
+  border-bottom: 1px solid var(--border-soft);
 }
-.t-chrome-dots { display: flex; gap: 5px; }
-.t-chrome-dot { width: 9px; height: 9px; border-radius: 50%; }
-.t-chrome-dot.r { background: #FF5F57; }
-.t-chrome-dot.y { background: #FEBC2E; }
-.t-chrome-dot.g { background: #28C840; }
-.t-chrome-url {
+.s9-browser-dots { display: flex; gap: 5px; }
+.s9-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
+.s9-browser-dot.red { background: #FF5F57; }
+.s9-browser-dot.yellow { background: #FEBC2E; }
+.s9-browser-dot.green { background: #28C840; }
+.s9-browser-url {
   flex: 1;
   background: rgba(255,255,255,0.04);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 4px;
-  padding: 3px 10px;
-  font-family: var(--font-display);
-  font-size: 14px;
+  border-radius: 5px;
+  padding: 3px 9px;
+  font-family: var(--font-system);
+  font-size: 10px;
   color: var(--gray-mid);
   text-align: center;
+  letter-spacing: 0.02em;
 }
-.t-chrome-gmail {
+
+.s9-form-app { background: var(--black); }
+.s9-form-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+.s9-form-brand {
+  display: flex; align-items: center; gap: 8px;
   font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--gray-mid);
+  font-weight: 800; font-size: 13px; color: white;
+  letter-spacing: -0.02em;
 }
-.t-chrome-gmail .r { color: #EA4335; font-weight: 700; }
+.s9-form-mark {
+  width: 18px; height: 18px; background: white; border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--black); font-weight: 800; font-size: 11px;
+  font-family: var(--font-display);
+}
+.s9-form-status {
+  display: flex; align-items: center; gap: 7px;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+}
+.s9-form-status::before {
+  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--error);
+}
+.s9-form-body {
+  display: grid; grid-template-columns: 200px 1fr;
+  min-height: 300px;
+}
+.s9-form-side {
+  padding: 16px 14px;
+  border-right: 1px solid var(--border-soft);
+}
+.s9-form-side-eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-mid);
+  margin-bottom: 8px;
+}
+.s9-form-progress {
+  height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px;
+  overflow: hidden; margin-bottom: 10px;
+}
+.s9-form-progress::after {
+  content: ""; display: block; height: 100%; width: 70%;
+  background: var(--gold);
+}
+.s9-form-status-num {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px;
+  letter-spacing: -0.01em;
+}
+.s9-form-status-sub {
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-dark); margin-bottom: 14px;
+}
+.s9-form-step {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 5px 8px; border-radius: 5px;
+  font-family: var(--font-display);
+  font-size: 10.5px; color: var(--gray); font-weight: 500;
+  margin-bottom: 2px;
+  border: 1px solid transparent;
+}
+.s9-form-step.active {
+  border-color: var(--border);
+  background: rgba(212,165,116,0.04);
+}
+.s9-form-step-left { display: flex; align-items: center; gap: 7px; }
+.s9-form-check { color: #7BC47F; font-weight: 700; font-size: 10px; width: 9px; }
+.s9-form-num { color: var(--gray-dark); font-weight: 600; font-size: 10px; width: 9px; text-align: center; }
+.s9-form-badge {
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 8.5px; color: var(--error);
+  background: rgba(212,100,92,0.08);
+  border: 1px solid rgba(212,100,92,0.30);
+  border-radius: 3px; padding: 1px 5px;
+}
 
-/* ── zoom wrappers — fonts stay ≥14px; zoom shrinks layout footprint ── */
-.t-desk-inner  { zoom: 0.80; }
-.t-email-inner { zoom: 0.80; }
-.t-phone-inner { zoom: 0.78; }
+.s9-form-detail { padding: 18px 22px; }
+.s9-form-title {
+  font-family: var(--font-display);
+  font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
+  color: white; margin-bottom: 4px;
+}
+.s9-form-step-label {
+  font-family: var(--font-display);
+  font-weight: 600; font-size: 9px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gray-dark);
+  margin-bottom: 14px;
+}
+.s9-form-instruct {
+  border-left: 2px solid var(--gold);
+  padding: 2px 0 2px 12px;
+  margin-bottom: 16px;
+}
+.s9-form-instruct-text {
+  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
+  color: white; margin-bottom: 6px;
+}
+.s9-form-instruct-sub {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 10px; color: var(--gray-mid);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-input);
+  border-radius: 4px; padding: 3px 7px;
+}
+.s9-form-fields {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px;
+}
+.s9-field-label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 500; font-size: 10px;
+  color: white; margin-bottom: 5px;
+}
+.s9-field-input {
+  width: 100%; background: transparent;
+  border: 1px solid var(--border-input);
+  border-radius: 5px; padding: 7px 9px;
+  font-family: var(--font-body); font-size: 11px; color: white;
+}
 
-/* ── PHONE ── */
-.t-phone-outer {
-  align-self: flex-start;
+/* MOBILE PHONE (RIGHT, in front) */
+.s9-phone-wrap {
+  position: absolute;
+  right: 2px;
+  top: -2px;
+  width: 240px;
+  z-index: 2;
   filter:
     drop-shadow(0 0 22px rgba(212,165,116,0.20))
     drop-shadow(0 0 8px  rgba(212,165,116,0.12))
     drop-shadow(0 30px 50px rgba(0,0,0,0.55));
 }
-.t-phone-wrap {
-  background: #1a1a1a;
+.s9-phone {
+  width: 100%;
+  background: var(--white);
   border: 7px solid #1a1a1a;
   border-radius: 34px;
   overflow: hidden;
   position: relative;
-  width: 270px;
+  height: 484px;
+  display: flex; flex-direction: column;
 }
-.t-phone-screen {
-  background: var(--black);
-  border-radius: 26px;
+.s9-phone-notch {
+  position: absolute;
+  top: 7px; left: 50%; transform: translateX(-50%);
+  width: 64px; height: 17px;
+  background: #050505; border-radius: 9px;
+  z-index: 5;
+}
+.s9-phone-statusbar {
+  position: absolute;
+  top: 13px; left: 0; right: 0;
+  display: flex; justify-content: space-between;
+  padding: 0 19px;
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 8.5px;
+  color: #000; z-index: 4;
+}
+
+/* CHAT HEADER */
+.s9-chat-header {
+  padding: 34px 9px 7px;
+  display: flex; align-items: center; gap: 6px;
+  border-bottom: 1px solid #E5E5EA;
+  background: #F6F6F8;
+  flex-shrink: 0;
+}
+.s9-chat-back {
+  font-size: 16px; color: #007AFF; font-weight: 300;
+  line-height: 1; flex-shrink: 0; width: 9px;
+}
+.s9-chat-avatar {
+  width: 23px; height: 23px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 9px; color: #fff;
+  flex-shrink: 0;
+}
+.s9-chat-info { flex: 1; min-width: 0; }
+.s9-chat-name {
+  font-family: var(--font-system);
+  font-weight: 600; font-size: 10px; color: #1C1C1E;
+  letter-spacing: -0.01em;
+}
+.s9-chat-sub {
+  font-family: var(--font-system);
+  font-size: 8.5px; color: #6B6B70;
+}
+.s9-chat-more { color: #007AFF; font-size: 13px; flex-shrink: 0; }
+
+/* CHAT BODY */
+.s9-chat-body {
+  flex: 1;
   overflow: hidden;
+  padding: 8px 7px 0;
+  background: #FFFFFF;
   position: relative;
 }
-.t-phone-notch {
-  position: absolute; top: 7px; left: 50%; transform: translateX(-50%);
-  width: 66px; height: 18px;
-  background: #000; border-radius: 10px; z-index: 5;
+.s9-chat-date {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8px; color: #8E8E93; font-weight: 600;
+  margin-bottom: 8px;
 }
-/* phone internals — zoom applied via shared rule above */
-
-.t-ph-status {
-  display: flex; justify-content: space-between;
-  padding: 10px 20px 4px;
-  font-family: var(--font-display); font-size: 14px; font-weight: 700;
-  color: var(--white);
-}
-.t-ph-header { padding: 6px 16px 10px; }
-.t-ph-title {
-  font-family: var(--font-display); font-weight: 800; font-size: 16px;
-  color: var(--white); letter-spacing: -0.01em;
-}
-.t-ph-toggle {
-  display: flex; background: rgba(255,255,255,0.05);
-  border-radius: 7px; padding: 2px; margin-top: 8px;
-}
-.t-ph-toggle-opt {
-  flex: 1; text-align: center;
-  font-family: var(--font-display); font-weight: 600; font-size: 14px;
-  color: var(--gray-mid); padding: 5px; border-radius: 5px;
-  letter-spacing: 0.01em;
-}
-.t-ph-toggle-opt.active { background: var(--gold); color: var(--black); }
-
-/* comparison table inside featured card */
-.t-ph-compare-head {
-  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
-  padding-bottom: 8px; margin-bottom: 8px;
-  border-bottom: 1px solid rgba(212,165,116,0.22);
-}
-.t-ph-compare-head span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.30); white-space: nowrap; overflow: hidden; }
-.t-ph-compare-head span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; }
-.t-ph-compare-row {
-  display: grid; grid-template-columns: 1.35fr 1fr; gap: 0;
-  font-family: var(--font-display); font-weight: 500; font-size: 15px;
-  color: var(--gray); margin-bottom: 5px; line-height: 1.35;
-}
-.t-ph-compare-row span:first-child { text-align: right; padding-right: 8px; border-right: 1px solid rgba(212,165,116,0.18); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.t-ph-compare-row span:last-child  { padding-left: 8px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.t-ph-compare-signal {
-  font-family: var(--font-display); font-size: 18px; font-weight: 500;
-  color: var(--white); line-height: 1.4; margin-top: 10px;
-}
-.t-ph-faces-agg {
-  display: flex; align-items: center; gap: 10px; margin-top: 10px;
-}
-.t-ph-faces-label {
-  font-family: var(--font-display); font-weight: 500; font-size: 14px;
-  color: var(--gray-mid); white-space: nowrap;
+.s9-chat-date strong { color: #1C1C1E; }
+.s9-chat-sys {
+  text-align: center; font-family: var(--font-system);
+  font-size: 8.5px; color: #8E8E93; margin-bottom: 8px;
+  line-height: 1.3; padding: 0 6px;
 }
 
-/* featured card */
-.t-ph-featured {
-  margin: 0 14px 10px;
-  background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
-  border: 1.5px solid var(--gold); border-radius: 10px;
-  padding: 14px 16px 12px;
-  box-shadow: 0 6px 18px rgba(212,165,116,0.15);
+.s9-chat-msg {
+  display: flex; gap: 5px; align-items: flex-end;
+  margin-bottom: 6px;
 }
-.t-ph-fc-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 15px;
-  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase;
-  margin-bottom: 10px;
-}
-.t-ph-kv-tag {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: var(--font-display); font-weight: 600; font-size: 15px;
-  color: var(--gray); margin-bottom: 2px;
-}
-.t-ph-kv-tag + .t-ph-kv-tag { margin-bottom: 0; }
-.t-ph-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 6px 0; }
-
-.t-ph-member {
-  display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px;
-}
-.t-ph-face {
-  width: 28px; height: 28px; border-radius: 50%; overflow: hidden;
-  border: 1.5px solid rgba(212,165,116,0.25);
-  background: var(--black-soft); flex-shrink: 0;
-}
-.t-ph-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.t-ph-mname {
-  font-family: var(--font-display); font-weight: 600; font-size: 16px;
-  color: var(--white); line-height: 1.2;
-}
-.t-ph-mname .suffix { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 15px; }
-.t-ph-msignal {
-  font-family: var(--font-body); font-size: 14px; font-style: italic;
-  color: var(--gold); line-height: 1.35; margin-top: 3px;
-}
-.t-ph-apply {
-  background: var(--gold); color: var(--black);
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 9px; border-radius: 7px; text-align: center; margin-top: 8px;
-}
-
-/* collapsed match bars */
-.t-ph-more-label {
-  padding: 0 18px 6px;
-  font-family: var(--font-display); font-size: 14px; font-weight: 700;
-  color: var(--gray-mid); letter-spacing: 0.14em; text-transform: uppercase;
-}
-.t-ph-collapsed {
-  margin: 0 14px 6px;
-  display: flex; align-items: center; gap: 8px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px; padding: 8px 10px;
-}
-.t-ph-cf-row { display: flex; flex-shrink: 0; }
-.t-ph-cf {
-  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
-  border: 1.5px solid var(--black); background: var(--black-soft);
-  margin-left: -5px;
-}
-.t-ph-cf:first-child { margin-left: 0; }
-.t-ph-cf img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.t-ph-cinfo { flex: 1; min-width: 0; }
-.t-ph-cname {
-  font-family: var(--font-display); font-weight: 600; font-size: 15px;
-  color: var(--white); line-height: 1.2;
-}
-.t-ph-cmeta {
-  font-family: var(--font-body); font-size: 14px; font-style: italic;
-  color: var(--gray-dark);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.t-ph-chev { font-size: 16px; color: var(--gray-dark); font-family: var(--font-display); }
-
-/* ── DESKTOP (Interviews) ── */
-.t-desk-app { background: var(--black); padding: 14px 18px; }
-.t-desk-topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding-bottom: 10px;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
-  margin-bottom: 12px;
-}
-.t-desk-brand { display: flex; align-items: center; gap: 6px; }
-.t-desk-mark {
-  width: 20px; height: 20px; border-radius: 4px; background: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 800; font-size: 11px; color: var(--black);
-}
-.t-desk-brand-name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--white); }
-.t-desk-nav {
-  display: flex; gap: 16px;
-  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gray-mid);
-}
-.t-desk-nav .active { color: var(--white); }
-.t-desk-user {
-  width: 22px; height: 22px; border-radius: 50%; background: var(--gold);
-  color: var(--black); display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 700; font-size: 11px;
-}
-.t-desk-h1 {
-  font-family: var(--font-display); font-weight: 800; font-size: 20px;
-  color: var(--white); letter-spacing: -0.01em; margin-bottom: 4px;
-}
-.t-desk-sub {
-  font-family: var(--font-body); font-size: 14px; font-style: italic;
-  color: var(--gray-dark); margin-bottom: 10px;
-}
-.t-desk-prog-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-.t-desk-bar {
-  flex: 1; height: 4px; background: rgba(255,255,255,0.06);
-  border-radius: 2px; overflow: hidden;
-}
-.t-desk-bar-fill { height: 100%; background: var(--gold); width: 60%; border-radius: 2px; }
-.t-desk-prog-num {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--white);
-}
-.t-desk-prog-num span { color: var(--gold); }
-
-.t-desk-tasks { border: 1px solid rgba(255,255,255,0.07); border-radius: 6px; overflow: hidden; }
-.t-desk-task {
-  display: flex; align-items: center; gap: 8px;
-  padding: 8px 12px;
-  background: rgba(255,255,255,0.015);
-  border-top: 1px solid rgba(255,255,255,0.05);
-}
-.t-desk-task:first-child { border-top: none; }
-.t-desk-status {
+.s9-chat-msg-avatar {
   width: 18px; height: 18px; border-radius: 50%;
+  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
   display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 800; font-size: 10px; flex-shrink: 0;
+  font-family: var(--font-system);
+  font-weight: 700; font-size: 8px; color: #fff;
+  flex-shrink: 0;
 }
-.t-desk-status.done { background: rgba(123,196,127,0.14); color: var(--success); }
-.t-desk-status.sched { background: rgba(212,165,116,0.14); color: var(--gold); }
-.t-desk-status.pend { background: rgba(255,255,255,0.04); color: var(--gray-dark); }
-.t-desk-face {
-  width: 24px; height: 24px; border-radius: 50%; overflow: hidden;
-  border: 1px solid rgba(212,165,116,0.22); background: var(--black-soft); flex-shrink: 0;
+.s9-chat-msg-avatar.hidden { visibility: hidden; }
+.s9-chat-msg-content { flex: 1; min-width: 0; max-width: 80%; }
+.s9-chat-msg-name {
+  font-family: var(--font-system);
+  font-size: 8px; font-weight: 500;
+  color: #6B6B70; margin-bottom: 2px; margin-left: 3px;
 }
-.t-desk-face img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); }
-.t-desk-info { flex: 1; }
-.t-desk-name {
-  font-family: var(--font-display); font-weight: 600; font-size: 14px; color: var(--white);
-}
-.t-desk-name span { color: var(--gray-dark); font-weight: 400; font-style: italic; font-size: 14px; }
-.t-desk-when { font-family: var(--font-display); font-size: 14px; font-weight: 600; }
-.t-desk-when.done { color: var(--success); }
-.t-desk-when.sched { color: var(--gold); }
-.t-desk-action {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold); text-transform: uppercase; letter-spacing: 0.10em;
-  padding: 4px 10px; border: 1px solid rgba(212,165,116,0.4); border-radius: 5px;
+.s9-chat-bubble {
+  background: #E9E9EB; border-radius: 11px;
+  padding: 5px 8px;
+  font-family: var(--font-system);
+  font-size: 10px; line-height: 1.32;
+  color: #000; display: inline-block;
+  max-width: 100%; word-wrap: break-word;
 }
 
-/* ── EMAIL ── */
-.t-email-body { background: #f5f5f5; }
-.t-email-head {
-  padding: 14px 16px 12px; background: var(--white);
-  border-bottom: 1px solid #e5e5e5;
+/* IMAGE ATTACHMENT */
+.s9-chat-attachment {
+  border-radius: 11px; overflow: hidden;
+  background: var(--black-bubble);
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+  font-family: var(--font-display);
 }
-.t-email-subj {
-  font-family: var(--font-display); font-weight: 700; font-size: 17px;
-  color: var(--black); letter-spacing: -0.01em; margin-bottom: 10px;
-}
-.t-email-meta { display: flex; align-items: center; gap: 10px; }
-.t-email-av {
-  width: 28px; height: 28px; border-radius: 50%; background: var(--gold);
-  color: var(--black); display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 800; font-size: 14px; flex-shrink: 0;
-}
-.t-email-from { flex: 1; }
-.t-email-from-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--black); }
-.t-email-from-to { font-family: var(--font-display); font-size: 14px; color: #737373; }
-.t-email-from-to span { color: var(--black); }
-.t-email-date { font-family: var(--font-display); font-size: 14px; color: #737373; }
-.t-email-content {
-  padding: 14px 16px 16px; background: var(--white);
-  font-family: var(--font-body); color: #404040; font-size: 14px; line-height: 1.55;
-}
-.t-email-content p { margin-bottom: 10px; }
-.t-email-content strong { color: var(--black); font-weight: 600; }
-.t-email-opt {
-  background: #fafafa; border-left: 2px solid var(--gold);
-  padding: 6px 10px; margin: 5px 0;
-  font-family: var(--font-body); font-size: 14px; color: #404040;
-}
-.t-email-event {
-  background: var(--black); color: var(--white);
-  border-radius: 8px; padding: 13px 15px; margin: 12px 0 10px;
-}
-.t-email-event-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px;
-}
-.t-email-event-title {
-  font-family: var(--font-display); font-weight: 800; font-size: 17px;
-  color: var(--white); letter-spacing: -0.01em; margin-bottom: 8px;
-}
-.t-email-event-row {
-  display: flex; align-items: center; gap: 7px; margin: 4px 0;
-}
-.t-email-event-row svg {
-  width: 14px; height: 14px; stroke: var(--gold); fill: none;
-  stroke-width: 1.6; flex-shrink: 0;
-}
-.t-email-event-row-text {
-  font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--gray);
-}
-.t-email-event-row-text strong { color: var(--white); font-weight: 600; }
-.t-email-event-cta {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  letter-spacing: 0.10em; text-transform: uppercase;
-  padding: 8px 14px; border-radius: 6px;
-  background: var(--gold); color: var(--black);
-  display: inline-block; margin-top: 10px;
-}
-.t-email-signoff {
-  font-family: var(--font-body); font-size: 14px; color: #404040; margin-top: 10px;
-}
-.t-email-signoff strong { color: var(--black); }
-
-@media (max-width: 900px) {
-  .t-cols { grid-template-columns: 1fr; clip-path: none; }
+.s9-att-section { padding: 7px 8px; }
+.s9-att-section + .s9-att-section { border-top: 1px solid var(--border-soft); }
+.s9-att-label {
+  font-size: 7px; font-weight: 700;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: #999; margin-bottom: 6px;
 }
 
+.s9-att-customer {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(212,165,116,0.06);
+  border: 1px solid var(--border);
+  border-radius: 7px; padding: 5px 7px;
+}
+.s9-att-customer-icon {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--black);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.s9-att-customer-icon svg { width: 12px; height: 12px; }
+.s9-att-customer-info { flex: 1; min-width: 0; }
+.s9-att-customer-title {
+  font-weight: 700; font-size: 8.5px; color: white;
+  letter-spacing: -0.005em; line-height: 1.2;
+}
+.s9-att-customer-sub {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+
+.s9-att-members { display: flex; flex-direction: column; gap: 5px; }
+.s9-att-member { display: flex; align-items: center; gap: 5px; }
+.s9-att-member-avatar {
+  width: 20px; height: 20px; border-radius: 50%;
+  background: linear-gradient(135deg,#2d2d2d,#161616);
+  border: 1.2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 700; font-size: 7.5px; color: var(--gold);
+  flex-shrink: 0; letter-spacing: 0.02em;
+}
+.s9-att-member-info { flex: 1; min-width: 0; }
+.s9-att-member-name {
+  font-weight: 600; font-size: 8.5px; color: #fff;
+  line-height: 1.2;
+}
+.s9-att-member-name .role { font-weight: 500; color: #999; }
+.s9-att-member-trigger {
+  font-family: var(--font-body);
+  font-size: 7.5px; color: #D1D1D1;
+  font-style: italic; margin-top: 1px;
+  line-height: 1.3;
+}
+.s9-att-member-trigger::before {
+  content: "→ "; color: var(--gold);
+  font-style: normal; font-family: var(--font-display);
+  font-weight: 700;
+}
+
+/* MOCKUP CLUSTER — transparent on desktop, scaled on mobile */
+.s9-mockup-cluster {
+  position: absolute;
+  inset: 0;
+}
+
+/* MOCKUP LABELS */
+.s9-label {
+  position: absolute;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--gold);
+  line-height: 1;
+}
+.s9-label-browser { top: 80px; left: 10px; }
+.s9-label-phone   { top: 0px;  right: 2px; }
+
+/* Push mockups down to make room for labels */
+.s9-browser-wrap { top: 98px; }
+.s9-phone-wrap   { top: 16px; }
+
+/* FULL-SCREEN MATCH OVERLAY */
+.s9-match-full {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  background: #0d0a06;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.s9-match-icon {
+  width: 52px;
+  height: 52px;
+  color: var(--gold);
+  animation: s9-icon-pulse 1.2s ease-in-out infinite;
+}
+.s9-match-full-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+}
+.s9-match-full-sub {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  color: rgba(212,165,116,0.55);
+  letter-spacing: 0.04em;
+}
+
+@keyframes s9-icon-pulse {
+  0%, 100% { transform: scale(1);    opacity: 1;    }
+  50%       { transform: scale(1.18); opacity: 0.85; }
+}
+
+/* SEQUENTIAL REVEAL */
+.s9-reveal-item {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.s9-reveal-item.s9-shown {
+  opacity: 1;
+}
+
+/* ── PORTRAIT MOBILE (≤ 768 px wide) ────────────────────────────────── */
+/*
+ * Scale the entire cluster as one unit so the browser/phone overlap
+ * is preserved exactly as on desktop. Cluster width 680px mirrors the
+ * desktop visual column size; scale(0.46) fits it into ~310px.
+ */
+@media (max-width: 768px) {
+  .s9-layout { grid-template-columns: 1fr; gap: 12px; }
+  .s9-text-col { gap: 12px; }
+  .s9-pillar-title { font-size: 15px; margin-bottom: 4px; }
+  .s9-pillar-bullets li { font-size: 12px; padding: 4px 0 4px 16px; }
+  .s9-pillar-bullets li:first-child { padding-top: 0; }
+
+  .s9-visual { min-height: 0; height: 248px; overflow: visible; }
+
+  .s9-mockup-cluster {
+    inset: auto;
+    top: 6px; left: 0;
+    width: 680px;
+    transform: scale(0.46);
+    transform-origin: top left;
+  }
+}
+
+/* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────── */
 @media (max-height: 500px) and (min-width: 769px) {
-  .t-desk-inner  { zoom: 0.62; }
-  .t-email-inner { zoom: 0.62; }
-  .t-phone-inner { zoom: 0.60; }
-  .t-phone-wrap  { width: 210px; }
-  .t-step-head   { font-size: 15px; }
-  .t-step-desc   { font-size: 13px; }
+  body[data-slide="slide-8"] .slide-title { font-size: 26px; margin-bottom: 14px; }
+  .s9-layout { grid-template-columns: 240px 1fr; gap: 20px; }
+  .s9-text-col { gap: 14px; }
+  .s9-pillar-title { font-size: 14px; margin-bottom: 4px; }
+  .s9-pillar-bullets li { font-size: 11.5px; padding: 4px 0 4px 16px; }
+
+  .s9-visual { min-height: 0; height: 320px; overflow: visible; }
+
+  .s9-mockup-cluster {
+    inset: auto;
+    top: 6px; left: 0;
+    width: 680px;
+    transform: scale(0.60);
+    transform-origin: top left;
+  }
 }
 </style>
 </head>
 <body data-slide="slide-8">
 
-
 <div class="deck">
 
-<div class="slide" id="slide-5">
+<div class="slide" id="slide-4">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">InTouch solves trust like <span class="gold">corporate staffing</span></h2>
+  <h2 class="slide-title">InTouch solves matching like <span class="gold">online dating</span></h2>
 
-  <div class="t-cols">
+  <div class="s9-layout">
 
-    <!-- ═══ COL 1: MATCH ═══ -->
-    <div class="t-col">
-      <div class="t-step-head">Ami applies for circles</div>
-      <div class="t-step-desc">Mutual connections and shared context plant the first seeds of trust</div>
+    <!-- LEFT: TEXT (Matching first, Trust second) -->
+    <div class="s9-text-col">
 
-      <div class="t-phone-outer">
-        <div class="t-phone-wrap">
-          <div class="t-phone-screen">
-            <div class="t-phone-notch"></div>
-            <div class="t-phone-inner">
-              <div class="t-ph-status">
-                <span>9:41</span>
-                <span>▪▪▪ ◗ ▣</span>
+      <div class="s9-pillar">
+        <h3 class="s9-pillar-title">InTouch matches Ami to circles</h3>
+        <ul class="s9-pillar-bullets">
+          <li>Matched by <strong>who they serve</strong>, not where they live</li>
+          <li>Selected by ability to <strong>create trust with the circle</strong> —<br>equal standing,<br>mutual connections,<br>common interests</li>
+          <li>Ami has a circle of 8-12 <strong>helping each other</strong></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: VISUALS -->
+    <div class="s9-visual">
+
+      <!-- MOCKUP CLUSTER — scaled as a unit on mobile to preserve overlap -->
+      <div class="s9-mockup-cluster">
+      <div class="s9-label s9-label-browser">Dating profile</div>
+      <div class="s9-label s9-label-phone">After the match</div>
+      <!-- DESKTOP FORM IN BROWSER FRAME -->
+      <div class="s9-browser-wrap">
+        <div class="s9-browser">
+          <div class="s9-browser-chrome">
+            <div class="s9-browser-dots">
+              <span class="s9-browser-dot red"></span>
+              <span class="s9-browser-dot yellow"></span>
+              <span class="s9-browser-dot green"></span>
+            </div>
+            <div class="s9-browser-url">app.intouch.network · review your application</div>
+          </div>
+          <div class="s9-form-app">
+            <div class="s9-form-header">
+              <div class="s9-form-brand">
+                <div class="s9-form-mark">1</div>
+                InTouch
               </div>
-              <div class="t-ph-header">
-                <div class="t-ph-title">Apply for circles</div>
-              </div>
+              <div class="s9-form-status">6 items left to review</div>
+            </div>
+            <div class="s9-form-body">
+              <aside class="s9-form-side">
+                <div class="s9-form-side-eyebrow">Review Progress</div>
+                <div class="s9-form-progress"></div>
+                <div class="s9-form-status-num">6 remaining</div>
+                <div class="s9-form-status-sub">2 of 8 sections need attention</div>
 
-              <div class="t-ph-featured">
-                <div class="t-ph-fc-tag">Top match · Atlas</div>
-
-                <!-- Side-by-side commonalities -->
-                <div class="t-ph-compare-head">
-                  <span>Atlas Circle</span>
-                  <span>Ami</span>
+                <div class="s9-form-step active">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Applicant Profile</div>
                 </div>
-                <div class="t-ph-compare-row">
-                  <span>Seed B2B Founders</span>
-                  <span>Seed Founders</span>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Services</div>
                 </div>
-                <div class="t-ph-compare-row">
-                  <span>🇮🇱</span>
-                  <span>🇮🇱</span>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Typical Clients</div>
                 </div>
-                <div class="t-ph-compare-row">
-                  <span>Acme (customer)</span>
-                  <span>Acme (customer)</span>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Ideal Referral</div>
                 </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Referral Baseline</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">6</span> Constraints &amp; Trust</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">7</span> Contribution Signals</div>
+                  <span class="s9-form-badge">3</span>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Trusted Peers</div>
+                </div>
+                <div class="s9-form-step">
+                  <div class="s9-form-step-left"><span class="s9-form-num">9</span> Final Review</div>
+                  <span class="s9-form-badge">6</span>
+                </div>
+              </aside>
 
-                <div class="t-ph-compare-signal">+ mutual connections &amp; work history with Sarah and Tom</div>
-
-                <div class="t-ph-divider"></div>
-
-                <!-- Aggregated member faces -->
-                <div class="t-ph-faces-agg">
-                  <div class="t-ph-cf-row">
-                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
-                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
-                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
-                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
-                    <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+              <main class="s9-form-detail">
+                <h1 class="s9-form-title">Applicant Profile</h1>
+                <div class="s9-form-step-label">Step 1 of 8</div>
+                <div class="s9-form-instruct">
+                  <p class="s9-form-instruct-text">Review your profile so we can map you accurately in the referral circle.</p>
+                  <span class="s9-form-instruct-sub">You can edit anything below.</span>
+                </div>
+                <div class="s9-form-fields">
+                  <div>
+                    <label class="s9-field-label">Full name</label>
+                    <input class="s9-field-input" value="Ami Burstin" readonly>
                   </div>
-                  <span class="t-ph-faces-label">5 members · 3 openings</span>
+                  <div>
+                    <label class="s9-field-label">Work email</label>
+                    <input class="s9-field-input" value="ami@amiburstin.me" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">LinkedIn</label>
+                    <input class="s9-field-input" value="linkedin.com/in/amibu" readonly>
+                  </div>
+                  <div>
+                    <label class="s9-field-label">Title</label>
+                    <input class="s9-field-input" value="Fractional CMO" readonly>
+                  </div>
                 </div>
-
-                <div class="t-ph-apply">Apply to join</div>
-              </div>
-
-              <div class="t-ph-more-label">3 more matches</div>
-
-              <div class="t-ph-collapsed">
-                <div class="t-ph-cf-row">
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/4.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/77.jpg" alt=""></div>
-                </div>
-                <div class="t-ph-cinfo">
-                  <div class="t-ph-cname">Lighthouse</div>
-                  <div class="t-ph-cmeta">SaaS Founders · 8 members</div>
-                </div>
-                <span>🇮🇱</span>
-                <span class="t-ph-chev">›</span>
-              </div>
-
-              <div class="t-ph-collapsed">
-                <div class="t-ph-cf-row">
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/33.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""></div>
-                </div>
-                <div class="t-ph-cinfo">
-                  <div class="t-ph-cname">Compass</div>
-                  <div class="t-ph-cmeta">Fintech Founders · 6 members</div>
-                </div>
-                <span>🇮🇱</span>
-                <span class="t-ph-chev">›</span>
-              </div>
-
-              <div class="t-ph-collapsed">
-                <div class="t-ph-cf-row">
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/18.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/men/44.jpg" alt=""></div>
-                  <div class="t-ph-cf"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div>
-                </div>
-                <div class="t-ph-cinfo">
-                  <div class="t-ph-cname">Meridian</div>
-                  <div class="t-ph-cmeta">Legal Founders · 7 members</div>
-                </div>
-                <span>🇮🇱</span>
-                <span class="t-ph-chev">›</span>
-              </div>
-
-            </div><!-- /.t-phone-inner (zoom) -->
-          </div><!-- /.t-phone-screen -->
-        </div><!-- /.t-phone-wrap -->
-      </div><!-- /.t-phone-outer -->
-    </div><!-- /col 1 -->
-
-    <!-- ═══ COL 2: VET ═══ -->
-    <div class="t-col">
-      <div class="t-step-head">Ami meets every member before being accepted</div>
-      <div class="t-step-desc">Each member builds rapport and starts trusting him</div>
-
-      <div class="t-browser-wrap">
-        <div class="t-chrome">
-          <div class="t-chrome-dots">
-            <div class="t-chrome-dot r"></div>
-            <div class="t-chrome-dot y"></div>
-            <div class="t-chrome-dot g"></div>
+              </main>
+            </div>
           </div>
-          <div class="t-chrome-url">app.intouch.network/qualify</div>
         </div>
-        <div class="t-desk-inner">
-          <div class="t-desk-app">
-            <div class="t-desk-topbar">
-              <div class="t-desk-brand">
-                <div class="t-desk-mark">I</div>
-                <div class="t-desk-brand-name">InTouch</div>
-              </div>
-              <div class="t-desk-nav">
-                <div>Circles</div>
-                <div class="active">Qualify</div>
-                <div>Referrals</div>
-              </div>
-              <div class="t-desk-user">A</div>
-            </div>
+      </div>
 
-            <div class="t-desk-h1">Interviews · Atlas</div>
-            <div class="t-desk-sub">Each member interviews you 1-on-1 before voting you in.</div>
-
-            <div class="t-desk-prog-row">
-              <div class="t-desk-bar"><div class="t-desk-bar-fill"></div></div>
-              <div class="t-desk-prog-num"><span>3</span> / 5</div>
-            </div>
-
-            <div class="t-desk-tasks">
-              <div class="t-desk-task">
-                <div class="t-desk-status done">✓</div>
-                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
-                <div class="t-desk-info"><div class="t-desk-name">Mia Korman <span>· CFO</span></div></div>
-                <div class="t-desk-when done">Thu, Nov 7</div>
-              </div>
-              <div class="t-desk-task">
-                <div class="t-desk-status done">✓</div>
-                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
-                <div class="t-desk-info"><div class="t-desk-name">Sarah Mendez <span>· Lawyer</span></div></div>
-                <div class="t-desk-when done">Fri, Nov 8</div>
-              </div>
-              <div class="t-desk-task">
-                <div class="t-desk-status done">✓</div>
-                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
-                <div class="t-desk-info"><div class="t-desk-name">Dan Klein <span>· CRO</span></div></div>
-                <div class="t-desk-when done">Mon, Nov 11</div>
-              </div>
-              <div class="t-desk-task">
-                <div class="t-desk-status sched">●</div>
-                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
-                <div class="t-desk-info"><div class="t-desk-name">Tom Rosen <span>· Recruiter</span></div></div>
-                <div class="t-desk-when sched">Wed, 11:00 AM</div>
-              </div>
-              <div class="t-desk-task">
-                <div class="t-desk-status pend">○</div>
-                <div class="t-desk-face"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
-                <div class="t-desk-info"><div class="t-desk-name">Yuri Novak <span>· Coach</span></div></div>
-                <div class="t-desk-action">Schedule</div>
-              </div>
-            </div>
+      <!-- MOBILE PHONE (front, right) -->
+      <div class="s9-phone-wrap">
+        <div class="s9-phone">
+          <div class="s9-phone-notch"></div>
+          <div class="s9-phone-statusbar">
+            <span>9:41</span>
+            <span>●●●  ▣</span>
           </div>
-        </div><!-- /.t-desk-inner -->
-      </div><!-- /.t-browser-wrap -->
-    </div><!-- /col 2 -->
 
-    <!-- ═══ COL 3: PROVE ═══ -->
-    <div class="t-col">
-      <div class="t-step-head">Ami shows a success story</div>
-      <div class="t-step-desc">Members learn to trust Ami's ability to deliver value</div>
-
-      <div class="t-browser-wrap">
-        <div class="t-chrome">
-          <div class="t-chrome-dots">
-            <div class="t-chrome-dot r"></div>
-            <div class="t-chrome-dot y"></div>
-            <div class="t-chrome-dot g"></div>
+          <div id="s9MatchFull" class="s9-match-full">
+            <svg class="s9-match-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
+              <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
+            </svg>
+            <div class="s9-match-full-title">It's a match</div>
           </div>
-          <div class="t-chrome-gmail"><span class="r">M</span> Gmail · Inbox</div>
+
+          <header class="s9-chat-header">
+            <span class="s9-chat-back">‹</span>
+            <div class="s9-chat-avatar">8</div>
+            <div class="s9-chat-info">
+              <div class="s9-chat-name">Atlas Circle</div>
+              <div class="s9-chat-sub">5 members · 3 openings</div>
+            </div>
+            <span class="s9-chat-more">ⓘ</span>
+          </header>
+
+          <main class="s9-chat-body">
+
+            <div class="s9-reveal-item">
+              <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
+              <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
+            </div>
+
+            <div class="s9-reveal-item">
+              <div class="s9-chat-msg">
+                <div class="s9-chat-msg-avatar">G</div>
+                <div class="s9-chat-msg-content">
+                  <div class="s9-chat-msg-name">Gordy</div>
+                  <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="s9-reveal-item">
+              <div class="s9-chat-msg">
+                <div class="s9-chat-msg-avatar">G</div>
+                <div class="s9-chat-msg-content">
+                  <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="s9-reveal-item">
+            <div class="s9-chat-msg">
+              <div class="s9-chat-msg-avatar hidden">G</div>
+              <div class="s9-chat-msg-content" style="max-width:90%">
+                <div class="s9-chat-attachment">
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">Your shared customer</div>
+                    <div class="s9-att-customer">
+                      <div class="s9-att-customer-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#D4A574" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"/>
+                          <circle cx="12" cy="12" r="6"/>
+                          <circle cx="12" cy="12" r="2" fill="#D4A574"/>
+                        </svg>
+                      </div>
+                      <div class="s9-att-customer-info">
+                        <div class="s9-att-customer-title">Seed B2B Founders</div>
+                        <div class="s9-att-customer-sub">Closing through warm intros</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="s9-att-section">
+                    <div class="s9-att-label">8 pros · watching for</div>
+                    <div class="s9-att-members">
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AB</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Ami <span class="role">· Fractional CMO</span></div>
+                          <div class="s9-att-member-trigger">Founder mentions GTM</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">SM</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Sarah <span class="role">· Lawyer</span></div>
+                          <div class="s9-att-member-trigger">Founder is fundraising</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">TR</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Tom <span class="role">· Recruiter</span></div>
+                          <div class="s9-att-member-trigger">Founder needs to hire</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">MK</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Mia <span class="role">· Fractional CFO</span></div>
+                          <div class="s9-att-member-trigger">Preparing financials</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">DP</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Dan <span class="role">· PR &amp; Comms</span></div>
+                          <div class="s9-att-member-trigger">Founder is launching</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">AL</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Alex <span class="role">· Brand Designer</span></div>
+                          <div class="s9-att-member-trigger">Founder is rebranding</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">LG</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Lior <span class="role">· Growth Marketer</span></div>
+                          <div class="s9-att-member-trigger">Founder needs demand gen</div>
+                        </div>
+                      </div>
+                      <div class="s9-att-member">
+                        <div class="s9-att-member-avatar">YN</div>
+                        <div class="s9-att-member-info">
+                          <div class="s9-att-member-name">Yaniv <span class="role">· Investor Relations</span></div>
+                          <div class="s9-att-member-trigger">Founder is raising Series A</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+          </main>
         </div>
-        <div class="t-email-inner">
-          <div class="t-email-body">
-            <div class="t-email-head">
-              <div class="t-email-subj">Customer showcase meeting</div>
-              <div class="t-email-meta">
-                <div class="t-email-av">G</div>
-                <div class="t-email-from">
-                  <div class="t-email-from-name">Gordy</div>
-                  <div class="t-email-from-to">to <span>Ami</span></div>
-                </div>
-                <div class="t-email-date">Tue, Nov 12</div>
-              </div>
-            </div>
-            <div class="t-email-content">
-              <p>Last step before joining <strong>Atlas</strong> — the <strong>Customer Showcase</strong>. Pick one:</p>
-              <div class="t-email-opt"><strong>A.</strong> Bring a customer to vouch live</div>
-              <div class="t-email-opt"><strong>B.</strong> Share a 2-min video testimonial</div>
-              <div class="t-email-event">
-                <div class="t-email-event-tag">🇮🇱 Atlas · InTouch circle</div>
-                <div class="t-email-event-title">Customer Showcase</div>
-                <div class="t-email-event-row">
-                  <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                  <div class="t-email-event-row-text"><strong>Fri, Nov 15</strong> · 3:00 PM</div>
-                </div>
-                <div class="t-email-event-row">
-                  <svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="4"/><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/></svg>
-                  <div class="t-email-event-row-text">5 circle members + you</div>
-                </div>
-                <div class="t-email-event-cta">Add to Calendar</div>
-              </div>
-              <div class="t-email-signoff">— <strong>Gordy</strong>, your circle host</div>
-            </div>
-          </div>
-        </div><!-- /.t-email-inner -->
-      </div><!-- /.t-browser-wrap -->
-    </div><!-- /col 3 -->
+      </div>
+      </div><!-- /.s9-mockup-cluster -->
 
-  </div><!-- /.t-cols -->
+    </div>
 
-  <div class="conclusion">InTouch builds trust early — the first referral <strong>kickstarts the flywheel</strong>.</div>
-  <div class="sources">Sources: InTouch product; trust formation research (Granovetter, Cialdini)</div>
+  </div>
+
+  <div class="conclusion">InTouch lets independent professionals find each other and <strong>unlocks circle creation</strong>.</div>
+  <div class="sources">Sources: Match.com (1995), eHarmony (2000), InTouch product · n=64</div>
 </div>
 
 </div>
 
 <script src="nav.js"></script>
+<script>
+(function () {
+  var MATCH_SHOW_MS  = 3000;
+  var FADE_MS        = 500;
+  var MSG_INTERVAL   = 800;
+  var CHAT_LINGER_MS = 2500;
+
+  var overlay = document.getElementById('s9MatchFull');
+  var items   = Array.from(document.querySelectorAll('#slide-6 .s9-reveal-item'));
+
+  function resetChat() {
+    items.forEach(function (el) { el.classList.remove('s9-shown'); });
+  }
+
+  function showOverlay() {
+    overlay.style.transition = 'none';
+    overlay.style.opacity    = '1';
+    overlay.style.pointerEvents = '';
+  }
+
+  function hideOverlay(cb) {
+    overlay.style.transition    = 'opacity ' + FADE_MS + 'ms ease';
+    overlay.style.opacity       = '0';
+    setTimeout(function () {
+      overlay.style.pointerEvents = 'none';
+      cb();
+    }, FADE_MS);
+  }
+
+  function revealMessages(cb) {
+    var i = 0;
+    function next() {
+      if (i >= items.length) { setTimeout(cb, CHAT_LINGER_MS); return; }
+      items[i].classList.add('s9-shown');
+      i++;
+      setTimeout(next, MSG_INTERVAL);
+    }
+    next();
+  }
+
+  function loop() {
+    resetChat();
+    showOverlay();
+    setTimeout(function () {
+      hideOverlay(function () {
+        revealMessages(loop);
+      });
+    }, MATCH_SHOW_MS);
+  }
+
+  setTimeout(loop, 600);
+}());
+</script>
 </body>
 </html>
