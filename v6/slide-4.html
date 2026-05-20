@@ -39,22 +39,23 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
 .peer-face { fill: #1a1a1a; stroke: #505050; stroke-width: 1.5; }
 .bni-ring  { fill: #241e19; stroke: var(--gold); stroke-width: 3; }
 
-.arrow-line    { stroke: var(--gold); stroke-width: 1.5; fill: none; opacity: 0.7; }
+.arrow-line    { stroke: var(--gold); stroke-width: 2; fill: none; opacity: 0.7; }
 .arrow-head    { fill: var(--gold); opacity: 0.7; }
 .arrow-caption {
   font-family: 'Manrope', sans-serif;
   font-weight: 600;
-  font-size: 14px;
+  font-size: 15px;
   fill: var(--gray);
   text-anchor: middle;
 }
 .face-label {
   font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  font-size: 14px;
+  font-size: 13px;
   fill: #fff;
   text-anchor: middle;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 .circle-label {
   font-family: 'Manrope', sans-serif;
@@ -63,6 +64,7 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
   fill: rgba(212,165,116,0.85);
   text-anchor: middle;
   letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 .circle-sublabel {
   font-family: 'Manrope', sans-serif;
@@ -92,91 +94,99 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
   <h2 class="slide-title"><img class="bni-logo" src="logos/bni.png" alt="BNI">: Referral network — <span class="gold">$26.4B</span> referrals/year</h2>
 
   <div class="horseshoe-stage">
-    <svg viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
+    <!-- Same proportions as slide-3; viewBox extended 25px taller for below-ring annotations -->
+    <svg viewBox="0 0 1080 385" preserveAspectRatio="xMidYMid meet">
       <defs>
         <filter id="gs-s4" color-interpolation-filters="sRGB">
           <feColorMatrix type="saturate" values="0"/>
         </filter>
-        <clipPath id="cp-s4-joe"><circle cx="202" cy="151" r="66"/></clipPath>
-        <clipPath id="cp-s4-p1"><circle cx="633" cy="81"  r="23"/></clipPath>
-        <clipPath id="cp-s4-p2"><circle cx="706" cy="51"  r="23"/></clipPath>
-        <clipPath id="cp-s4-p3"><circle cx="780" cy="81"  r="23"/></clipPath>
-        <clipPath id="cp-s4-p4"><circle cx="810" cy="153" r="23"/></clipPath>
-        <clipPath id="cp-s4-p5"><circle cx="780" cy="225" r="23"/></clipPath>
-        <clipPath id="cp-s4-p6"><circle cx="706" cy="255" r="23"/></clipPath>
-        <clipPath id="cp-s4-p7"><circle cx="633" cy="225" r="23"/></clipPath>
+        <clipPath id="cp-s4-joe"><circle cx="178" cy="182" r="82"/></clipPath>
+        <clipPath id="cp-s4-p1"><circle cx="716" cy="95"  r="29"/></clipPath>
+        <clipPath id="cp-s4-p2"><circle cx="808" cy="57"  r="29"/></clipPath>
+        <clipPath id="cp-s4-p3"><circle cx="900" cy="95"  r="29"/></clipPath>
+        <clipPath id="cp-s4-p4"><circle cx="938" cy="185" r="29"/></clipPath>
+        <clipPath id="cp-s4-p5"><circle cx="900" cy="275" r="29"/></clipPath>
+        <clipPath id="cp-s4-p6"><circle cx="808" cy="313" r="29"/></clipPath>
+        <clipPath id="cp-s4-p7"><circle cx="716" cy="275" r="29"/></clipPath>
       </defs>
 
       <!-- ── JOE (BNI member — gold ring, grayscale) ── -->
-      <circle class="bni-ring" cx="202" cy="151" r="67"/>
+      <circle class="bni-ring" cx="178" cy="182" r="84"/>
       <image href="https://randomuser.me/api/portraits/men/32.jpg"
-             x="136" y="85" width="132" height="132"
+             x="96" y="100" width="164" height="164"
              clip-path="url(#cp-s4-joe)" filter="url(#gs-s4)"
              preserveAspectRatio="xMidYMid slice"/>
-      <text class="face-label" x="202" y="241">JOE</text>
-      <text class="bni-face-caption" x="202" y="258">A BNI member</text>
+      <text class="face-label" x="178" y="296">Joe</text>
+      <text class="bni-face-caption" x="178" y="314">A BNI member</text>
 
-      <!-- Below Joe: $800/yr membership (centered at Joe's x) -->
-      <text x="202" y="278" text-anchor="middle"
+      <!-- Below Joe: $800/yr membership -->
+      <text x="178" y="337" text-anchor="middle"
             font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$800/yr</text>
-      <text x="202" y="296" text-anchor="middle"
+      <text x="178" y="355" text-anchor="middle"
             font-family="Manrope" font-size="14" font-weight="500" fill="#666666">membership</text>
 
       <!-- ── 7 PEERS (horseshoe open toward Joe) ── -->
-      <circle class="peer-face" cx="633" cy="81"  r="25"/>
-      <image href="https://randomuser.me/api/portraits/women/28.jpg"
-             x="610" y="58" width="46" height="46"
+      <!-- p1: 135° -->
+      <circle class="peer-face" cx="716" cy="95"  r="31"/>
+      <image href="https://randomuser.me/api/portraits/women/23.jpg"
+             x="687" y="66" width="58" height="58"
              clip-path="url(#cp-s4-p1)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="706" cy="51"  r="25"/>
-      <image href="https://randomuser.me/api/portraits/men/36.jpg"
-             x="683" y="28" width="46" height="46"
+      <!-- p2: 90° -->
+      <circle class="peer-face" cx="808" cy="57"  r="31"/>
+      <image href="https://randomuser.me/api/portraits/men/44.jpg"
+             x="779" y="28" width="58" height="58"
              clip-path="url(#cp-s4-p2)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="780" cy="81"  r="25"/>
-      <image href="https://randomuser.me/api/portraits/women/49.jpg"
-             x="757" y="58" width="46" height="46"
+      <!-- p3: 45° -->
+      <circle class="peer-face" cx="900" cy="95"  r="31"/>
+      <image href="https://randomuser.me/api/portraits/women/67.jpg"
+             x="871" y="66" width="58" height="58"
              clip-path="url(#cp-s4-p3)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="810" cy="153" r="25"/>
-      <image href="https://randomuser.me/api/portraits/men/74.jpg"
-             x="787" y="130" width="46" height="46"
+      <!-- p4: 0° -->
+      <circle class="peer-face" cx="938" cy="185" r="31"/>
+      <image href="https://randomuser.me/api/portraits/men/81.jpg"
+             x="909" y="156" width="58" height="58"
              clip-path="url(#cp-s4-p4)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="780" cy="225" r="25"/>
-      <image href="https://randomuser.me/api/portraits/women/61.jpg"
-             x="757" y="202" width="46" height="46"
+      <!-- p5: -45° -->
+      <circle class="peer-face" cx="900" cy="275" r="31"/>
+      <image href="https://randomuser.me/api/portraits/women/15.jpg"
+             x="871" y="246" width="58" height="58"
              clip-path="url(#cp-s4-p5)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="706" cy="255" r="25"/>
-      <image href="https://randomuser.me/api/portraits/men/53.jpg"
-             x="683" y="232" width="46" height="46"
+      <!-- p6: -90° -->
+      <circle class="peer-face" cx="808" cy="313" r="31"/>
+      <image href="https://randomuser.me/api/portraits/men/7.jpg"
+             x="779" y="284" width="58" height="58"
              clip-path="url(#cp-s4-p6)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
-      <circle class="peer-face" cx="633" cy="225" r="25"/>
-      <image href="https://randomuser.me/api/portraits/women/17.jpg"
-             x="610" y="202" width="46" height="46"
+      <!-- p7: -135° -->
+      <circle class="peer-face" cx="716" cy="275" r="31"/>
+      <image href="https://randomuser.me/api/portraits/women/52.jpg"
+             x="687" y="246" width="58" height="58"
              clip-path="url(#cp-s4-p7)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- Ring label (two sublabel lines) -->
-      <text class="circle-label"    x="706" y="148">BNI Chapter</text>
-      <text class="circle-sublabel" x="706" y="167">8 members</text>
-      <text class="circle-sublabel" x="706" y="185">weekly breakfast</text>
+      <text class="circle-label"    x="808" y="180">BNI Chapter</text>
+      <text class="circle-sublabel" x="808" y="200">8 members</text>
+      <text class="circle-sublabel" x="808" y="218">weekly breakfast</text>
 
-      <!-- ── ARROWS (reduced proportions) ── -->
-      <path class="arrow-line" d="M 599 137 L 271 137"/>
-      <polygon class="arrow-head" points="264,137 276,132 276,142"/>
-      <text class="arrow-caption" x="435" y="124">Refers $65K of customers / year</text>
+      <!-- ── ARROWS ── -->
+      <path class="arrow-line" d="M 674 162 L 272 162"/>
+      <polygon class="arrow-head" points="262,162 277,155 277,169"/>
+      <text class="arrow-caption" x="472" y="143">Refers $65K of customers / year</text>
 
-      <path class="arrow-line" d="M 271 167 L 599 167"/>
-      <polygon class="arrow-head" points="606,167 594,162 594,172"/>
-      <text class="arrow-caption" x="435" y="193">$65K of customers referred back / year</text>
+      <path class="arrow-line" d="M 272 202 L 674 202"/>
+      <polygon class="arrow-head" points="684,202 669,195 669,209"/>
+      <text class="arrow-caption" x="472" y="232">$65K of customers referred back / year</text>
 
       <!-- ── Below ring: 340K MEMBERS + SEGMENTS ── -->
-      <text x="706" y="294" text-anchor="middle"
+      <text x="808" y="356" text-anchor="middle"
             font-family="Manrope" font-size="18" font-weight="800"
             fill="#D4A574" letter-spacing="-0.01em">340K MEMBERS</text>
-      <text x="706" y="314" text-anchor="middle"
+      <text x="808" y="375" text-anchor="middle"
             font-family="Manrope" font-size="14" font-weight="700"
             fill="#666666" letter-spacing="0.09em">SEGMENTS · B2C PROFESSIONS</text>
     </svg>
