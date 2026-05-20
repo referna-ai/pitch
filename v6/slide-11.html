@@ -10,106 +10,98 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-11"] .slide-title {
-  margin-bottom: 4px;
-}
+body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
 
 .slide-subtitle {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 17px;
   color: var(--gray-mid);
-  margin-bottom: 24px;
+  margin-bottom: 18px;
   line-height: 1.5;
+}
+
+/* Phase block */
+.phase-block {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  margin-bottom: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+.phase-row {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.45;
+}
+.phase-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
 }
 
 /* Two-column body */
-.bm-arch {
+.bm-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px;
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
-  align-items: stretch;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
-
-/* Left rail */
-.bm-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  justify-content: center;
-}
-
-.bm-row {
-  background: var(--black-soft);
-  border-left: 2px solid var(--gold);
-  padding: 13px 18px;
-  border-radius: 0 4px 4px 0;
-}
-.bm-row-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.10em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.bm-row-value {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--white);
-  line-height: 1.5;
-}
-.bm-row-value strong { font-weight: 600; color: var(--white); }
-
-/* Right rail — poker rooms */
-.bm-tables {
+.bm-col {
   background: var(--black-mid);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 20px 16px;
+  padding: 18px 20px 16px;
   display: flex;
   flex-direction: column;
+  min-height: 0;
 }
-.bm-tables-header {
+.bm-col-header {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 14px;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.14em;
   color: var(--gold);
   text-transform: uppercase;
-  text-align: center;
   margin-bottom: 12px;
-}
-
-.chip-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  flex: 1;
-  align-items: center;
-}
-
-.chip-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
-  padding: 4px;
 }
-
-.chip { width: 90px; height: 90px; margin-bottom: 12px; display: block; }
-
-.chip-stake {
+.bm-col-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  min-height: 100px;
+}
+.bm-col-caption {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--white);
-  letter-spacing: 0.02em;
+  font-size: 15px;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 5px;
 }
+.bm-col-caption strong { color: var(--white); font-weight: 700; }
+.bm-col-sub {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-mid);
+  text-align: center;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.bm-col-sub strong { color: var(--gray); font-weight: 600; }
 
 /* BNI proof */
 .bni-logo-sm {
@@ -119,14 +111,14 @@ body[data-slide="slide-11"] .slide-title {
   position: relative;
   top: -1px;
   filter: brightness(0) invert(0.55);
-  margin-right: 2px;
+  margin-right: 3px;
 }
 .bm-proof {
   font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--gray);
+  font-size: 14px;
+  color: var(--gray-mid);
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.5;
 }
 .bm-proof strong { color: var(--gold); font-weight: 700; }
@@ -139,95 +131,99 @@ body[data-slide="slide-11"] .slide-title {
 <div class="slide" id="slide-11">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Free to apply. <span style="color:var(--gold)">Buy in to sit.</span></h2>
-  <p class="slide-subtitle">Like a poker room — different rooms, different buy-ins.</p>
+  <h2 class="slide-title">Referrals cost <span style="color:var(--gold)">chips.</span></h2>
+  <p class="slide-subtitle">Like a poker room — we sell the chips.</p>
 
-  <div class="bm-arch">
+  <!-- Phase block -->
+  <div class="phase-block">
+    <div class="phase-row">
+      <span class="phase-label">Year 1 — now</span>
+      All circles free. Growth first. No revenue yet.
+    </div>
+    <div class="phase-row">
+      <span class="phase-label">Year 2+ — at scale</span>
+      Chips activate. We sell them.
+    </div>
+  </div>
 
-    <!-- LEFT: three mechanics -->
-    <div class="bm-left">
+  <!-- Two-column body -->
+  <div class="bm-body">
 
-      <div class="bm-row">
-        <div class="bm-row-label">The door</div>
-        <div class="bm-row-value"><strong>Free.</strong> Max volume at the network's entrance.</div>
+    <!-- Col 1: How chips flow -->
+    <div class="bm-col">
+      <div class="bm-col-header">How chips flow</div>
+      <div class="bm-col-visual">
+        <svg viewBox="0 0 460 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px;height:auto;">
+          <!-- Left member (giver) -->
+          <circle cx="50" cy="90" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="50" cy="80" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 30 108 Q 50 90, 70 108" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="50" y="158" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">GIVER</text>
+
+          <!-- Top arrow: customer flows right -->
+          <line x1="95" y1="64" x2="356" y2="64" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polygon points="363 64 354 60 354 68" fill="#D4A574"/>
+          <text x="225" y="48" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">refers customer</text>
+
+          <!-- Bottom arrow: chip flows left -->
+          <line x1="361" y1="116" x2="100" y2="116" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="93 116 102 112 102 120" fill="#D4A574"/>
+          <text x="290" y="140" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">pays chip</text>
+
+          <!-- Chip on the arrow (centered) -->
+          <g transform="translate(180, 116)">
+            <circle cx="0" cy="0" r="16" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-14" x2="0" y2="-10"/>
+              <line x1="0" y1="10" x2="0" y2="14"/>
+              <line x1="-14" y1="0" x2="-10" y2="0"/>
+              <line x1="10" y1="0" x2="14" y2="0"/>
+              <line x1="-10" y1="-10" x2="-7" y2="-7"/>
+              <line x1="7" y1="-7" x2="10" y2="-10"/>
+              <line x1="-10" y1="10" x2="-7" y2="7"/>
+              <line x1="7" y1="7" x2="10" y2="10"/>
+            </g>
+          </g>
+
+          <!-- Right member (receiver) -->
+          <circle cx="410" cy="90" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="410" cy="80" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 390 108 Q 410 90, 430 108" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="410" y="158" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">RECEIVER</text>
+        </svg>
       </div>
-
-      <div class="bm-row">
-        <div class="bm-row-label">The buy-in</div>
-        <div class="bm-row-value"><strong>Sets the quality of each room.</strong> $0 reads spam. $5K reads serious.</div>
-      </div>
-
-      <div class="bm-row">
-        <div class="bm-row-label">The stake</div>
-        <div class="bm-row-value"><strong>Earned by referring.</strong> Spent on access.</div>
-      </div>
-
+      <div class="bm-col-caption"><strong>Givers earn chips. Receivers pay.</strong></div>
+      <div class="bm-col-sub">Balanced circle (I give ≈ I receive) → no chips actually flow.</div>
     </div>
 
-    <!-- RIGHT: three poker chips -->
-    <div class="bm-tables">
-      <div class="bm-tables-header">Pick your room</div>
-
-      <div class="chip-row">
-
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="1.5"/>
-            <g stroke="#D4A574" stroke-width="5" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
-            </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="0.8" opacity="0.5"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$200</text>
-          </svg>
-          <div class="chip-stake">Low stakes</div>
-        </div>
-
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-            <g stroke="#D4A574" stroke-width="6" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
-            </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$1K</text>
-          </svg>
-          <div class="chip-stake">Mid stakes</div>
-        </div>
-
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#D4A574" stroke="#D4A574" stroke-width="2.5"/>
-            <g stroke="#0D0D0D" stroke-width="7" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
-            </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#0D0D0D" stroke-width="1" opacity="0.4"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#0D0D0D">$5K</text>
-          </svg>
-          <div class="chip-stake">High stakes</div>
-        </div>
-
+    <!-- Col 2: How we monetize -->
+    <div class="bm-col">
+      <div class="bm-col-header">How we monetize</div>
+      <div class="bm-col-visual">
+        <svg viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;height:auto;">
+          <!-- $ box -->
+          <rect x="20" y="42" width="68" height="46" rx="3" fill="none" stroke="#D4A574" stroke-width="2"/>
+          <text x="54" y="76" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#D4A574">$</text>
+          <!-- Arrow -->
+          <line x1="105" y1="65" x2="158" y2="65" stroke="#D4A574" stroke-width="2" stroke-linecap="round"/>
+          <polygon points="165 65 156 61 156 69" fill="#D4A574"/>
+          <!-- Gold chip -->
+          <circle cx="210" cy="65" r="28" fill="#D4A574"/>
+          <g stroke="#0D0D0D" stroke-width="5" stroke-linecap="round" fill="none">
+            <line x1="210" y1="41" x2="210" y2="49"/>
+            <line x1="210" y1="81" x2="210" y2="89"/>
+            <line x1="186" y1="65" x2="194" y2="65"/>
+            <line x1="226" y1="65" x2="234" y2="65"/>
+            <line x1="194" y1="49" x2="199" y2="54"/>
+            <line x1="221" y1="54" x2="226" y2="49"/>
+            <line x1="194" y1="81" x2="199" y2="76"/>
+            <line x1="221" y1="76" x2="226" y2="81"/>
+          </g>
+          <circle cx="210" cy="65" r="18" fill="none" stroke="#0D0D0D" stroke-width="0.8" opacity="0.4"/>
+        </svg>
       </div>
+      <div class="bm-col-caption"><strong>Chips are sold only by InTouch.</strong></div>
+      <div class="bm-col-sub">Two reasons members buy:<br>① settle imbalance &nbsp;·&nbsp; ② show chips to join a circle</div>
     </div>
 
   </div>
@@ -235,7 +231,7 @@ body[data-slide="slide-11"] .slide-title {
   <div class="bm-proof"><img src="logos/bni.png" class="bni-logo-sm" alt="BNI"> members pay <strong>$800/yr</strong> to refer <strong>$65K/yr</strong> — they proved the willingness to pay.</div>
 
   <div class="conclusion">Network economics — built for <strong>3M members</strong>, not 340K.</div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model · buy-in amounts illustrative</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model · chip amounts illustrative</div>
 </div>
 
 </div>
