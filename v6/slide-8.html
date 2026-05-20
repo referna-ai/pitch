@@ -88,7 +88,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
 /* DESKTOP FORM (LEFT, behind) */
 .s9-browser-wrap {
   position: absolute;
-  left: 10px;
+  left: -10px;
   top: 38px;
   width: 570px;
   z-index: 1;
@@ -570,8 +570,8 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   color: var(--white); margin: 10px 0 12px;
 }
 .s9-apply-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 8px 0; }
-.s9-apply-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-.s9-apply-faces { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.s9-apply-footer { display: flex; flex-direction: column; gap: 8px; }
+.s9-apply-faces { display: flex; align-items: center; gap: 8px; }
 .s9-apply-face-stack { display: flex; }
 .s9-apply-face {
   width: 22px; height: 22px; border-radius: 50%; overflow: hidden;
@@ -584,7 +584,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   background: var(--gold); color: var(--black);
   font-family: var(--font-display); font-weight: 700; font-size: 14px;
   letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 9px 18px; border-radius: 7px; white-space: nowrap;
+  padding: 9px 18px; border-radius: 7px; text-align: center;
 }
 .s9-apply-more {
   font-family: var(--font-display); font-size: 14px; font-weight: 700;
@@ -614,7 +614,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   min-height: 0;
 }
 .s9-apply-left {
-  flex: 0 0 58%;
+  flex: 0 0 54%;
   padding: 16px 20px;
   border-right: 1px solid rgba(255,255,255,0.07);
 }
@@ -661,6 +661,9 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
 .s9-carousel-meta { font-family: var(--font-body); font-size: 14px; font-style: italic; color: var(--gray-dark); }
 .s9-carousel-chev { font-size: 18px; color: var(--gray-dark); font-family: var(--font-display); flex-shrink: 0; }
 
+/* statusbar needs light text on dark phone background */
+body[data-slide="slide-8"] .s9-phone-statusbar { color: rgba(255,255,255,0.7); }
+
 /* ── Phone static match screen ── */
 .s9-phone-match {
   flex: 1;
@@ -668,7 +671,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 24px;
+  padding-top: 40px;
   overflow: hidden;
 }
 .s9-phone-match-top {
@@ -863,7 +866,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
                         <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
                         <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
                       </div>
-                      <span class="s9-apply-count">5 members · 3 openings</span>
+                      <span class="s9-apply-count">8 members · 3 openings</span>
                     </div>
                     <div class="s9-apply-cta">Apply to join</div>
                   </div>
@@ -872,7 +875,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
 
               <!-- RIGHT: scrolling circles carousel -->
               <div class="s9-apply-right">
-                <div class="s9-apply-more">3 more matches</div>
+                <div class="s9-apply-more">More matches</div>
                 <div class="s9-carousel-wrap">
                   <div class="s9-carousel-track">
                     <!-- set 1 -->
@@ -977,7 +980,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
                 <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
               </svg>
               <div class="s9-match-title-static">It's a match</div>
-              <div class="s9-match-circle-sub">Atlas Circle · 5 members · 3 openings</div>
+              <div class="s9-match-circle-sub">Atlas Circle · 8 members</div>
             </div>
 
             <!-- Circle visualization: Ami in center, 7 peers in ring -->
