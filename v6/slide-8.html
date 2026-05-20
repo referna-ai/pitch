@@ -513,6 +513,101 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   opacity: 1;
 }
 
+/* ── Apply-for-circles web UI ── */
+.s9-apply-inner { zoom: 0.79; }
+.s9-apply-app { background: var(--black); }
+.s9-apply-topbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.s9-apply-brand { display: flex; align-items: center; gap: 8px; }
+.s9-apply-brand-name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--white); letter-spacing: -0.02em; }
+.s9-apply-nav {
+  display: flex; gap: 22px;
+  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gray-dark);
+}
+.s9-apply-nav .act { color: var(--white); }
+.s9-apply-user-dot {
+  width: 24px; height: 24px; border-radius: 50%; background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--black);
+}
+.s9-apply-body { padding: 16px 20px; }
+.s9-apply-page-title {
+  font-family: var(--font-display); font-weight: 800; font-size: 20px;
+  color: var(--white); letter-spacing: -0.01em; margin-bottom: 14px;
+}
+.s9-apply-card {
+  background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
+  border: 1.5px solid var(--gold); border-radius: 10px;
+  padding: 16px 18px 14px;
+  box-shadow: 0 6px 18px rgba(212,165,116,0.15);
+  margin-bottom: 14px;
+}
+.s9-apply-tag {
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px;
+}
+.s9-apply-cmp-head {
+  display: grid; grid-template-columns: 1fr 1fr;
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
+  padding-bottom: 8px; margin-bottom: 8px;
+  border-bottom: 1px solid rgba(212,165,116,0.22);
+}
+.s9-apply-cmp-head span:first-child { border-right: 1px solid rgba(212,165,116,0.30); padding-right: 12px; }
+.s9-apply-cmp-head span:last-child { padding-left: 12px; }
+.s9-apply-cmp-row {
+  display: grid; grid-template-columns: 1fr 1fr;
+  font-family: var(--font-display); font-weight: 500; font-size: 15px;
+  color: var(--gray); margin-bottom: 6px; line-height: 1.35;
+}
+.s9-apply-cmp-row span:first-child { border-right: 1px solid rgba(212,165,116,0.18); padding-right: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.s9-apply-cmp-row span:last-child { padding-left: 12px; }
+.s9-apply-signal {
+  font-family: var(--font-display); font-size: 15px; font-weight: 500;
+  color: var(--white); margin: 10px 0 12px;
+}
+.s9-apply-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 8px 0; }
+.s9-apply-footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.s9-apply-faces { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+.s9-apply-face-stack { display: flex; }
+.s9-apply-face {
+  width: 22px; height: 22px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid var(--black); background: var(--black-soft); margin-left: -6px;
+}
+.s9-apply-face:first-child { margin-left: 0; }
+.s9-apply-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.s9-apply-count { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--gray-mid); }
+.s9-apply-cta {
+  background: var(--gold); color: var(--black);
+  font-family: var(--font-display); font-weight: 700; font-size: 14px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 9px 18px; border-radius: 7px; white-space: nowrap;
+}
+.s9-apply-more {
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--gray-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
+}
+.s9-apply-row {
+  display: flex; align-items: center; gap: 10px;
+  background: rgba(255,255,255,0.025);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: 8px; padding: 10px 12px; margin-bottom: 6px;
+}
+.s9-apply-row-faces { display: flex; flex-shrink: 0; }
+.s9-apply-row-face {
+  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
+  border: 1.5px solid var(--black); background: var(--black-soft); margin-left: -5px;
+}
+.s9-apply-row-face:first-child { margin-left: 0; }
+.s9-apply-row-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
+.s9-apply-row-info { flex: 1; min-width: 0; }
+.s9-apply-row-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
+.s9-apply-row-meta { font-family: var(--font-body); font-size: 14px; font-style: italic; color: var(--gray-dark); }
+.s9-apply-chev { font-size: 18px; color: var(--gray-dark); font-family: var(--font-display); }
+
 /* ── PORTRAIT MOBILE (≤ 768 px wide) ────────────────────────────────── */
 /*
  * Scale the entire cluster as one unit so the browser/phone overlap
@@ -587,8 +682,8 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
 
       <!-- MOCKUP CLUSTER — scaled as a unit on mobile to preserve overlap -->
       <div class="s9-mockup-cluster">
-      <div class="s9-label s9-label-browser">Dating profile</div>
-      <div class="s9-label s9-label-phone">After the match</div>
+      <div class="s9-label s9-label-browser">Apply for circles</div>
+      <div class="s9-label s9-label-phone">It's a match</div>
       <!-- DESKTOP FORM IN BROWSER FRAME -->
       <div class="s9-browser-wrap">
         <div class="s9-browser">
@@ -600,80 +695,91 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
             </div>
             <div class="s9-browser-url">app.intouch.network · review your application</div>
           </div>
-          <div class="s9-form-app">
-            <div class="s9-form-header">
-              <div class="s9-form-brand">
-                <div class="s9-form-mark">1</div>
-                InTouch
+          <div class="s9-apply-inner">
+          <div class="s9-apply-app">
+            <div class="s9-apply-topbar">
+              <div class="s9-apply-brand">
+                <div class="s9-form-mark">I</div>
+                <div class="s9-apply-brand-name">InTouch</div>
               </div>
-              <div class="s9-form-status">6 items left to review</div>
+              <div class="s9-apply-nav">
+                <span>Circles</span>
+                <span class="act">Apply</span>
+                <span>Referrals</span>
+              </div>
+              <div class="s9-apply-user-dot">A</div>
             </div>
-            <div class="s9-form-body">
-              <aside class="s9-form-side">
-                <div class="s9-form-side-eyebrow">Review Progress</div>
-                <div class="s9-form-progress"></div>
-                <div class="s9-form-status-num">6 remaining</div>
-                <div class="s9-form-status-sub">2 of 8 sections need attention</div>
+            <div class="s9-apply-body">
+              <div class="s9-apply-page-title">Apply for circles</div>
 
-                <div class="s9-form-step active">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Applicant Profile</div>
+              <div class="s9-apply-card">
+                <div class="s9-apply-tag">Top match · Atlas</div>
+                <div class="s9-apply-cmp-head">
+                  <span>Atlas Circle</span><span>Ami</span>
                 </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Services</div>
+                <div class="s9-apply-cmp-row"><span>Seed B2B Founders</span><span>Seed Founders</span></div>
+                <div class="s9-apply-cmp-row"><span>🇮🇱</span><span>🇮🇱</span></div>
+                <div class="s9-apply-cmp-row"><span>Acme (customer)</span><span>Acme (customer)</span></div>
+                <div class="s9-apply-signal">+ mutual connections &amp; work history with Sarah and Tom</div>
+                <div class="s9-apply-divider"></div>
+                <div class="s9-apply-footer">
+                  <div class="s9-apply-faces">
+                    <div class="s9-apply-face-stack">
+                      <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/women/23.jpg" alt=""></div>
+                      <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/men/12.jpg" alt=""></div>
+                      <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/women/45.jpg" alt=""></div>
+                      <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/men/55.jpg" alt=""></div>
+                      <div class="s9-apply-face"><img src="https://randomuser.me/api/portraits/men/91.jpg" alt=""></div>
+                    </div>
+                    <span class="s9-apply-count">5 members · 3 openings</span>
+                  </div>
+                  <div class="s9-apply-cta">Apply to join</div>
                 </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Typical Clients</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Ideal Referral</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Referral Baseline</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">6</span> Constraints &amp; Trust</div>
-                  <span class="s9-form-badge">3</span>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">7</span> Contribution Signals</div>
-                  <span class="s9-form-badge">3</span>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-check">✓</span> Trusted Peers</div>
-                </div>
-                <div class="s9-form-step">
-                  <div class="s9-form-step-left"><span class="s9-form-num">9</span> Final Review</div>
-                  <span class="s9-form-badge">6</span>
-                </div>
-              </aside>
+              </div>
 
-              <main class="s9-form-detail">
-                <h1 class="s9-form-title">Applicant Profile</h1>
-                <div class="s9-form-step-label">Step 1 of 8</div>
-                <div class="s9-form-instruct">
-                  <p class="s9-form-instruct-text">Review your profile so we can map you accurately in the referral circle.</p>
-                  <span class="s9-form-instruct-sub">You can edit anything below.</span>
+              <div class="s9-apply-more">3 more matches</div>
+
+              <div class="s9-apply-row">
+                <div class="s9-apply-row-faces">
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/women/4.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/women/77.jpg" alt=""></div>
                 </div>
-                <div class="s9-form-fields">
-                  <div>
-                    <label class="s9-field-label">Full name</label>
-                    <input class="s9-field-input" value="Ami Burstin" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">Work email</label>
-                    <input class="s9-field-input" value="ami@amiburstin.me" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">LinkedIn</label>
-                    <input class="s9-field-input" value="linkedin.com/in/amibu" readonly>
-                  </div>
-                  <div>
-                    <label class="s9-field-label">Title</label>
-                    <input class="s9-field-input" value="Fractional CMO" readonly>
-                  </div>
+                <div class="s9-apply-row-info">
+                  <div class="s9-apply-row-name">Lighthouse</div>
+                  <div class="s9-apply-row-meta">SaaS Founders · 8 members</div>
                 </div>
-              </main>
+                <span class="s9-apply-chev">›</span>
+              </div>
+
+              <div class="s9-apply-row">
+                <div class="s9-apply-row-faces">
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/men/33.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/women/55.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/men/67.jpg" alt=""></div>
+                </div>
+                <div class="s9-apply-row-info">
+                  <div class="s9-apply-row-name">Compass</div>
+                  <div class="s9-apply-row-meta">Fintech Founders · 6 members</div>
+                </div>
+                <span class="s9-apply-chev">›</span>
+              </div>
+
+              <div class="s9-apply-row">
+                <div class="s9-apply-row-faces">
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/women/18.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/men/44.jpg" alt=""></div>
+                  <div class="s9-apply-row-face"><img src="https://randomuser.me/api/portraits/women/62.jpg" alt=""></div>
+                </div>
+                <div class="s9-apply-row-info">
+                  <div class="s9-apply-row-name">Meridian</div>
+                  <div class="s9-apply-row-meta">Legal Founders · 7 members</div>
+                </div>
+                <span class="s9-apply-chev">›</span>
+              </div>
+
             </div>
+          </div>
           </div>
         </div>
       </div>
@@ -706,30 +812,6 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
           </header>
 
           <main class="s9-chat-body">
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-date"><strong>Today</strong> 9:41 AM</div>
-              <div class="s9-chat-sys">Gordy added Ami, Sarah and 6 others.</div>
-            </div>
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-msg">
-                <div class="s9-chat-msg-avatar">G</div>
-                <div class="s9-chat-msg-content">
-                  <div class="s9-chat-msg-name">Gordy</div>
-                  <div class="s9-chat-bubble">Hi everyone. You may not feel like a winning team yet — but you are one. Act like one. ⚾</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="s9-reveal-item">
-              <div class="s9-chat-msg">
-                <div class="s9-chat-msg-avatar">G</div>
-                <div class="s9-chat-msg-content">
-                  <div class="s9-chat-bubble">Sharing everyone's name, service and trigger 👇</div>
-                </div>
-              </div>
-            </div>
 
             <div class="s9-reveal-item">
             <div class="s9-chat-msg">
@@ -842,7 +924,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   var CHAT_LINGER_MS = 2500;
 
   var overlay = document.getElementById('s9MatchFull');
-  var items   = Array.from(document.querySelectorAll('#slide-6 .s9-reveal-item'));
+  var items   = Array.from(document.querySelectorAll('.s9-reveal-item'));
 
   function resetChat() {
     items.forEach(function (el) { el.classList.remove('s9-shown'); });
