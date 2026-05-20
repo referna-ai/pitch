@@ -3,135 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S10 · Business Model — InTouch Pitch</title>
+<title>S11 · Business Model — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-11"] .slide-title .gold { color: var(--gold); }
+body[data-slide="slide-11"] .slide-title {
+  margin-bottom: 4px;
+}
 
-.bm-rows {
+.slide-subtitle {
+  font-family: var(--font-body);
+  font-size: 17px;
+  color: var(--gray-mid);
+  margin-bottom: 24px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Two-column body */
+.bm-arch {
   flex: 1;
   min-height: 0;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 28px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+/* Left rail */
+.bm-left {
   display: flex;
   flex-direction: column;
-  margin-bottom: 24px;
+  gap: 12px;
+  justify-content: center;
 }
 
 .bm-row {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 40px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
-  align-items: start;
+  background: var(--black-soft);
+  border-left: 2px solid var(--gold);
+  padding: 13px 18px;
+  border-radius: 0 4px 4px 0;
 }
-
-.bm-row:last-child {
-  border-bottom: none;
-}
-
 .bm-row-label {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 20px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.12em;
   color: var(--gold);
-  padding-top: 2px;
-  line-height: 1.4;
+  text-transform: uppercase;
+  margin-bottom: 4px;
 }
-
-.bm-row-label-sub {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 19px;
-  letter-spacing: 0.04em;
-  color: var(--gray-mid);
-  margin-top: 5px;
-  text-transform: none;
-}
-
 .bm-row-value {
   font-family: var(--font-display);
-  font-size: 23px;
-  line-height: 1.55;
-  color: var(--gray);
-}
-
-.bm-row-value strong {
+  font-size: 15px;
   color: var(--white);
-  font-weight: 600;
+  line-height: 1.5;
 }
+.bm-row-value strong { font-weight: 600; color: var(--white); }
 
-.bm-row-value .num {
-  color: var(--white);
+/* Right rail — poker rooms */
+.bm-tables {
+  background: var(--black-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+}
+.bm-tables-header {
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 23px;
-  letter-spacing: -0.01em;
-}
-
-.bm-row-value .gold-text {
+  font-size: 10px;
+  letter-spacing: 0.14em;
   color: var(--gold);
-  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 18px;
 }
 
-.bm-row-value .muted {
-  color: var(--gray-mid);
-  font-size: 19px;
-  display: block;
-  margin-top: 6px;
+.chip-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  flex: 1;
+  align-items: center;
 }
+
+.chip-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 4px;
+}
+
+.chip { width: 90px; height: 90px; margin-bottom: 12px; display: block; }
+
+.chip-stake {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--white);
+  letter-spacing: 0.02em;
+}
+
+/* BNI proof */
+.bni-logo-sm {
+  height: 13px;
+  width: auto;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  filter: brightness(0) invert(0.55);
+  margin-right: 2px;
+}
+.bm-proof {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-dark);
+  text-align: center;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+.bm-proof strong { color: var(--gray-mid); font-weight: 600; }
 </style>
 </head>
 <body data-slide="slide-11">
 
 <div class="deck">
 
-<div class="slide" id="slide-10">
+<div class="slide" id="slide-11">
   <div class="slide-number"></div>
-  <div class="slide-label">Business model</div>
-  <h2 class="slide-title">Growth first. <span class="gold">Tokens later.</span></h2>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">Free to apply. <span style="color:var(--gold)">Buy in to sit.</span></h2>
+  <p class="slide-subtitle">Like a poker room — different rooms, different buy-ins.</p>
 
-  <div class="bm-rows">
+  <div class="bm-arch">
 
-    <div class="bm-row">
-      <div class="bm-row-label">BNI's model</div>
-      <div class="bm-row-value">
-        <span class="num">$800/yr</span> membership — captures <span class="gold-text">~1%</span> of the <span class="num">$65K</span> each member refers per year.
-        <span class="muted">The fee works — but gates growth at the front door.</span>
+    <!-- LEFT: three mechanics -->
+    <div class="bm-left">
+
+      <div class="bm-row">
+        <div class="bm-row-label">The door</div>
+        <div class="bm-row-value"><strong>Free.</strong> Max volume at the network's entrance.</div>
       </div>
+
+      <div class="bm-row">
+        <div class="bm-row-label">The buy-in</div>
+        <div class="bm-row-value"><strong>Sets the quality of each room.</strong> $0 reads spam. $5K reads serious.</div>
+      </div>
+
+      <div class="bm-row">
+        <div class="bm-row-label">The stake</div>
+        <div class="bm-row-value"><strong>Earned by referring.</strong> Spent on access.</div>
+      </div>
+
     </div>
 
-    <div class="bm-row">
-      <div class="bm-row-label">
-        InTouch Phase 1
-        <span class="bm-row-label-sub">Now</span>
-      </div>
-      <div class="bm-row-value">
-        <strong>Free to join.</strong> Networks compound fast when there is no fee.
-        <span class="muted">Priority is growth, not revenue.</span>
-      </div>
-    </div>
+    <!-- RIGHT: three poker chips -->
+    <div class="bm-tables">
+      <div class="bm-tables-header">Pick your room</div>
 
-    <div class="bm-row">
-      <div class="bm-row-label">
-        InTouch Phase 2
-        <span class="bm-row-label-sub">Once we hit scale</span>
-      </div>
-      <div class="bm-row-value">
-        <strong>Freemium, gated by referral tokens.</strong> Members earn tokens by giving referrals — and spend them to join more circles, enter higher-value circles, or hold their seat when referrals are slow.
-        <span class="muted">Specifics TBD. What we know: we sit close to real, paid transactions.</span>
+      <div class="chip-row">
+
+        <div class="chip-card">
+          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="1.5"/>
+            <g stroke="#D4A574" stroke-width="5" stroke-linecap="round" fill="none">
+              <line x1="50" y1="8" x2="50" y2="18"/>
+              <line x1="50" y1="82" x2="50" y2="92"/>
+              <line x1="8" y1="50" x2="18" y2="50"/>
+              <line x1="82" y1="50" x2="92" y2="50"/>
+              <line x1="20" y1="20" x2="27" y2="27"/>
+              <line x1="73" y1="27" x2="80" y2="20"/>
+              <line x1="20" y1="80" x2="27" y2="73"/>
+              <line x1="73" y1="73" x2="80" y2="80"/>
+            </g>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="0.8" opacity="0.5"/>
+            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$200</text>
+          </svg>
+          <div class="chip-stake">Low stakes</div>
+        </div>
+
+        <div class="chip-card">
+          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+            <g stroke="#D4A574" stroke-width="6" stroke-linecap="round" fill="none">
+              <line x1="50" y1="8" x2="50" y2="18"/>
+              <line x1="50" y1="82" x2="50" y2="92"/>
+              <line x1="8" y1="50" x2="18" y2="50"/>
+              <line x1="82" y1="50" x2="92" y2="50"/>
+              <line x1="20" y1="20" x2="27" y2="27"/>
+              <line x1="73" y1="27" x2="80" y2="20"/>
+              <line x1="20" y1="80" x2="27" y2="73"/>
+              <line x1="73" y1="73" x2="80" y2="80"/>
+            </g>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
+            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$1K</text>
+          </svg>
+          <div class="chip-stake">Mid stakes</div>
+        </div>
+
+        <div class="chip-card">
+          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="#D4A574" stroke="#D4A574" stroke-width="2.5"/>
+            <g stroke="#0D0D0D" stroke-width="7" stroke-linecap="round" fill="none">
+              <line x1="50" y1="8" x2="50" y2="18"/>
+              <line x1="50" y1="82" x2="50" y2="92"/>
+              <line x1="8" y1="50" x2="18" y2="50"/>
+              <line x1="82" y1="50" x2="92" y2="50"/>
+              <line x1="20" y1="20" x2="27" y2="27"/>
+              <line x1="73" y1="27" x2="80" y2="20"/>
+              <line x1="20" y1="80" x2="27" y2="73"/>
+              <line x1="73" y1="73" x2="80" y2="80"/>
+            </g>
+            <circle cx="50" cy="50" r="32" fill="none" stroke="#0D0D0D" stroke-width="1" opacity="0.4"/>
+            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#0D0D0D">$5K</text>
+          </svg>
+          <div class="chip-stake">High stakes</div>
+        </div>
+
       </div>
     </div>
 
   </div>
 
-  <div class="conclusion">Happy with <strong>1% of referrals</strong> — from 3M users, not 340K.</div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model</div>
+  <div class="bm-proof"><img src="logos/bni.png" class="bni-logo-sm" alt="BNI"> members pay $800/yr to refer $65K/yr — they proved the willingness to pay.</div>
+
+  <div class="conclusion">Network economics — built for <strong>3M members</strong>, not 340K.</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model · buy-in amounts illustrative</div>
 </div>
 
 </div>
