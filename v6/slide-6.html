@@ -134,7 +134,11 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
   document.addEventListener('click', function (e) {
     if (e.button !== 0) return;
     var t = e.target;
-    if (t && t.closest && t.closest('a, button, input, textarea, select, label, [data-nav-ignore]')) return;
+    if (!t || !t.closest) return;
+    // Never intercept: tab strip / mobile tab trigger / back affordances / form controls
+    if (t.closest('.deck-tab, .deck-tabs-trigger, .nav-arrow-left, .nav-indicator-prev, input, textarea, select, label')) return;
+    // Intercept everything else (slide clicks AND forward nav buttons) so the
+    // gesture reveals the next cued line before advancing slides.
     if (advance()) {
       e.preventDefault();
       e.stopImmediatePropagation();
