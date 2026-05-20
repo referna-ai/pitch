@@ -153,25 +153,52 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
     <div class="bm-col">
       <div class="bm-col-header">How chips flow</div>
       <div class="bm-col-visual">
-        <svg viewBox="0 0 460 190" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px;height:auto;">
+        <svg viewBox="0 0 460 248" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:460px;height:auto;">
+
+          <!-- InTouch logo + label (top center) -->
+          <svg x="212" y="5" width="36" height="36" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2.5"/>
+            <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#D4A574"/>
+          </svg>
+          <text x="230" y="55" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#FFFFFF">InTouch</text>
+
+          <!-- Branch: small chip breaks off big chip → InTouch (10%) -->
+          <line x1="230" y1="187" x2="230" y2="62" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="3 3"/>
+          <polygon points="230 59 226 67 234 67" fill="#D4A574"/>
+          <!-- Small chip at midpoint -->
+          <g transform="translate(230, 124)">
+            <circle cx="0" cy="0" r="11" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="2.2" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-9.5" x2="0" y2="-6.5"/>
+              <line x1="0" y1="6.5" x2="0" y2="9.5"/>
+              <line x1="-9.5" y1="0" x2="-6.5" y2="0"/>
+              <line x1="6.5" y1="0" x2="9.5" y2="0"/>
+              <line x1="-6.8" y1="-6.8" x2="-4.8" y2="-4.8"/>
+              <line x1="4.8" y1="-4.8" x2="6.8" y2="-6.8"/>
+              <line x1="-6.8" y1="6.8" x2="-4.8" y2="4.8"/>
+              <line x1="4.8" y1="4.8" x2="6.8" y2="6.8"/>
+            </g>
+          </g>
+          <text x="249" y="120" font-family="Manrope" font-size="14" font-weight="700" fill="#D4A574">10%</text>
+
           <!-- Left member (giver) -->
-          <circle cx="50" cy="90" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-          <circle cx="50" cy="80" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
-          <path d="M 30 108 Q 50 90, 70 108" fill="none" stroke="#D4A574" stroke-width="1.5"/>
-          <text x="50" y="158" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">GIVER</text>
+          <circle cx="60" cy="183" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="60" cy="173" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 40 201 Q 60 183, 80 201" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="60" y="233" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">GIVER</text>
 
           <!-- Top arrow: customer flows right -->
-          <line x1="95" y1="64" x2="356" y2="64" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
-          <polygon points="363 64 354 60 354 68" fill="#D4A574"/>
-          <text x="225" y="48" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">refers customer</text>
+          <line x1="98" y1="160" x2="362" y2="160" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polygon points="369 160 360 156 360 164" fill="#D4A574"/>
+          <text x="230" y="146" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">refers customer</text>
 
           <!-- Bottom arrow: chip flows left -->
-          <line x1="361" y1="116" x2="100" y2="116" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
-          <polygon points="93 116 102 112 102 120" fill="#D4A574"/>
-          <text x="290" y="140" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">pays chip</text>
+          <line x1="362" y1="206" x2="100" y2="206" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="93 206 102 202 102 210" fill="#D4A574"/>
+          <text x="340" y="226" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">pays chip</text>
 
-          <!-- Chip on the arrow (centered) -->
-          <g transform="translate(180, 116)">
+          <!-- Big chip on the arrow -->
+          <g transform="translate(230, 206)">
             <circle cx="0" cy="0" r="16" fill="#D4A574"/>
             <g stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" fill="none">
               <line x1="0" y1="-14" x2="0" y2="-10"/>
@@ -186,10 +213,10 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
           </g>
 
           <!-- Right member (receiver) -->
-          <circle cx="410" cy="90" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-          <circle cx="410" cy="80" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
-          <path d="M 390 108 Q 410 90, 430 108" fill="none" stroke="#D4A574" stroke-width="1.5"/>
-          <text x="410" y="158" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">RECEIVER</text>
+          <circle cx="400" cy="183" r="36" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="400" cy="173" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 380 201 Q 400 183, 420 201" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="400" y="233" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">RECEIVER</text>
         </svg>
       </div>
       <div class="bm-col-caption"><strong>Givers earn chips. Receivers pay.</strong></div>
@@ -200,26 +227,45 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
     <div class="bm-col">
       <div class="bm-col-header">How we monetize</div>
       <div class="bm-col-visual">
-        <svg viewBox="0 0 260 130" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;height:auto;">
-          <!-- $ box -->
-          <rect x="20" y="42" width="68" height="46" rx="3" fill="none" stroke="#D4A574" stroke-width="2"/>
-          <text x="54" y="76" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#D4A574">$</text>
-          <!-- Arrow -->
-          <line x1="105" y1="65" x2="158" y2="65" stroke="#D4A574" stroke-width="2" stroke-linecap="round"/>
-          <polygon points="165 65 156 61 156 69" fill="#D4A574"/>
-          <!-- Gold chip -->
-          <circle cx="210" cy="65" r="28" fill="#D4A574"/>
-          <g stroke="#0D0D0D" stroke-width="5" stroke-linecap="round" fill="none">
-            <line x1="210" y1="41" x2="210" y2="49"/>
-            <line x1="210" y1="81" x2="210" y2="89"/>
-            <line x1="186" y1="65" x2="194" y2="65"/>
-            <line x1="226" y1="65" x2="234" y2="65"/>
-            <line x1="194" y1="49" x2="199" y2="54"/>
-            <line x1="221" y1="54" x2="226" y2="49"/>
-            <line x1="194" y1="81" x2="199" y2="76"/>
-            <line x1="221" y1="76" x2="226" y2="81"/>
+        <svg viewBox="0 0 300 170" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;height:auto;">
+
+          <!-- InTouch entity (left) -->
+          <svg x="8" y="45" width="40" height="40" viewBox="0 0 48 48" fill="none">
+            <rect x="4" y="4" width="40" height="40" rx="8" fill="#1A1A1A" stroke="#D4A574" stroke-width="2.5"/>
+            <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#D4A574"/>
+          </svg>
+          <text x="28" y="98" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#FFFFFF">InTouch</text>
+
+          <!-- Member entity (right) -->
+          <circle cx="255" cy="65" r="34" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="255" cy="55" r="9" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 235 83 Q 255 65, 275 83" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="255" y="115" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">MEMBER</text>
+
+          <!-- Top arrow: chip from InTouch → Member -->
+          <line x1="54" y1="55" x2="218" y2="55" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="225 55 216 51 216 59" fill="#D4A574"/>
+          <!-- Small chip on arrow -->
+          <g transform="translate(136, 55)">
+            <circle cx="0" cy="0" r="11" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="2.2" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-9.5" x2="0" y2="-6.5"/>
+              <line x1="0" y1="6.5" x2="0" y2="9.5"/>
+              <line x1="-9.5" y1="0" x2="-6.5" y2="0"/>
+              <line x1="6.5" y1="0" x2="9.5" y2="0"/>
+              <line x1="-6.8" y1="-6.8" x2="-4.8" y2="-4.8"/>
+              <line x1="4.8" y1="-4.8" x2="6.8" y2="-6.8"/>
+              <line x1="-6.8" y1="6.8" x2="-4.8" y2="4.8"/>
+              <line x1="4.8" y1="4.8" x2="6.8" y2="6.8"/>
+            </g>
           </g>
-          <circle cx="210" cy="65" r="18" fill="none" stroke="#0D0D0D" stroke-width="0.8" opacity="0.4"/>
+
+          <!-- Bottom arrow: $ from Member → InTouch -->
+          <line x1="218" y1="78" x2="54" y2="78" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="47 78 56 74 56 82" fill="#D4A574"/>
+          <!-- $ on arrow -->
+          <rect x="120" y="62" width="32" height="32" rx="4" fill="#1A1A1A" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="136" y="84" text-anchor="middle" font-family="Manrope" font-size="20" font-weight="800" fill="#D4A574">$</text>
         </svg>
       </div>
       <div class="bm-col-caption"><strong>Chips are sold only by InTouch.</strong></div>
