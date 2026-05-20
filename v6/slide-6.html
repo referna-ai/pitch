@@ -64,55 +64,32 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
   border-radius: 2px;
   font-weight: 500;
 }
-.email-num {
-  display: inline-block;
-  width: 15px; height: 15px;
-  background: var(--gold);
-  color: var(--black);
-  border-radius: 50%;
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 9px;
-  text-align: center; line-height: 15px;
-  margin-left: 3px;
-  position: relative; top: -2px;
-  font-style: normal;
-}
-
-/* OBSTACLE LIST */
-.email-obstacles {
-  padding: 10px 14px;
+/* STAT LINES UNDER EMAIL */
+.email-stats {
+  padding: 14px 16px;
   border-left: 2px solid rgba(255,255,255,0.18);
   background: rgba(255,255,255,0.025);
 }
-.obstacle-item {
-  display: flex; align-items: center; gap: 9px;
-  font-family: var(--font-display); font-size: 14px;
-  font-weight: 600; color: var(--white);
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-.obstacle-num {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 20px; height: 20px;
-  background: var(--gold);
+
+/* POSITIVE REPLIES CALLOUT (left column) */
+.positive-callout {
+  background: var(--white);
   color: var(--black);
-  border-radius: 50%;
-  font-size: 11px; font-weight: 800;
-  flex-shrink: 0;
-  font-family: var(--font-display);
+  padding: 16px 22px;
+  border-radius: 6px;
+  display: inline-flex; align-items: baseline; gap: 12px;
+  align-self: flex-start;
+  margin-bottom: 24px;
 }
-.obstacles-result {
-  margin-top: 8px; padding-top: 7px;
-  border-top: 1px dashed rgba(255,255,255,0.12);
+.positive-callout-num {
+  font-family: var(--font-display); font-weight: 800;
+  font-size: 38px; line-height: 1; letter-spacing: -0.03em;
+  color: var(--black);
 }
-.result-stats {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold);
-  display: flex; align-items: center; gap: 8px; line-height: 1.4;
-}
-.result-punchline {
-  font-family: var(--font-display); font-weight: 800; font-size: 14px;
-  color: var(--white); font-style: italic;
+.positive-callout-label {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: 16px; line-height: 1.2;
+  color: var(--black);
 }
 
 /* RIGHT COLUMN */
@@ -178,12 +155,13 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
       <div class="hero-stat-label">Reply rate to cold email campaign</div>
       <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
       <div class="mini-conclusion">The pain is real and urgent</div>
-      <div class="stat-divider"></div>
-      <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
-      <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
+      <div class="positive-callout">
+        <div class="positive-callout-num">80%</div>
+        <div class="positive-callout-label">positive replies</div>
+      </div>
     </div>
 
-    <!-- RIGHT: email + obstacles -->
+    <!-- RIGHT: email + stats -->
     <div class="email-column">
       <div class="email-label">The cold email we sent to test the demand</div>
       <div class="email-card">
@@ -191,7 +169,7 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
         <div class="email-meta">
           <div class="email-meta-row">
             <span class="email-meta-label">From:</span>
-            <span class="email-meta-value">gordy@joinintrocircle.com<span class="email-num">1</span></span>
+            <span class="email-meta-value">gordy@joinintrocircle.com</span>
           </div>
           <div class="email-meta-row">
             <span class="email-meta-label">To:</span>
@@ -200,25 +178,20 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
         </div>
         <div class="email-body">
           <p>Hi Shelly,</p>
-          <p>Gordy here — AI that helps with referrals.<span class="email-num">2</span></p>
+          <p>Gordy here — AI that helps with referrals.</p>
           <p>We have a <span class="email-pop">group (we call them circles) of professionals who refer business to each other</span>, and they need a fractional CFO to refer work to. They asked me to help find one — and I think you could be a fit.</p>
-          <p>If you'd like to apply, just reply and I'll help you through it.<span class="email-num">3</span></p>
+          <p>If you'd like to apply, just reply and I'll help you through it.</p>
           <p>Or pass if this isn't for you.</p>
           <div class="email-signoff">
             Gordy<br>
-            <span class="email-signoff-title">Referral Circle Keeper, InTouch<span class="email-num">4</span></span>
+            <span class="email-signoff-title">Referral Circle Keeper, InTouch</span>
           </div>
         </div>
       </div>
 
-      <div class="email-obstacles">
-        <div class="obstacle-item"><span class="obstacle-num">1</span> Unrecognized domain</div>
-        <div class="obstacle-item"><span class="obstacle-num">2</span> From an AI</div>
-        <div class="obstacle-item"><span class="obstacle-num">3</span> Introduces friction</div>
-        <div class="obstacle-item"><span class="obstacle-num">4</span> Unknown brand</div>
-        <div class="obstacles-result">
-          <div class="result-stats"><span>→</span> 30% still replied. 80% positive. <span class="result-punchline">Must be the offer.</span></div>
-        </div>
+      <div class="email-stats">
+        <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
+        <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
       </div>
     </div>
 
