@@ -37,14 +37,12 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
 .story-line.coda     { font-weight: 600; font-size: 24px; color: var(--white); font-style: italic; }
 
 .story-line.auto,
-.story-line.cued.is-revealed {
+.story-line.is-revealed {
   animation: storyReveal 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 
 .story-line.auto:nth-child(1) { animation-delay: 0.40s; }
 .story-line.auto:nth-child(2) { animation-delay: 1.60s; }
-.story-line.auto:nth-child(3) { animation-delay: 2.80s; }
-.story-line.auto:nth-child(4) { animation-delay: 4.30s; }
 
 @keyframes storyReveal {
   to { opacity: 1; transform: translateY(0); }
@@ -66,10 +64,10 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
   <div class="story" data-stage="auto">
     <div class="story-line setup auto">We needed proof the pain was urgent.</div>
     <div class="story-line setup auto">So we sent 139 cold emails to strangers.</div>
-    <div class="story-line setup auto">Our bar: 10% replies, 50% yeses &mdash; we'd celebrate.</div>
-    <div class="story-line lead-in auto">We couldn't believe the result&hellip;</div>
+    <div class="story-line setup cued">Our bar: 10% replies, 50% yeses &mdash; we'd celebrate.</div>
+    <div class="story-line lead-in follow">We couldn't believe the result&hellip;</div>
     <div class="story-line climax cued">30.2% replied. 80% said yes.</div>
-    <div class="story-line coda cued">We've never seen anything close.</div>
+    <div class="story-line coda follow">We've never seen anything close.</div>
   </div>
 
   <div class="conclusion"><strong>A 20&times; signal</strong> is hard to ignore &mdash; and shows we can grow fast.</div>
@@ -84,20 +82,37 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
 // Once both cued lines are revealed, forward gestures fall through to
 // nav.js and advance to the next slide. Back navigation always passes through.
 (function () {
-  var cued = document.querySelectorAll('.story-line.cued');
   var story = document.querySelector('.story');
+  var groups = Array.prototype.map.call(
+    document.querySelectorAll('.story-line.cued'),
+    function (c) {
+      var next = c.nextElementSibling;
+      return { cued: c, follow: next && next.classList.contains('follow') ? next : null };
+    }
+  );
   var idx = 0;
 
-  // Mark "waiting for input" once auto-reveal finishes, so the cursor hint kicks in.
+  // Once the auto lines (1-2) finish, signal "waiting for input".
   setTimeout(function () {
     if (story && idx === 0) story.dataset.stage = 'waiting';
-  }, 5400);
+  }, 2700);
 
   function advance() {
-    if (idx >= cued.length) return false;
-    cued[idx].classList.add('is-revealed');
+    if (idx >= groups.length) return false;
+    var g = groups[idx];
+    g.cued.classList.add('is-revealed');
+    if (g.follow) {
+      setTimeout(function () { g.follow.classList.add('is-revealed'); }, 1200);
+    }
     idx++;
-    if (story) story.dataset.stage = idx >= cued.length ? 'done' : 'waiting';
+    if (story) {
+      if (idx >= groups.length) {
+        setTimeout(function () { story.dataset.stage = 'done'; }, 1200);
+      } else {
+        setTimeout(function () { story.dataset.stage = 'waiting'; }, 2300);
+        story.dataset.stage = 'playing';
+      }
+    }
     return true;
   }
 
