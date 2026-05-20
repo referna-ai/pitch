@@ -10,106 +10,98 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-11"] .slide-title {
-  margin-bottom: 4px;
-}
+body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
 
 .slide-subtitle {
-  font-family: var(--font-body);
+  font-family: var(--font-display);
+  font-weight: 500;
   font-size: 17px;
   color: var(--gray-mid);
-  margin-bottom: 24px;
-  line-height: 1.5;
-  font-style: italic;
-}
-
-/* Two-column body */
-.bm-arch {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 28px;
-  align-items: stretch;
-  margin-bottom: 16px;
-}
-
-/* Left rail */
-.bm-left {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  justify-content: center;
-}
-
-.bm-row {
-  background: var(--black-soft);
-  border-left: 2px solid var(--gold);
-  padding: 13px 18px;
-  border-radius: 0 4px 4px 0;
-}
-.bm-row-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  color: var(--gold);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.bm-row-value {
-  font-family: var(--font-display);
-  font-size: 15px;
-  color: var(--white);
-  line-height: 1.5;
-}
-.bm-row-value strong { font-weight: 600; color: var(--white); }
-
-/* Right rail — poker rooms */
-.bm-tables {
-  background: var(--black-mid);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 20px 16px;
-  display: flex;
-  flex-direction: column;
-}
-.bm-tables-header {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--gold);
-  text-transform: uppercase;
-  text-align: center;
   margin-bottom: 18px;
+  line-height: 1.5;
 }
 
-.chip-row {
+/* Phase block */
+.phase-block {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 0;
+  margin-bottom: 18px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 12px;
-  flex: 1;
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
-
-.chip-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 4px;
+.phase-row {
+  font-family: var(--font-display);
+  font-size: 16px;
+  color: var(--gray);
+  line-height: 1.45;
 }
-
-.chip { width: 90px; height: 90px; margin-bottom: 12px; display: block; }
-
-.chip-stake {
+.phase-label {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 14px;
-  color: var(--white);
-  letter-spacing: 0.02em;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 3px;
 }
+
+/* Two-column body */
+.bm-body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 22px;
+  flex: 1;
+  min-height: 0;
+  margin-bottom: 14px;
+}
+.bm-col {
+  background: var(--black-mid);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.bm-col-header {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  text-align: center;
+}
+.bm-col-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  min-height: 100px;
+}
+.bm-col-caption {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gray);
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 5px;
+}
+.bm-col-caption strong { color: var(--white); font-weight: 700; }
+.bm-col-sub {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-mid);
+  text-align: center;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+}
+.bm-col-sub strong { color: var(--gray); font-weight: 600; }
 
 /* BNI proof */
 .bni-logo-sm {
@@ -119,17 +111,17 @@ body[data-slide="slide-11"] .slide-title {
   position: relative;
   top: -1px;
   filter: brightness(0) invert(0.55);
-  margin-right: 2px;
+  margin-right: 3px;
 }
 .bm-proof {
   font-family: var(--font-display);
   font-size: 14px;
-  color: var(--gray-dark);
+  color: var(--gray-mid);
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   line-height: 1.5;
 }
-.bm-proof strong { color: var(--gray-mid); font-weight: 600; }
+.bm-proof strong { color: var(--gold); font-weight: 700; }
 </style>
 </head>
 <body data-slide="slide-11">
@@ -139,103 +131,137 @@ body[data-slide="slide-11"] .slide-title {
 <div class="slide" id="slide-11">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Free to apply. <span style="color:var(--gold)">Buy in to sit.</span></h2>
-  <p class="slide-subtitle">Like a poker room — different rooms, different buy-ins.</p>
+  <h2 class="slide-title">Referrals cost <span style="color:var(--gold)">chips.</span></h2>
+  <p class="slide-subtitle">Like a poker room — we sell the chips.</p>
 
-  <div class="bm-arch">
+  <!-- Phase block -->
+  <div class="phase-block">
+    <div class="phase-row">
+      <span class="phase-label">Year 1 — now</span>
+      All circles free. Growth first. No revenue yet.
+    </div>
+    <div class="phase-row">
+      <span class="phase-label">Year 2+ — at scale</span>
+      Chips activate. We sell them.
+    </div>
+  </div>
 
-    <!-- LEFT: three mechanics -->
-    <div class="bm-left">
+  <!-- Two-column body -->
+  <div class="bm-body">
 
-      <div class="bm-row">
-        <div class="bm-row-label">The door</div>
-        <div class="bm-row-value"><strong>Free.</strong> Max volume at the network's entrance.</div>
+    <!-- Col 1: Our take -->
+    <div class="bm-col">
+      <div class="bm-col-header">Our take on every chip</div>
+      <div class="bm-col-visual">
+        <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;height:auto;">
+          <!-- Big chip (full chip changing hands between members) -->
+          <g transform="translate(70, 90)">
+            <circle cx="0" cy="0" r="46" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="6" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-42" x2="0" y2="-32"/>
+              <line x1="0" y1="32" x2="0" y2="42"/>
+              <line x1="-42" y1="0" x2="-32" y2="0"/>
+              <line x1="32" y1="0" x2="42" y2="0"/>
+              <line x1="-30" y1="-30" x2="-23" y2="-23"/>
+              <line x1="23" y1="-23" x2="30" y2="-30"/>
+              <line x1="-30" y1="30" x2="-23" y2="23"/>
+              <line x1="23" y1="23" x2="30" y2="30"/>
+            </g>
+            <circle cx="0" cy="0" r="32" fill="none" stroke="#0D0D0D" stroke-width="1" opacity="0.4"/>
+          </g>
+          <text x="70" y="166" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">CHIP</text>
+
+          <!-- Arrow from big chip → small chip (splitting off) -->
+          <line x1="125" y1="60" x2="208" y2="60" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polygon points="215 60 206 56 206 64" fill="#D4A574"/>
+
+          <!-- Small chip (the 10% slice) -->
+          <g transform="translate(240, 60)">
+            <circle cx="0" cy="0" r="18" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-16" x2="0" y2="-12"/>
+              <line x1="0" y1="12" x2="0" y2="16"/>
+              <line x1="-16" y1="0" x2="-12" y2="0"/>
+              <line x1="12" y1="0" x2="16" y2="0"/>
+            </g>
+          </g>
+          <!-- 10% label next to the small chip -->
+          <text x="240" y="22" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">10%</text>
+
+          <!-- Arrow from small chip → InTouch -->
+          <line x1="262" y1="60" x2="332" y2="60" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="339 60 330 56 330 64" fill="#D4A574"/>
+
+          <!-- InTouch logo (white rounded square with "1" mark) -->
+          <g transform="translate(355, 38) scale(0.917)">
+            <rect x="0" y="0" width="48" height="48" rx="8" fill="#FFFFFF"/>
+            <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+          </g>
+          <text x="377" y="100" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="0.5">InTouch</text>
+        </svg>
       </div>
-
-      <div class="bm-row">
-        <div class="bm-row-label">The buy-in</div>
-        <div class="bm-row-value"><strong>Sets the quality of each room.</strong> $0 reads spam. $5K reads serious.</div>
-      </div>
-
-      <div class="bm-row">
-        <div class="bm-row-label">The stake</div>
-        <div class="bm-row-value"><strong>Earned by referring.</strong> Spent on access.</div>
-      </div>
-
+      <div class="bm-col-caption"><strong>Every chip transaction pays InTouch 10%.</strong></div>
+      <div class="bm-col-sub">A tax on the network's most valuable signal.</div>
     </div>
 
-    <!-- RIGHT: three poker chips -->
-    <div class="bm-tables">
-      <div class="bm-tables-header">Pick your room</div>
+    <!-- Col 2: Direct chip sale -->
+    <div class="bm-col">
+      <div class="bm-col-header">Members buy chips from us</div>
+      <div class="bm-col-visual">
+        <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;height:auto;">
+          <!-- InTouch logo (left) -->
+          <g transform="translate(28, 68) scale(0.917)">
+            <rect x="0" y="0" width="48" height="48" rx="8" fill="#FFFFFF"/>
+            <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
+          </g>
+          <text x="50" y="130" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="0.5">InTouch</text>
 
-      <div class="chip-row">
+          <!-- Member (right) -->
+          <circle cx="370" cy="90" r="32" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="370" cy="82" r="8" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 353 106 Q 370 90, 387 106" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="370" y="148" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">MEMBER</text>
 
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="1.5"/>
-            <g stroke="#D4A574" stroke-width="5" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
+          <!-- Top arrow: InTouch → Member (chip) -->
+          <line x1="86" y1="68" x2="318" y2="68" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="325 68 316 64 316 72" fill="#D4A574"/>
+
+          <!-- Chip on top arrow -->
+          <g transform="translate(202, 68)">
+            <circle cx="0" cy="0" r="18" fill="#D4A574"/>
+            <g stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" fill="none">
+              <line x1="0" y1="-16" x2="0" y2="-12"/>
+              <line x1="0" y1="12" x2="0" y2="16"/>
+              <line x1="-16" y1="0" x2="-12" y2="0"/>
+              <line x1="12" y1="0" x2="16" y2="0"/>
+              <line x1="-12" y1="-12" x2="-9" y2="-9"/>
+              <line x1="9" y1="-9" x2="12" y2="-12"/>
+              <line x1="-12" y1="12" x2="-9" y2="9"/>
+              <line x1="9" y1="9" x2="12" y2="12"/>
             </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="0.8" opacity="0.5"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$200</text>
-          </svg>
-          <div class="chip-stake">Low stakes</div>
-        </div>
+          </g>
 
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
-            <g stroke="#D4A574" stroke-width="6" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
-            </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#D4A574" stroke-width="1" opacity="0.7"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$1K</text>
-          </svg>
-          <div class="chip-stake">Mid stakes</div>
-        </div>
+          <!-- Bottom arrow: Member → InTouch ($) -->
+          <line x1="324" y1="112" x2="92" y2="112" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="85 112 94 108 94 116" fill="#D4A574"/>
 
-        <div class="chip-card">
-          <svg class="chip" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="50" cy="50" r="46" fill="#D4A574" stroke="#D4A574" stroke-width="2.5"/>
-            <g stroke="#0D0D0D" stroke-width="7" stroke-linecap="round" fill="none">
-              <line x1="50" y1="8" x2="50" y2="18"/>
-              <line x1="50" y1="82" x2="50" y2="92"/>
-              <line x1="8" y1="50" x2="18" y2="50"/>
-              <line x1="82" y1="50" x2="92" y2="50"/>
-              <line x1="20" y1="20" x2="27" y2="27"/>
-              <line x1="73" y1="27" x2="80" y2="20"/>
-              <line x1="20" y1="80" x2="27" y2="73"/>
-              <line x1="73" y1="73" x2="80" y2="80"/>
-            </g>
-            <circle cx="50" cy="50" r="32" fill="none" stroke="#0D0D0D" stroke-width="1" opacity="0.4"/>
-            <text x="50" y="57" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#0D0D0D">$5K</text>
-          </svg>
-          <div class="chip-stake">High stakes</div>
-        </div>
-
+          <!-- $ bill on bottom arrow -->
+          <g transform="translate(202, 112)">
+            <rect x="-22" y="-12" width="44" height="24" rx="2" fill="#0D0D0D" stroke="#D4A574" stroke-width="1.5"/>
+            <text x="0" y="6" text-anchor="middle" font-family="Manrope" font-size="16" font-weight="800" fill="#D4A574">$</text>
+          </g>
+        </svg>
       </div>
+      <div class="bm-col-caption"><strong>Members buy chips to settle imbalance.</strong></div>
+      <div class="bm-col-sub">Or to show chips and join a higher circle.</div>
     </div>
 
   </div>
 
-  <div class="bm-proof"><img src="logos/bni.png" class="bni-logo-sm" alt="BNI"> members pay $800/yr to refer $65K/yr — they proved the willingness to pay.</div>
+  <div class="bm-proof"><img src="logos/bni.png" class="bni-logo-sm" alt="BNI"> members pay <strong>$800/yr</strong> to refer <strong>$65K/yr</strong> — they proved the willingness to pay.</div>
 
   <div class="conclusion">Network economics — built for <strong>3M members</strong>, not 340K.</div>
-  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model · buy-in amounts illustrative</div>
+  <div class="sources">Sources: BNI Mid-Year Report 2025 · InTouch product model · chip amounts illustrative</div>
 </div>
 
 </div>
