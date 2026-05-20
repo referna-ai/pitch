@@ -153,54 +153,62 @@ body[data-slide="slide-11"] .slide-title { margin-bottom: 6px; }
     <div class="bm-col">
       <div class="bm-col-header">Our take on every chip</div>
       <div class="bm-col-visual">
-        <svg viewBox="0 0 420 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;height:auto;">
-          <!-- Big chip (full chip changing hands between members) -->
-          <g transform="translate(70, 90)">
-            <circle cx="0" cy="0" r="46" fill="#D4A574"/>
-            <g stroke="#0D0D0D" stroke-width="6" stroke-linecap="round" fill="none">
-              <line x1="0" y1="-42" x2="0" y2="-32"/>
-              <line x1="0" y1="32" x2="0" y2="42"/>
-              <line x1="-42" y1="0" x2="-32" y2="0"/>
-              <line x1="32" y1="0" x2="42" y2="0"/>
-              <line x1="-30" y1="-30" x2="-23" y2="-23"/>
-              <line x1="23" y1="-23" x2="30" y2="-30"/>
-              <line x1="-30" y1="30" x2="-23" y2="23"/>
-              <line x1="23" y1="23" x2="30" y2="30"/>
-            </g>
-            <circle cx="0" cy="0" r="32" fill="none" stroke="#0D0D0D" stroke-width="1" opacity="0.4"/>
-          </g>
-          <text x="70" y="166" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">CHIP</text>
+        <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;height:auto;">
+          <!-- Giver (left) -->
+          <circle cx="50" cy="65" r="30" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="50" cy="57" r="8" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 34 80 Q 50 65, 66 80" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="50" y="119" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">GIVER</text>
 
-          <!-- Arrow from big chip → small chip (splitting off) -->
-          <line x1="125" y1="60" x2="208" y2="60" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
-          <polygon points="215 60 206 56 206 64" fill="#D4A574"/>
+          <!-- Receiver (right) -->
+          <circle cx="370" cy="65" r="30" fill="#1A1A1A" stroke="#D4A574" stroke-width="2"/>
+          <circle cx="370" cy="57" r="8" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <path d="M 354 80 Q 370 65, 386 80" fill="none" stroke="#D4A574" stroke-width="1.5"/>
+          <text x="370" y="119" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="1">RECEIVER</text>
 
-          <!-- Small chip (the 10% slice) -->
-          <g transform="translate(240, 60)">
-            <circle cx="0" cy="0" r="18" fill="#D4A574"/>
+          <!-- Top arrow: Giver → Receiver (refers customer) -->
+          <line x1="88" y1="42" x2="326" y2="42" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round" stroke-dasharray="4 3"/>
+          <polygon points="333 42 324 38 324 46" fill="#D4A574"/>
+          <text x="210" y="26" text-anchor="middle" font-family="Manrope" font-size="14" fill="#D1D1D1" font-weight="500">refers customer</text>
+
+          <!-- Bottom arrow: Receiver → Giver (pays chip) -->
+          <line x1="332" y1="92" x2="98" y2="92" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="91 92 100 88 100 96" fill="#D4A574"/>
+
+          <!-- Chip on the bottom arrow -->
+          <g transform="translate(210, 92)">
+            <circle cx="0" cy="0" r="20" fill="#D4A574"/>
             <g stroke="#0D0D0D" stroke-width="3" stroke-linecap="round" fill="none">
-              <line x1="0" y1="-16" x2="0" y2="-12"/>
-              <line x1="0" y1="12" x2="0" y2="16"/>
-              <line x1="-16" y1="0" x2="-12" y2="0"/>
-              <line x1="12" y1="0" x2="16" y2="0"/>
+              <line x1="0" y1="-18" x2="0" y2="-13"/>
+              <line x1="0" y1="13" x2="0" y2="18"/>
+              <line x1="-18" y1="0" x2="-13" y2="0"/>
+              <line x1="13" y1="0" x2="18" y2="0"/>
+              <line x1="-13" y1="-13" x2="-9" y2="-9"/>
+              <line x1="9" y1="-9" x2="13" y2="-13"/>
+              <line x1="-13" y1="13" x2="-9" y2="9"/>
+              <line x1="9" y1="9" x2="13" y2="13"/>
             </g>
           </g>
-          <!-- 10% label next to the small chip -->
-          <text x="240" y="22" text-anchor="middle" font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">10%</text>
 
-          <!-- Arrow from small chip → InTouch -->
-          <line x1="262" y1="60" x2="332" y2="60" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
-          <polygon points="339 60 330 56 330 64" fill="#D4A574"/>
+          <!-- Small slice peels off → InTouch -->
+          <line x1="210" y1="113" x2="210" y2="168" stroke="#D4A574" stroke-width="1.5" stroke-linecap="round"/>
+          <polygon points="210 175 206 166 214 166" fill="#D4A574"/>
 
-          <!-- InTouch logo (white rounded square with "1" mark) -->
-          <g transform="translate(355, 38) scale(0.917)">
+          <!-- Small chip (10% slice) on the way down -->
+          <g transform="translate(210, 140)">
+            <circle cx="0" cy="0" r="9" fill="#D4A574"/>
+          </g>
+          <text x="195" y="145" text-anchor="end" font-family="Manrope" font-size="16" font-weight="800" fill="#D4A574">10%</text>
+
+          <!-- InTouch logo (bottom) -->
+          <g transform="translate(186, 178) scale(0.917)">
             <rect x="0" y="0" width="48" height="48" rx="8" fill="#FFFFFF"/>
             <path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>
           </g>
-          <text x="377" y="100" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="0.5">InTouch</text>
+          <text x="210" y="236" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="700" fill="#D1D1D1" letter-spacing="0.5">InTouch</text>
         </svg>
       </div>
-      <div class="bm-col-caption"><strong>Every chip transaction pays InTouch 10%.</strong></div>
+      <div class="bm-col-caption"><strong>InTouch takes 10% of every chip.</strong></div>
       <div class="bm-col-sub">A tax on the network's most valuable signal.</div>
     </div>
 
