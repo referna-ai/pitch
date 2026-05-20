@@ -19,77 +19,65 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
   margin-right: 0.04em;
   filter: brightness(0) invert(1);
 }
-body[data-slide="slide-4"] .bni-subtitle { font-family: var(--font-body); font-size: 18px; line-height: 1.55; color: var(--gray); max-width: 820px; margin: 6px 0 28px; }
 
-body[data-slide="slide-4"] .bni-cheatsheet {
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 4px 28px;
-  margin-bottom: 24px;
+/* Horseshoe visual */
+.horseshoe-stage {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-body[data-slide="slide-4"] .bni-cheat-row {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 24px;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
-  align-items: baseline;
+.horseshoe-stage svg {
+  display: block;
+  width: 100%;
+  max-width: 1060px;
+  height: auto;
 }
-body[data-slide="slide-4"] .bni-cheat-row:last-child { border-bottom: none; }
-body[data-slide="slide-4"] .bni-cheat-label {
-  font-family: var(--font-display);
+
+.peer-face { fill: #1a1a1a; stroke: #505050; stroke-width: 1.5; }
+.bni-ring  { fill: #241e19; stroke: var(--gold); stroke-width: 3; }
+
+.arrow-line    { stroke: var(--gold); stroke-width: 2; fill: none; opacity: 0.7; }
+.arrow-head    { fill: var(--gold); opacity: 0.7; }
+.arrow-caption {
+  font-family: 'Manrope', sans-serif;
   font-weight: 600;
+  font-size: 15px;
+  fill: var(--gray);
+  text-anchor: middle;
+}
+.face-label {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 700;
   font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
+  fill: #fff;
+  text-anchor: middle;
+  letter-spacing: 0.05em;
 }
-body[data-slide="slide-4"] .bni-cheat-value {
-  font-family: var(--font-display);
-  font-size: 18px;
-  color: var(--white);
-  line-height: 1.4;
-}
-
-body[data-slide="slide-4"] .bni-metrics {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
-  margin-bottom: 14px;
-}
-body[data-slide="slide-4"] .bni-metric {
-  background: var(--black-soft);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px 16px;
-  text-align: center;
-}
-body[data-slide="slide-4"] .bni-metric-highlight {
-  background: rgba(212, 165, 116, 0.06);
-  border-color: rgba(212, 165, 116, 0.5);
-}
-body[data-slide="slide-4"] .bni-metric-num {
-  font-family: var(--font-display);
+.circle-label {
+  font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  font-size: 26px;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 4px;
+  font-size: 18px;
+  fill: rgba(212,165,116,0.85);
+  text-anchor: middle;
+  letter-spacing: 0.1em;
 }
-body[data-slide="slide-4"] .bni-metric-num.gold { color: var(--gold); }
-body[data-slide="slide-4"] .bni-metric-label {
-  font-family: var(--font-display);
+.circle-sublabel {
+  font-family: 'Manrope', sans-serif;
   font-weight: 500;
   font-size: 14px;
-  letter-spacing: 0.01em;
-  color: var(--gray-mid);
-  line-height: 1.4;
+  fill: rgba(212,165,116,0.45);
+  text-anchor: middle;
+  letter-spacing: 0.06em;
 }
-
-@media (max-width: 720px) {
-  body[data-slide="slide-4"] .bni-cheat-row { grid-template-columns: 1fr; gap: 4px; padding: 12px 0; }
-  body[data-slide="slide-4"] .bni-metrics { grid-template-columns: repeat(2, 1fr); }
+.bni-face-caption {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  fill: rgba(255,255,255,0.45);
+  text-anchor: middle;
 }
 </style>
 </head>
@@ -102,44 +90,105 @@ body[data-slide="slide-4"] .bni-metric-label {
   <div class="slide-number"></div>
   <div class="slide-label"></div>
   <h2 class="slide-title"><img class="bni-logo" src="logos/bni.png" alt="BNI">: Referral network — <span class="gold">$26.4B</span> referrals/year</h2>
-  <p class="bni-subtitle">The world's largest referral network for independent professionals.  But the model is constrained by manual matching and weekly in-person meetings.</p>
 
-  <div class="bni-cheatsheet">
-    <div class="bni-cheat-row">
-      <div class="bni-cheat-label">BNI's customers</div>
-      <div class="bni-cheat-value">Independent professionals</div>
-    </div>
-    <div class="bni-cheat-row">
-      <div class="bni-cheat-label">Value to customers</div>
-      <div class="bni-cheat-value">Referrals from trusted peers</div>
-    </div>
-    <div class="bni-cheat-row">
-      <div class="bni-cheat-label">How BNI works</div>
-      <div class="bni-cheat-value">Members meet weekly for breakfast to refer business to each other</div>
-    </div>
-    <div class="bni-cheat-row">
-      <div class="bni-cheat-label">BNI's segments</div>
-      <div class="bni-cheat-value">Home-buyer · Wedding · Divorce · Estate · Solopreneur circles</div>
-    </div>
-  </div>
+  <div class="horseshoe-stage">
+    <!-- Horseshoe at 80% scale of slide-3. Transform: new = old × 0.8 + (60, 30) -->
+    <svg viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
+      <defs>
+        <filter id="gs-s4" color-interpolation-filters="sRGB">
+          <feColorMatrix type="saturate" values="0"/>
+        </filter>
+        <clipPath id="cp-s4-joe"><circle cx="202" cy="176" r="66"/></clipPath>
+        <clipPath id="cp-s4-p1"><circle cx="633" cy="106" r="23"/></clipPath>
+        <clipPath id="cp-s4-p2"><circle cx="706" cy="76"  r="23"/></clipPath>
+        <clipPath id="cp-s4-p3"><circle cx="780" cy="106" r="23"/></clipPath>
+        <clipPath id="cp-s4-p4"><circle cx="810" cy="178" r="23"/></clipPath>
+        <clipPath id="cp-s4-p5"><circle cx="780" cy="250" r="23"/></clipPath>
+        <clipPath id="cp-s4-p6"><circle cx="706" cy="280" r="23"/></clipPath>
+        <clipPath id="cp-s4-p7"><circle cx="633" cy="250" r="23"/></clipPath>
+      </defs>
 
-  <div class="bni-metrics">
-    <div class="bni-metric bni-metric-highlight">
-      <div class="bni-metric-num gold">$26.4B</div>
-      <div class="bni-metric-label">in member-generated referrals</div>
-    </div>
-    <div class="bni-metric">
-      <div class="bni-metric-num">340K</div>
-      <div class="bni-metric-label">members · 11K chapters</div>
-    </div>
-    <div class="bni-metric">
-      <div class="bni-metric-num">~$800</div>
-      <div class="bni-metric-label">annual membership fee</div>
-    </div>
-    <div class="bni-metric">
-      <div class="bni-metric-num">$65K</div>
-      <div class="bni-metric-label">referred business per member / year</div>
-    </div>
+      <!-- ── JOE (BNI member — gold ring, grayscale) ── -->
+      <circle class="bni-ring" cx="202" cy="176" r="67"/>
+      <image href="https://randomuser.me/api/portraits/men/32.jpg"
+             x="136" y="110" width="132" height="132"
+             clip-path="url(#cp-s4-joe)" filter="url(#gs-s4)"
+             preserveAspectRatio="xMidYMid slice"/>
+      <text class="face-label" x="202" y="266">JOE</text>
+      <text class="bni-face-caption" x="202" y="283">A BNI member</text>
+
+      <!-- ── 7 PEERS (horseshoe open toward Joe) ── -->
+      <circle class="peer-face" cx="633" cy="106" r="25"/>
+      <image href="https://randomuser.me/api/portraits/men/18.jpg"
+             x="610" y="83" width="46" height="46"
+             clip-path="url(#cp-s4-p1)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="706" cy="76" r="25"/>
+      <image href="https://randomuser.me/api/portraits/women/34.jpg"
+             x="683" y="53" width="46" height="46"
+             clip-path="url(#cp-s4-p2)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="780" cy="106" r="25"/>
+      <image href="https://randomuser.me/api/portraits/men/52.jpg"
+             x="757" y="83" width="46" height="46"
+             clip-path="url(#cp-s4-p3)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="810" cy="178" r="25"/>
+      <image href="https://randomuser.me/api/portraits/women/4.jpg"
+             x="787" y="155" width="46" height="46"
+             clip-path="url(#cp-s4-p4)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="780" cy="250" r="25"/>
+      <image href="https://randomuser.me/api/portraits/men/62.jpg"
+             x="757" y="227" width="46" height="46"
+             clip-path="url(#cp-s4-p5)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="706" cy="280" r="25"/>
+      <image href="https://randomuser.me/api/portraits/women/18.jpg"
+             x="683" y="257" width="46" height="46"
+             clip-path="url(#cp-s4-p6)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <circle class="peer-face" cx="633" cy="250" r="25"/>
+      <image href="https://randomuser.me/api/portraits/men/45.jpg"
+             x="610" y="227" width="46" height="46"
+             clip-path="url(#cp-s4-p7)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
+
+      <!-- Ring label -->
+      <text class="circle-label" x="706" y="175">BNI Chapter</text>
+      <text class="circle-sublabel" x="706" y="193">8 members · weekly breakfast</text>
+
+      <!-- ── ARROWS ── -->
+      <path class="arrow-line" d="M 599 160 L 271 160"/>
+      <polygon class="arrow-head" points="264,160 279,153 279,167"/>
+      <text class="arrow-caption" x="435" y="145">Refers $65K of customers / year</text>
+
+      <path class="arrow-line" d="M 271 192 L 599 192"/>
+      <polygon class="arrow-head" points="606,192 591,185 591,199"/>
+      <text class="arrow-caption" x="435" y="218">$65K of customers referred back / year</text>
+
+      <!-- ── ANNOTATIONS ── -->
+
+      <!-- 340K members — top-right, above ring (ring top is y≈51) -->
+      <text x="1060" y="34" text-anchor="end"
+            font-family="Manrope" font-size="26" font-weight="800"
+            fill="#D4A574" letter-spacing="-0.02em">340K</text>
+      <text x="1060" y="52" text-anchor="end"
+            font-family="Manrope" font-size="14" font-weight="600"
+            fill="#666666" letter-spacing="0.12em">MEMBERS</text>
+
+      <!-- $800/yr + segments — right of Joe, below arrows (clear of labels) -->
+      <text x="280" y="248"
+            font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$800/yr</text>
+      <text x="280" y="266"
+            font-family="Manrope" font-size="14" font-weight="500" fill="#666666">membership</text>
+      <text x="280" y="288"
+            font-family="Manrope" font-size="14" font-weight="700"
+            fill="#D4A574" letter-spacing="0.09em">SEGMENTS</text>
+      <text x="280" y="306"
+            font-family="Manrope" font-size="14" font-weight="500" fill="#666666">Home-buyer · Wedding · Divorce ·</text>
+      <text x="280" y="324"
+            font-family="Manrope" font-size="14" font-weight="500" fill="#666666">Estate · Solopreneur circles</text>
+    </svg>
   </div>
 
   <div class="conclusion">BNI proved <strong>the model and market</strong> but its legacy methods are limiting growth</div>
