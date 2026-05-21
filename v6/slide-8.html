@@ -88,9 +88,9 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
 /* DESKTOP FORM (LEFT, behind) */
 .s9-browser-wrap {
   position: absolute;
-  left: -10px;
+  left: -20px;
   top: 38px;
-  width: 570px;
+  width: 580px;
   z-index: 1;
 }
 .s9-browser {
@@ -460,7 +460,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   line-height: 1;
 }
 .s9-label-browser { top: 80px; left: 10px; }
-.s9-label-phone   { top: 0px;  right: 2px; }
+.s9-label-phone   { top: 0px;  right: 2px; width: 240px; text-align: center; }
 
 /* Push mockups down to make room for labels */
 .s9-browser-wrap { top: 98px; }
@@ -564,7 +564,7 @@ body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px)
   color: var(--gray); margin-bottom: 6px; line-height: 1.35;
 }
 .s9-apply-cmp-row span:first-child { border-right: 1px solid rgba(212,165,116,0.18); padding-right: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.s9-apply-cmp-row span:last-child { padding-left: 12px; }
+.s9-apply-cmp-row span:last-child  { padding-left: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .s9-apply-signal {
   font-family: var(--font-display); font-size: 15px; font-weight: 500;
   color: var(--white); margin: 10px 0 12px;
@@ -765,6 +765,22 @@ body[data-slide="slide-8"] .s9-phone-statusbar { color: rgba(255,255,255,0.7); }
   }
 }
 
+/* ── TABLET LANDSCAPE (iPad ~1024–1150 px wide) ─────────────────────── */
+/*
+ * At ~1024 px the visual column (~632 px) barely fits the cluster.
+ * Scale it to 0.78 so the right "More matches" panel clears the phone.
+ */
+@media (min-width: 901px) and (max-width: 1150px) {
+  .s9-visual { min-height: 0; overflow: visible; }
+  .s9-mockup-cluster {
+    inset: auto;
+    top: 8px; left: 0;
+    width: 830px;
+    transform: scale(0.77);
+    transform-origin: top left;
+  }
+}
+
 /* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────── */
 @media (max-height: 500px) and (min-width: 769px) {
   body[data-slide="slide-8"] .slide-title { font-size: 26px; margin-bottom: 14px; }
@@ -846,7 +862,6 @@ body[data-slide="slide-8"] .s9-phone-statusbar { color: rgba(255,255,255,0.7); }
 
               <!-- LEFT: featured card -->
               <div class="s9-apply-left">
-                <div class="s9-apply-page-title">Apply for circles</div>
                 <div class="s9-apply-card">
                   <div class="s9-apply-tag">Top match · Atlas</div>
                   <div class="s9-apply-cmp-head">
