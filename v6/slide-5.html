@@ -173,13 +173,18 @@
   .axis-left { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
   .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
   .center-cross { height: 62%; }
-  .matrix-footnote { font-size: 14px; }
+  .matrix-footnote { font-size: 14px; margin-top: 20px; }
+  .matrix-footnote + .matrix-footnote { margin-top: 8px; }
 }
 /* Portrait: quadrant-tag was position:absolute — in narrow 122px columns it
-   overlaps the info text. Flow it statically so tag sits above the content. */
+   overlaps the info text. Flow it statically so tag sits above the content.
+   Also correct axis-left/right vertical position: top:50% sits 38px below
+   the grid center because bottom padding (110px) > top padding (34px). */
 @media (max-width: 600px) {
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
+  .axis-left  { transform: translateY(calc(-50% - 38px)) rotate(180deg); }
+  .axis-right { transform: translateY(calc(-50% - 38px)); }
 }
 </style>
 </head>
