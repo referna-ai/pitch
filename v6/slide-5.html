@@ -73,6 +73,7 @@
 .center-cross svg { width: 100%; height: 100%; display: block; overflow: visible; }
 
 .quadrant {
+  position: relative;
   background: var(--black-mid);
   border: 1px solid var(--border);
   border-radius: 12px;
@@ -86,15 +87,18 @@
   border-color: var(--gold);
 }
 
-.quadrant-name {
+.quadrant-tag {
+  position: absolute;
+  top: 12px;
+  right: 16px;
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  color: var(--white);
-  letter-spacing: -0.005em;
-  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-dark);
 }
-.quadrant.winner .quadrant-name { color: var(--gold); font-size: 18px; }
+.quadrant.winner .quadrant-tag { color: var(--gold); }
 
 .quadrant-info {
   font-family: var(--font-display);
@@ -121,14 +125,15 @@
 }
 
 .comp-logo {
-  height: 17px;
+  height: 26px;
   width: auto;
-  max-width: 90px;
+  max-width: 135px;
   flex-shrink: 0;
   filter: brightness(0) invert(0.55);
   display: inline-block;
   vertical-align: middle;
 }
+.comp-logo.bni { height: 20px; max-width: 90px; }
 .quadrant.winner .comp-logo { filter: brightness(0) invert(1); opacity: 0.95; }
 
 /* LinkedIn footnote */
@@ -179,16 +184,16 @@
 
         <!-- Top-left: Offline × Network -->
         <div class="quadrant">
-          <div class="quadrant-name">Network for offline professionals</div>
+          <div class="quadrant-tag">$1B category</div>
           <div class="quadrant-info">
-            <img class="comp-logo" src="logos/bni.png" alt="BNI">
+            <img class="comp-logo bni" src="logos/bni.png" alt="BNI">
             <span class="sep">—</span> <span class="val">$26.4B</span> referred/yr · <span class="val">↑ 36%</span> over 3 years
           </div>
         </div>
 
         <!-- Top-right: Online × Network — WINNER -->
         <div class="quadrant winner">
-          <div class="quadrant-name">Network for online professionals</div>
+          <div class="quadrant-tag">Open category</div>
           <div class="quadrant-info">
             <svg width="19" height="19" viewBox="0 0 48 48" fill="none" style="flex-shrink:0;vertical-align:middle">
               <rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>
@@ -201,7 +206,7 @@
 
         <!-- Bottom-left: Offline × Marketplace -->
         <div class="quadrant">
-          <div class="quadrant-name">Offline service marketplaces</div>
+          <div class="quadrant-tag">$1B category</div>
           <div class="quadrant-info">
             <img class="comp-logo" src="logos/thumbtack.svg" alt="Thumbtack">
             <span class="sep">·</span>
@@ -214,7 +219,7 @@
 
         <!-- Bottom-right: Online × Marketplace -->
         <div class="quadrant">
-          <div class="quadrant-name">Online services marketplaces</div>
+          <div class="quadrant-tag">$1B category</div>
           <div class="quadrant-info">
             <img class="comp-logo" src="logos/fiverr.svg" alt="Fiverr">
             <span class="sep">·</span>
@@ -243,7 +248,7 @@
   <p class="matrix-footnote"><strong>YPO</strong> = peer development for CEOs — different audience, not a referral network.</p>
   <p class="matrix-footnote"><strong>LinkedIn</strong> = different beast — professional graph monetized by ads and recruiters, not a lead source for independent professionals.</p>
 
-  <div class="conclusion">Each corner is a billion-dollar business. <strong>The missing quadrant is ours.</strong></div>
+  <div class="conclusion">Each category is a billion-dollar business. <strong>The missing quadrant is ours.</strong></div>
   <div class="sources">Sources: BNI Mid-Year Report 2025 · public filings (Fiverr, Upwork, Angi) · Thumbtack last private round</div>
 </div>
 
