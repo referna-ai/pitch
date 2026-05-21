@@ -178,21 +178,20 @@
   .axis-top { top: 6px; font-size: 14px; letter-spacing: 0.08em; }
   .axis-bottom { bottom: 6px; font-size: 14px; max-width: 200px; }
   .axis-subtitle { font-size: 14px; }
-  .axis-left { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
-  .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
+  /* axis-left/right: span exactly the grid rows (top=34px matches top padding,
+     bottom=110px matches bottom padding) so labels are always vertically centred
+     on the grid — unaffected by the asymmetric padding. */
+  .axis-left  { left: 4px; top: 34px; bottom: 110px; height: auto; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: center; }
+  .axis-right { right: 4px; top: 34px; bottom: 110px; height: auto; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: none; display: flex; justify-content: center; }
   .center-cross { height: 62%; }
   .matrix-footnote { font-size: 14px; margin-top: 20px; }
   .matrix-footnote + .matrix-footnote { margin-top: 8px; }
 }
 /* Portrait: quadrant-tag was position:absolute — in narrow 122px columns it
-   overlaps the info text. Flow it statically so tag sits above the content.
-   Also correct axis-left/right vertical position: top:50% sits 38px below
-   the grid center because bottom padding (110px) > top padding (34px). */
+   overlaps the info text. Flow it statically so tag sits above the content. */
 @media (max-width: 600px) {
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
-  .axis-left  { transform: translateY(calc(-50% - 38px)) rotate(180deg); }
-  .axis-right { transform: translateY(calc(-50% - 38px)); }
 }
 </style>
 </head>
