@@ -206,9 +206,10 @@
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
 }
-/* Landscape mobile: footnotes are 14px next to a 28px title on a short slide — hide them. */
+/* Landscape mobile: slide compresses but footnotes stay 14px — halve them to restore proportion. */
 @media (max-height: 500px) {
-  .matrix-footnote { display: none; }
+  .matrix-footnote { font-size: 7px; line-height: 1.3; margin-top: 6px; }
+  .matrix-footnote + .matrix-footnote { margin-top: 3px; }
 }
 </style>
 </head>
