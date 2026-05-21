@@ -159,10 +159,20 @@
 }
 
 @media (max-width: 768px) {
-  .matrix-row { position: static; padding: 0; }
-  .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
-  .axis-top, .axis-bottom, .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; max-width: none; margin: 6px auto; }
-  .center-cross { display: none; }
+  .matrix-row { margin-top: 0; padding: 34px 28px 50px; }
+  .matrix { column-gap: 10px; row-gap: 10px; width: 100%; }
+  .quadrant { padding: 12px 10px; min-height: 70px; }
+  .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
+  .quadrant-info { font-size: 14px; gap: 3px; }
+  .quadrant-note { font-size: 14px; margin-top: 4px; }
+  .comp-logo { height: 14px; max-width: 68px; }
+  .axis-top { top: 6px; font-size: 14px; letter-spacing: 0.08em; }
+  .axis-bottom { bottom: 6px; font-size: 14px; max-width: 200px; }
+  .axis-subtitle { font-size: 14px; }
+  .axis-left { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
+  .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
+  .center-cross { height: 62%; }
+  .matrix-footnote { font-size: 14px; }
 }
 </style>
 </head>

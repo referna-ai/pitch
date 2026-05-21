@@ -92,6 +92,31 @@ body[data-slide="slide-3"] .slide-title {
   text-anchor: middle;
 }
 
+/* ── Portrait mobile: SVG ~120px tall at natural width — fix to readable height + swipe ── */
+@media (max-width: 600px) {
+  .horseshoe-stage {
+    flex: none;
+    height: 200px;
+    min-height: 200px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    scrollbar-width: none;
+  }
+  .horseshoe-stage::-webkit-scrollbar { display: none; }
+  .horseshoe-stage svg {
+    flex-shrink: 0;
+    width: auto;
+    height: 200px;
+    max-width: none;
+  }
+}
+/* ── Landscape phone: slide scrolls freely; give horseshoe a height floor ── */
+@media (max-height: 500px) {
+  .horseshoe-stage { min-height: 180px; }
+}
+
 /* Flywheel line */
 .flywheel-line {
   font-family: var(--font-body);
