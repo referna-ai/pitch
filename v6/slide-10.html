@@ -349,7 +349,7 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
       <div class="line">
         <div class="line-main">
           <span class="big-num" id="us-count">9.26M</span>
-          <span class="line-text">in the US, across 21 segments</span>
+          <span class="line-text">in the US, across <span id="us-segments">21</span> segments</span>
         </div>
         <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
       </div>
@@ -399,6 +399,7 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
   const track = carousel && carousel.querySelector('.segments-track');
   const featured = track && track.querySelector('.segment-box.featured');
   const counter = document.getElementById('us-count');
+  const segCounter = document.getElementById('us-segments');
   if (!carousel || !track || !featured) return;
 
   // Phones get the stacked layout — no animation.
@@ -411,15 +412,18 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
   const STEPS = 21; // one tick per segment
 
   if (counter && !reducedMotion) counter.textContent = '0.00M';
+  if (segCounter && !reducedMotion) segCounter.textContent = '0';
 
   const runCounter = (durationMs) => {
-    if (!counter) return;
+    if (!counter && !segCounter) return;
     if (reducedMotion || durationMs <= 0) {
-      counter.textContent = TARGET_VALUE.toFixed(2) + 'M';
+      if (counter) counter.textContent = TARGET_VALUE.toFixed(2) + 'M';
+      if (segCounter) segCounter.textContent = String(STEPS);
       return;
     }
     const start = performance.now();
-    counter.textContent = '0.00M';
+    if (counter) counter.textContent = '0.00M';
+    if (segCounter) segCounter.textContent = '0';
     let lastStep = -1;
     const tick = (now) => {
       const t = Math.min(1, (now - start) / durationMs);
@@ -427,7 +431,8 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
       if (step !== lastStep) {
         lastStep = step;
         const value = (step === STEPS) ? TARGET_VALUE : (TARGET_VALUE * step / STEPS);
-        counter.textContent = value.toFixed(2) + 'M';
+        if (counter) counter.textContent = value.toFixed(2) + 'M';
+        if (segCounter) segCounter.textContent = String(step);
       }
       if (t < 1) requestAnimationFrame(tick);
     };
