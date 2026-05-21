@@ -81,6 +81,27 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
   fill: rgba(255,255,255,0.45);
   text-anchor: middle;
 }
+
+/* ── Portrait mobile: fit full horseshoe in viewport width ── */
+@media (max-width: 600px) {
+  .horseshoe-stage {
+    flex: none;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    justify-content: center;
+    margin: 20px 0;
+  }
+  .horseshoe-stage svg {
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+}
+/* ── Landscape phone: slide scrolls freely; give horseshoe a height floor ── */
+@media (max-height: 500px) {
+  .horseshoe-stage { min-height: 120px; margin-bottom: 20px; }
+}
 </style>
 </head>
 <body data-slide="slide-4">

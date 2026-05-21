@@ -92,6 +92,26 @@ body[data-slide="slide-3"] .slide-title {
   text-anchor: middle;
 }
 
+/* ── Portrait mobile: fit full horseshoe in viewport width ── */
+@media (max-width: 600px) {
+  .horseshoe-stage {
+    flex: none;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    justify-content: center;
+  }
+  .horseshoe-stage svg {
+    width: 100%;
+    height: auto;
+    max-width: none;
+  }
+}
+/* ── Landscape phone: slide scrolls freely; give horseshoe a height floor ── */
+@media (max-height: 500px) {
+  .horseshoe-stage { min-height: 120px; }
+}
+
 /* Flywheel line */
 .flywheel-line {
   font-family: var(--font-body);
@@ -103,6 +123,10 @@ body[data-slide="slide-3"] .slide-title {
   margin-bottom: 10px;
 }
 .flywheel-line strong { font-style: normal; font-weight: 600; color: var(--gray); }
+/* ── All mobile: give flywheel breathing room above and below ── */
+@media (max-width: 768px) {
+  .flywheel-line { margin-top: 20px; margin-bottom: 20px; }
+}
 </style>
 </head>
 <body data-slide="slide-3">

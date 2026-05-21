@@ -167,10 +167,51 @@
 }
 
 @media (max-width: 768px) {
-  .matrix-row { position: static; padding: 0; }
-  .matrix { grid-template-columns: 1fr; grid-template-rows: auto; width: 100%; column-gap: 0; row-gap: 14px; }
-  .axis-top, .axis-bottom, .axis-left, .axis-right { position: static; transform: none; text-align: center; display: block; max-width: none; margin: 6px auto; }
-  .center-cross { display: none; }
+  /* Switch matrix-row to CSS grid — axis labels sit in named areas adjacent
+     to the grid cells, no position:absolute math needed. */
+  .matrix-row {
+    display: grid;
+    grid-template-areas:
+      ". top ."
+      "left grid right"
+      ". bottom .";
+    grid-template-columns: 22px 1fr 22px;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    justify-items: center;
+    row-gap: 8px;
+    column-gap: 4px;
+    margin-top: 0;
+    padding: 0;
+  }
+  /* Reflow axis labels: position:static, transform reset, placed via grid-area */
+  .axis-top    { position: static; grid-area: top;    transform: none; font-size: 14px; letter-spacing: 0.08em; }
+  .axis-bottom { position: static; grid-area: bottom; transform: none; font-size: 14px; max-width: 200px; }
+  .axis-left   { position: static; grid-area: left;   writing-mode: vertical-rl; transform: rotate(180deg); font-size: 14px; letter-spacing: 0.06em; }
+  .axis-right  { position: static; grid-area: right;  writing-mode: vertical-rl; transform: none;           font-size: 14px; letter-spacing: 0.06em; }
+  .matrix { grid-area: grid; width: 100%; column-gap: 10px; row-gap: 10px; }
+  .center-cross { display: block; top: 40%; height: 50%; }
+
+  .quadrant { padding: 12px 10px; min-height: 70px; }
+  .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
+  .quadrant-info { font-size: 14px; gap: 3px; }
+  .quadrant-note { font-size: 14px; margin-top: 4px; }
+  .comp-logo { height: 14px; max-width: 68px; }
+  .axis-subtitle { font-size: 14px; }
+  .matrix-footnote { font-size: 14px; margin-top: 20px; }
+  .matrix-footnote + .matrix-footnote { margin-top: 8px; }
+}
+/* Portrait: quadrant-tag was position:absolute — in narrow columns it overlaps the info text. */
+@media (max-width: 600px) {
+  .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
+  .quadrant { justify-content: flex-start; }
+  .center-cross { display: block; top: 43.5%; height: 50%; }
+}
+/* Landscape mobile: slide compresses but footnotes stay 14px — halve them to restore proportion. */
+@media (max-height: 500px) {
+  .matrix-footnote { font-size: 7px; line-height: 1.3; margin-top: 6px; }
+  .matrix-footnote + .matrix-footnote { margin-top: 3px; }
+  .center-cross { top: 40%; height: 50%; }
 }
 </style>
 </head>
