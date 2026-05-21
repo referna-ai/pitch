@@ -167,36 +167,49 @@
 }
 
 @media (max-width: 768px) {
-  /* Equal top/bottom padding so top:50% centres axis-left/right on the grid. */
-  .matrix-row { margin-top: 0; padding: 90px 28px 90px; }
-  .matrix { column-gap: 10px; row-gap: 10px; width: 100%; }
+  /* Switch matrix-row to CSS grid — axis labels sit in named areas adjacent
+     to the grid cells, no position:absolute math needed. */
+  .matrix-row {
+    display: grid;
+    grid-template-areas:
+      ". top ."
+      "left grid right"
+      ". bottom .";
+    grid-template-columns: 22px 1fr 22px;
+    grid-template-rows: auto auto auto;
+    align-items: center;
+    justify-items: center;
+    row-gap: 8px;
+    column-gap: 4px;
+    margin-top: 0;
+    padding: 0;
+  }
+  /* Reflow axis labels: position:static, transform reset, placed via grid-area */
+  .axis-top    { position: static; grid-area: top;    transform: none; font-size: 14px; letter-spacing: 0.08em; }
+  .axis-bottom { position: static; grid-area: bottom; transform: none; font-size: 14px; max-width: 200px; }
+  .axis-left   { position: static; grid-area: left;   writing-mode: vertical-rl; transform: rotate(180deg); font-size: 14px; letter-spacing: 0.06em; }
+  .axis-right  { position: static; grid-area: right;  writing-mode: vertical-rl; transform: none;           font-size: 14px; letter-spacing: 0.06em; }
+  .matrix { grid-area: grid; width: 100%; column-gap: 10px; row-gap: 10px; }
+  .center-cross { display: none; }
+
   .quadrant { padding: 12px 10px; min-height: 70px; }
   .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
   .quadrant-info { font-size: 14px; gap: 3px; }
   .quadrant-note { font-size: 14px; margin-top: 4px; }
   .comp-logo { height: 14px; max-width: 68px; }
-  /* axis-top: 68px from matrix-row top → 3px above grid edge (grid starts at 90px) */
-  .axis-top { top: 68px; font-size: 14px; letter-spacing: 0.08em; }
-  /* axis-bottom: 22px from matrix-row bottom → 3px below grid edge (grid ends at 90px from bottom,
-     element is ~64px tall, so top = 22+64 = 86px from bottom = 4px inside padding area) */
-  .axis-bottom { bottom: 22px; font-size: 14px; max-width: 200px; }
   .axis-subtitle { font-size: 14px; }
-  .axis-left  { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
-  .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
-  .center-cross { height: 62%; }
   .matrix-footnote { font-size: 14px; margin-top: 20px; }
   .matrix-footnote + .matrix-footnote { margin-top: 8px; }
 }
-/* Portrait: side axis labels don't fit in narrow columns — hide them and
-   reclaim the 28px horizontal margins for wider quadrant cells. */
+/* Portrait: collapse side columns, hide side axis labels so matrix fills the row. */
 @media (max-width: 600px) {
   .axis-left, .axis-right { display: none; }
-  .matrix-row { padding-left: 8px; padding-right: 8px; }
+  .matrix-row { grid-template-columns: 0px 1fr 0px; column-gap: 0; }
   .axis-bottom { max-width: 280px; }
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
 }
-/* Landscape phone: footnotes at 14px look outsized next to the 28px title — hide them. */
+/* Landscape mobile: footnotes are 14px next to a 28px title on a short slide — hide them. */
 @media (max-height: 500px) {
   .matrix-footnote { display: none; }
 }
