@@ -167,8 +167,7 @@
 }
 
 @media (max-width: 768px) {
-  /* Equal top/bottom padding (90px each) so top:50% on axis-left/right lands
-     exactly on the grid centre — avoids any offset-correction math. */
+  /* Equal top/bottom padding so top:50% centres axis-left/right on the grid. */
   .matrix-row { margin-top: 0; padding: 90px 28px 90px; }
   .matrix { column-gap: 10px; row-gap: 10px; width: 100%; }
   .quadrant { padding: 12px 10px; min-height: 70px; }
@@ -176,8 +175,11 @@
   .quadrant-info { font-size: 14px; gap: 3px; }
   .quadrant-note { font-size: 14px; margin-top: 4px; }
   .comp-logo { height: 14px; max-width: 68px; }
-  .axis-top { top: 6px; font-size: 14px; letter-spacing: 0.08em; }
-  .axis-bottom { bottom: 6px; font-size: 14px; max-width: 200px; }
+  /* axis-top: 68px from matrix-row top → 3px above grid edge (grid starts at 90px) */
+  .axis-top { top: 68px; font-size: 14px; letter-spacing: 0.08em; }
+  /* axis-bottom: 22px from matrix-row bottom → 3px below grid edge (grid ends at 90px from bottom,
+     element is ~64px tall, so top = 22+64 = 86px from bottom = 4px inside padding area) */
+  .axis-bottom { bottom: 22px; font-size: 14px; max-width: 200px; }
   .axis-subtitle { font-size: 14px; }
   .axis-left  { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
   .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
@@ -185,16 +187,18 @@
   .matrix-footnote { font-size: 14px; margin-top: 20px; }
   .matrix-footnote + .matrix-footnote { margin-top: 8px; }
 }
-/* Portrait: quadrant-tag was position:absolute — in narrow 122px columns it
-   overlaps the info text. Flow it statically so tag sits above the content. */
+/* Portrait: side axis labels don't fit in narrow columns — hide them and
+   reclaim the 28px horizontal margins for wider quadrant cells. */
 @media (max-width: 600px) {
+  .axis-left, .axis-right { display: none; }
+  .matrix-row { padding-left: 8px; padding-right: 8px; }
+  .axis-bottom { max-width: 280px; }
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
 }
-/* Landscape phone: reduce footnote spacing so they don't compete with the title */
+/* Landscape phone: footnotes at 14px look outsized next to the 28px title — hide them. */
 @media (max-height: 500px) {
-  .matrix-footnote { line-height: 1.2; margin-top: 8px; font-weight: 400; }
-  .matrix-footnote + .matrix-footnote { margin-top: 4px; }
+  .matrix-footnote { display: none; }
 }
 </style>
 </head>
