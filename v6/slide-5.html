@@ -167,8 +167,9 @@
 }
 
 @media (max-width: 768px) {
-  /* Extra bottom padding so axis-bottom label clears the grid */
-  .matrix-row { margin-top: 0; padding: 34px 28px 110px; }
+  /* Equal top/bottom padding (90px each) so top:50% on axis-left/right lands
+     exactly on the grid centre — avoids any offset-correction math. */
+  .matrix-row { margin-top: 0; padding: 90px 28px 90px; }
   .matrix { column-gap: 10px; row-gap: 10px; width: 100%; }
   .quadrant { padding: 12px 10px; min-height: 70px; }
   .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
@@ -178,11 +179,8 @@
   .axis-top { top: 6px; font-size: 14px; letter-spacing: 0.08em; }
   .axis-bottom { bottom: 6px; font-size: 14px; max-width: 200px; }
   .axis-subtitle { font-size: 14px; }
-  /* axis-left/right: span exactly the grid rows (top=34px matches top padding,
-     bottom=110px matches bottom padding) so labels are always vertically centred
-     on the grid — unaffected by the asymmetric padding. */
-  .axis-left  { left: 4px; top: 34px; bottom: 110px; height: auto; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: rotate(180deg); display: flex; justify-content: center; }
-  .axis-right { right: 4px; top: 34px; bottom: 110px; height: auto; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: none; display: flex; justify-content: center; }
+  .axis-left  { left: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%) rotate(180deg); }
+  .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
   .center-cross { height: 62%; }
   .matrix-footnote { font-size: 14px; margin-top: 20px; }
   .matrix-footnote + .matrix-footnote { margin-top: 8px; }
@@ -192,6 +190,11 @@
 @media (max-width: 600px) {
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
+}
+/* Landscape phone: reduce footnote spacing so they don't compete with the title */
+@media (max-height: 500px) {
+  .matrix-footnote { line-height: 1.2; margin-top: 8px; font-weight: 400; }
+  .matrix-footnote + .matrix-footnote { margin-top: 4px; }
 }
 </style>
 </head>
