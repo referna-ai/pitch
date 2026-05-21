@@ -159,7 +159,8 @@
 }
 
 @media (max-width: 768px) {
-  .matrix-row { margin-top: 0; padding: 34px 28px 50px; }
+  /* Extra bottom padding so axis-bottom label clears the grid */
+  .matrix-row { margin-top: 0; padding: 34px 28px 110px; }
   .matrix { column-gap: 10px; row-gap: 10px; width: 100%; }
   .quadrant { padding: 12px 10px; min-height: 70px; }
   .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
@@ -173,6 +174,12 @@
   .axis-right { right: 4px; font-size: 14px; letter-spacing: 0.06em; writing-mode: vertical-rl; transform: translateY(-50%); }
   .center-cross { height: 62%; }
   .matrix-footnote { font-size: 14px; }
+}
+/* Portrait: quadrant-tag was position:absolute — in narrow 122px columns it
+   overlaps the info text. Flow it statically so tag sits above the content. */
+@media (max-width: 600px) {
+  .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
+  .quadrant { justify-content: flex-start; }
 }
 </style>
 </head>

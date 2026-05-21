@@ -92,29 +92,24 @@ body[data-slide="slide-3"] .slide-title {
   text-anchor: middle;
 }
 
-/* ── Portrait mobile: SVG ~120px tall at natural width — fix to readable height + swipe ── */
+/* ── Portrait mobile: fit full horseshoe in viewport width ── */
 @media (max-width: 600px) {
   .horseshoe-stage {
     flex: none;
-    height: 200px;
-    min-height: 200px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    justify-content: flex-start;
-    scrollbar-width: none;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+    justify-content: center;
   }
-  .horseshoe-stage::-webkit-scrollbar { display: none; }
   .horseshoe-stage svg {
-    flex-shrink: 0;
-    width: auto;
-    height: 200px;
+    width: 100%;
+    height: auto;
     max-width: none;
   }
 }
 /* ── Landscape phone: slide scrolls freely; give horseshoe a height floor ── */
 @media (max-height: 500px) {
-  .horseshoe-stage { min-height: 180px; }
+  .horseshoe-stage { min-height: 120px; }
 }
 
 /* Flywheel line */
@@ -128,6 +123,10 @@ body[data-slide="slide-3"] .slide-title {
   margin-bottom: 10px;
 }
 .flywheel-line strong { font-style: normal; font-weight: 600; color: var(--gray); }
+/* ── All mobile: reset negative margin that overlaps SVG ── */
+@media (max-width: 768px) {
+  .flywheel-line { margin-top: 10px; }
+}
 </style>
 </head>
 <body data-slide="slide-3">
