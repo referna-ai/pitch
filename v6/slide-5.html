@@ -190,7 +190,7 @@
   .axis-left   { position: static; grid-area: left;   writing-mode: vertical-rl; transform: rotate(180deg); font-size: 14px; letter-spacing: 0.06em; }
   .axis-right  { position: static; grid-area: right;  writing-mode: vertical-rl; transform: none;           font-size: 14px; letter-spacing: 0.06em; }
   .matrix { grid-area: grid; width: 100%; column-gap: 10px; row-gap: 10px; }
-  .center-cross { display: block; }
+  .center-cross { display: block; top: 43%; }
 
   .quadrant { padding: 12px 10px; min-height: 70px; }
   .quadrant-tag { font-size: 14px; top: 8px; right: 8px; }
@@ -211,6 +211,7 @@
 @media (max-height: 500px) {
   .matrix-footnote { font-size: 7px; line-height: 1.3; margin-top: 6px; }
   .matrix-footnote + .matrix-footnote { margin-top: 3px; }
+  .center-cross { top: 43%; }
 }
 </style>
 </head>
