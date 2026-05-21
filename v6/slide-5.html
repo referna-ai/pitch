@@ -201,11 +201,8 @@
   .matrix-footnote { font-size: 14px; margin-top: 20px; }
   .matrix-footnote + .matrix-footnote { margin-top: 8px; }
 }
-/* Portrait: collapse side columns, hide side axis labels so matrix fills the row. */
+/* Portrait: quadrant-tag was position:absolute — in narrow columns it overlaps the info text. */
 @media (max-width: 600px) {
-  .axis-left, .axis-right { display: none; }
-  .matrix-row { grid-template-columns: 0px 1fr 0px; column-gap: 0; }
-  .axis-bottom { max-width: 280px; }
   .quadrant-tag { position: static; display: block; margin-bottom: 4px; }
   .quadrant { justify-content: flex-start; }
 }
