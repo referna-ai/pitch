@@ -11,62 +11,58 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 body[data-slide="slide-7"] .slide-title {
-  font-size: 32px;
+  font-size: 28px;
   text-align: center;
-  margin: 0 auto 24px;
-  max-width: 760px;
+  margin: 0 auto 28px;
+  max-width: 880px;
+  line-height: 1.25;
+}
+body[data-slide="slide-7"] .slide-title .title-lead {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 6px;
 }
 
-.gtm-segment {
-  display: flex;
-  align-items: baseline;
-  gap: 24px;
-  margin-top: 14px;
+.killed-section {
+  margin-top: 18px;
   margin-bottom: 6px;
   padding: 14px 20px;
   background: rgba(212,165,116,0.04);
   border-left: 2px solid rgba(212,165,116,0.35);
   border-radius: 0 6px 6px 0;
 }
-.gtm-segment-q {
+.killed-label {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
-  white-space: nowrap;
-  flex-shrink: 0;
+  margin-bottom: 8px;
 }
-.gtm-segment-a {
+.killed-list {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
-.gtm-segment-answer {
+.killed-item {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 17px;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.2;
-}
-.gtm-segment-stats {
-  font-family: var(--font-display);
-  font-size: 14px;
   font-weight: 500;
-  color: var(--gray-dark);
-  letter-spacing: 0.02em;
+  font-size: 15px;
+  color: var(--gray);
+  letter-spacing: -0.005em;
+  line-height: 1.4;
 }
-
-.cards-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 0.18em;
+.killed-item .killed-arrow {
+  color: rgba(212,165,116,0.55);
+  margin: 0 8px;
+}
+.killed-item .killed-tag {
+  color: var(--gray-mid);
   text-transform: uppercase;
-  color: var(--gray-dark);
-  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
 }
 
 body[data-slide="slide-7"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
@@ -149,14 +145,12 @@ body[data-slide="slide-7"] .reason-desc strong {
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">The market pull signal doesn't stop at 30%. Three more tests confirm it.</h2>
-
-  <div class="cards-label">From our other tests</div>
+  <h2 class="slide-title"><span class="title-lead">The 30.2% wasn't the only test.</span>We ran 10+ tests per week for 10+ weeks —<br>focused on cracking distribution before building product.</h2>
 
   <div class="reasons-grid">
 
     <div class="reason-card">
-      <div class="reason-ribbon">Small sample</div>
+      <div class="reason-ribbon">n=64</div>
       <div class="reason-card-body">
         <div class="reason-title">Weekly growth</div>
         <div class="reason-stats">
@@ -170,7 +164,7 @@ body[data-slide="slide-7"] .reason-desc strong {
     </div>
 
     <div class="reason-card">
-      <div class="reason-ribbon">Hundreds of emails</div>
+      <div class="reason-ribbon">n=139 vs 5,201 control</div>
       <div class="reason-card-body">
         <div class="reason-title">Cold email → onboarded</div>
         <div class="reason-stats">
@@ -184,7 +178,7 @@ body[data-slide="slide-7"] .reason-desc strong {
     </div>
 
     <div class="reason-card">
-      <div class="reason-ribbon">Tiny sample — early signal</div>
+      <div class="reason-ribbon">n=14</div>
       <div class="reason-card-body">
         <div class="reason-title">Virality</div>
         <div class="reason-stats">
@@ -203,15 +197,16 @@ body[data-slide="slide-7"] .reason-desc strong {
 
   </div>
 
-  <div class="gtm-segment">
-    <span class="gtm-segment-q">The segment we are starting with</span>
-    <div class="gtm-segment-a">
-      <span class="gtm-segment-answer">Professionals who serve startups</span>
-      <span class="gtm-segment-stats">131K independents · 14 professions · $6B/yr market</span>
+  <div class="killed-section">
+    <div class="killed-label">What we killed</div>
+    <div class="killed-list">
+      <div class="killed-item">Enterprise salespeople want referrals<span class="killed-arrow">→</span><span class="killed-tag">killed</span></div>
+      <div class="killed-item">Independent professionals want random intros<span class="killed-arrow">→</span><span class="killed-tag">killed</span></div>
+      <div class="killed-item">Facebook groups would drive signups<span class="killed-arrow">→</span><span class="killed-tag">killed (no geographic density)</span></div>
     </div>
   </div>
 
-  <div class="conclusion">Three pre-funding signals — <strong>all pointing to fast growth.</strong></div>
+  <div class="conclusion">We believe data, not opinions. <strong>The data says go.</strong></div>
   <div class="sources">Sources: InTouch product data (n=64) · YC growth thresholds (Paul Graham)</div>
 </div>
 
