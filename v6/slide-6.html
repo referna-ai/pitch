@@ -3,206 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S7 · Smoke Test — InTouch Pitch</title>
+<title>S6 · Market pull — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-6"] .slide-title { margin-bottom: 20px; }
+body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
 
-/* HERO: stat left, email right */
-.hero-body {
+.story {
   flex: 1;
   min-height: 0;
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 32px;
-  align-items: start;
-}
-
-/* LEFT COLUMN */
-.email-column {
   display: flex;
   flex-direction: column;
-  gap: 9px;
-  overflow: hidden; /* crops email 20% on right */
+  justify-content: center;
+  gap: 22px;
+  padding: 0 20px;
 }
 
-/* EMAIL MOCKUP */
-.email-card {
-  background: #F0EFEE;
-  border-radius: 6px;
-  padding: 12px 15px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-}
-.email-subject {
-  font-size: 14px; font-weight: 600; color: #555;
+.story-line {
+  font-family: var(--font-display);
+  color: var(--white);
+  line-height: 1.3;
   letter-spacing: -0.01em;
-  margin-bottom: 5px; line-height: 1.25;
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-}
-.email-meta {
-  font-size: 11px; color: #777; line-height: 1.5;
-  border-bottom: 1px solid #d8d6d3;
-  padding-bottom: 6px; margin-bottom: 8px;
-}
-.email-meta-row { display: flex; gap: 5px; align-items: center; }
-.email-meta-label { color: #a0a0a0; font-weight: 500; flex-shrink: 0; }
-.email-meta-value { color: #666; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.email-body { font-size: 11.5px; line-height: 1.5; color: #666; }
-.email-body p { margin-bottom: 5px; }
-.email-body p:last-child { margin-bottom: 0; }
-.email-signoff { margin-top: 6px; font-size: 11.5px; color: #666; line-height: 1.4; }
-.email-signoff-title { color: #888; font-size: 11px; }
-.email-pop {
-  background: rgba(212,165,116,0.32);
-  color: #0d0d0d;
-  padding: 1px 4px;
-  border-radius: 2px;
-  font-weight: 500;
-}
-/* STAT LINES UNDER EMAIL */
-.email-stats {
-  padding: 14px 16px;
-  border-left: 2px solid rgba(255,255,255,0.18);
-  background: rgba(255,255,255,0.025);
+  opacity: 0;
+  transform: translateY(12px);
 }
 
-/* POSITIVE REPLIES CALLOUT (left column) */
-.positive-callout {
-  background: var(--white);
-  color: var(--black);
-  padding: 16px 22px;
-  border-radius: 6px;
-  display: inline-flex; align-items: baseline; gap: 12px;
-  align-self: flex-start;
-  margin-bottom: 24px;
-}
-.positive-callout-num {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 38px; line-height: 1; letter-spacing: -0.03em;
-  color: var(--black);
-}
-.positive-callout-label {
-  font-family: var(--font-display); font-weight: 600;
-  font-size: 16px; line-height: 1.2;
-  color: var(--black);
+.story-line.setup    { font-weight: 600; font-size: 30px; }
+.story-line.lead-in  { font-weight: 500; font-size: 24px; color: var(--gray-dark); font-style: italic; margin-top: 8px; }
+.story-line.climax   { font-weight: 800; font-size: 56px; color: var(--gold); letter-spacing: -0.03em; line-height: 1.15; margin-top: 4px; }
+.story-line.coda     { font-weight: 600; font-size: 24px; color: var(--white); font-style: italic; }
+
+.story-line.auto,
+.story-line.is-revealed {
+  animation: storyReveal 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 
-/* RIGHT COLUMN */
-.stat-col {
-  display: flex;
-  flex-direction: column;
-}
-.hero-stat {
-  font-family: var(--font-display); font-weight: 800;
-  font-size: 130px; line-height: 0.9; letter-spacing: -0.04em;
-  color: var(--gold);
-  margin-bottom: 14px;
-}
-.hero-stat-label {
-  font-family: var(--font-display); font-weight: 600; font-size: 18px;
-  color: var(--white); line-height: 1.4;
-  margin-bottom: 28px;
-  font-style: normal;
-}
-.comparison-line {
-  font-family: var(--font-display); font-weight: 700; font-size: 22px;
-  color: var(--white); line-height: 1.35;
-  margin-bottom: 14px;
-}
-.mini-conclusion {
-  font-family: var(--font-display); font-weight: 700; font-size: 18px;
-  color: var(--gold); line-height: 1.4;
-  margin-bottom: 24px;
-}
-.comparison-line .mult { color: var(--gold); font-weight: 800; }
-.stat-divider {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  margin: 8px 0 14px;
-}
-.stat-line {
-  font-family: var(--font-display); font-size: 16px; color: var(--gray-dark);
-  line-height: 1.6; margin-bottom: 6px;
-}
-.stat-line strong { color: var(--white); font-weight: 600; }
+.story-line.auto:nth-child(1) { animation-delay: 0.40s; }
+.story-line.auto:nth-child(2) { animation-delay: 1.60s; }
 
-/* LABEL ABOVE EMAIL */
-.email-label {
-  font-family: var(--font-display); font-weight: 600; font-size: 16px;
-  color: var(--white); line-height: 1.4;
-  margin-bottom: 4px;
+@keyframes storyReveal {
+  to { opacity: 1; transform: translateY(0); }
 }
+
+/* Subtle hint that a click/key is expected once auto-reveal finishes. */
+.story[data-stage="waiting"] { cursor: pointer; }
 </style>
 </head>
 <body data-slide="slide-6">
 
 <div class="deck">
 
-<div class="slide" id="slide-7">
+<div class="slide" id="slide-6">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
   <h2 class="slide-title">The undeniable evidence</h2>
 
-  <div class="hero-body">
-
-    <!-- LEFT: hero stat + smoke test def -->
-    <div class="stat-col">
-      <div class="hero-stat">30.2%</div>
-      <div class="hero-stat-label">Reply rate to cold email campaign</div>
-      <div class="comparison-line"><span class="mult">20×</span> better than industry average</div>
-      <div class="mini-conclusion">The pain is real and urgent</div>
-      <div class="positive-callout">
-        <div class="positive-callout-num">80%</div>
-        <div class="positive-callout-label">positive replies</div>
-      </div>
-    </div>
-
-    <!-- RIGHT: email + stats -->
-    <div class="email-column">
-      <div class="email-label">The cold email we sent to test the demand</div>
-      <div class="email-card">
-        <div class="email-subject">Looking for fractional CFO to refer</div>
-        <div class="email-meta">
-          <div class="email-meta-row">
-            <span class="email-meta-label">From:</span>
-            <span class="email-meta-value">gordy@joinintrocircle.com</span>
-          </div>
-          <div class="email-meta-row">
-            <span class="email-meta-label">To:</span>
-            <span class="email-meta-value">shelly@topdoggaragedoorsnc.com</span>
-          </div>
-        </div>
-        <div class="email-body">
-          <p>Hi Shelly,</p>
-          <p>Gordy here — AI that helps with referrals.</p>
-          <p>We have a <span class="email-pop">group (we call them circles) of professionals who refer business to each other</span>, and they need a fractional CFO to refer work to. They asked me to help find one — and I think you could be a fit.</p>
-          <p>If you'd like to apply, just reply and I'll help you through it.</p>
-          <p>Or pass if this isn't for you.</p>
-          <div class="email-signoff">
-            Gordy<br>
-            <span class="email-signoff-title">Referral Circle Keeper, InTouch</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="email-stats">
-        <div class="stat-line">Worst campaign: <strong>17%</strong>. Best: <strong>37%</strong>.</div>
-        <div class="stat-line"><strong>139</strong> contacts in test group · <strong>5,201</strong> in control</div>
-      </div>
-    </div>
-
+  <div class="story" data-stage="auto">
+    <div class="story-line setup auto">We needed proof the pain was urgent.</div>
+    <div class="story-line setup auto">So we sent 139 cold emails to strangers.</div>
+    <div class="story-line setup cued">Our bar: 10% replies, 50% yeses &mdash; we'd celebrate.</div>
+    <div class="story-line lead-in follow">We couldn't believe the result&hellip;</div>
+    <div class="story-line climax cued">30.2% replied. 80% said yes.</div>
+    <div class="story-line coda follow">We've never seen anything close &mdash; 20&times; our benchmark.</div>
   </div>
 
-  <div class="conclusion"><strong>A 20× signal</strong> is hard to ignore — and shows we can grow fast.</div>
-  <div class="sources">Sources: InTouch outbound · 5 referral-offer campaigns · May 2026</div>
+  <div class="conclusion"><strong>A 20&times; signal</strong> is hard to ignore &mdash; and shows we can grow fast.</div>
+  <div class="sources">Sources: InTouch outbound &middot; 5 referral-offer campaigns &middot; May 2026</div>
 </div>
 
 </div>
 
+<script>
+// Gate the last two story lines behind a forward-navigation gesture
+// (space / arrow-right / page-down / wheel-down / click on the slide).
+// Once both cued lines are revealed, forward gestures fall through to
+// nav.js and advance to the next slide. Back navigation always passes through.
+(function () {
+  var story = document.querySelector('.story');
+  var groups = Array.prototype.map.call(
+    document.querySelectorAll('.story-line.cued'),
+    function (c) {
+      var next = c.nextElementSibling;
+      return { cued: c, follow: next && next.classList.contains('follow') ? next : null };
+    }
+  );
+  var idx = 0;
+
+  // Once the auto lines (1-2) finish, signal "waiting for input".
+  setTimeout(function () {
+    if (story && idx === 0) story.dataset.stage = 'waiting';
+  }, 2700);
+
+  function advance() {
+    if (idx >= groups.length) return false;
+    var g = groups[idx];
+    g.cued.classList.add('is-revealed');
+    if (g.follow) {
+      setTimeout(function () { g.follow.classList.add('is-revealed'); }, 1200);
+    }
+    idx++;
+    if (story) {
+      if (idx >= groups.length) {
+        setTimeout(function () { story.dataset.stage = 'done'; }, 1200);
+      } else {
+        setTimeout(function () { story.dataset.stage = 'waiting'; }, 2300);
+        story.dataset.stage = 'playing';
+      }
+    }
+    return true;
+  }
+
+  function isForwardKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return false;
+    return e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space' || e.key === 'PageDown';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (!isForwardKey(e)) return;
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  document.addEventListener('click', function (e) {
+    if (e.button !== 0) return;
+    var t = e.target;
+    if (!t || !t.closest) return;
+    // Never intercept: tab strip / mobile tab trigger / back affordances / form controls
+    if (t.closest('.deck-tab, .deck-tabs-trigger, .nav-arrow-left, .nav-indicator-prev, input, textarea, select, label')) return;
+    // Intercept everything else (slide clicks AND forward nav buttons) so the
+    // gesture reveals the next cued line before advancing slides.
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  document.addEventListener('wheel', function (e) {
+    if (e.deltaY <= 24) return;
+    var doc = document.documentElement;
+    var atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 2;
+    if (!atBottom) return;
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, { capture: true, passive: false });
+
+  // Swipe left (forward) on touch
+  var tsX = null, tsY = null, tsT = 0;
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { tsX = null; return; }
+    tsX = e.touches[0].clientX;
+    tsY = e.touches[0].clientY;
+    tsT = Date.now();
+  }, { capture: true, passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tsX === null) return;
+    var dx = e.changedTouches[0].clientX - tsX;
+    var dy = e.changedTouches[0].clientY - tsY;
+    var dt = Date.now() - tsT;
+    tsX = null;
+    if (dt > 800) return;
+    if (Math.abs(dx) < 50 || Math.abs(dx) <= Math.abs(dy)) return;
+    if (dx >= 0) return; // right-swipe = back; let nav.js handle it
+    if (advance()) {
+      e.stopImmediatePropagation();
+    }
+  }, { capture: true, passive: true });
+})();
+</script>
 <script src="nav.js"></script>
 <script>(function(){var el=document.querySelector('.slide-label');if(el)el.textContent='Market pull';})();</script>
 </body>
