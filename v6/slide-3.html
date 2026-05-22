@@ -141,9 +141,17 @@ body[data-slide="slide-3"] .slide-title {
   <div class="horseshoe-stage">
     <svg viewBox="0 0 1080 360" preserveAspectRatio="xMidYMid meet">
       <defs>
-        <!-- Grayscale filter for all faces -->
+        <!-- Grayscale filter for Ami -->
         <filter id="gs" color-interpolation-filters="sRGB">
           <feColorMatrix type="saturate" values="0"/>
+        </filter>
+        <!-- Subtle sepia/gold-tinted grayscale for peers -->
+        <filter id="gs-warm" color-interpolation-filters="sRGB">
+          <feColorMatrix type="saturate" values="0"/>
+          <feColorMatrix type="matrix" values="1.12 0    0    0 0
+                                               0    1.0  0    0 0
+                                               0    0    0.78 0 0
+                                               0    0    0    1 0"/>
         </filter>
         <!-- Clip paths for all faces -->
         <clipPath id="cp-ami"><circle cx="178" cy="182" r="82"/></clipPath>
@@ -171,43 +179,43 @@ body[data-slide="slide-3"] .slide-title {
       <circle class="peer-face" cx="716" cy="95" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/23.jpg"
              x="687" y="66" width="58" height="58"
-             clip-path="url(#cp-p1)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p1)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p2: 90° -->
       <circle class="peer-face" cx="808" cy="57" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/44.jpg"
              x="779" y="28" width="58" height="58"
-             clip-path="url(#cp-p2)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p2)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p3: 45° -->
       <circle class="peer-face" cx="900" cy="95" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/67.jpg"
              x="871" y="66" width="58" height="58"
-             clip-path="url(#cp-p3)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p3)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p4: 0° -->
       <circle class="peer-face" cx="938" cy="185" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/81.jpg"
              x="909" y="156" width="58" height="58"
-             clip-path="url(#cp-p4)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p4)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p5: -45° -->
       <circle class="peer-face" cx="900" cy="275" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/15.jpg"
              x="871" y="246" width="58" height="58"
-             clip-path="url(#cp-p5)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p5)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p6: -90° -->
       <circle class="peer-face" cx="808" cy="313" r="31"/>
       <image href="https://randomuser.me/api/portraits/men/7.jpg"
              x="779" y="284" width="58" height="58"
-             clip-path="url(#cp-p6)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p6)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p7: -135° -->
       <circle class="peer-face" cx="716" cy="275" r="31"/>
       <image href="https://randomuser.me/api/portraits/women/52.jpg"
              x="687" y="246" width="58" height="58"
-             clip-path="url(#cp-p7)" filter="url(#gs)" preserveAspectRatio="xMidYMid slice"/>
+             clip-path="url(#cp-p7)" filter="url(#gs-warm)" preserveAspectRatio="xMidYMid slice"/>
 
       <text class="circle-label" x="808" y="162">Ami's Circle</text>
       <text class="circle-sublabel" x="808" y="182"><tspan x="808" dy="0">8 independent</tspan><tspan x="808" dy="18">professionals</tspan><tspan x="808" dy="18">One per profession</tspan></text>

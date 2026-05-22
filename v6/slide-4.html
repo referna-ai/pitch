@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · Precedent — InTouch Pitch</title>
+<title>S4 · Incumbent — InTouch Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-4"] .slide-title { margin-bottom: 10px; }
+body[data-slide="slide-4"] .slide-title { margin-bottom: 6px; }
 body[data-slide="slide-4"] .slide-title .gold { color: var(--gold); }
 body[data-slide="slide-4"] .slide-title .bni-logo {
   height: 0.88em;
@@ -18,6 +18,14 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
   vertical-align: -0.08em;
   margin-right: 0.04em;
   filter: brightness(0) invert(1);
+}
+.slide-subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gray-mid);
+  text-align: left;
+  margin: 0 0 8px;
 }
 
 /* Horseshoe visual */
@@ -37,14 +45,14 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
 }
 
 .peer-face { fill: #1a1a1a; stroke: #505050; stroke-width: 1.5; }
-.bni-ring  { fill: #241e19; stroke: var(--gold); stroke-width: 3; }
+.bni-ring  { fill: #1a1a1a; stroke: #505050; stroke-width: 3; }
 
 .arrow-line    { stroke: var(--gold); stroke-width: 2; fill: none; opacity: 0.7; }
 .arrow-head    { fill: var(--gold); opacity: 0.7; }
 .arrow-caption {
   font-family: 'Manrope', sans-serif;
-  font-weight: 600;
-  font-size: 15px;
+  font-weight: 700;
+  font-size: 18px;
   fill: var(--gray);
   text-anchor: middle;
 }
@@ -111,12 +119,13 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
 
 <div class="slide" id="slide-4">
   <div class="slide-number"></div>
-  <div class="slide-label"></div>
+  <div class="slide-label">Incumbent</div>
   <h2 class="slide-title"><img class="bni-logo" src="logos/bni.png" alt="BNI">: Referral network — <span class="gold">$26.4B</span> referrals/year</h2>
+  <p class="slide-subtitle">InTouch and BNI have the same concept — trusted peers refer clients</p>
 
   <div class="horseshoe-stage">
     <!-- Same proportions as slide-3; viewBox extended 25px taller for below-ring annotations -->
-    <svg viewBox="0 0 1080 395" preserveAspectRatio="xMidYMid meet">
+    <svg viewBox="0 0 1080 405" preserveAspectRatio="xMidYMid meet">
       <defs>
         <filter id="gs-s4" color-interpolation-filters="sRGB">
           <feColorMatrix type="saturate" values="0"/>
@@ -131,61 +140,61 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
         <clipPath id="cp-s4-p7"><circle cx="716" cy="275" r="29"/></clipPath>
       </defs>
 
-      <!-- ── JOE (BNI member — gold ring, grayscale) ── -->
+      <!-- ── JOE (BNI member — gray ring, grayscale) ── -->
       <text class="face-label" x="178" y="90">Joe</text>
       <circle class="bni-ring" cx="178" cy="182" r="84"/>
       <image href="https://randomuser.me/api/portraits/men/32.jpg"
              x="96" y="100" width="164" height="164"
              clip-path="url(#cp-s4-joe)" filter="url(#gs-s4)"
              preserveAspectRatio="xMidYMid slice"/>
-      <text class="bni-face-caption" x="178" y="296">A BNI member</text>
+      <text class="bni-face-caption" x="178" y="290"><tspan x="178" dy="0">Joe is self-employed like Ami</tspan><tspan x="178" dy="18">but is a caterer</tspan></text>
 
       <!-- Below Joe: $800/yr membership -->
-      <text x="178" y="320" text-anchor="middle"
-            font-family="Manrope" font-size="18" font-weight="800" fill="#D4A574">$800/yr</text>
-      <text x="178" y="338" text-anchor="middle"
-            font-family="Manrope" font-size="14" font-weight="500" fill="#666666">membership</text>
+      <text x="178" y="375" text-anchor="middle"
+            font-family="Manrope" font-size="20" font-weight="800" fill="#D4A574" letter-spacing="-0.01em">$800/yr</text>
+      <text x="178" y="395" text-anchor="middle"
+            font-family="Manrope" font-size="14" font-weight="700" fill="#D4A574" letter-spacing="0.09em">MEMBERSHIP</text>
 
-      <!-- ── 7 PEERS (horseshoe open toward Joe) ── -->
+      <!-- ── 7 PEERS (horseshoe open toward Joe) — rotated 3 positions vs slide-3 ── -->
       <!-- p1: 135° -->
       <circle class="peer-face" cx="716" cy="95"  r="31"/>
-      <image href="https://randomuser.me/api/portraits/women/23.jpg"
+      <image href="https://randomuser.me/api/portraits/women/15.jpg"
              x="687" y="66" width="58" height="58"
              clip-path="url(#cp-s4-p1)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p2: 90° -->
       <circle class="peer-face" cx="808" cy="57"  r="31"/>
-      <image href="https://randomuser.me/api/portraits/men/44.jpg"
+      <image href="https://randomuser.me/api/portraits/men/7.jpg"
              x="779" y="28" width="58" height="58"
              clip-path="url(#cp-s4-p2)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p3: 45° -->
       <circle class="peer-face" cx="900" cy="95"  r="31"/>
-      <image href="https://randomuser.me/api/portraits/women/67.jpg"
+      <image href="https://randomuser.me/api/portraits/women/52.jpg"
              x="871" y="66" width="58" height="58"
              clip-path="url(#cp-s4-p3)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p4: 0° -->
       <circle class="peer-face" cx="938" cy="185" r="31"/>
-      <image href="https://randomuser.me/api/portraits/men/81.jpg"
+      <image href="https://randomuser.me/api/portraits/women/23.jpg"
              x="909" y="156" width="58" height="58"
              clip-path="url(#cp-s4-p4)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p5: -45° -->
       <circle class="peer-face" cx="900" cy="275" r="31"/>
-      <image href="https://randomuser.me/api/portraits/women/15.jpg"
+      <image href="https://randomuser.me/api/portraits/men/44.jpg"
              x="871" y="246" width="58" height="58"
              clip-path="url(#cp-s4-p5)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p6: -90° -->
       <circle class="peer-face" cx="808" cy="313" r="31"/>
-      <image href="https://randomuser.me/api/portraits/men/7.jpg"
+      <image href="https://randomuser.me/api/portraits/women/67.jpg"
              x="779" y="284" width="58" height="58"
              clip-path="url(#cp-s4-p6)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
       <!-- p7: -135° -->
       <circle class="peer-face" cx="716" cy="275" r="31"/>
-      <image href="https://randomuser.me/api/portraits/women/52.jpg"
+      <image href="https://randomuser.me/api/portraits/men/81.jpg"
              x="687" y="246" width="58" height="58"
              clip-path="url(#cp-s4-p7)" filter="url(#gs-s4)" preserveAspectRatio="xMidYMid slice"/>
 
@@ -197,19 +206,19 @@ body[data-slide="slide-4"] .slide-title .bni-logo {
       <!-- ── ARROWS ── -->
       <path class="arrow-line" d="M 674 162 L 272 162"/>
       <polygon class="arrow-head" points="262,162 277,155 277,169"/>
-      <text class="arrow-caption" x="472" y="143">Refers $65K of customers / year</text>
+      <text class="arrow-caption" x="472" y="143">Refers <tspan fill="#D4A574" font-weight="800">$65K</tspan> of customers / year</text>
 
       <path class="arrow-line" d="M 272 202 L 674 202"/>
       <polygon class="arrow-head" points="684,202 669,195 669,209"/>
-      <text class="arrow-caption" x="472" y="232">$65K of customers referred back / year</text>
+      <text class="arrow-caption" x="472" y="232"><tspan fill="#D4A574" font-weight="800">$65K</tspan> of customers referred back / year</text>
 
-      <!-- ── Below ring: 340K MEMBERS + SEGMENTS ── -->
-      <text x="808" y="370" text-anchor="middle"
-            font-family="Manrope" font-size="18" font-weight="800"
+      <!-- ── Below ring: 340K MEMBERS + descriptor ── -->
+      <text x="808" y="375" text-anchor="middle"
+            font-family="Manrope" font-size="20" font-weight="800"
             fill="#D4A574" letter-spacing="-0.01em">340K MEMBERS</text>
-      <text x="808" y="388" text-anchor="middle"
+      <text x="808" y="395" text-anchor="middle"
             font-family="Manrope" font-size="14" font-weight="700"
-            fill="#666666" letter-spacing="0.09em">SEGMENTS · B2C PROFESSIONS</text>
+            fill="#666666" letter-spacing="0.04em">Professionals serving consumers</text>
     </svg>
   </div>
 
