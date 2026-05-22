@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S6 · Market pull [story backup] — InTouch Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-6-backup-story"] .slide-title { margin-bottom: 40px; }
+
+.story {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 22px;
+  padding: 0 20px;
+}
+
+.story-line {
+  font-family: var(--font-display);
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.story-line.setup    { font-weight: 600; font-size: 30px; }
+.story-line.lead-in  { font-weight: 500; font-size: 24px; color: var(--gray-dark); font-style: italic; margin-top: 8px; }
+.story-line.climax   { font-weight: 800; font-size: 56px; color: var(--gold); letter-spacing: -0.03em; line-height: 1.15; margin-top: 4px; }
+.story-line.coda     { font-weight: 600; font-size: 24px; color: var(--white); font-style: italic; }
+
+.story-line.auto,
+.story-line.is-revealed {
+  animation: storyReveal 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+
+.story-line.auto:nth-child(1) { animation-delay: 0.40s; }
+.story-line.auto:nth-child(2) { animation-delay: 1.60s; }
+
+@keyframes storyReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Subtle hint that a click/key is expected once auto-reveal finishes. */
+.story[data-stage="waiting"] { cursor: pointer; }
+</style>
+</head>
+<body data-slide="slide-6-backup-story">
+
+<div class="deck">
+
+<div class="slide" id="slide-6-backup-story">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">The undeniable evidence</h2>
+
+  <div class="story" data-stage="auto">
+    <div class="story-line setup auto">We needed proof the pain was urgent.</div>
+    <div class="story-line setup auto">So we sent 139 cold emails to strangers.</div>
+    <div class="story-line setup cued">We'd have been excited with 10% replies, 50% yeses.</div>
+    <div class="story-line lead-in follow">We couldn't believe the result&hellip;</div>
+    <div class="story-line climax cued">30.2% replied. 80% said yes.</div>
+    <div class="story-line coda follow">We've never seen anything close &mdash; 20&times; our benchmark.</div>
+  </div>
+
+  <div class="conclusion"><strong>A 20&times; signal</strong> is hard to ignore &mdash; and shows we can grow fast.</div>
+  <div class="sources">Sources: InTouch outbound &middot; 5 referral-offer campaigns &middot; May 2026</div>
+</div>
+
+</div>
+
+<script>
+// Gate the last two story lines behind a forward-navigation gesture
+// (space / arrow-right / page-down / wheel-down / click on the slide).
+// Once both cued lines are revealed, forward gestures fall through to
+// nav.js and advance to the next slide. Back navigation always passes through.
+(function () {
+  var story = document.querySelector('.story');
+  var groups = Array.prototype.map.call(
+    document.querySelectorAll('.story-line.cued'),
+    function (c) {
+      var next = c.nextElementSibling;
+      return { cued: c, follow: next && next.classList.contains('follow') ? next : null };
+    }
+  );
+  var idx = 0;
+
+  // Once the auto lines (1-2) finish, signal "waiting for input".
+  setTimeout(function () {
+    if (story && idx === 0) story.dataset.stage = 'waiting';
+  }, 2700);
+
+  function advance() {
+    if (idx >= groups.length) return false;
+    var g = groups[idx];
+    g.cued.classList.add('is-revealed');
+    if (g.follow) {
+      setTimeout(function () { g.follow.classList.add('is-revealed'); }, 1200);
+    }
+    idx++;
+    if (story) {
+      if (idx >= groups.length) {
+        setTimeout(function () { story.dataset.stage = 'done'; }, 1200);
+      } else {
+        setTimeout(function () { story.dataset.stage = 'waiting'; }, 2300);
+        story.dataset.stage = 'playing';
+      }
+    }
+    return true;
+  }
+
+  function isForwardKey(e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return false;
+    return e.key === 'ArrowRight' || e.key === ' ' || e.code === 'Space' || e.key === 'PageDown';
+  }
+
+  document.addEventListener('keydown', function (e) {
+    var t = e.target;
+    if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.isContentEditable)) return;
+    if (!isForwardKey(e)) return;
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  document.addEventListener('click', function (e) {
+    if (e.button !== 0) return;
+    var t = e.target;
+    if (!t || !t.closest) return;
+    // Never intercept: tab strip / mobile tab trigger / back affordances / form controls
+    if (t.closest('.deck-tab, .deck-tabs-trigger, .nav-arrow-left, .nav-indicator-prev, input, textarea, select, label')) return;
+    // Intercept everything else (slide clicks AND forward nav buttons) so the
+    // gesture reveals the next cued line before advancing slides.
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+
+  document.addEventListener('wheel', function (e) {
+    if (e.deltaY <= 24) return;
+    var doc = document.documentElement;
+    var atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 2;
+    if (!atBottom) return;
+    if (advance()) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, { capture: true, passive: false });
+
+  // Swipe left (forward) on touch
+  var tsX = null, tsY = null, tsT = 0;
+  document.addEventListener('touchstart', function (e) {
+    if (e.touches.length !== 1) { tsX = null; return; }
+    tsX = e.touches[0].clientX;
+    tsY = e.touches[0].clientY;
+    tsT = Date.now();
+  }, { capture: true, passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tsX === null) return;
+    var dx = e.changedTouches[0].clientX - tsX;
+    var dy = e.changedTouches[0].clientY - tsY;
+    var dt = Date.now() - tsT;
+    tsX = null;
+    if (dt > 800) return;
+    if (Math.abs(dx) < 50 || Math.abs(dx) <= Math.abs(dy)) return;
+    if (dx >= 0) return; // right-swipe = back; let nav.js handle it
+    if (advance()) {
+      e.stopImmediatePropagation();
+    }
+  }, { capture: true, passive: true });
+})();
+</script>
+<script src="nav.js"></script>
+<script>(function(){var el=document.querySelector('.slide-label');if(el)el.textContent='Market pull';})();</script>
+</body>
+</html>
