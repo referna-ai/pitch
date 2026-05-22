@@ -402,33 +402,39 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
   const segCounter = document.getElementById('us-segments');
   if (!carousel || !track || !cards || !cards.length) return;
 
-  // Phones get the stacked layout — no animation.
+  // Counter shows the TAM totals — no animation tied to it any more.
+  if (counter) counter.textContent = '9.26M';
+  if (segCounter) segCounter.textContent = '21';
+
+  // Phones: stacked layout — no animation.
   if (matchMedia('(max-width: 560px)').matches) return;
 
-  const SPEED_PX_PER_SEC = 180; // initial drift speed
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const TARGET_VALUE = 9.26;
-  const STEPS = 21;
-
   const STARTUP_INDEX = cards.findIndex(c => c.classList.contains('featured'));
-  const intouchLogo = cards[STARTUP_INDEX].querySelector('.card-logo-intouch');
-  const originalLogos = cards.map(card => card.querySelector('.card-logo:not(.card-logo-intouch)') || null);
 
-  let currentFeatured = STARTUP_INDEX;
+  const intouchLogoHTML =
+    '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+    '<rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>' +
+    '<path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>' +
+    '</svg><span class="it-text">InTouch</span>';
 
-  const setFeatured = (index) => {
-    if (currentFeatured === index) return;
-    const oldCard = cards[currentFeatured];
-    oldCard.classList.remove('featured');
-    if (originalLogos[currentFeatured]) originalLogos[currentFeatured].style.display = '';
-    if (intouchLogo && intouchLogo.parentNode === oldCard) oldCard.removeChild(intouchLogo);
+  const buildIntouchLogo = () => {
+    const div = document.createElement('div');
+    div.className = 'card-logo card-logo-intouch';
+    div.innerHTML = intouchLogoHTML;
+    return div;
+  };
 
-    const newCard = cards[index];
-    if (originalLogos[index]) originalLogos[index].style.display = 'none';
-    newCard.insertBefore(intouchLogo, newCard.firstChild);
-    newCard.classList.add('featured');
-    currentFeatured = index;
+  // Cumulative expansion: once InTouch claims a card it keeps the badge + gold.
+  const claimed = new Set([STARTUP_INDEX]);
+  const claim = (index) => {
+    if (claimed.has(index)) return;
+    const card = cards[index];
+    const existing = card.querySelector('.card-logo:not(.card-logo-intouch)');
+    if (existing) existing.style.display = 'none';
+    card.insertBefore(buildIntouchLogo(), card.firstChild);
+    card.classList.add('featured');
+    claimed.add(index);
   };
 
   const translateForCenter = (index) => {
@@ -438,54 +444,19 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
     return Math.round((carouselW / 2) - cardCenter);
   };
 
-  if (counter && !reducedMotion) counter.textContent = '0.00M';
-  if (segCounter && !reducedMotion) segCounter.textContent = '0';
-
-  const runCounter = (durationMs) => {
-    if (!counter && !segCounter) return;
-    if (reducedMotion || durationMs <= 0) {
-      if (counter) counter.textContent = TARGET_VALUE.toFixed(2) + 'M';
-      if (segCounter) segCounter.textContent = String(STEPS);
-      return;
-    }
-    const start = performance.now();
-    if (counter) counter.textContent = '0.00M';
-    if (segCounter) segCounter.textContent = '0';
-    let lastStep = -1;
-    const tick = (now) => {
-      const t = Math.min(1, (now - start) / durationMs);
-      const step = Math.min(STEPS, Math.floor(t * STEPS) + 1);
-      if (step !== lastStep) {
-        lastStep = step;
-        const value = (step === STEPS) ? TARGET_VALUE : (TARGET_VALUE * step / STEPS);
-        if (counter) counter.textContent = value.toFixed(2) + 'M';
-        if (segCounter) segCounter.textContent = String(step);
-      }
-      if (t < 1) requestAnimationFrame(tick);
-    };
-    requestAnimationFrame(tick);
+  // Start centered on Startup — no drift.
+  const positionAt = (index) => {
+    const targetX = translateForCenter(index);
+    track.style.transition = 'none';
+    track.style.transform = `translateX(${targetX}px)`;
   };
 
-  // Phase 1: initial drift, comes to rest on Startup
-  const initialDrift = () => {
-    const targetX = translateForCenter(STARTUP_INDEX);
-    const distance = Math.max(0, -targetX);
-    const duration = reducedMotion ? 0 : Math.max(4, distance / SPEED_PX_PER_SEC);
-    track.style.transition = `transform ${duration}s linear`;
-    requestAnimationFrame(() => {
-      track.style.transform = `translateX(${targetX}px)`;
-    });
-    runCounter(duration * 1000);
-    return duration * 1000;
-  };
-
-  // Phase 2: cycle to neighboring segments, then speed up
   const SLOW_MOVE = 950;
   const SLOW_PAUSE = 850;
   const FAST_MOVE = 380;
   const FAST_PAUSE = 260;
-  const SPEED_UP_AFTER = 3;     // first 3 are slow, then faster
-  const HOLD_AFTER_DRIFT = 2400; // rest on Startup before cycling
+  const SPEED_UP_AFTER = 3;
+  const INITIAL_HOLD = 2800;
 
   const moveTo = (index, durationMs) => {
     const targetX = translateForCenter(index);
@@ -493,19 +464,20 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
     requestAnimationFrame(() => {
       track.style.transform = `translateX(${targetX}px)`;
     });
-    // Swap featured ~65% through the transition so InTouch+gold arrives with the card
-    setTimeout(() => setFeatured(index), Math.max(0, durationMs * 0.65));
+    setTimeout(() => claim(index), Math.max(0, durationMs * 0.65));
   };
 
-  const cycle = () => {
+  const start = () => {
+    positionAt(STARTUP_INDEX);
+    if (reducedMotion) return;
+
+    // Walk forward from Startup through the rest of the segments.
     const sequence = [];
-    for (let i = 1; i <= cards.length; i++) {
+    for (let i = 1; i < cards.length; i++) {
       sequence.push((STARTUP_INDEX + i) % cards.length);
     }
-    // End back on Startup
-    if (sequence[sequence.length - 1] !== STARTUP_INDEX) sequence.push(STARTUP_INDEX);
 
-    let elapsed = 0;
+    let elapsed = INITIAL_HOLD;
     sequence.forEach((idx, i) => {
       const fast = i >= SPEED_UP_AFTER;
       const moveMs = fast ? FAST_MOVE : SLOW_MOVE;
@@ -513,12 +485,6 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
       setTimeout(() => moveTo(idx, moveMs), elapsed);
       elapsed += moveMs + pauseMs;
     });
-  };
-
-  const start = () => {
-    const driftMs = initialDrift();
-    if (reducedMotion) return;
-    setTimeout(cycle, driftMs + HOLD_AFTER_DRIFT);
   };
 
   if (document.readyState === 'complete') {
