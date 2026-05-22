@@ -432,15 +432,42 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
     return div;
   };
 
+  // Visual loop: clone last N cards before card 0 and first N after the last,
+  // so the carousel appears to wrap at both ends.
+  const GHOST_COUNT = 4;
+  const ghostsByIndex = new Map();
+  const registerGhost = (sourceIndex, el) => {
+    if (!ghostsByIndex.has(sourceIndex)) ghostsByIndex.set(sourceIndex, []);
+    ghostsByIndex.get(sourceIndex).push(el);
+  };
+  const cloneAsGhost = (sourceIndex) => {
+    const clone = cards[sourceIndex].cloneNode(true);
+    clone.classList.add('segment-box-ghost');
+    clone.setAttribute('aria-hidden', 'true');
+    registerGhost(sourceIndex, clone);
+    return clone;
+  };
+  const firstReal = cards[0];
+  for (let i = cards.length - GHOST_COUNT; i < cards.length; i++) {
+    track.insertBefore(cloneAsGhost(i), firstReal);
+  }
+  for (let i = 0; i < GHOST_COUNT; i++) {
+    track.appendChild(cloneAsGhost(i));
+  }
+
   // Cumulative expansion: once InTouch claims a card it keeps the badge + gold.
+  const applyClaim = (el) => {
+    if (el.classList.contains('featured')) return;
+    const existing = el.querySelector('.card-logo:not(.card-logo-intouch)');
+    if (existing) existing.style.display = 'none';
+    el.insertBefore(buildIntouchLogo(), el.firstChild);
+    el.classList.add('featured');
+  };
   const claimed = new Set([STARTUP_INDEX]);
   const claim = (index) => {
     if (claimed.has(index)) return;
-    const card = cards[index];
-    const existing = card.querySelector('.card-logo:not(.card-logo-intouch)');
-    if (existing) existing.style.display = 'none';
-    card.insertBefore(buildIntouchLogo(), card.firstChild);
-    card.classList.add('featured');
+    applyClaim(cards[index]);
+    (ghostsByIndex.get(index) || []).forEach(applyClaim);
     claimed.add(index);
     updateCounter(claimed.size);
   };
