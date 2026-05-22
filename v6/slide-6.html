@@ -10,73 +10,46 @@
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
+body[data-slide="slide-6"] .slide-title { margin-bottom: 40px; }
 
-.dialog {
+.story {
   flex: 1;
   min-height: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-width: 980px;
-  margin: 0 auto;
-  width: 100%;
   justify-content: center;
+  gap: 22px;
+  padding: 0 20px;
 }
 
-.exchange {
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
-
-.bubble {
-  padding: 13px 22px;
-  line-height: 1.4;
+.story-line {
   font-family: var(--font-display);
+  color: var(--white);
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(12px);
 }
 
-.bubble.is-revealed {
-  animation: bubbleReveal 0.6s ease-out forwards;
+.story-line.setup    { font-weight: 600; font-size: 30px; }
+.story-line.lead-in  { font-weight: 500; font-size: 24px; color: var(--gray-dark); font-style: italic; margin-top: 8px; }
+.story-line.climax   { font-weight: 800; font-size: 56px; color: var(--gold); letter-spacing: -0.03em; line-height: 1.15; margin-top: 4px; }
+.story-line.coda     { font-weight: 600; font-size: 24px; color: var(--white); font-style: italic; }
+
+.story-line.auto,
+.story-line.is-revealed {
+  animation: storyReveal 1.05s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
 }
 
-@keyframes bubbleReveal {
+.story-line.auto:nth-child(1) { animation-delay: 0.40s; }
+.story-line.auto:nth-child(2) { animation-delay: 1.60s; }
+
+@keyframes storyReveal {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* Q bubble — investor voice: secondary to A, but clearly readable */
-.bubble.q {
-  align-self: flex-end;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: var(--gray);
-  font-weight: 600;
-  font-size: 17px;
-  border-radius: 16px 16px 4px 16px;
-  max-width: 58%;
-}
-
-/* A bubble — InTouch voice: confident, prominent, left */
-.bubble.a {
-  align-self: flex-start;
-  background: var(--black-soft, #1A1A1A);
-  border: 1px solid var(--border);
-  color: var(--white);
-  font-weight: 600;
-  font-size: 19px;
-  border-radius: 16px 16px 16px 4px;
-  max-width: 64%;
-  text-align: left;
-}
-
-.bubble.a .gold {
-  color: var(--gold);
-  font-weight: 700;
-}
-
-.dialog[data-stage="waiting"] { cursor: pointer; }
+/* Subtle hint that a click/key is expected once auto-reveal finishes. */
+.story[data-stage="waiting"] { cursor: pointer; }
 </style>
 </head>
 <body data-slide="slide-6">
@@ -88,79 +61,58 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
   <div class="slide-label"></div>
   <h2 class="slide-title">The undeniable evidence</h2>
 
-  <div class="dialog" data-stage="auto">
-
-    <div class="exchange">
-      <div class="bubble a" data-step="0">We needed proof the pain was urgent.</div>
-      <div class="bubble a" data-step="0">So we sent <span class="gold">139 cold emails</span> to strangers.</div>
-    </div>
-
-    <div class="exchange">
-      <div class="bubble q" data-step="0">What would have been a win?</div>
-      <div class="bubble a" data-step="1">We'd have been excited with 10% replies, 50% yeses.</div>
-    </div>
-
-    <div class="exchange">
-      <div class="bubble q" data-step="1">And the result?</div>
-      <div class="bubble a" data-step="2"><span class="gold">30.2%</span> replied. <span class="gold">80%</span> said yes.</div>
-      <div class="bubble a" data-step="2">We've never seen anything close &mdash; <span class="gold">20&times; our benchmark</span>.</div>
-    </div>
-
+  <div class="story" data-stage="auto">
+    <div class="story-line setup auto">We needed proof the pain was urgent.</div>
+    <div class="story-line setup auto">So we sent 139 cold emails to strangers.</div>
+    <div class="story-line setup cued">We'd have been excited with 10% replies, 50% yeses.</div>
+    <div class="story-line lead-in follow">We couldn't believe the result&hellip;</div>
+    <div class="story-line climax cued">30.2% replied. 80% said yes.</div>
+    <div class="story-line coda follow">We've never seen anything close &mdash; 20&times; our benchmark.</div>
   </div>
 
   <div class="conclusion"><strong>A 20&times; signal</strong> is hard to ignore &mdash; and shows we can grow fast.</div>
-  <div class="sources">Sources: InTouch outbound &middot; 5 referral-offer campaigns + 46 campaigns for other offers &middot; May 2026</div>
+  <div class="sources">Sources: InTouch outbound &middot; 5 referral-offer campaigns &middot; May 2026</div>
 </div>
 
 </div>
 
 <script>
-// Bubble dialog reveal. Step 0 = auto (initial A's + first Q).
-// Each forward gesture advances to the next step. Animation breaks
-// land after every question bubble so the question lingers before
-// the answer drops. Back navigation always falls through to nav.js.
+// Gate the last two story lines behind a forward-navigation gesture
+// (space / arrow-right / page-down / wheel-down / click on the slide).
+// Once both cued lines are revealed, forward gestures fall through to
+// nav.js and advance to the next slide. Back navigation always passes through.
 (function () {
-  var dialog = document.querySelector('.dialog');
-  if (!dialog) return;
+  var story = document.querySelector('.story');
+  var groups = Array.prototype.map.call(
+    document.querySelectorAll('.story-line.cued'),
+    function (c) {
+      var next = c.nextElementSibling;
+      return { cued: c, follow: next && next.classList.contains('follow') ? next : null };
+    }
+  );
+  var idx = 0;
 
-  var bubbles = Array.prototype.slice.call(dialog.querySelectorAll('.bubble'));
-  var stepBubbles = {};
-  bubbles.forEach(function (b) {
-    var s = b.getAttribute('data-step') || '0';
-    (stepBubbles[s] = stepBubbles[s] || []).push(b);
-  });
-  var maxStep = 0;
-  Object.keys(stepBubbles).forEach(function (k) { if (+k > maxStep) maxStep = +k; });
+  // Once the auto lines (1-2) finish, signal "waiting for input".
+  setTimeout(function () {
+    if (story && idx === 0) story.dataset.stage = 'waiting';
+  }, 2700);
 
-  var BUBBLE_GAP_MS = 1200;     // gap between bubbles inside one step
-  var WAIT_DELAY_MS = 600;      // after step finishes, before re-enabling input
-
-  function revealStep(step, startDelay) {
-    var arr = stepBubbles[String(step)] || [];
-    arr.forEach(function (b, i) {
-      setTimeout(function () { b.classList.add('is-revealed'); }, startDelay + i * BUBBLE_GAP_MS);
-    });
-    return startDelay + (arr.length - 1) * BUBBLE_GAP_MS;
-  }
-
-  // Phase 0 — auto reveal initial A's and first Q.
-  var step0End = revealStep(0, 400);
-  setTimeout(function () { dialog.dataset.stage = 'waiting'; }, step0End + WAIT_DELAY_MS);
-
-  var idx = 1;
   function advance() {
-    if (idx > maxStep) return false;
-    dialog.dataset.stage = 'playing';
-    var end = revealStep(idx, 0);
-    var thisIdx = idx;
+    if (idx >= groups.length) return false;
+    var g = groups[idx];
+    g.cued.classList.add('is-revealed');
+    if (g.follow) {
+      setTimeout(function () { g.follow.classList.add('is-revealed'); }, 1200);
+    }
     idx++;
-    setTimeout(function () {
-      if (thisIdx >= maxStep) {
-        dialog.dataset.stage = 'done';
+    if (story) {
+      if (idx >= groups.length) {
+        setTimeout(function () { story.dataset.stage = 'done'; }, 1200);
       } else {
-        dialog.dataset.stage = 'waiting';
+        setTimeout(function () { story.dataset.stage = 'waiting'; }, 2300);
+        story.dataset.stage = 'playing';
       }
-    }, end + WAIT_DELAY_MS);
+    }
     return true;
   }
 
@@ -183,7 +135,10 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
     if (e.button !== 0) return;
     var t = e.target;
     if (!t || !t.closest) return;
+    // Never intercept: tab strip / mobile tab trigger / back affordances / form controls
     if (t.closest('.deck-tab, .deck-tabs-trigger, .nav-arrow-left, .nav-indicator-prev, input, textarea, select, label')) return;
+    // Intercept everything else (slide clicks AND forward nav buttons) so the
+    // gesture reveals the next cued line before advancing slides.
     if (advance()) {
       e.preventDefault();
       e.stopImmediatePropagation();
@@ -201,6 +156,7 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
     }
   }, { capture: true, passive: false });
 
+  // Swipe left (forward) on touch
   var tsX = null, tsY = null, tsT = 0;
   document.addEventListener('touchstart', function (e) {
     if (e.touches.length !== 1) { tsX = null; return; }
@@ -216,7 +172,7 @@ body[data-slide="slide-6"] .slide-title { margin-bottom: 28px; }
     tsX = null;
     if (dt > 800) return;
     if (Math.abs(dx) < 50 || Math.abs(dx) <= Math.abs(dy)) return;
-    if (dx >= 0) return;
+    if (dx >= 0) return; // right-swipe = back; let nav.js handle it
     if (advance()) {
       e.stopImmediatePropagation();
     }
