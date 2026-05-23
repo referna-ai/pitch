@@ -1357,14 +1357,14 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 .team-bullets {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 .team-bullet {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 16px;
   color: var(--gray);
-  line-height: 1.4;
+  line-height: 1.55;
   padding-left: 14px;
   position: relative;
 }
@@ -1373,7 +1373,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   content: "";
   position: absolute;
   left: 0;
-  top: 9px;
+  top: 11px;
   width: 6px;
   height: 1px;
   background: var(--gold);
