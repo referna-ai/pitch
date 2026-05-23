@@ -1324,6 +1324,31 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 28px;
+  position: relative;
+}
+
+.team-logos {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  max-width: 60%;
+}
+
+.team-logo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  color: var(--gray);
+  padding: 4px 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.02);
+  white-space: nowrap;
 }
 
 .team-photo {
