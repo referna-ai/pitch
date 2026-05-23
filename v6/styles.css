@@ -1339,16 +1339,13 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 }
 
 .team-logo {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.04em;
-  color: var(--gray);
-  padding: 4px 8px;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.02);
-  white-space: nowrap;
+  height: 18px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  filter: brightness(0) invert(0.55);
+  opacity: 0.8;
+  flex-shrink: 0;
 }
 
 .team-photo {
