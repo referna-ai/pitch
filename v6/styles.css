@@ -1324,6 +1324,70 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 28px;
+  position: relative;
+}
+
+.team-logos {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  max-width: 60%;
+}
+.team-logos-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.team-logos-row--narrow {
+  gap: 5px;
+}
+
+.logo-wrap {
+  position: relative;
+  display: inline-flex;
+}
+.logo-wrap::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(17, 17, 17, 0.95);
+  color: var(--gray);
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 10;
+}
+.logo-wrap:hover::after {
+  opacity: 1;
+}
+
+.team-logo {
+  height: 18px;
+  width: auto;
+  max-width: 80px;
+  object-fit: contain;
+  filter: brightness(0) invert(0.55);
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+.team-logo--solo {
+  height: 40px;
+  max-width: 160px;
 }
 
 .team-photo {
@@ -1357,14 +1421,14 @@ img[src$="ami.png"] { filter: grayscale(100%); }
 .team-bullets {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
 }
 
 .team-bullet {
   font-family: var(--font-body);
-  font-size: 14px;
+  font-size: 16px;
   color: var(--gray);
-  line-height: 1.4;
+  line-height: 1.55;
   padding-left: 14px;
   position: relative;
 }
@@ -1373,7 +1437,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   content: "";
   position: absolute;
   left: 0;
-  top: 9px;
+  top: 11px;
   width: 6px;
   height: 1px;
   background: var(--gold);
