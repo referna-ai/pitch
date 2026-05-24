@@ -1331,11 +1331,20 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   position: absolute;
   top: 20px;
   right: 20px;
-  display: grid;
-  grid-template-columns: repeat(3, auto);
-  justify-content: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 10px;
   max-width: 60%;
+}
+.team-logos-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.team-logos-row--narrow {
+  gap: 5px;
 }
 
 .team-logo {
@@ -1348,8 +1357,8 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   flex-shrink: 0;
 }
 .team-logo--solo {
-  height: 27px;
-  max-width: 120px;
+  height: 40px;
+  max-width: 160px;
 }
 
 .team-photo {
