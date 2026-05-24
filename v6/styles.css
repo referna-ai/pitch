@@ -1347,6 +1347,10 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   opacity: 0.8;
   flex-shrink: 0;
 }
+.team-logo--solo {
+  height: 27px;
+  max-width: 120px;
+}
 
 .team-photo {
   width: 80px;
