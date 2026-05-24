@@ -1331,10 +1331,10 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   position: absolute;
   top: 20px;
   right: 20px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  justify-content: end;
+  gap: 10px;
   max-width: 60%;
 }
 
