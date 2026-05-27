@@ -85,6 +85,8 @@
       if (window.PITCH_FILL_SLIDE) window.PITCH_FILL_SLIDE(doc);
       const slide = doc.querySelector('.slide');
       if (!slide) return;
+      slide.classList.add('scaled');
+      slide.style.setProperty('--slide-scale', '1');
       const slideName = doc.body && doc.body.getAttribute('data-slide');
       const inlineStyles = Array.from(doc.head.querySelectorAll('style'));
 
