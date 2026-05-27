@@ -68,12 +68,15 @@
     }
 
     const urls = collectUrls();
-    const htmls = await Promise.all(
+    const results = await Promise.allSettled(
       urls.map((u) => fetch(u, { cache: 'no-store' }).then((r) => {
         if (!r.ok) throw new Error('Fetch failed: ' + u);
         return r.text();
       }))
     );
+    const htmls = results
+      .filter((r) => r.status === 'fulfilled')
+      .map((r) => r.value);
 
     htmls.forEach((html) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
