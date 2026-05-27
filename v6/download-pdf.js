@@ -102,6 +102,13 @@
         page.appendChild(s);
       });
 
+      // Freeze animations and force animated elements to their final visible state.
+      const pdfRenderStyle = document.createElement('style');
+      pdfRenderStyle.textContent =
+        '*, *::before, *::after { animation: none !important; transition: none !important; }\n' +
+        '.story-line { opacity: 1 !important; transform: translateY(0) !important; }';
+      page.appendChild(pdfRenderStyle);
+
       page.appendChild(slide);
       root.appendChild(page);
     });
@@ -150,6 +157,35 @@
     }));
   }
 
+  // Convert cross-origin <img src> and SVG <image href> to data URLs so
+  // html2canvas can draw them without hitting CORS canvas-taint errors.
+  async function bakeExternalImages(root) {
+    const items = [];
+    root.querySelectorAll('img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (/^https?:\/\//.test(src)) items.push({ el: img, attr: 'src', url: src });
+    });
+    root.querySelectorAll('image').forEach((img) => {
+      const href = img.getAttribute('href') ||
+        img.getAttributeNS('http://www.w3.org/1999/xlink', 'href') || '';
+      if (/^https?:\/\//.test(href)) items.push({ el: img, attr: 'href', url: href });
+    });
+    await Promise.allSettled(items.map(async ({ el, attr, url }) => {
+      try {
+        const resp = await fetch(url, { mode: 'cors' });
+        if (!resp.ok) return;
+        const blob = await resp.blob();
+        const dataUrl = await new Promise((res, rej) => {
+          const reader = new FileReader();
+          reader.onload = () => res(reader.result);
+          reader.onerror = rej;
+          reader.readAsDataURL(blob);
+        });
+        el.setAttribute(attr, dataUrl);
+      } catch (_) {}
+    }));
+  }
+
   async function generate() {
     await loadLibs();
     if (document.fonts && document.fonts.ready) {
@@ -159,6 +195,7 @@
     const { jsPDF } = window.jspdf;
 
     const root = await buildContainer();
+    await bakeExternalImages(root);
     await bakeFilteredImages(root);
     try {
       const pages = Array.from(root.querySelectorAll('.pdf-page'));
