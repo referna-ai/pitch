@@ -102,11 +102,17 @@
         page.appendChild(s);
       });
 
-      // Freeze animations and force animated elements to their final visible state.
+      // Freeze animations and force JS-gated elements to their visible state.
       const pdfRenderStyle = document.createElement('style');
-      pdfRenderStyle.textContent =
-        '*, *::before, *::after { animation: none !important; transition: none !important; }\n' +
-        '.story-line { opacity: 1 !important; transform: translateY(0) !important; }';
+      pdfRenderStyle.textContent = [
+        '*, *::before, *::after { animation: none !important; transition: none !important; }',
+        // Market-pull reveal lines (opacity:0 until JS fires)
+        '.story-line { opacity: 1 !important; transform: translateY(0) !important; }',
+        // Product-slide sequential reveal items (opacity:0 until JS adds .s9-shown)
+        '.s9-reveal-item { opacity: 1 !important; }',
+        // html2canvas doesn't support CSS zoom — replace with transform scale
+        '.s9-apply-inner { zoom: unset !important; transform: scale(0.79); transform-origin: top left; }',
+      ].join('\n');
       page.appendChild(pdfRenderStyle);
 
       page.appendChild(slide);
@@ -157,8 +163,11 @@
     }));
   }
 
-  // Convert cross-origin <img src> and SVG <image href> to data URLs so
-  // html2canvas can draw them without hitting CORS canvas-taint errors.
+  // Convert images to data URLs so html2canvas can draw them without CORS
+  // canvas-taint errors. All SVG <image href> elements are baked (html2canvas
+  // doesn't render them reliably even for same-origin relative paths). For
+  // regular <img> elements only absolute https URLs are baked (relative paths
+  // work fine natively).
   async function bakeExternalImages(root) {
     const items = [];
     root.querySelectorAll('img').forEach((img) => {
@@ -168,11 +177,11 @@
     root.querySelectorAll('image').forEach((img) => {
       const href = img.getAttribute('href') ||
         img.getAttributeNS('http://www.w3.org/1999/xlink', 'href') || '';
-      if (/^https?:\/\//.test(href)) items.push({ el: img, attr: 'href', url: href });
+      if (href && !href.startsWith('data:')) items.push({ el: img, attr: 'href', url: href });
     });
     await Promise.allSettled(items.map(async ({ el, attr, url }) => {
       try {
-        const resp = await fetch(url, { mode: 'cors' });
+        const resp = await fetch(url);
         if (!resp.ok) return;
         const blob = await resp.blob();
         const dataUrl = await new Promise((res, rej) => {
