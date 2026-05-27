@@ -68,12 +68,15 @@
     }
 
     const urls = collectUrls();
-    const htmls = await Promise.all(
+    const results = await Promise.allSettled(
       urls.map((u) => fetch(u, { cache: 'no-store' }).then((r) => {
         if (!r.ok) throw new Error('Fetch failed: ' + u);
         return r.text();
       }))
     );
+    const htmls = results
+      .filter((r) => r.status === 'fulfilled')
+      .map((r) => r.value);
 
     htmls.forEach((html) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
@@ -82,6 +85,8 @@
       if (window.PITCH_FILL_SLIDE) window.PITCH_FILL_SLIDE(doc);
       const slide = doc.querySelector('.slide');
       if (!slide) return;
+      slide.classList.add('scaled');
+      slide.style.setProperty('--slide-scale', '1');
       const slideName = doc.body && doc.body.getAttribute('data-slide');
       const inlineStyles = Array.from(doc.head.querySelectorAll('style'));
 
@@ -96,6 +101,19 @@
         s.textContent = (styleEl.textContent || '').replace(/body\[data-slide=/g, '[data-slide=');
         page.appendChild(s);
       });
+
+      // Freeze animations and force JS-gated elements to their visible state.
+      const pdfRenderStyle = document.createElement('style');
+      pdfRenderStyle.textContent = [
+        '*, *::before, *::after { animation: none !important; transition: none !important; }',
+        // Market-pull reveal lines (opacity:0 until JS fires)
+        '.story-line { opacity: 1 !important; transform: translateY(0) !important; }',
+        // Product-slide sequential reveal items (opacity:0 until JS adds .s9-shown)
+        '.s9-reveal-item { opacity: 1 !important; }',
+        // html2canvas doesn't support CSS zoom — replace with transform scale
+        '.s9-apply-inner { zoom: unset !important; transform: scale(0.79); transform-origin: top left; }',
+      ].join('\n');
+      page.appendChild(pdfRenderStyle);
 
       page.appendChild(slide);
       root.appendChild(page);
@@ -145,6 +163,38 @@
     }));
   }
 
+  // Convert images to data URLs so html2canvas can draw them without CORS
+  // canvas-taint errors. All SVG <image href> elements are baked (html2canvas
+  // doesn't render them reliably even for same-origin relative paths). For
+  // regular <img> elements only absolute https URLs are baked (relative paths
+  // work fine natively).
+  async function bakeExternalImages(root) {
+    const items = [];
+    root.querySelectorAll('img').forEach((img) => {
+      const src = img.getAttribute('src') || '';
+      if (/^https?:\/\//.test(src)) items.push({ el: img, attr: 'src', url: src });
+    });
+    root.querySelectorAll('image').forEach((img) => {
+      const href = img.getAttribute('href') ||
+        img.getAttributeNS('http://www.w3.org/1999/xlink', 'href') || '';
+      if (href && !href.startsWith('data:')) items.push({ el: img, attr: 'href', url: href });
+    });
+    await Promise.allSettled(items.map(async ({ el, attr, url }) => {
+      try {
+        const resp = await fetch(url);
+        if (!resp.ok) return;
+        const blob = await resp.blob();
+        const dataUrl = await new Promise((res, rej) => {
+          const reader = new FileReader();
+          reader.onload = () => res(reader.result);
+          reader.onerror = rej;
+          reader.readAsDataURL(blob);
+        });
+        el.setAttribute(attr, dataUrl);
+      } catch (_) {}
+    }));
+  }
+
   async function generate() {
     await loadLibs();
     if (document.fonts && document.fonts.ready) {
@@ -154,6 +204,7 @@
     const { jsPDF } = window.jspdf;
 
     const root = await buildContainer();
+    await bakeExternalImages(root);
     await bakeFilteredImages(root);
     try {
       const pages = Array.from(root.querySelectorAll('.pdf-page'));
