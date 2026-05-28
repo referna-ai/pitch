@@ -233,7 +233,7 @@
         pdf.addImage(img, 'JPEG', 0, 0, PAGE_W, PAGE_H);
       }
 
-      pdf.save('intouch-pitch.pdf');
+      pdf.save('referna-pitch.pdf');
     } finally {
       root.remove();
     }
