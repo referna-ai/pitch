@@ -1,11 +1,11 @@
-# InTouch Pitch — Claude Instructions
+# referna Pitch — Claude Instructions
 
 ## PR workflow
 Before giving a PR link at the end of any task:
 1. Check whether the last PR on this repo is already merged: `gh pr list --state merged --limit 1` or `gh pr view <number> --json state`
 2. If the previous PR was merged, pull main first (`git checkout main && git pull origin main`), then create a new branch and open a fresh PR for the current work
 3. Always give the PR link at the end of the response
-4. Always give the Cloudflare Pages preview link too — derive it from the branch name with the rule below, no need to wait for the bot comment. Append the slide path when relevant, e.g. `https://<slug>.intouch-short-deck.pages.dev/v6/slide-2`.
+4. Always give the Cloudflare Pages preview link too — derive it from the branch name with the rule below, no need to wait for the bot comment. Append the slide path when relevant, e.g. `https://<slug>.intouch-short-deck.pages.dev/v6/slide-2`. (The Cloudflare project is still named `intouch-short-deck` pending a rename in the CF dashboard — update this line once that's done.)
 
 ### Predicting the Cloudflare Pages branch preview slug
 
@@ -17,7 +17,7 @@ Algorithm:
 3. Truncate to **28 characters**
 4. Strip any trailing `-` (so a slug never ends in a hyphen)
 
-Then the URL is `https://<slug>.intouch-short-deck.pages.dev/`.
+Then the URL is `https://<slug>.intouch-short-deck.pages.dev/`. (Domain pending CF project rename.)
 
 Verified examples (branch → slug):
 - `claude/update-team-slide-5HDPY` → `claude-update-team-slide-5hd` (28 chars)
@@ -34,11 +34,9 @@ If the bot's comment, when it lands, ever disagrees with the prediction, prefer 
 Use descriptive kebab-case: `s1-270m-rewrite`, `s4-value-generated`, etc.
 
 ## File structure
-- `index.html` — root redirect to the active deck version (currently `v4/`). Change the `<meta http-equiv="refresh">` URL to swap.
-- `v1/` — original 7-slide deck (index + slide-1…slide-7, plus its own `styles.css`, `nav.js`, `analytics.js`, `copy-deck.js`, `favicon.svg`)
-- `v2/` — second iteration deck (same structure as v1)
-- `v3/` — 10-slide deck (index + slide-1…slide-10, plus its own assets)
-- `v4/` — current 10-slide deck (index + slide-1…slide-10, plus its own assets, including `download-pdf.js`)
+- `index.html` — root redirect to the active deck version (currently `v6/`). Change the `<meta http-equiv="refresh">` URL to swap.
+- `v1/`–`v5/` — archived deck versions, do not modify
+- `v6/` — **current active deck** (index + slide-1…slide-14, plus its own `styles.css`, `nav.js`, `analytics.js`, `copy-deck.js`, `download-pdf.js`, `favicon.svg`, `logos/`)
 - `ab.html` — A/B variant picker
 - `scripts/` — server-side code (not deployed as slides)
 - `docs/` — internal documentation
@@ -50,7 +48,7 @@ Each version directory is self-contained — its slides reference its own `style
 See **`docs/navigation.md`** for a full explanation of how navigation works, the three files that must stay in sync, and the common sed double-replace pitfall that has bitten us before.
 
 ## Copy HTML button
-See **`docs/copy-deck.md`**. The button on each version's `index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in every version's `copy-deck.js` (`v1/`, `v2/`, `v3/`, `v4/`) or the button breaks silently.
+See **`docs/copy-deck.md`**. The button on `v6/index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in `v6/copy-deck.js` or the button breaks silently.
 
 ## Data points: one per line
 When a copy block contains multiple short data points / stat sentences / bullet-style claims separated by periods (e.g. "14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth."), put **each sentence on its own line** — use a `<br>` inside the existing element or split into separate child elements. Don't let three short claims wrap as a single paragraph: it makes one sentence overflow while another sits short, and the reader loses the parallel structure. This applies to any slide element that reads as a list of points (column descriptions, conclusion sub-lines, callout bodies, etc.), in any version. Prose paragraphs are exempt — this is specifically for stat/claim enumerations.
@@ -66,7 +64,7 @@ Rule: every cell in the same table — header, label, value, name, description, 
 When adding or restyling a table, audit every `font-family` inside it — including nested cells like `.ai-desc strong`, `.cell-val .val-sub`, etc. — and pin them all to `var(--font-display)`.
 
 ## Standardized slide elements
-Applies to **both `v3/` and `v4/`** (the active deck versions). Every slide must use the same four elements in the same place, with the same classes and styles. Do **not** restyle them inline or invent new class names — change the canonical rule in the version's `styles.css` if a global update is needed, and mirror the change to the other version unless the divergence is intentional.
+Applies to **`v6/`** (the active deck). Every slide must use the same four elements in the same place, with the same classes and styles. Do **not** restyle them inline or invent new class names — change the canonical rule in `v6/styles.css` if a global update is needed.
 
 DOM order inside `.slide` (top → bottom):
 1. `.slide-number` — e.g. `<div class="slide-number">02 / 10</div>` (top-right, absolute)
@@ -76,7 +74,7 @@ DOM order inside `.slide` (top → bottom):
 5. `.conclusion` — `<div class="conclusion">…</div>` (pinned to bottom via `margin-top: auto`)
 6. `.sources` — `<div class="sources">Sources: …</div>` (last line, right-aligned)
 
-Canonical styles live in `v3/styles.css` and `v4/styles.css` (line numbers match in both):
+Canonical styles live in `v6/styles.css`:
 - `.slide-label` → lines 72–80 (Manrope 500, 13px, gold, uppercase, `letter-spacing: 0.16em`)
 - `.slide-title` → lines 82–90 (Manrope 800, 42px, white, `letter-spacing: -0.02em`)
 - `.conclusion` → lines 402–423 (Manrope 700, 24px, gold top border, `→` prefix via `::before`, `<strong>` is gold)
@@ -87,7 +85,7 @@ Rules:
 - Always start the sources line with `Sources: ` (capital S, colon, space). Use `Source: ` only when there is genuinely one source.
 - Use `<strong>` inside `.conclusion` for gold emphasis; don't add inline `style=` overrides.
 - Per-slide tweaks (e.g. `.slide-title { margin-bottom: 28px }`) belong in a scoped `body[data-slide="slide-N"]` block in that slide's `<style>`, never as inline styles, and never changing color/font/size of the four standard elements.
-- When adding a new slide, copy the structure from an existing slide in the same version (e.g. `v4/slide-3.html`) so the order and classes stay identical.
+- When adding a new slide, copy the structure from an existing slide in the same version (e.g. `v6/slide-3.html`) so the order and classes stay identical.
 
 Never override at slide scope (these affect every slide and the bottom-docking depends on them):
 - `.slide` flex-column layout and fixed height (`styles.css:40-50`) — changing `display`, `flex-direction`, or `height` breaks the bottom-pinning of `.conclusion` and `.sources`.
