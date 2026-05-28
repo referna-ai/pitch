@@ -527,16 +527,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
   margin-bottom: 18px;
 }
 
-.slide-hero .wordmark-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 26px;
-  letter-spacing: -0.02em;
-  color: var(--white);
+.slide-hero .referna-lockup {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 .slide-hero .gold-rule {
