@@ -149,24 +149,18 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
   display: block;
   filter: brightness(0) invert(1);
 }
+.card-logo .it-lockup {
+  height: 13px;
+  filter: none;
+}
 .segment-box.featured .card-logo {
   border-color: var(--gold);
   height: 26px;
-  padding: 0 12px 0 6px;
+  padding: 0 10px;
   top: -13px;
 }
-.segment-box.featured .card-logo svg {
-  width: 16px;
-  height: 16px;
-  display: block;
-}
-.segment-box.featured .card-logo .it-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 14px;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1;
+.segment-box.featured .card-logo .it-lockup {
+  height: 15px;
 }
 
 .segment-header {
@@ -354,11 +348,11 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
         <div class="line-tag"><span class="tag-num">$926B</span> referral market volume<span class="tag-sub">(math: ~$100K per professional)</span></div>
       </div>
 
-      <!-- Carousel: Startup is first; InTouch expands rightward through the rest. -->
+      <!-- Carousel: Startup is first; referna expands rightward through the rest. -->
       <div class="segments-carousel" aria-label="21 ICP segments">
         <div class="segments-track">
 
-          <div class="segment-box featured"><div class="card-logo card-logo-intouch"><svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/><path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/></svg><span class="it-text">InTouch</span></div><div class="segment-header"><div class="segment-name">Startup circles</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div><div class="segment-num">01 / 21</div></div>
+          <div class="segment-box featured"><div class="card-logo card-logo-referna"><img src="logos/lockup-white-on-black.svg" alt="referna" class="it-lockup"></div><div class="segment-header"><div class="segment-name">Startup circles</div><div class="segment-count">125K</div></div><ul class="segment-vendors"><li>Fractional CMO</li><li>Startup lawyer</li><li>PR agent</li><li>Recruiter</li></ul><div class="segment-more">+ 10 more</div><div class="segment-num">01 / 21</div></div>
           <div class="segment-box"><div class="segment-header"><div class="segment-name">Scale-up circles</div><div class="segment-count">53K</div></div><ul class="segment-vendors"><li>Executive search</li><li>CRE broker</li><li>Complex tax advisor</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">02 / 21</div></div>
           <div class="segment-box"><div class="segment-header"><div class="segment-name">Executive-onboarding circles</div><div class="segment-count">34K</div></div><ul class="segment-vendors"><li>Leadership consultant</li><li>Comms coach</li><li>Board advisor</li></ul><div class="segment-more">+ 3 more</div><div class="segment-num">03 / 21</div></div>
           <div class="segment-box"><div class="segment-header"><div class="segment-name">Wealth-event circles</div><div class="segment-count">182K</div></div><ul class="segment-vendors"><li>Wealth manager</li><li>Luxury realtor</li><li>Estate planner</li></ul><div class="segment-more">+ 4 more</div><div class="segment-num">04 / 21</div></div>
@@ -387,7 +381,7 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
   </div>
 
   <div class="conclusion">9.26M addressable but <strong>starting where we'll grow fastest.</strong></div>
-  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), InTouch market analysis</div>
+  <div class="sources">Sources: US Census Bureau, BLS, LinkedIn (1.3B members, 2026), referna market analysis</div>
 </div>
 
 </div>
@@ -419,16 +413,10 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
     return;
   }
 
-  const intouchLogoHTML =
-    '<svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
-    '<rect x="4" y="4" width="40" height="40" rx="8" fill="#FFFFFF"/>' +
-    '<path d="M22 14L28 11V37H22V18L18 20V14H22Z" fill="#0D0D0D"/>' +
-    '</svg><span class="it-text">InTouch</span>';
-
-  const buildIntouchLogo = () => {
+  const buildRefernaLogo = () => {
     const div = document.createElement('div');
-    div.className = 'card-logo card-logo-intouch';
-    div.innerHTML = intouchLogoHTML;
+    div.className = 'card-logo card-logo-referna';
+    div.innerHTML = '<img src="logos/lockup-white-on-black.svg" alt="referna" class="it-lockup">';
     return div;
   };
 
@@ -455,12 +443,12 @@ body[data-slide="slide-10"] .slide-title { margin-bottom: 22px; }
     track.appendChild(cloneAsGhost(i));
   }
 
-  // Cumulative expansion: once InTouch claims a card it keeps the badge + gold.
+  // Cumulative expansion: once referna claims a card it keeps the badge + gold.
   const applyClaim = (el) => {
     if (el.classList.contains('featured')) return;
-    const existing = el.querySelector('.card-logo:not(.card-logo-intouch)');
+    const existing = el.querySelector('.card-logo:not(.card-logo-referna)');
     if (existing) existing.style.display = 'none';
-    el.insertBefore(buildIntouchLogo(), el.firstChild);
+    el.insertBefore(buildRefernaLogo(), el.firstChild);
     el.classList.add('featured');
   };
   const claimed = new Set([STARTUP_INDEX]);

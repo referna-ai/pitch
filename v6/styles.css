@@ -450,7 +450,7 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-.comparison thead th.intouch {
+.comparison thead th.referna {
   color: var(--gold);
   background: rgba(212, 165, 116, 0.04);
 }
@@ -482,14 +482,14 @@ body {
   width: 37%;
 }
 
-.comparison .intouch {
+.comparison .referna {
   color: var(--white);
   font-weight: 500;
   background: rgba(212, 165, 116, 0.04);
   width: 37%;
 }
 
-.comparison .intouch strong {
+.comparison .referna strong {
   color: var(--gold);
   font-weight: 600;
 }
@@ -1621,7 +1621,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   .slide-hero .tagline { font-size: 32px; }
   .conclusion { font-size: 17px; }
   .bullets li { font-size: 15px; }
-  .comparison .label, .comparison .volume, .comparison .intouch { width: auto; }
+  .comparison .label, .comparison .volume, .comparison .referna { width: auto; }
   .comparison tbody td { font-size: 15px; padding: 14px 12px; }
 
   .chat-row {
@@ -1891,7 +1891,7 @@ img[src$="ami.png"] { filter: grayscale(100%); }
   .matrix-yaxis { writing-mode: horizontal-tb; transform: none; flex-direction: row; justify-content: space-between; }
 }
 
-/* S6: InTouch — 3-step how it works */
+/* S6: referna — 3-step how it works */
 .how-steps {
   display: flex;
   flex-direction: column;
