@@ -52,6 +52,18 @@ See **`docs/navigation.md`** for a full explanation of how navigation works, the
 ## Copy HTML button
 See **`docs/copy-deck.md`**. The button on each version's `index.html` collects slides via `.deck-tabs .deck-tab` — if you rename that CSS class or restructure the nav, update the selector in every version's `copy-deck.js` (`v1/`, `v2/`, `v3/`, `v4/`) or the button breaks silently.
 
+## Brand name capitalisation: "Referna" in prose
+The brand name is spelled **Referna** (capital R) in all user-visible text — titles, body copy, conclusion lines, sources lines, section headers, analytics display strings, and any spoken or written prose.
+
+Use lowercase `referna` **only** in:
+- The wordmark SVG/logo glyph and its `alt` attribute (e.g. `alt="referna"`)
+- CSS class names (`.referna-lockup`, `.card-logo-referna`)
+- JavaScript identifiers (`buildRefernaLogo`, `refernaLogoHTML`)
+- File and directory names (`referna-pitch.pdf`)
+- Domain/URL strings (`referna.com`, `app.referna.com`)
+
+The legal entity name — **InTouch123, Inc.** — never appears in slide copy and is not affected by this rule.
+
 ## Data points: one per line
 When a copy block contains multiple short data points / stat sentences / bullet-style claims separated by periods (e.g. "14.8% W/W growth. 6.7% cold-email to onboarded. Early signs of viral growth."), put **each sentence on its own line** — use a `<br>` inside the existing element or split into separate child elements. Don't let three short claims wrap as a single paragraph: it makes one sentence overflow while another sits short, and the reader loses the parallel structure. This applies to any slide element that reads as a list of points (column descriptions, conclusion sub-lines, callout bodies, etc.), in any version. Prose paragraphs are exempt — this is specifically for stat/claim enumerations.
 
