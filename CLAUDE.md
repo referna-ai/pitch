@@ -5,7 +5,7 @@ Before giving a PR link at the end of any task:
 1. Check whether the last PR on this repo is already merged: `gh pr list --state merged --limit 1` or `gh pr view <number> --json state`
 2. If the previous PR was merged, pull main first (`git checkout main && git pull origin main`), then create a new branch and open a fresh PR for the current work
 3. Always give the PR link at the end of the response
-4. Always give the Cloudflare Pages preview link too — derive it from the branch name with the rule below, no need to wait for the bot comment. Append the slide path when relevant, e.g. `https://<slug>.intouch-short-deck.pages.dev/v6/slide-2`.
+4. Always give the Cloudflare Pages preview link too — derive it from the branch name with the rule below, no need to wait for the bot comment. Append the slide path when relevant, e.g. `https://<slug>.intouch-short-deck.pages.dev/v6/slide-2`. Production URL is `https://deck.referna.com/v6/`.
 
 ### Predicting the Cloudflare Pages branch preview slug
 
