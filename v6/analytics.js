@@ -67,8 +67,7 @@
   }
 
   // ── Viewer identity ───────────────────────────────────────────────────
-  // Production is exactly intouch-short-deck.pages.dev; branch previews
-  // are <slug>.intouch-short-deck.pages.dev. Localhost is dev.
+  // Production: deck.referna.com. Branch previews: <slug>.intouch-short-deck.pages.dev. Localhost is dev.
   function isPreviewEnv() {
     var h = location.hostname;
     if (!h || h === 'localhost' || h === '127.0.0.1') return true;
