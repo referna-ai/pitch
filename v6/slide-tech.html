@@ -27,6 +27,7 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
   display: flex;
   gap: 18px;
   margin-top: 6px;
+  margin-bottom: 20px;
 }
 .tw-card {
   flex: 1;
@@ -35,7 +36,7 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
   padding: 12px 16px;
   background: rgba(212, 165, 116, 0.05);
   display: flex;
-  align-items: baseline;
+  align-items: center;
   gap: 14px;
 }
 .tw-card-num {
@@ -74,21 +75,22 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
   <p class="slide-subtitle">Facilitating peers toward a shared goal is crossing from unreliable to trustworthy.</p>
 
   <div class="tw-chart">
-    <svg viewBox="0 0 1000 380" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+    <!-- viewBox shifted -40 left → entire chart moves 40px right; overflow:visible lets edge labels breathe -->
+    <svg viewBox="-40 0 1000 380" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;overflow:visible;">
 
       <!-- era tints -->
       <rect x="70" y="40" width="435" height="260" fill="rgba(153,153,153,0.04)"/>
       <rect x="505" y="40" width="435" height="260" fill="rgba(212,165,116,0.06)"/>
 
       <!-- y-axis label -->
-      <text x="26" y="170" transform="rotate(-90 26 170)" text-anchor="middle" font-family="Manrope" font-size="12" font-weight="700" fill="#737373" letter-spacing="0.12em">AI CAPABILITY →</text>
+      <text x="-14" y="170" transform="rotate(-90 -14 170)" text-anchor="middle" font-family="Manrope" font-size="12" font-weight="700" fill="#737373" letter-spacing="0.12em">AI CAPABILITY →</text>
 
       <!-- baseline -->
       <line x1="70" y1="300" x2="940" y2="300" stroke="rgba(212,165,116,0.25)" stroke-width="1"/>
 
       <!-- trust threshold -->
       <line x1="70" y1="147" x2="940" y2="147" stroke="rgba(212,165,116,0.5)" stroke-width="1.5" stroke-dasharray="6 5"/>
-      <text x="78" y="140" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em">Trust threshold — run a circle</text>
+      <text x="78" y="140" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em">AI level - good enough to run a circle</text>
 
       <!-- area under curve -->
       <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50 L 940 300 L 70 300 Z" fill="rgba(212,165,116,0.08)"/>
@@ -108,22 +110,31 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
       <circle cx="505" cy="147" r="5" fill="#D4A574"/>
       <text x="505" y="318" text-anchor="middle" font-family="Manrope" font-size="13" font-weight="800" fill="#D4A574">2027</text>
 
-      <!-- data-label captions -->
-      <text x="74" text-anchor="start" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="74" y="250">Can't be trusted</tspan>
-        <tspan x="74" y="268">to draft an email</tspan>
+      <!-- data labels — main style restored (IBM Plex Serif 14, #D1D1D1) -->
+
+      <!-- 1st · 2024 — centred on dot, 20px up from original -->
+      <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="70" y="230">AI can't be trusted</tspan>
+        <tspan x="70" dy="18">with a single email</tspan>
       </text>
-      <text x="360" text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="360" y="162">Safe 1:1 email &amp; chat</tspan>
-        <tspan x="360" y="180">group + voice still weak</tspan>
+
+      <!-- 2nd · 2026 — centred, 40px down from original -->
+      <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="360" y="232">1:1 text nailed.</tspan>
+        <tspan x="360" dy="18">voice and group text —</tspan>
+        <tspan x="360" dy="18">still breaks</tspan>
       </text>
-      <text x="650" text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="650" y="62">Group chat +</tspan>
-        <tspan x="650" y="80">reliable 1:1 voice</tspan>
+
+      <!-- 3rd · 2028 — unchanged from main -->
+      <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="650" y="62">Group chat solid;</tspan>
+        <tspan x="650" dy="18">voice catching up</tspan>
       </text>
-      <text x="934" text-anchor="end" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="934" y="70">Reliable</tspan>
-        <tspan x="934" y="88">group voice</tspan>
+
+      <!-- 4th · 2030 — centred on dot, overflow visible -->
+      <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="940" y="90">Runs full circles —</tspan>
+        <tspan x="940" dy="18">voice included</tspan>
       </text>
 
       <!-- year labels -->
@@ -147,12 +158,12 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
       <div class="tw-card-num">0</div>
       <div class="tw-card-body">
         <div class="tw-card-title">Franchises needed</div>
-        <div class="tw-card-desc">Clone a circle by deploying, not by selling territory.</div>
+        <div class="tw-card-desc">No regional directors, no territories — unlike BNI's franchise model</div>
       </div>
     </div>
   </div>
 
-  <div class="conclusion">AI runs the circle. <strong>90% cheaper. Crossing over from unattractive franchise model to VC-type business.</strong></div>
+  <div class="conclusion">AI enables the cross over from <strong>unattractive franchise model to VC-type business.</strong></div>
   <div class="sources">Sources: Referna analysis · frontier-model capability trajectory · BNI operating &amp; franchise model</div>
 </div>
 
