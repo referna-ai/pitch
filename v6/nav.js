@@ -8,6 +8,7 @@
     { file: 'slide-2.html',  title: 'Customer' },
     { file: 'slide-3.html',  title: 'Solution' },
     { file: 'slide-4.html',  title: 'Incumbent' },
+    { file: 'slide-tech.html', title: 'Why Now' },
     { file: 'slide-5.html',  title: 'Category' },
     { file: 'slide-6.html',  title: 'Market pull' },
     { file: 'slide-7.html',  title: 'Distribution' },
