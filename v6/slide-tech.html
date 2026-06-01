@@ -27,6 +27,7 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
   display: flex;
   gap: 18px;
   margin-top: 6px;
+  margin-bottom: 20px;
 }
 .tw-card {
   flex: 1;
@@ -74,7 +75,16 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
   <p class="slide-subtitle">Facilitating peers toward a shared goal is crossing from unreliable to trustworthy.</p>
 
   <div class="tw-chart">
-    <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+    <svg viewBox="0 0 1000 380" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+      <defs>
+        <!-- Dark halo behind text — no boxes, just legibility -->
+        <filter id="lbl" x="-4%" y="-30%" width="108%" height="160%">
+          <feMorphology in="SourceAlpha" operator="dilate" radius="3" result="expanded"/>
+          <feFlood flood-color="#0D0D0D" flood-opacity="1" result="color"/>
+          <feComposite in="color" in2="expanded" operator="in" result="shadow"/>
+          <feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+      </defs>
 
       <!-- era tints -->
       <rect x="70" y="40" width="435" height="260" fill="rgba(153,153,153,0.04)"/>
@@ -88,8 +98,7 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
 
       <!-- trust threshold -->
       <line x1="70" y1="147" x2="940" y2="147" stroke="rgba(212,165,116,0.5)" stroke-width="1.5" stroke-dasharray="6 5"/>
-      <rect x="70" y="130" width="243" height="20" rx="2" fill="#0D0D0D"/>
-      <text x="78" y="144" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em">Trust threshold — run a circle</text>
+      <text x="78" y="141" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em" filter="url(#lbl)">Trust threshold — run a circle</text>
 
       <!-- area under curve -->
       <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50 L 940 300 L 70 300 Z" fill="rgba(212,165,116,0.08)"/>
@@ -97,7 +106,7 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
       <!-- capability curve -->
       <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50" fill="none" stroke="#D4A574" stroke-width="3" stroke-linecap="round"/>
 
-      <!-- milestone dots -->
+      <!-- milestone dots (drawn after curve so they sit on top) -->
       <circle cx="70"  cy="279" r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
       <circle cx="360" cy="191" r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
       <circle cx="650" cy="97"  r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
@@ -109,27 +118,25 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
       <circle cx="505" cy="147" r="5" fill="#D4A574"/>
       <text x="505" y="318" text-anchor="middle" font-family="Manrope" font-size="13" font-weight="800" fill="#D4A574">2027</text>
 
-      <!-- data label 1 · 2024 — above dot, top-left -->
-      <rect x="70" y="236" width="282" height="22" rx="3" fill="rgba(13,13,13,0.9)"/>
-      <text x="78" y="252" text-anchor="start" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">AI can't be trusted with a single email</text>
+      <!-- data labels — filter creates dark halo, no boxes -->
 
-      <!-- data label 3 · 2028 — above dot, clear of threshold -->
-      <rect x="520" y="58" width="262" height="22" rx="3" fill="rgba(13,13,13,0.9)"/>
-      <text x="528" y="74" text-anchor="start" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">Group chat solid; voice catching up</text>
+      <!-- 2024 · above dot, left-anchored -->
+      <text x="74" y="263" text-anchor="start" font-family="IBM Plex Serif" font-size="13.5" fill="#D1D1D1" filter="url(#lbl)">AI can't be trusted with a single email</text>
 
-      <!-- data label 4 · 2030 — below dot, right-aligned -->
-      <rect x="712" y="60" width="222" height="22" rx="3" fill="rgba(13,13,13,0.9)"/>
-      <text x="928" y="76" text-anchor="end" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">Runs full circles — voice included</text>
+      <!-- 2026 · below dot, centred — "under the line" -->
+      <text x="360" y="217" text-anchor="middle" font-family="IBM Plex Serif" font-size="13.5" fill="#D1D1D1" filter="url(#lbl)">1:1 nailed — group voice still breaks</text>
+
+      <!-- 2028 · below threshold, centred -->
+      <text x="650" y="170" text-anchor="middle" font-family="IBM Plex Serif" font-size="13.5" fill="#D1D1D1" filter="url(#lbl)">Group chat solid; voice catching up</text>
+
+      <!-- 2030 · below dot, right-anchored -->
+      <text x="934" y="74" text-anchor="end" font-family="IBM Plex Serif" font-size="13.5" fill="#D1D1D1" filter="url(#lbl)">Runs full circles — voice included</text>
 
       <!-- year labels -->
       <text x="70"  y="340" text-anchor="start"  font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2024</text>
       <text x="360" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2026</text>
       <text x="650" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2028</text>
       <text x="940" y="340" text-anchor="end"    font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2030</text>
-
-      <!-- data label 2 · 2026 — below year label -->
-      <rect x="178" y="352" width="366" height="22" rx="3" fill="rgba(13,13,13,0.9)"/>
-      <text x="361" y="368" text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">Handles 1:1 well — groups still break down</text>
 
     </svg>
   </div>
