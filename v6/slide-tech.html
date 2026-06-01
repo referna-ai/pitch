@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S5 · Why Now — Referna Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
+
+.slide-subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--gray-mid);
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.tw-chart { margin: 10px 0 4px; }
+
+.tw-enablers {
+  display: flex;
+  gap: 18px;
+  margin-top: 6px;
+}
+.tw-card {
+  flex: 1;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px 16px;
+  background: rgba(212, 165, 116, 0.05);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.tw-card-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--gold);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  flex-shrink: 0;
+}
+.tw-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--white);
+}
+.tw-card-desc {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--gray);
+  line-height: 1.45;
+  margin-top: 2px;
+}
+</style>
+</head>
+<body data-slide="slide-tech">
+
+<div class="deck">
+
+<div class="slide" id="slide-tech">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">AI <span style="color:var(--gold)">circle facilitation</span></h2>
+  <p class="slide-subtitle">Facilitating peers toward a shared goal is crossing from unreliable to trustworthy.</p>
+
+  <div class="tw-chart">
+    <svg viewBox="0 0 1000 380" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;">
+
+      <!-- era tints -->
+      <rect x="70" y="40" width="435" height="260" fill="rgba(153,153,153,0.04)"/>
+      <rect x="505" y="40" width="435" height="260" fill="rgba(212,165,116,0.06)"/>
+
+      <!-- y-axis label -->
+      <text x="26" y="170" transform="rotate(-90 26 170)" text-anchor="middle" font-family="Manrope" font-size="12" font-weight="700" fill="#737373" letter-spacing="0.12em">AI CAPABILITY →</text>
+
+      <!-- baseline -->
+      <line x1="70" y1="300" x2="940" y2="300" stroke="rgba(212,165,116,0.25)" stroke-width="1"/>
+
+      <!-- trust threshold -->
+      <line x1="70" y1="147" x2="940" y2="147" stroke="rgba(212,165,116,0.5)" stroke-width="1.5" stroke-dasharray="6 5"/>
+      <text x="78" y="140" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em">Trust threshold — run a circle</text>
+
+      <!-- area under curve -->
+      <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50 L 940 300 L 70 300 Z" fill="rgba(212,165,116,0.08)"/>
+
+      <!-- capability curve -->
+      <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50" fill="none" stroke="#D4A574" stroke-width="3" stroke-linecap="round"/>
+
+      <!-- milestone dots -->
+      <circle cx="70"  cy="279" r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
+      <circle cx="360" cy="191" r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
+      <circle cx="650" cy="97"  r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
+      <circle cx="940" cy="50"  r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
+
+      <!-- 2027 inflection -->
+      <line x1="505" y1="36" x2="505" y2="300" stroke="rgba(212,165,116,0.7)" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <circle cx="505" cy="147" r="11" fill="none" stroke="#D4A574" stroke-width="2"/>
+      <circle cx="505" cy="147" r="5" fill="#D4A574"/>
+      <text x="505" y="318" text-anchor="middle" font-family="Manrope" font-size="13" font-weight="800" fill="#D4A574">2027</text>
+
+      <!-- data-label captions -->
+      <text x="74" text-anchor="start" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="74" y="250">Can't be trusted</tspan>
+        <tspan x="74" y="268">to draft an email</tspan>
+      </text>
+      <text x="360" text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="360" y="162">Safe 1:1 email &amp; chat</tspan>
+        <tspan x="360" y="180">group + voice still weak</tspan>
+      </text>
+      <text x="650" text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="650" y="62">Group chat +</tspan>
+        <tspan x="650" y="80">reliable 1:1 voice</tspan>
+      </text>
+      <text x="934" text-anchor="end" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
+        <tspan x="934" y="70">Reliable</tspan>
+        <tspan x="934" y="88">group voice</tspan>
+      </text>
+
+      <!-- year labels -->
+      <text x="70"  y="340" text-anchor="start"  font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2024</text>
+      <text x="360" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2026</text>
+      <text x="650" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2028</text>
+      <text x="940" y="340" text-anchor="end"    font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2030</text>
+
+    </svg>
+  </div>
+
+  <div class="tw-enablers">
+    <div class="tw-card">
+      <div class="tw-card-num">90%</div>
+      <div class="tw-card-body">
+        <div class="tw-card-title">Lower cost to run a circle</div>
+        <div class="tw-card-desc">AI replaces chapter directors and regional staff.</div>
+      </div>
+    </div>
+    <div class="tw-card">
+      <div class="tw-card-num">0</div>
+      <div class="tw-card-body">
+        <div class="tw-card-title">Franchises needed</div>
+        <div class="tw-card-desc">Clone a circle by deploying, not by selling territory.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="conclusion">AI runs the circle. <strong>90% cheaper. Crossing over from unattractive franchise model to VC-type business.</strong></div>
+  <div class="sources">Sources: Referna analysis · frontier-model capability trajectory · BNI operating &amp; franchise model</div>
+</div>
+
+</div>
+
+<script src="nav.js"></script>
+</body>
+</html>
