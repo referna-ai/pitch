@@ -15,53 +15,53 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
 .slide-subtitle {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--gray-mid);
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   line-height: 1.5;
 }
+.slide-subtitle strong { color: var(--gray); font-weight: 700; }
 
-.tw-chart { margin: 10px 0 4px; }
+.tw-chart { margin: 4px 0 0; }
 
-.tw-enablers {
+/* Before / After comparison */
+.tw-comparison {
   display: flex;
-  gap: 18px;
-  margin-top: 6px;
-  margin-bottom: 20px;
+  gap: 24px;
+  margin-top: 14px;
 }
-.tw-card {
+.tw-comp-col {
   flex: 1;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 12px 16px;
-  background: rgba(212, 165, 116, 0.05);
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  border-top: 2px solid rgba(255,255,255,0.12);
+  padding-top: 12px;
 }
-.tw-card-num {
+.tw-comp-col.modern { border-top-color: var(--gold); }
+
+.tw-comp-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--gray-dark);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.tw-comp-col.modern .tw-comp-label { color: var(--gold); }
+
+.tw-comp-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 30px;
-  color: var(--gold);
-  line-height: 1;
-  letter-spacing: -0.02em;
-  flex-shrink: 0;
-}
-.tw-card-title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 15px;
+  font-size: 19px;
   color: var(--white);
+  margin: 6px 0 7px;
+  line-height: 1.2;
 }
-.tw-card-desc {
+.tw-comp-desc {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 14px;
-  color: var(--gray);
-  line-height: 1.45;
-  margin-top: 2px;
+  font-size: 13px;
+  color: var(--gray-dark);
+  line-height: 1.5;
 }
+.tw-comp-col.modern .tw-comp-desc { color: var(--gray-mid); }
 </style>
 </head>
 <body data-slide="slide-tech">
@@ -71,29 +71,21 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
 <div class="slide" id="slide-tech">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">AI <span style="color:var(--gold)">circle facilitation</span></h2>
-  <p class="slide-subtitle">Facilitating peers toward a shared goal is crossing from unreliable to trustworthy.</p>
+  <h2 class="slide-title">MPLMs Defeat the <span style="color:var(--gold)">Franchise Model</span></h2>
+  <p class="slide-subtitle">Replacing a legacy army of 40,000+ manual operators (BNI method) with the infinite software scale of <strong>Multi-Person Language Models (MPLMs)</strong>.</p>
 
   <div class="tw-chart">
-    <!-- viewBox shifted -40 left → entire chart moves 40px right; overflow:visible lets edge labels breathe -->
-    <svg viewBox="-40 0 1000 380" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;overflow:visible;">
-
-      <!-- era tints -->
-      <rect x="70" y="40" width="435" height="260" fill="rgba(153,153,153,0.04)"/>
-      <rect x="505" y="40" width="435" height="260" fill="rgba(212,165,116,0.06)"/>
+    <svg viewBox="-40 0 1000 350" preserveAspectRatio="xMidYMid meet" style="width:100%;height:auto;overflow:visible;">
 
       <!-- y-axis label -->
-      <text x="-14" y="170" transform="rotate(-90 -14 170)" text-anchor="middle" font-family="Manrope" font-size="12" font-weight="700" fill="#737373" letter-spacing="0.12em">AI CAPABILITY →</text>
+      <text x="-14" y="170" transform="rotate(-90 -14 170)" text-anchor="middle" font-family="Manrope" font-size="12" font-weight="700" fill="#737373" letter-spacing="0.12em">TECHNOLOGY CAPABILITY →</text>
 
       <!-- baseline -->
       <line x1="70" y1="300" x2="940" y2="300" stroke="rgba(212,165,116,0.25)" stroke-width="1"/>
 
-      <!-- trust threshold -->
+      <!-- MPLM threshold -->
       <line x1="70" y1="147" x2="940" y2="147" stroke="rgba(212,165,116,0.5)" stroke-width="1.5" stroke-dasharray="6 5"/>
-      <text x="78" y="140" text-anchor="start" font-family="Manrope" font-size="12.5" font-weight="700" fill="#D4A574" letter-spacing="0.04em">AI level - good enough to run a circle</text>
-
-      <!-- area under curve -->
-      <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50 L 940 300 L 70 300 Z" fill="rgba(212,165,116,0.08)"/>
+      <text x="78" y="138" text-anchor="start" font-family="Manrope" font-size="11" font-weight="800" fill="#D4A574" letter-spacing="0.05em">MPLM THRESHOLD: CAPABLE OF MULTI-PERSON FACILITATION</text>
 
       <!-- capability curve -->
       <path d="M 70 279 C 200 255 250 215 360 191 C 470 167 540 130 650 97 C 760 78 850 60 940 50" fill="none" stroke="#D4A574" stroke-width="3" stroke-linecap="round"/>
@@ -105,66 +97,63 @@ body[data-slide="slide-tech"] .slide-title { margin-bottom: 4px; }
       <circle cx="940" cy="50"  r="6" fill="#0D0D0D" stroke="#D4A574" stroke-width="2.5"/>
 
       <!-- 2027 inflection -->
-      <line x1="505" y1="36" x2="505" y2="300" stroke="rgba(212,165,116,0.7)" stroke-width="1.5" stroke-dasharray="3 4"/>
-      <circle cx="505" cy="147" r="11" fill="none" stroke="#D4A574" stroke-width="2"/>
-      <circle cx="505" cy="147" r="5" fill="#D4A574"/>
-      <text x="505" y="318" text-anchor="middle" font-family="Manrope" font-size="13" font-weight="800" fill="#D4A574">2027</text>
+      <line x1="505" y1="40" x2="505" y2="300" stroke="rgba(212,165,116,0.4)" stroke-width="1.5" stroke-dasharray="3 4"/>
+      <circle cx="505" cy="147" r="9" fill="none" stroke="#D4A574" stroke-width="2"/>
+      <circle cx="505" cy="147" r="4" fill="#D4A574"/>
+      <text x="505" y="322" text-anchor="middle" font-family="Manrope" font-size="14" font-weight="800" fill="#D4A574">2027</text>
 
-      <!-- data labels — main style restored (IBM Plex Serif 14, #D1D1D1) -->
+      <!-- data labels -->
 
-      <!-- 1st · 2024 — centred on dot, 20px up from original -->
+      <!-- 2024 -->
       <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="70" y="230">AI can't be trusted</tspan>
-        <tspan x="70" dy="18">with a single email</tspan>
+        <tspan x="70" y="230">Delegation of 1:1 chat</tspan>
+        <tspan x="70" dy="18">still unreliable</tspan>
       </text>
 
-      <!-- 2nd · 2026 — centred, 40px down from original -->
+      <!-- 2026 -->
       <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="360" y="232">1:1 text nailed.</tspan>
-        <tspan x="360" dy="18">voice and group text —</tspan>
+        <tspan x="360" y="232">1:1 chat nailed.</tspan>
+        <tspan x="360" dy="18">voice and multi-person chat —</tspan>
         <tspan x="360" dy="18">still breaks</tspan>
       </text>
 
-      <!-- 3rd · 2028 — unchanged from main -->
+      <!-- 2028 -->
       <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="650" y="62">Group chat solid;</tspan>
-        <tspan x="650" dy="18">voice catching up</tspan>
+        <tspan x="650" y="65">Multi-Person Language Model (MPLM)</tspan>
+        <tspan x="650" dy="18">context is fully resilient</tspan>
       </text>
 
-      <!-- 4th · 2030 — centred on dot, overflow visible -->
+      <!-- 2030 -->
       <text text-anchor="middle" font-family="IBM Plex Serif" font-size="14" fill="#D1D1D1">
-        <tspan x="940" y="90">Runs full circles —</tspan>
-        <tspan x="940" dy="18">voice included</tspan>
+        <tspan x="940" y="90">MPLM handles both</tspan>
+        <tspan x="940" dy="18">text chat and voice calls</tspan>
       </text>
 
       <!-- year labels -->
-      <text x="70"  y="340" text-anchor="start"  font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2024</text>
-      <text x="360" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2026</text>
-      <text x="650" y="340" text-anchor="middle" font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2028</text>
-      <text x="940" y="340" text-anchor="end"    font-family="Manrope" font-size="26" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2030</text>
+      <text x="70"  y="345" text-anchor="start"  font-family="Manrope" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2024</text>
+      <text x="360" y="345" text-anchor="middle" font-family="Manrope" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2026</text>
+      <text x="650" y="345" text-anchor="middle" font-family="Manrope" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2028</text>
+      <text x="940" y="345" text-anchor="end"    font-family="Manrope" font-size="24" font-weight="800" fill="#FFFFFF" letter-spacing="-0.02em">2030</text>
 
     </svg>
   </div>
 
-  <div class="tw-enablers">
-    <div class="tw-card">
-      <div class="tw-card-num">90%</div>
-      <div class="tw-card-body">
-        <div class="tw-card-title">Lower cost to run a circle</div>
-        <div class="tw-card-desc">AI replaces chapter directors and regional staff.</div>
-      </div>
+  <!-- Before / After -->
+  <div class="tw-comparison">
+    <div class="tw-comp-col legacy">
+      <div class="tw-comp-label">Before · BNI method</div>
+      <div class="tw-comp-title">40,000+ Manual Operators</div>
+      <div class="tw-comp-desc">Regional franchise directors, local chapter presidents, and human facilitators manually police trust and coordinate interactions. Scales linearly with painful operational friction.</div>
     </div>
-    <div class="tw-card">
-      <div class="tw-card-num">0</div>
-      <div class="tw-card-body">
-        <div class="tw-card-title">Franchises needed</div>
-        <div class="tw-card-desc">No regional directors, no territories — unlike BNI's franchise model</div>
-      </div>
+    <div class="tw-comp-col modern">
+      <div class="tw-comp-label">After · Referna</div>
+      <div class="tw-comp-title">0 Operational Friction</div>
+      <div class="tw-comp-desc">MPLMs automate multi-person coordination, peer compatibility reviews, and participation loops. Infinite structural scaling with high software margins.</div>
     </div>
   </div>
 
-  <div class="conclusion">AI enables the cross over from <strong>unattractive franchise model to VC-type business.</strong></div>
-  <div class="sources">Sources: Referna analysis · frontier-model capability trajectory · BNI operating &amp; franchise model</div>
+  <div class="conclusion">MPLMs shift a legacy franchise model into a <strong>high-margin, venture-scale network.</strong></div>
+  <div class="sources">Sources: Referna analysis · multi-person context-window trajectory · BNI operational structure</div>
 </div>
 
 </div>
