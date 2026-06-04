@@ -119,9 +119,11 @@
         // slide-8: html2canvas doesn't support clip-path, so the absolute mockup cluster
         // bleeds into the conclusion area. overflow:hidden on .s9-visual clamps it instead.
         '[data-slide="slide-8"] .s9-visual { clip-path: none !important; overflow: hidden !important; }',
-        // slide-tech: at PDF width (1260px) the SVG chart renders ~1px taller than the
-        // available height, clipping the sources line. Remove the chart's top margin to
-        // recover that space.
+        // slide-tech: the subtitle at 15px wraps to 2 lines at 1140px content width
+        // (1260px page - 2×60px padding), adding ~22px overflow. Shrink to the 14px
+        // minimum so it stays on one line. Also zero the chart top margin to recover
+        // the last 4px of headroom.
+        '[data-slide="slide-tech"] .slide-subtitle { font-size: 14px !important; }',
         '[data-slide="slide-tech"] .tw-chart { margin-top: 0 !important; }',
         // Boost z-index on conclusion/sources so html2canvas always paints them above
         // any absolutely-positioned slide content that overlaps the footer region.
