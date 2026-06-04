@@ -140,10 +140,10 @@
 
   // html2canvas does not reliably honor CSS `filter` on raster <img> tags —
   // grayscale photos render in their original color and `brightness(0)
-  // invert(1)` silhouettes render as the original colored logo. Bake any
-  // computed filter into a same-origin data URL via the Canvas 2D `filter`
-  // property, then clear the CSS filter so html2canvas just draws the
-  // pre-processed bitmap.
+  // invert(1)` silhouettes render as the original colored logo. Bake filters
+  // via pixel manipulation (ctx.filter is unsupported on Safari/iOS and
+  // silently no-ops there), then clear the CSS filter so html2canvas draws
+  // the pre-processed bitmap.
   async function bakeFilteredImages(root) {
     const imgs = Array.from(root.querySelectorAll('img'));
     await Promise.all(imgs.map(async (img) => {
@@ -163,8 +163,34 @@
         c.width = img.naturalWidth;
         c.height = img.naturalHeight;
         const ctx = c.getContext('2d');
-        ctx.filter = f;
         ctx.drawImage(img, 0, 0);
+
+        const isGrayscale = /grayscale\(\s*(?:100%|1(?:\.\d+)?)\s*\)/.test(f);
+        // brightness(0) → all channels 0, then invert(1) → all channels 255 (white)
+        const isBrightZeroInvert = /brightness\(\s*0%?\s*\)/.test(f) &&
+          /invert\(\s*(?:100%|1(?:\.\d+)?)\s*\)/.test(f);
+
+        if (isGrayscale || isBrightZeroInvert) {
+          const id = ctx.getImageData(0, 0, c.width, c.height);
+          const d = id.data;
+          if (isGrayscale) {
+            for (let i = 0; i < d.length; i += 4) {
+              const g = Math.round(d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114);
+              d[i] = d[i + 1] = d[i + 2] = g;
+            }
+          } else {
+            for (let i = 0; i < d.length; i += 4) {
+              if (d[i + 3] > 0) { d[i] = d[i + 1] = d[i + 2] = 255; }
+            }
+          }
+          ctx.putImageData(id, 0, 0);
+        } else {
+          // Fallback for unrecognised filters — ctx.filter may no-op on Safari
+          ctx.clearRect(0, 0, c.width, c.height);
+          try { ctx.filter = f; } catch (_) {}
+          ctx.drawImage(img, 0, 0);
+        }
+
         const dataUrl = c.toDataURL('image/png');
         await new Promise((res) => {
           img.addEventListener('load', res, { once: true });
@@ -181,13 +207,17 @@
   // Convert images to data URLs so html2canvas can draw them without CORS
   // canvas-taint errors. All SVG <image href> elements are baked (html2canvas
   // doesn't render them reliably even for same-origin relative paths). For
-  // regular <img> elements only absolute https URLs are baked (relative paths
-  // work fine natively).
+  // regular <img> elements: absolute https URLs and any .svg paths are baked
+  // (html2canvas cannot render complex SVG files loaded via <img> on any browser).
+  // SVG sources are rasterised to PNG via canvas before embedding.
   async function bakeExternalImages(root) {
     const items = [];
     root.querySelectorAll('img').forEach((img) => {
       const src = img.getAttribute('src') || '';
-      if (/^https?:\/\//.test(src)) items.push({ el: img, attr: 'src', url: src });
+      if (/^https?:\/\//.test(src) ||
+          (/\.svg(?:[?#]|$)/i.test(src) && !src.startsWith('data:'))) {
+        items.push({ el: img, attr: 'src', url: src });
+      }
     });
     root.querySelectorAll('image').forEach((img) => {
       const href = img.getAttribute('href') ||
@@ -199,13 +229,38 @@
         const resp = await fetch(url);
         if (!resp.ok) return;
         const blob = await resp.blob();
-        const dataUrl = await new Promise((res, rej) => {
-          const reader = new FileReader();
-          reader.onload = () => res(reader.result);
-          reader.onerror = rej;
-          reader.readAsDataURL(blob);
-        });
-        el.setAttribute(attr, dataUrl);
+        const isSvg = /^image\/svg/i.test(blob.type) || /\.svg(?:[?#]|$)/i.test(url);
+        if (isSvg) {
+          // Rasterise SVG → PNG so html2canvas renders it reliably everywhere
+          const blobUrl = URL.createObjectURL(blob);
+          const dataUrl = await new Promise((res, rej) => {
+            const tmp = new Image();
+            tmp.onload = () => {
+              const w = tmp.naturalWidth || (el.offsetWidth || 300) * 2;
+              const h = tmp.naturalHeight ||
+                (tmp.naturalWidth ? 0 : (el.offsetHeight || 75) * 2);
+              const aspect = (tmp.naturalWidth && tmp.naturalHeight)
+                ? tmp.naturalHeight / tmp.naturalWidth : null;
+              const ch = aspect ? Math.round(w * aspect) : (h || Math.round(w / 4));
+              const c = document.createElement('canvas');
+              c.width = w; c.height = ch;
+              c.getContext('2d').drawImage(tmp, 0, 0, w, ch);
+              URL.revokeObjectURL(blobUrl);
+              res(c.toDataURL('image/png'));
+            };
+            tmp.onerror = () => { URL.revokeObjectURL(blobUrl); rej(new Error('SVG load failed')); };
+            tmp.src = blobUrl;
+          });
+          el.setAttribute(attr, dataUrl);
+        } else {
+          const dataUrl = await new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.onload = () => res(reader.result);
+            reader.onerror = rej;
+            reader.readAsDataURL(blob);
+          });
+          el.setAttribute(attr, dataUrl);
+        }
       } catch (_) {}
     }));
   }
