@@ -63,6 +63,7 @@
     if (hero) {
       const page = document.createElement('div');
       page.className = 'pdf-page';
+      page.style.width = PAGE_W + 'px';
       page.appendChild(hero);
       root.appendChild(page);
     }
@@ -92,6 +93,9 @@
 
       const page = document.createElement('div');
       page.className = 'pdf-page';
+      // Pin the page to exactly PAGE_W so text reflows at the correct width
+      // regardless of the browser window width when the download is triggered.
+      page.style.width = PAGE_W + 'px';
       if (slideName) page.setAttribute('data-slide', slideName);
 
       // Per-slide overrides are scoped to body[data-slide="..."]; rewrite to
