@@ -112,6 +112,17 @@
         '.s9-reveal-item { opacity: 1 !important; }',
         // html2canvas doesn't support CSS zoom — replace with transform scale
         '.s9-apply-inner { zoom: unset !important; transform: scale(0.79); transform-origin: top left; }',
+        // slide-8: html2canvas doesn't support clip-path, so the absolute mockup cluster
+        // bleeds into the conclusion area. overflow:hidden on .s9-visual clamps it instead.
+        '[data-slide="slide-8"] .s9-visual { clip-path: none !important; overflow: hidden !important; }',
+        // slide-tech: at PDF width (1260px) the SVG chart renders ~1px taller than the
+        // available height, clipping the sources line. Remove the chart's top margin to
+        // recover that space.
+        '[data-slide="slide-tech"] .tw-chart { margin-top: 0 !important; }',
+        // Boost z-index on conclusion/sources so html2canvas always paints them above
+        // any absolutely-positioned slide content that overlaps the footer region.
+        '.conclusion { z-index: 50 !important; }',
+        '.sources    { z-index: 50 !important; }',
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
