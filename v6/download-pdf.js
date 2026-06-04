@@ -141,10 +141,13 @@
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
-      const brandFooter = document.createElement('div');
-      brandFooter.className = 'slide-brand-footer';
-      brandFooter.innerHTML = '<span class="sbf-mark">Referna</span> · Referral network for independent professionals';
-      slide.appendChild(brandFooter);
+      const skipFooter = new Set(['slide-1', 'slide-14']);
+      if (!skipFooter.has(slideName)) {
+        const brandFooter = document.createElement('div');
+        brandFooter.className = 'slide-brand-footer';
+        brandFooter.innerHTML = '<img class="sbf-logo" src="logos/lockup-white-on-black.svg" alt="Referna"> · Referral network for independent professionals';
+        slide.appendChild(brandFooter);
+      }
 
       page.appendChild(slide);
       root.appendChild(page);

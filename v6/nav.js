@@ -281,9 +281,11 @@
   function injectBrandFooter() {
     var slide = document.querySelector('.slide');
     if (!slide || slide.querySelector('.slide-brand-footer')) return;
+    var ds = document.body && document.body.dataset && document.body.dataset.slide;
+    if (!ds || ds === 'index' || ds === 'slide-1' || ds === 'slide-14') return;
     var el = document.createElement('div');
     el.className = 'slide-brand-footer';
-    el.innerHTML = '<span class="sbf-mark">Referna</span> · Referral network for independent professionals';
+    el.innerHTML = '<img class="sbf-logo" src="logos/lockup-white-on-black.svg" alt="Referna"> · Referral network for independent professionals';
     slide.appendChild(el);
   }
 
