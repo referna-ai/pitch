@@ -278,11 +278,21 @@
     slide.parentNode.insertBefore(wrap, slide.nextSibling);
   }
 
+  function injectBrandFooter() {
+    var slide = document.querySelector('.slide');
+    if (!slide || slide.querySelector('.slide-brand-footer')) return;
+    var el = document.createElement('div');
+    el.className = 'slide-brand-footer';
+    el.innerHTML = '<span class="sbf-mark">Referna</span> · Referral network for independent professionals';
+    slide.appendChild(el);
+  }
+
   function init() {
     if (isBackup) {
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
       makeIndicators(true, true);
+      injectBrandFooter();
       revealSlide();
       return;
     }
@@ -290,6 +300,7 @@
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
     makeIndicators(idx > 0, idx < slideFiles.length - 1);
+    injectBrandFooter();
     revealSlide();
   }
 

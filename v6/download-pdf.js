@@ -132,6 +132,11 @@
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
+      const brandFooter = document.createElement('div');
+      brandFooter.className = 'slide-brand-footer';
+      brandFooter.innerHTML = '<span class="sbf-mark">Referna</span> · Referral network for independent professionals';
+      slide.appendChild(brandFooter);
+
       page.appendChild(slide);
       root.appendChild(page);
     });
