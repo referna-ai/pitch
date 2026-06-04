@@ -129,6 +129,15 @@
         // any absolutely-positioned slide content that overlaps the footer region.
         '.conclusion { z-index: 50 !important; }',
         '.sources    { z-index: 50 !important; }',
+        // slide-8: browser-wrap has left:-20px which gets cropped by overflow:hidden on .s9-visual
+        '[data-slide="slide-8"] .s9-browser-wrap { left: 0 !important; }',
+        // slide-8: text column overflows its grid cell, bleeding under the conclusion bar
+        '[data-slide="slide-8"] .s9-text-col { overflow: hidden !important; }',
+        // slide-9: html2canvas doesn't support CSS zoom — replace with transform scale
+        // (zoom causes character spacing to collapse, merging words together)
+        '[data-slide="slide-9"] .t-desk-inner  { zoom: unset !important; transform: scale(0.95); transform-origin: top left; }',
+        '[data-slide="slide-9"] .t-email-inner { zoom: unset !important; transform: scale(0.82); transform-origin: top left; }',
+        '[data-slide="slide-9"] .t-phone-inner { zoom: unset !important; transform: scale(0.90); transform-origin: top left; }',
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
