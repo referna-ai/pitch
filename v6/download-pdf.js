@@ -148,6 +148,9 @@
         '[data-slide="slide-9"] .t-email-inner { zoom: unset !important; transform: scale(0.82); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-phone-inner { zoom: unset !important; transform: scale(0.90); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-cols { clip-path: none !important; overflow: hidden !important; }',
+        '[data-slide="slide-12"] .team-bullet { font-size: 14px !important; line-height: 1.4 !important; }',
+        '[data-slide="slide-12"] .team-bullets { gap: 8px !important; }',
+        '[data-slide="slide-12"] .team-role { margin-bottom: 12px !important; }',
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
