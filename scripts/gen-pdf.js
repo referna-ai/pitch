@@ -68,7 +68,7 @@ async function main() {
       await page.goto(`${BASE}/${SLIDES[i]}`, { waitUntil: 'networkidle' });
 
       // nav.js sets visibility:hidden until fonts ready + scale applied; wait for .scaled
-      await page.waitForSelector('.slide.scaled, .slide-hero.scaled', { timeout: 6000 })
+      await page.waitForSelector('.slide.scaled, .slide-hero.scaled', { timeout: 10000 })
         .catch(() => process.stdout.write('(no .scaled — continuing) '));
 
       const buf  = await page.screenshot({
