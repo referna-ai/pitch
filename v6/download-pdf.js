@@ -119,12 +119,18 @@
         // slide-8: html2canvas doesn't support clip-path, so the absolute mockup cluster
         // bleeds into the conclusion area. overflow:hidden on .s9-visual clamps it instead.
         '[data-slide="slide-8"] .s9-visual { clip-path: none !important; overflow: hidden !important; }',
-        // slide-tech: the subtitle at 15px wraps to 2 lines at 1140px content width
-        // (1260px page - 2×60px padding), adding ~22px overflow. Shrink to the 14px
-        // minimum so it stays on one line. Also zero the chart top margin to recover
-        // the last 4px of headroom.
-        '[data-slide="slide-tech"] .slide-subtitle { font-size: 14px !important; }',
+        // slide-tech: the chart SVG at width:100% renders ~399px tall on a 1140px content
+        // width (1260px page − 2×60px padding), and subtitle/comparison margins push total
+        // height to ~683px — 25px over the 658px content area. Fix:
+        //   • shrink label gap (-6px) and subtitle gap (-6px)
+        //   • cap the SVG to 360px via explicit height (saves ~39px; preserveAspectRatio
+        //     keeps all content visible, just slightly scaled down)
+        //   • tighten comparison margin (-10px)
+        '[data-slide="slide-tech"] .slide-label { margin-bottom: 4px !important; }',
+        '[data-slide="slide-tech"] .slide-subtitle { font-size: 14px !important; margin-bottom: 0 !important; }',
         '[data-slide="slide-tech"] .tw-chart { margin-top: 0 !important; }',
+        '[data-slide="slide-tech"] .tw-chart svg { height: 360px !important; }',
+        '[data-slide="slide-tech"] .tw-comparison { margin-top: 4px !important; }',
         // Boost z-index on conclusion/sources so html2canvas always paints them above
         // any absolutely-positioned slide content that overlaps the footer region.
         '.conclusion { z-index: 50 !important; }',
