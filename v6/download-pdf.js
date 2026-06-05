@@ -128,7 +128,7 @@
         //   • tighten comparison margin (-10px)
         '[data-slide="slide-tech"] .slide-label { margin-bottom: 4px !important; }',
         '[data-slide="slide-tech"] .slide-subtitle { font-size: 14px !important; margin-bottom: 0 !important; }',
-        '[data-slide="slide-tech"] .tw-chart { margin-top: 0 !important; }',
+        '[data-slide="slide-tech"] .tw-chart { margin-top: -10px !important; }',
         '[data-slide="slide-tech"] .tw-chart svg { height: 360px !important; }',
         '[data-slide="slide-tech"] .tw-comparison { margin-top: 4px !important; }',
         // Boost z-index on conclusion/sources so html2canvas always paints them above
