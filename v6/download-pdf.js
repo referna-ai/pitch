@@ -144,6 +144,9 @@
         '[data-slide="slide-9"] .t-desk-inner  { zoom: unset !important; transform: scale(0.95); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-email-inner { zoom: unset !important; transform: scale(0.82); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-phone-inner { zoom: unset !important; transform: scale(0.90); transform-origin: top left; }',
+        // slide-9: .t-cols uses clip-path to clip bottom overflow; html2canvas ignores
+        // clip-path so mockups bleed under the conclusion bar — same fix as slide-8
+        '[data-slide="slide-9"] .t-cols { clip-path: none !important; overflow: hidden !important; }',
       ].join('\n');
       page.appendChild(pdfRenderStyle);
 
