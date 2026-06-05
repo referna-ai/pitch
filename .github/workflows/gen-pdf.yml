@@ -32,11 +32,9 @@ jobs:
       - name: Generate PDF
         run: npm run gen-pdf
 
-      - name: Commit updated PDF
-        run: |
-          git config user.name  "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add v6/referna-pitch.pdf
-          git diff --staged --quiet && echo "PDF unchanged, nothing to commit" && exit 0
-          git commit -m "chore: regenerate pitch PDF [skip ci]"
-          git push
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: referna-pitch-${{ github.sha }}
+          path: v6/referna-pitch.pdf
+          retention-days: 30
