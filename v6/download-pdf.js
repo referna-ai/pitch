@@ -138,7 +138,12 @@
         '.conclusion { z-index: 50 !important; }',
         '.sources    { z-index: 50 !important; }',
         '[data-slide="slide-8"] .s9-browser-wrap { left: 0 !important; }',
-        '[data-slide="slide-8"] .s9-text-col { overflow: hidden !important; }',
+        '[data-slide="slide-8"] .s9-text-col { overflow: hidden !important; gap: 16px !important; }',
+        // slide-8: bullets at 22px with 4-line br-separated bullet overflow the column.
+        // Reduce font, tighten line-height and padding to fit all three bullets.
+        '[data-slide="slide-8"] .s9-pillar-title { font-size: 26px !important; margin-bottom: 14px !important; }',
+        '[data-slide="slide-8"] .s9-pillar-bullets li { font-size: 17px !important; line-height: 1.35 !important; padding: 10px 0 10px 28px !important; }',
+        '[data-slide="slide-8"] .s9-pillar-bullets li:first-child { padding-top: 0 !important; }',
         '[data-slide="slide-9"] .t-desk-inner  { zoom: unset !important; transform: scale(0.95); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-email-inner { zoom: unset !important; transform: scale(0.82); transform-origin: top left; }',
         '[data-slide="slide-9"] .t-phone-inner { zoom: unset !important; transform: scale(0.90); transform-origin: top left; }',
