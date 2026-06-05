@@ -1,0 +1,13 @@
+{
+  "name": "pitch",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "gen-pdf": "node scripts/gen-pdf.js"
+  },
+  "devDependencies": {
+    "jspdf": "^2.5.1",
+    "playwright": "^1.44.0",
+    "serve": "^14.2.3"
+  }
+}

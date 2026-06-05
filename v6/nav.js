@@ -278,11 +278,23 @@
     slide.parentNode.insertBefore(wrap, slide.nextSibling);
   }
 
+  function injectBrandFooter() {
+    var slide = document.querySelector('.slide');
+    if (!slide || slide.querySelector('.slide-brand-footer')) return;
+    var ds = document.body && document.body.dataset && document.body.dataset.slide;
+    if (!ds || ds === 'index' || ds === 'slide-1' || ds === 'slide-14') return;
+    var el = document.createElement('div');
+    el.className = 'slide-brand-footer';
+    el.innerHTML = '<img class="sbf-logo" src="logos/lockup-white-on-black.svg" alt="Referna"> · Referral network for independent professionals';
+    slide.appendChild(el);
+  }
+
   function init() {
     if (isBackup) {
       makeArrow('left', back, true);
       makeArrow('right', forward, true);
       makeIndicators(true, true);
+      injectBrandFooter();
       revealSlide();
       return;
     }
@@ -290,6 +302,7 @@
     makeArrow('left', back, idx > 0);
     makeArrow('right', forward, idx < slideFiles.length - 1);
     makeIndicators(idx > 0, idx < slideFiles.length - 1);
+    injectBrandFooter();
     revealSlide();
   }
 

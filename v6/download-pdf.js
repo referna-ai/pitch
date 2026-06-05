@@ -7,10 +7,15 @@
   const JSPDF_URL = 'https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js';
   const PAGE_W = 1260;
   const PAGE_H = 738;
-  // iOS Safari caps each canvas at ~16M pixels. 1260*738*2*2 = ~7.4M, safe.
   const SCALE = 2;
   let busy = false;
   let libsPromise = null;
+
+  // ── Long-press threshold to trigger fresh generation ──────────────────
+  const LONG_PRESS_MS = 900;
+  let pressTimer = null;
+  let hintTimer = null;
+  let longPressTriggered = false;
 
   function setTooltip(text, state) {
     if (tooltip) tooltip.textContent = text;
@@ -19,6 +24,26 @@
   }
   function resetTooltip() { setTooltip(defaultTooltip, null); }
 
+  function trackDownloadClick() {
+    try {
+      if (window.pitchAnalytics && window.pitchAnalytics.trackAction) {
+        window.pitchAnalytics.trackAction('pdf-download', '★ PDF · Download');
+      }
+    } catch (_) {}
+  }
+
+  // ── Static PDF download (default) ─────────────────────────────────────
+  function downloadStatic() {
+    trackDownloadClick();
+    const a = document.createElement('a');
+    a.href = 'referna-pitch.pdf';
+    a.download = 'referna-pitch.pdf';
+    a.click();
+    setTooltip('Downloading!', 'ok');
+    setTimeout(resetTooltip, 1800);
+  }
+
+  // ── Dynamic generation (long-press) ───────────────────────────────────
   function loadScript(src) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
@@ -63,6 +88,7 @@
     if (hero) {
       const page = document.createElement('div');
       page.className = 'pdf-page';
+      page.style.width = PAGE_W + 'px';
       page.appendChild(hero);
       root.appendChild(page);
     }
@@ -74,14 +100,10 @@
         return r.text();
       }))
     );
-    const htmls = results
-      .filter((r) => r.status === 'fulfilled')
-      .map((r) => r.value);
+    const htmls = results.filter((r) => r.status === 'fulfilled').map((r) => r.value);
 
     htmls.forEach((html) => {
       const doc = new DOMParser().parseFromString(html, 'text/html');
-      // Fetched DOMs don't run nav.js, so their .slide-label / .slide-number
-      // are empty. Populate them from PITCH_SLIDES before rendering.
       if (window.PITCH_FILL_SLIDE) window.PITCH_FILL_SLIDE(doc);
       const slide = doc.querySelector('.slide');
       if (!slide) return;
@@ -92,28 +114,53 @@
 
       const page = document.createElement('div');
       page.className = 'pdf-page';
+      page.style.width = PAGE_W + 'px';
       if (slideName) page.setAttribute('data-slide', slideName);
 
-      // Per-slide overrides are scoped to body[data-slide="..."]; rewrite to
-      // [data-slide="..."] so they apply to our wrapper rather than <body>.
       inlineStyles.forEach((styleEl) => {
         const s = document.createElement('style');
         s.textContent = (styleEl.textContent || '').replace(/body\[data-slide=/g, '[data-slide=');
         page.appendChild(s);
       });
 
-      // Freeze animations and force JS-gated elements to their visible state.
       const pdfRenderStyle = document.createElement('style');
       pdfRenderStyle.textContent = [
         '*, *::before, *::after { animation: none !important; transition: none !important; }',
-        // Market-pull reveal lines (opacity:0 until JS fires)
         '.story-line { opacity: 1 !important; transform: translateY(0) !important; }',
-        // Product-slide sequential reveal items (opacity:0 until JS adds .s9-shown)
         '.s9-reveal-item { opacity: 1 !important; }',
-        // html2canvas doesn't support CSS zoom — replace with transform scale
         '.s9-apply-inner { zoom: unset !important; transform: scale(0.79); transform-origin: top left; }',
+        '[data-slide="slide-8"] .s9-visual { clip-path: none !important; overflow: hidden !important; }',
+        '[data-slide="slide-tech"] .slide-label { margin-bottom: 4px !important; }',
+        '[data-slide="slide-tech"] .slide-subtitle { font-size: 14px !important; margin-bottom: 0 !important; }',
+        '[data-slide="slide-tech"] .tw-chart { margin-top: -10px !important; }',
+        '[data-slide="slide-tech"] .tw-chart svg { height: 360px !important; }',
+        '[data-slide="slide-tech"] .tw-comparison { margin-top: 4px !important; }',
+        '.conclusion { z-index: 50 !important; }',
+        '.sources    { z-index: 50 !important; }',
+        '[data-slide="slide-8"] .s9-browser-wrap { left: 0 !important; }',
+        '[data-slide="slide-8"] .s9-text-col { overflow: hidden !important; gap: 16px !important; }',
+        // slide-8: bullets at 22px with 4-line br-separated bullet overflow the column.
+        // Reduce font, tighten line-height and padding to fit all three bullets.
+        '[data-slide="slide-8"] .s9-pillar-title { font-size: 26px !important; margin-bottom: 14px !important; }',
+        '[data-slide="slide-8"] .s9-pillar-bullets li { font-size: 17px !important; line-height: 1.35 !important; padding: 10px 0 10px 28px !important; }',
+        '[data-slide="slide-8"] .s9-pillar-bullets li:first-child { padding-top: 0 !important; }',
+        '[data-slide="slide-9"] .t-desk-inner  { zoom: unset !important; transform: scale(0.95); transform-origin: top left; }',
+        '[data-slide="slide-9"] .t-email-inner { zoom: unset !important; transform: scale(0.82); transform-origin: top left; }',
+        '[data-slide="slide-9"] .t-phone-inner { zoom: unset !important; transform: scale(0.90); transform-origin: top left; }',
+        '[data-slide="slide-9"] .t-cols { clip-path: none !important; overflow: hidden !important; }',
+        '[data-slide="slide-12"] .team-bullet { font-size: 14px !important; line-height: 1.4 !important; }',
+        '[data-slide="slide-12"] .team-bullets { gap: 8px !important; }',
+        '[data-slide="slide-12"] .team-role { margin-bottom: 12px !important; }',
       ].join('\n');
       page.appendChild(pdfRenderStyle);
+
+      const skipFooter = new Set(['slide-1', 'slide-14']);
+      if (!skipFooter.has(slideName)) {
+        const brandFooter = document.createElement('div');
+        brandFooter.className = 'slide-brand-footer';
+        brandFooter.innerHTML = '<img class="sbf-logo" src="logos/lockup-white-on-black.svg" alt="Referna"> · Referral network for independent professionals';
+        slide.appendChild(brandFooter);
+      }
 
       page.appendChild(slide);
       root.appendChild(page);
@@ -123,18 +170,11 @@
     return root;
   }
 
-  // html2canvas does not reliably honor CSS `filter` on raster <img> tags —
-  // grayscale photos render in their original color and `brightness(0)
-  // invert(1)` silhouettes render as the original colored logo. Bake any
-  // computed filter into a same-origin data URL via the Canvas 2D `filter`
-  // property, then clear the CSS filter so html2canvas just draws the
-  // pre-processed bitmap.
   async function bakeFilteredImages(root) {
     const imgs = Array.from(root.querySelectorAll('img'));
     await Promise.all(imgs.map(async (img) => {
       const f = (getComputedStyle(img).filter || '').toString().trim();
       if (!f || f === 'none') return;
-
       if (!img.complete || !img.naturalWidth) {
         await new Promise((res) => {
           img.addEventListener('load', res, { once: true });
@@ -142,14 +182,34 @@
         });
       }
       if (!img.naturalWidth) return;
-
       try {
         const c = document.createElement('canvas');
         c.width = img.naturalWidth;
         c.height = img.naturalHeight;
         const ctx = c.getContext('2d');
-        ctx.filter = f;
         ctx.drawImage(img, 0, 0);
+        const isGrayscale = /grayscale\(\s*(?:100%|1(?:\.\d+)?)\s*\)/.test(f);
+        const isBrightZeroInvert = /brightness\(\s*0%?\s*\)/.test(f) &&
+          /invert\(\s*(?:100%|1(?:\.\d+)?)\s*\)/.test(f);
+        if (isGrayscale || isBrightZeroInvert) {
+          const id = ctx.getImageData(0, 0, c.width, c.height);
+          const d = id.data;
+          if (isGrayscale) {
+            for (let i = 0; i < d.length; i += 4) {
+              const g = Math.round(d[i] * 0.299 + d[i + 1] * 0.587 + d[i + 2] * 0.114);
+              d[i] = d[i + 1] = d[i + 2] = g;
+            }
+          } else {
+            for (let i = 0; i < d.length; i += 4) {
+              if (d[i + 3] > 0) { d[i] = d[i + 1] = d[i + 2] = 255; }
+            }
+          }
+          ctx.putImageData(id, 0, 0);
+        } else {
+          ctx.clearRect(0, 0, c.width, c.height);
+          try { ctx.filter = f; } catch (_) {}
+          ctx.drawImage(img, 0, 0);
+        }
         const dataUrl = c.toDataURL('image/png');
         await new Promise((res) => {
           img.addEventListener('load', res, { once: true });
@@ -163,16 +223,14 @@
     }));
   }
 
-  // Convert images to data URLs so html2canvas can draw them without CORS
-  // canvas-taint errors. All SVG <image href> elements are baked (html2canvas
-  // doesn't render them reliably even for same-origin relative paths). For
-  // regular <img> elements only absolute https URLs are baked (relative paths
-  // work fine natively).
   async function bakeExternalImages(root) {
     const items = [];
     root.querySelectorAll('img').forEach((img) => {
       const src = img.getAttribute('src') || '';
-      if (/^https?:\/\//.test(src)) items.push({ el: img, attr: 'src', url: src });
+      if (/^https?:\/\//.test(src) ||
+          (/\.svg(?:[?#]|$)/i.test(src) && !src.startsWith('data:'))) {
+        items.push({ el: img, attr: 'src', url: src });
+      }
     });
     root.querySelectorAll('image').forEach((img) => {
       const href = img.getAttribute('href') ||
@@ -184,13 +242,37 @@
         const resp = await fetch(url);
         if (!resp.ok) return;
         const blob = await resp.blob();
-        const dataUrl = await new Promise((res, rej) => {
-          const reader = new FileReader();
-          reader.onload = () => res(reader.result);
-          reader.onerror = rej;
-          reader.readAsDataURL(blob);
-        });
-        el.setAttribute(attr, dataUrl);
+        const isSvg = /^image\/svg/i.test(blob.type) || /\.svg(?:[?#]|$)/i.test(url);
+        if (isSvg) {
+          const blobUrl = URL.createObjectURL(blob);
+          const dataUrl = await new Promise((res, rej) => {
+            const tmp = new Image();
+            tmp.onload = () => {
+              const w = tmp.naturalWidth || (el.offsetWidth || 300) * 2;
+              const h = tmp.naturalHeight ||
+                (tmp.naturalWidth ? 0 : (el.offsetHeight || 75) * 2);
+              const aspect = (tmp.naturalWidth && tmp.naturalHeight)
+                ? tmp.naturalHeight / tmp.naturalWidth : null;
+              const ch = aspect ? Math.round(w * aspect) : (h || Math.round(w / 4));
+              const c = document.createElement('canvas');
+              c.width = w; c.height = ch;
+              c.getContext('2d').drawImage(tmp, 0, 0, w, ch);
+              URL.revokeObjectURL(blobUrl);
+              res(c.toDataURL('image/png'));
+            };
+            tmp.onerror = () => { URL.revokeObjectURL(blobUrl); rej(new Error('SVG load failed')); };
+            tmp.src = blobUrl;
+          });
+          el.setAttribute(attr, dataUrl);
+        } else {
+          const dataUrl = await new Promise((res, rej) => {
+            const reader = new FileReader();
+            reader.onload = () => res(reader.result);
+            reader.onerror = rej;
+            reader.readAsDataURL(blob);
+          });
+          el.setAttribute(attr, dataUrl);
+        }
       } catch (_) {}
     }));
   }
@@ -239,33 +321,53 @@
     }
   }
 
-  function trackDownloadClick() {
-    try {
-      if (window.pitchAnalytics && window.pitchAnalytics.trackAction) {
-        window.pitchAnalytics.trackAction('pdf-download', '★ PDF · Download');
-      }
-    } catch (_) {}
+  // ── Input handlers ─────────────────────────────────────────────────────
+  function cancelPress() {
+    clearTimeout(pressTimer);
+    clearTimeout(hintTimer);
+    pressTimer = null;
+    hintTimer = null;
   }
 
-  btn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+  function startPress() {
     if (busy) return;
-    busy = true;
-    btn.setAttribute('disabled', '');
-    setTooltip('Building…', null);
-    trackDownloadClick();
-    try {
-      await generate();
-      setTooltip('Downloaded!', 'ok');
-    } catch (err) {
-      console.error('[pdf]', err);
-      setTooltip('Failed', 'err');
-    } finally {
-      btn.removeAttribute('disabled');
-      setTimeout(() => { resetTooltip(); busy = false; }, 1800);
-    }
-  });
+    longPressTriggered = false;
+    hintTimer = setTimeout(() => setTooltip('Keep holding…', null), 400);
+    pressTimer = setTimeout(async () => {
+      longPressTriggered = true;
+      cancelPress();
+      busy = true;
+      btn.setAttribute('disabled', '');
+      setTooltip('Building…', null);
+      try {
+        await generate();
+        setTooltip('Generated!', 'ok');
+      } catch (err) {
+        console.error('[pdf]', err);
+        setTooltip('Failed', 'err');
+      } finally {
+        btn.removeAttribute('disabled');
+        setTimeout(() => { resetTooltip(); busy = false; }, 1800);
+      }
+    }, LONG_PRESS_MS);
+  }
 
+  function endPress() {
+    if (longPressTriggered) return;
+    const wasHolding = !!pressTimer;
+    cancelPress();
+    if (wasHolding) downloadStatic();
+    if (tooltip && tooltip.textContent === 'Keep holding…') resetTooltip();
+  }
+
+  btn.addEventListener('mousedown',  (e) => { if (e.button === 0) startPress(); });
+  btn.addEventListener('mouseup',    endPress);
+  btn.addEventListener('mouseleave', cancelPress);
+  btn.addEventListener('touchstart', startPress, { passive: true });
+  btn.addEventListener('touchend',   endPress);
+  btn.addEventListener('touchcancel', cancelPress);
+
+  // Prevent the synthetic click after touchend from double-firing
+  btn.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); });
   btn.addEventListener('contextmenu', (e) => { e.stopPropagation(); });
 })();
