@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Referna — Investor Tear Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="brand.css">
+<style>
+/* V3 — data-forward tear sheet (two-page, sidebar layout) */
+body[data-doc="v3"] .page { padding: 0.5in 0.55in; }
+
+.v3-masthead {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--gold-line);
+}
+.v3-masthead .lockup { height: 32px; }
+.v3-mast-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white);
+  text-align: center;
+}
+.v3-mast-title .gold { color: var(--gold); }
+.v3-mast-meta {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-align: right;
+}
+.v3-mast-meta .date {
+  display: block;
+  color: var(--gray-mid);
+  margin-top: 2px;
+}
+
+/* Two column layout */
+.v3-layout {
+  display: grid;
+  grid-template-columns: 2.45in 1fr;
+  gap: 22px;
+  margin-top: 16px;
+}
+
+/* Left sidebar — at a glance */
+.v3-side {
+  background: var(--black-soft);
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  padding: 14px 14px 16px;
+}
+.v3-side-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold-line);
+}
+.v3-side-row {
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.v3-side-row:last-child { border-bottom: none; }
+.v3-side-k {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-bottom: 3px;
+}
+.v3-side-v {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--white);
+  letter-spacing: -0.005em;
+  line-height: 1.35;
+}
+.v3-side-v .gold { color: var(--gold); font-weight: 700; }
+
+/* Right content */
+.v3-main { display: flex; flex-direction: column; gap: 14px; }
+
+.v3-tagline {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 32px;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--white);
+}
+.v3-tagline .gold { color: var(--gold); display: block; }
+.v3-pitch {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--gray);
+  margin-top: 6px;
+}
+
+/* Headline KPIs */
+.v3-kpi-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.v3-kpi {
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  padding: 10px 10px 12px;
+  background: var(--gold-faint);
+}
+.v3-kpi-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 24px;
+  letter-spacing: -0.02em;
+  color: var(--gold);
+  line-height: 1;
+}
+.v3-kpi-lab {
+  font-family: var(--font-display);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 6px;
+  line-height: 1.3;
+}
+
+/* Generic data table */
+.v3-section { }
+.v3-shead {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-top: 1px solid var(--gold-line);
+  padding-top: 10px;
+  margin-bottom: 8px;
+}
+.v3-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.v3-table td {
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--white);
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  vertical-align: top;
+}
+.v3-table tr:last-child td { border-bottom: none; }
+.v3-table td.k {
+  width: 28%;
+  color: var(--gold);
+  font-weight: 700;
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.v3-table td.v { color: var(--gray); }
+.v3-table td.v strong { color: var(--white); font-weight: 600; }
+.v3-table td.v em { color: var(--gold); font-style: normal; font-weight: 700; }
+
+/* Footer */
+.v3-footer {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gold-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-display);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--gray-mid);
+}
+.v3-footer a { color: var(--gold); text-decoration: none; }
+.v3-footer .who { color: var(--white); font-weight: 700; }
+
+/* =========== Page 2 =========== */
+.v3-p2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+  margin-top: 18px;
+}
+
+/* Team cards */
+.v3-team-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.v3-team {
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  padding: 14px;
+  background: var(--black-soft);
+}
+.v3-team-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.v3-team-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--gold-line);
+}
+.v3-team-photo.grayscale { filter: grayscale(100%); }
+.v3-team-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.v3-team-role {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 1px;
+}
+.v3-team-bullets {
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+.v3-team-bullets div {
+  padding: 4px 0 4px 12px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  position: relative;
+}
+.v3-team-bullets div:first-child { border-top: none; }
+.v3-team-bullets div::before {
+  content: "·";
+  color: var(--gold);
+  position: absolute;
+  left: 0;
+  top: 4px;
+  font-weight: 800;
+}
+.v3-team-bullets strong { color: var(--white); font-weight: 600; }
+
+/* Round projection panel */
+.v3-projection {
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  padding: 14px;
+  background: var(--gold-faint);
+}
+.v3-proj-goal {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.v3-proj-goal .gold { color: var(--gold); }
+.v3-proj-sub {
+  font-family: var(--font-display);
+  font-size: 11px;
+  color: var(--gray-mid);
+  margin-bottom: 12px;
+}
+.v3-funnel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.v3-funnel-step {
+  flex: 1;
+  text-align: center;
+  padding: 8px 4px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid var(--gold-line);
+  border-radius: 4px;
+}
+.v3-funnel-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--gold);
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+.v3-funnel-lab {
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  margin-top: 4px;
+  line-height: 1.2;
+}
+.v3-funnel-arrow {
+  color: var(--gold);
+  font-size: 14px;
+  font-weight: 800;
+}
+.v3-proj-note {
+  font-family: var(--font-display);
+  font-size: 11px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+.v3-proj-note strong { color: var(--white); font-weight: 600; }
+
+/* Opportunity ribbon */
+.v3-opp {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border-top: 2px solid var(--gold);
+  border-bottom: 2px solid var(--gold);
+  background: var(--gold-soft);
+}
+.v3-opp-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.v3-opp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+.v3-opp-h {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.v3-opp-d {
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  line-height: 1.45;
+  color: var(--gray);
+}
+
+.v3-ask {
+  margin-top: 18px;
+  padding: 14px 18px;
+  border: 1px solid var(--gold);
+  border-radius: 6px;
+  background: var(--gold-soft);
+  text-align: center;
+}
+.v3-ask-msg {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+.v3-ask-msg .gold { color: var(--gold); }
+.v3-ask-sub {
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 6px;
+}
+.v3-ask-contact {
+  font-family: var(--font-display);
+  font-size: 12px;
+  color: var(--white);
+  margin-top: 10px;
+  letter-spacing: -0.005em;
+}
+.v3-ask-contact a { color: var(--gold); text-decoration: none; font-weight: 600; }
+
+</style>
+</head>
+<body data-doc="v3">
+
+<!-- ============ PAGE 1 — At a glance + ES + KPIs ============ -->
+<div class="page">
+
+  <!-- Masthead -->
+  <div class="v3-masthead">
+    <img src="logos/lockup-white-on-black.svg" alt="referna" class="lockup">
+    <div class="v3-mast-title">Investor <span class="gold">Tear Sheet</span></div>
+    <div class="v3-mast-meta">
+      Pre-Seed
+      <span class="date">Page 1 / 2</span>
+    </div>
+  </div>
+
+  <div class="v3-layout">
+
+    <!-- Sidebar -->
+    <aside class="v3-side">
+      <div class="v3-side-title">At a Glance</div>
+
+      <div class="v3-side-row">
+        <div class="v3-side-k">Company</div>
+        <div class="v3-side-v">Referna<br><span style="font-weight:500;font-size:10.5px;color:var(--gray-mid);">InTouch123, Inc.</span></div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Category</div>
+        <div class="v3-side-v">Referral network for independent professionals</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Stage</div>
+        <div class="v3-side-v"><span class="gold">Pre-Seed</span> · raising now</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Runway</div>
+        <div class="v3-side-v">24 months · seed in month 12</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Team</div>
+        <div class="v3-side-v">4 people · 2 founders + 2 Talpiot grads</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Founders</div>
+        <div class="v3-side-v">2 exits · 2nd startup together · 3.5 yrs working together</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">12-mo target</div>
+        <div class="v3-side-v"><span class="gold">4,000 WAU</span><br><span style="font-weight:500;font-size:10.5px;color:var(--gray-mid);">~500 weekly referrals · ~$130M annualized</span></div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Market</div>
+        <div class="v3-side-v">130M independent pros globally<br>9.26M addressable in US</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Incumbent</div>
+        <div class="v3-side-v">BNI · 340K members · <span class="gold">$26.4B/yr</span> referrals · 40 yrs</div>
+      </div>
+      <div class="v3-side-row">
+        <div class="v3-side-k">Contact</div>
+        <div class="v3-side-v">Yaniv Nizan, CEO<br><span style="font-weight:500;font-size:10.5px;color:var(--gold);">yaniv@referna.com</span></div>
+      </div>
+    </aside>
+
+    <!-- Main column -->
+    <div class="v3-main">
+
+      <div>
+        <div class="eyebrow">Referral Network for Independent Professionals</div>
+        <div class="v3-tagline">The next client,<span class="gold">on warm intro.</span></div>
+        <p class="v3-pitch">Referna matches independent professionals — fractional execs, AI consultants, GEO specialists — into circles of trusted peers who refer clients to each other. BNI proves the behavior offline. AI lets us run it at software scale.</p>
+      </div>
+
+      <!-- Headline KPIs -->
+      <div class="v3-kpi-row">
+        <div class="v3-kpi">
+          <div class="v3-kpi-num">14.8%</div>
+          <div class="v3-kpi-lab">W/W growth</div>
+        </div>
+        <div class="v3-kpi">
+          <div class="v3-kpi-num">30.2%</div>
+          <div class="v3-kpi-lab">Cold-email reply rate</div>
+        </div>
+        <div class="v3-kpi">
+          <div class="v3-kpi-num">6.7%</div>
+          <div class="v3-kpi-lab">Email → onboarded</div>
+        </div>
+        <div class="v3-kpi">
+          <div class="v3-kpi-num">20×</div>
+          <div class="v3-kpi-lab">Vs. industry avg</div>
+        </div>
+      </div>
+
+      <!-- ES grid as data table -->
+      <div class="v3-section">
+        <div class="v3-shead">Executive Summary</div>
+        <table class="v3-table">
+          <tr>
+            <td class="k">Problem</td>
+            <td class="v">Independent professionals' <strong>#1 problem</strong> is getting the next client.</td>
+          </tr>
+          <tr>
+            <td class="k">Solution</td>
+            <td class="v">Matched circles of <strong>trusted peers</strong> who refer clients to each other.</td>
+          </tr>
+          <tr>
+            <td class="k">Will they refer?</td>
+            <td class="v"><em>340K</em> BNI members pay $800/yr to refer <em>$26.4B/yr</em> — for 40 years.</td>
+          </tr>
+          <tr>
+            <td class="k">Will they sign up?</td>
+            <td class="v"><em>30%</em> reply to cold email · <em>80%</em> positive · <em>20×</em> industry average.</td>
+          </tr>
+          <tr>
+            <td class="k">Market size</td>
+            <td class="v"><em>130M</em> independent pros globally · <em>9.26M</em> addressable in US.</td>
+          </tr>
+          <tr>
+            <td class="k">Moat</td>
+            <td class="v">Networks have <strong>great moats</strong> — and grow fast once seeded.</td>
+          </tr>
+          <tr>
+            <td class="k">Why now</td>
+            <td class="v">AI hits the inflection where it can run circles BNI needs <em>40K operators</em> for.</td>
+          </tr>
+          <tr>
+            <td class="k">Why us</td>
+            <td class="v">We love networks — built <em>3</em> already. <em>2 exits</em>. 2nd startup together.</td>
+          </tr>
+        </table>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="v3-footer">
+    <div><span class="who">Yaniv Nizan</span> · Co-Founder &amp; CEO · <a href="mailto:yaniv@referna.com">yaniv@referna.com</a></div>
+    <div><a href="https://deck.referna.com">deck.referna.com</a> · <a href="https://referna.com">referna.com</a></div>
+  </div>
+
+</div>
+
+<!-- ============ PAGE 2 — Team / Round / Opportunity / Ask ============ -->
+<div class="page">
+
+  <div class="v3-masthead">
+    <img src="logos/lockup-white-on-black.svg" alt="referna" class="lockup">
+    <div class="v3-mast-title">Team · Round · <span class="gold">Opportunity</span></div>
+    <div class="v3-mast-meta">
+      Pre-Seed
+      <span class="date">Page 2 / 2</span>
+    </div>
+  </div>
+
+  <!-- Team -->
+  <div class="v3-section" style="margin-top:18px;">
+    <div class="v3-shead" style="border-top:none;padding-top:0;">Team — two founders, two exits · 3.5 yrs together</div>
+    <div class="v3-team-grid">
+      <div class="v3-team">
+        <div class="v3-team-head">
+          <img src="yaniv.jpg" alt="Yaniv Nizan" class="v3-team-photo">
+          <div>
+            <div class="v3-team-name">Yaniv Nizan</div>
+            <div class="v3-team-role">Co-Founder &amp; CEO</div>
+          </div>
+        </div>
+        <div class="v3-team-bullets">
+          <div>CEO &amp; co-founder of <strong>SOOMLA</strong> (acq. ironSource/Unity)</div>
+          <div>Built <strong>3 networks</strong> — IntentClick ($4M ARR), SOOMLA payer-data, SOOMLA ad-creative</div>
+          <div>Customer in 4 referral-driven segments</div>
+        </div>
+      </div>
+      <div class="v3-team">
+        <div class="v3-team-head">
+          <img src="matan.jpg" alt="Matan Protter" class="v3-team-photo grayscale">
+          <div>
+            <div class="v3-team-name">Matan Protter</div>
+            <div class="v3-team-role">Co-Founder &amp; CTO</div>
+          </div>
+        </div>
+        <div class="v3-team-bullets">
+          <div>CTO &amp; co-founder of <strong>Infinity</strong> (acq. Alibaba)</div>
+          <div><strong>9 patents</strong> · Talpiot graduate · PhD Technion</div>
+          <div>3.5 yrs shipping products with Yaniv</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Round projection -->
+  <div class="v3-section" style="margin-top:16px;">
+    <div class="v3-shead">Round — pre-seed for 24 months</div>
+    <div class="v3-projection">
+      <div class="v3-proj-goal">12-month milestone: <span class="gold">4,000 Weekly Active Users</span></div>
+      <div class="v3-proj-sub">Network businesses raise seed at this scale (Clubhouse, Boardy)</div>
+
+      <div class="v3-funnel">
+        <div class="v3-funnel-step">
+          <div class="v3-funnel-num">131K</div>
+          <div class="v3-funnel-lab">Addressable<br>contacts</div>
+        </div>
+        <div class="v3-funnel-arrow">→</div>
+        <div class="v3-funnel-step">
+          <div class="v3-funnel-num">6.7%</div>
+          <div class="v3-funnel-lab">Cold email<br>onboarded</div>
+        </div>
+        <div class="v3-funnel-arrow">→</div>
+        <div class="v3-funnel-step">
+          <div class="v3-funnel-num">50%</div>
+          <div class="v3-funnel-lab">Onboarded<br>active weekly</div>
+        </div>
+        <div class="v3-funnel-arrow">=</div>
+        <div class="v3-funnel-step" style="background:rgba(212,165,116,0.18);border-color:var(--gold);">
+          <div class="v3-funnel-num">4,400</div>
+          <div class="v3-funnel-lab" style="color:var(--gold);">Weekly<br>active users</div>
+        </div>
+      </div>
+
+      <div class="v3-proj-note">4,000 WAU → ~<strong>500 weekly referrals</strong> → ~<strong>$130M annualized economic value</strong>. Use of funds: 24-month runway · team of 4 (founders + 2 Talpiot grads) · 12-month buffer before seed.</div>
+    </div>
+  </div>
+
+  <!-- Opportunity ribbon -->
+  <div class="v3-opp">
+    <div class="v3-opp-title">Why this is a great opportunity</div>
+    <div class="v3-opp-grid">
+      <div>
+        <div class="v3-opp-h">Proven model.</div>
+        <div class="v3-opp-d">BNI runs the offline version at $26.4B/yr — 340K members for 40 years.</div>
+      </div>
+      <div>
+        <div class="v3-opp-h">Fast growth.</div>
+        <div class="v3-opp-d">14.8% W/W. 6.7% cold-to-onboarded. 30.2% smoke-test reply rate.</div>
+      </div>
+      <div>
+        <div class="v3-opp-h">Winning team.</div>
+        <div class="v3-opp-d">Two post-exit founders. Second startup together. 3.5 years of cohesion.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Ask -->
+  <div class="v3-ask">
+    <div class="v3-ask-msg"><span class="gold">We're moving fast.</span> Move with us.</div>
+    <div class="v3-ask-sub">Pre-Seed · 24-month plan · seed in month 12</div>
+    <div class="v3-ask-contact">
+      Yaniv Nizan · Co-Founder &amp; CEO ·
+      <a href="mailto:yaniv@referna.com">yaniv@referna.com</a> ·
+      <a href="https://deck.referna.com">deck.referna.com</a>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

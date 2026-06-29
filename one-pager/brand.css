@@ -1,0 +1,161 @@
+/* Shared brand tokens — mirrors v6/styles.css */
+:root {
+  --black: #0D0D0D;
+  --gold: #D4A574;
+  --gold-soft: rgba(212, 165, 116, 0.10);
+  --gold-line: rgba(212, 165, 116, 0.25);
+  --gold-faint: rgba(212, 165, 116, 0.06);
+  --white: #FFFFFF;
+  --cream: #FAF6F1;
+  --cream-mid: #ECE5DA;
+  --gray-100: #F5F5F5;
+  --gray: #D1D1D1;
+  --gray-mid: #999999;
+  --gray-dark: #737373;
+  --gray-700: #404040;
+  --black-soft: #1A1A1A;
+  --black-mid: #111111;
+  --border: rgba(212, 165, 116, 0.25);
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'IBM Plex Serif', Georgia, serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  background: #2a2a2a;
+  color: var(--white);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* Page sheet — US Letter portrait 8.5x11in */
+.page {
+  width: 8.5in;
+  min-height: 11in;
+  background: var(--black);
+  margin: 24px auto;
+  padding: 0.55in 0.6in;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+}
+.page + .page { margin-top: 24px; }
+
+/* Landscape tear-sheet page */
+.page.landscape {
+  width: 11in;
+  min-height: 8.5in;
+  padding: 0.45in 0.55in;
+}
+
+/* Generic header lockup */
+.brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.brand-row .lockup { height: 28px; width: auto; }
+.brand-row .meta {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.gold-rule {
+  height: 2px;
+  background: var(--gold);
+  width: 64px;
+  margin: 0 0 18px;
+}
+
+.eyebrow {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 14px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border-top: 1px solid var(--gold-line);
+  padding-top: 10px;
+  margin: 14px 0 8px;
+}
+
+.h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.lead {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.gold { color: var(--gold); }
+strong.gold, .gold strong { color: var(--gold); font-weight: 700; }
+
+.footer-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 12px;
+  border-top: 1px solid var(--gold-line);
+  font-family: var(--font-display);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--gray-mid);
+}
+.footer-row a { color: var(--gold); text-decoration: none; }
+.footer-row .footer-cta { color: var(--white); font-weight: 600; }
+
+/* Print rules */
+@page {
+  size: Letter portrait;
+  margin: 0;
+}
+@page :first { size: Letter portrait; }
+
+@media print {
+  html, body { background: var(--black); }
+  .page {
+    margin: 0;
+    box-shadow: none;
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+  .page:last-child { page-break-after: auto; }
+  .page.landscape { size: Letter landscape; }
+}
