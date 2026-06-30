@@ -150,7 +150,8 @@ strong.gold, .gold strong { color: var(--gold); font-weight: 700; }
 
 @media print {
   html, body { background: var(--black); }
-  .page {
+  .page,
+  .page + .page {
     margin: 0;
     box-shadow: none;
     page-break-after: always;
