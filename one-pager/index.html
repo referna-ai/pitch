@@ -37,8 +37,11 @@ body { background: var(--black); }
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 22px;
+}
+@media (min-width: 1100px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
 }
 .card {
   background: var(--black-mid);
@@ -100,6 +103,13 @@ body { background: var(--black); }
   </div>
 
   <div class="grid">
+
+    <a class="card" href="v4-deck-loyal.html" target="_blank">
+      <div class="tag">Version D · Deck-Loyal ★</div>
+      <h2>Two-pager that mirrors the deck</h2>
+      <p>Page 1 = the deck's cover hero on top, the executive summary grid below. Page 2 = team cards, round (milestone + ask), and "Why this is a great opportunity" with the new BNI / market-pull / networks framing.</p>
+      <div class="meta"><strong>2 pages</strong> · portrait · dark · deck-loyal</div>
+    </a>
 
     <a class="card" href="v1-brief.html" target="_blank">
       <div class="tag">Version A · Brief</div>
