@@ -3,146 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Referna — Investor Two-Pager (Deck-Loyal)</title>
+<title>Referna — Two-Pager (V4 · Polished default)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="brand.css">
 <style>
-/* V4 — deck-loyal two-pager. Mirrors v6 slide-hero, slide-1 ES, slide-12 team,
-   slide-13 round, slide-14 opportunity styles. */
+/* V4 — deck-loyal, polished default.
+   Header: lockup left · PRE-SEED ROUND center · PAGE N/2 right.
+   Footer: closing CTA left · contact right.
+   Single unified background per page; cover content flows into ES. */
 
 body[data-doc="v4"] .page {
   padding: 0;
   display: flex;
   flex-direction: column;
-}
-
-/* ===== Page 1: Hero (top portion) + Executive Summary (fills rest) ===== */
-
-body[data-doc="v4"] .v4-p1 {
-  display: flex;
-  flex-direction: column;
-  min-height: 11in;
-}
-.v4-hero { flex: 0 0 auto; }
-.v4-es-wrap { flex: 1 1 auto; display: flex; flex-direction: column; }
-
-/* ===== Page 2 — bump specificity so padding isn't wiped by .page reset ===== */
-body[data-doc="v4"] .v4-p2 {
-  padding: 0.55in 0.6in 0.5in;
-  min-height: 11in;
-}
-
-/* Cover hero — mirrors v6/styles.css `.slide-hero` */
-.v4-hero {
   background: var(--black);
-  text-align: center;
-  padding: 0.6in 0.55in 0.5in;
+}
+body[data-doc="v4"] .v4-page {
+  padding: 0.5in 0.6in 0.45in;
+  min-height: 11in;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  position: relative;
-  border-bottom: 1px solid var(--gold-line);
-  min-height: 4.6in;
-}
-.v4-hero .wordmark {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 14px;
-}
-.v4-hero .referna-lockup {
-  height: 32px;
-  width: auto;
-  display: block;
-}
-.v4-hero .gold-rule {
-  width: 44px;
-  height: 2px;
-  background: var(--gold);
-  margin: 14px auto 22px;
-}
-.v4-hero .tagline {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 42px;
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 20px;
-}
-.v4-hero .tagline .gold { color: var(--gold); }
-.v4-hero .subtitle {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 17px;
-  color: var(--gray);
-  line-height: 1.45;
-  max-width: 6.5in;
-  margin: 0 auto;
-}
-.v4-hero .raise-kicker {
-  font-family: var(--font-body);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-top: 26px;
-  padding-top: 24px;
-  position: relative;
-}
-.v4-hero .raise-kicker::before {
-  content: "";
-  display: block;
-  width: 44px;
-  height: 2px;
-  background: var(--gold);
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
 }
 
-/* Executive summary — mirrors slide-1 .es-* classes */
-.v4-es-wrap {
-  background: var(--black-mid);
-  padding: 24px 0.55in 22px;
-}
-.v4-es-body { flex: 1 1 auto; }
-.v4-es-head {
-  display: flex;
+/* Page header — same on both pages */
+.v4-hdr {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   padding-bottom: 12px;
-  margin-bottom: 12px;
   border-bottom: 1px solid var(--gold-line);
+  margin-bottom: 22px;
 }
-.v4-es-label {
+.v4-hdr .lockup { height: 22px; display: block; justify-self: start; }
+.v4-hdr .raise {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.16em;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--gold);
+  white-space: nowrap;
 }
-.v4-es-pagemeta {
+.v4-hdr .page-meta {
   font-family: var(--font-display);
   font-weight: 600;
   font-size: 10px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gray-mid);
+  justify-self: end;
+  white-space: nowrap;
 }
 
-.v4-es-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+/* Cover block (page 1 only) */
+.v4-cover {
+  text-align: center;
+  padding: 14px 24px 24px;
+  margin-bottom: 8px;
 }
+.v4-cover .eyebrow {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+.v4-cover .tagline {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 38px;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.v4-cover .tagline .gold { color: var(--gold); }
+.v4-cover .subtitle {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 15.5px;
+  color: var(--gray);
+  line-height: 1.45;
+  max-width: 6in;
+  margin: 0 auto;
+}
+.v4-cover .rule {
+  width: 44px;
+  height: 2px;
+  background: var(--gold);
+  margin: 0 auto 18px;
+}
+
+/* Section label (above ES, Team, Round, etc.) */
+.v4-section-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  border-top: 1px solid var(--gold-line);
+  padding-top: 14px;
+}
+.v4-section-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 12px;
+}
+.v4-section-subtitle {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--gold);
+  margin-top: -8px;
+  margin-bottom: 12px;
+}
+
+/* Executive summary — mirrors slide-1 .es-* classes */
+.v4-es-body { display: flex; flex-direction: column; flex: 1 1 auto; }
 .v4-es-section {
   display: flex;
   flex-direction: column;
@@ -157,7 +145,7 @@ body[data-doc="v4"] .v4-p2 {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--gold);
-  margin-bottom: 3px;
+  margin-bottom: 4px;
 }
 .v4-es-row {
   display: grid;
@@ -192,55 +180,7 @@ body[data-doc="v4"] .v4-p2 {
   filter: brightness(0) invert(1);
 }
 
-/* ===== Page 2: Team + Round + Opportunity ===== */
-
-.v4-p2-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 14px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid var(--gold-line);
-}
-.v4-p2-head .lockup { height: 24px; display: block; }
-.v4-p2-head .meta {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--gold);
-  white-space: nowrap;
-}
-
-.v4-section-label {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 6px;
-}
-.v4-section-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 22px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  color: var(--white);
-  margin-bottom: 12px;
-}
-.v4-section-subtitle {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 12px;
-  color: var(--gold);
-  margin-top: -8px;
-  margin-bottom: 12px;
-}
-
-/* Team — mirrors slide-12 team-grid */
+/* Team — mirrors slide-12 .team-* */
 .v4-team-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -280,7 +220,6 @@ body[data-doc="v4"] .v4-p2 {
   flex-shrink: 0;
 }
 .v4-team-logo--solo { height: 22px; max-width: 100px; }
-
 .v4-team-photo {
   width: 56px;
   height: 56px;
@@ -306,11 +245,7 @@ body[data-doc="v4"] .v4-p2 {
   letter-spacing: 0.04em;
   margin-bottom: 8px;
 }
-.v4-team-bullets {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
+.v4-team-bullets { display: flex; flex-direction: column; gap: 5px; }
 .v4-team-bullet {
   font-family: var(--font-body);
   font-size: 11.5px;
@@ -337,14 +272,12 @@ body[data-doc="v4"] .v4-p2 {
   letter-spacing: -0.01em;
   color: var(--white);
   padding: 10px 0;
-  border-top: 1px solid var(--gold-line);
   margin-top: 4px;
 }
 .v4-team-foot::before { content: "→ "; color: var(--gold); font-weight: 800; }
 .v4-team-foot strong { color: var(--gold); font-weight: 700; }
 
-/* Round — mirrors slide-13 s10-* */
-.v4-round { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--gold-line); }
+/* Round */
 .v4-round-goal {
   font-family: var(--font-display);
   font-weight: 700;
@@ -356,12 +289,7 @@ body[data-doc="v4"] .v4-p2 {
   margin: 6px 0 14px;
 }
 .v4-round-goal .gold { color: var(--gold); }
-
-.v4-round-rows {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 14px;
-}
+.v4-round-rows { display: flex; flex-direction: column; margin-bottom: 14px; }
 .v4-round-row {
   display: grid;
   grid-template-columns: 150px 1fr;
@@ -388,7 +316,6 @@ body[data-doc="v4"] .v4-p2 {
   gap: 4px;
 }
 .v4-round-val strong { color: var(--gold); font-weight: 700; }
-
 .v4-round-conclusion {
   font-family: var(--font-display);
   font-weight: 700;
@@ -404,12 +331,7 @@ body[data-doc="v4"] .v4-p2 {
 .v4-round-conclusion::before { content: "→ "; color: var(--gold); font-weight: 800; }
 .v4-round-conclusion strong { color: var(--gold); font-weight: 700; }
 
-/* Opportunity — mirrors slide-14 .opp-* with deck rule + title + desc */
-.v4-opp {
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--gold-line);
-}
+/* Opportunity (3 cols, gold rule + title + desc) */
 .v4-opp-title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -432,12 +354,7 @@ body[data-doc="v4"] .v4-p2 {
   text-align: center;
   gap: 8px;
 }
-.v4-opp-col-rule {
-  width: 36px;
-  height: 2px;
-  background: var(--gold);
-  flex-shrink: 0;
-}
+.v4-opp-col-rule { width: 36px; height: 2px; background: var(--gold); flex-shrink: 0; }
 .v4-opp-col-title {
   font-family: var(--font-display);
   font-weight: 800;
@@ -455,56 +372,59 @@ body[data-doc="v4"] .v4-p2 {
 }
 .v4-opp-col-desc strong { color: var(--white); font-weight: 700; }
 
-/* Closing line */
-.v4-close {
-  margin-top: 22px;
+/* Footer — CTA + contact (same on both pages) */
+.v4-ftr {
+  margin-top: auto;
   padding-top: 14px;
   border-top: 2px solid var(--gold);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 24px;
 }
-.v4-close-msg {
+.v4-ftr .cta {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 18px;
   letter-spacing: -0.015em;
   color: var(--white);
+  line-height: 1.2;
 }
-.v4-close-msg .gold { color: var(--gold); }
-.v4-close-meta {
+.v4-ftr .cta .gold { color: var(--gold); }
+.v4-ftr .cta::before { content: "→ "; color: var(--gold); font-weight: 800; }
+.v4-ftr .meta {
   font-family: var(--font-display);
   font-size: 11px;
   line-height: 1.55;
   color: var(--gray-mid);
   text-align: right;
 }
-.v4-close-meta .who { color: var(--white); font-weight: 700; display: block; margin-bottom: 1px; }
-.v4-close-meta a { color: var(--gold); text-decoration: none; }
+.v4-ftr .meta .who { color: var(--white); font-weight: 700; display: block; margin-bottom: 1px; }
+.v4-ftr .meta a { color: var(--gold); text-decoration: none; }
 </style>
 </head>
 <body data-doc="v4">
 
-<!-- ============ PAGE 1 — Cover + Executive Summary ============ -->
-<div class="page v4-p1">
+<!-- ============ PAGE 1 ============ -->
+<div class="page">
+  <div class="v4-page">
 
-  <!-- Cover hero -->
-  <div class="v4-hero">
-    <div class="wordmark">
-      <img src="logos/lockup-white-on-black.svg" alt="referna" class="referna-lockup">
-    </div>
-    <div class="gold-rule"></div>
-    <h1 class="tagline">Referral Network for<br><span class="gold">Independent Professionals</span></h1>
-    <p class="subtitle">Referna matches independent professionals (fractional execs, AI consultants, GEO specialists, and more) into referral circles where trusted peers refer clients to each other.</p>
-    <div class="raise-kicker">Pre-Seed Round</div>
-  </div>
+    <!-- Header -->
+    <header class="v4-hdr">
+      <img src="logos/lockup-white-on-black.svg" alt="referna" class="lockup">
+      <div class="raise">Pre-Seed Round</div>
+      <div class="page-meta">Page 1 of 2</div>
+    </header>
 
-  <!-- Executive summary (mirrors slide-1) -->
-  <div class="v4-es-wrap">
-    <div class="v4-es-head">
-      <div class="v4-es-label">Executive Summary</div>
-      <div class="v4-es-pagemeta">Page 1 of 2</div>
+    <!-- Cover -->
+    <div class="v4-cover">
+      <div class="rule"></div>
+      <h1 class="tagline">Referral Network for<br><span class="gold">Independent Professionals</span></h1>
+      <p class="subtitle">Referna matches independent professionals (fractional execs, AI consultants, GEO specialists, and more) into referral circles where trusted peers refer clients to each other.</p>
     </div>
+
+    <!-- Executive summary (mirrors slide-1) -->
+    <div class="v4-section-label">Executive Summary</div>
 
     <div class="v4-es-body">
 
@@ -557,79 +477,89 @@ body[data-doc="v4"] .v4-p2 {
       </div>
 
     </div>
-  </div>
 
+    <!-- Footer -->
+    <footer class="v4-ftr">
+      <div class="cta"><span class="gold">We're moving fast.</span> Move with us.</div>
+      <div class="meta">
+        <span class="who">Yaniv Nizan · Co-Founder &amp; CEO</span>
+        <a href="mailto:yaniv@referna.com">yaniv@referna.com</a> · <a href="https://referna.com">referna.com</a>
+      </div>
+    </footer>
+
+  </div>
 </div>
 
-<!-- ============ PAGE 2 — Team + Round + Opportunity ============ -->
-<div class="page v4-p2">
+<!-- ============ PAGE 2 ============ -->
+<div class="page">
+  <div class="v4-page">
 
-  <div class="v4-p2-head">
-    <img src="logos/lockup-white-on-black.svg" alt="referna" class="lockup">
-    <div class="meta">Pre-Seed · Page 2 of 2</div>
-  </div>
+    <!-- Header (same shape) -->
+    <header class="v4-hdr">
+      <img src="logos/lockup-white-on-black.svg" alt="referna" class="lockup">
+      <div class="raise">Pre-Seed Round</div>
+      <div class="page-meta">Page 2 of 2</div>
+    </header>
 
-  <!-- Team (mirrors slide-12) -->
-  <div class="v4-section-label">Team</div>
-  <div class="v4-section-title">Two founders, two exits</div>
-  <div class="v4-section-subtitle">3.5 years working together</div>
+    <!-- Team -->
+    <div class="v4-section-label" style="border-top:none;padding-top:0;">Team</div>
+    <div class="v4-section-title">Two founders, two exits</div>
+    <div class="v4-section-subtitle">3.5 years working together</div>
 
-  <div class="v4-team-grid">
-    <div class="v4-team-card">
-      <div class="v4-team-logos">
-        <div class="v4-team-logos-row">
-          <img class="v4-team-logo" src="logos/soomla.png" alt="Soomla">
-          <img class="v4-team-logo" src="logos/ironsource.svg" alt="ironSource">
-          <img class="v4-team-logo" src="logos/unity.svg" alt="Unity">
+    <div class="v4-team-grid">
+      <div class="v4-team-card">
+        <div class="v4-team-logos">
+          <div class="v4-team-logos-row">
+            <img class="v4-team-logo" src="logos/soomla.png" alt="Soomla">
+            <img class="v4-team-logo" src="logos/ironsource.svg" alt="ironSource">
+            <img class="v4-team-logo" src="logos/unity.svg" alt="Unity">
+          </div>
+          <div class="v4-team-logos-row">
+            <img class="v4-team-logo" src="logos/kontera.png" alt="Kontera">
+            <img class="v4-team-logo" src="logos/eyeview.png" alt="EyeView">
+          </div>
         </div>
-        <div class="v4-team-logos-row">
-          <img class="v4-team-logo" src="logos/kontera.png" alt="Kontera">
-          <img class="v4-team-logo" src="logos/eyeview.png" alt="EyeView">
+        <img class="v4-team-photo" src="yaniv.jpg" alt="Yaniv Nizan">
+        <div class="v4-team-name">Yaniv Nizan</div>
+        <div class="v4-team-role">Co-Founder &amp; CEO</div>
+        <div class="v4-team-bullets">
+          <div class="v4-team-bullet">CEO &amp; co-founder of <strong>SOOMLA</strong> (acquired by ironSource/Unity)</div>
+          <div class="v4-team-bullet">Built <strong>3 networks</strong> — IntentClick ($4M ARR ad network at Kontera), SOOMLA's payer-data network, SOOMLA's ad-creative network</div>
+          <div class="v4-team-bullet">Customer in 4 referral-driven segments — startups, divorce, home-building, weddings</div>
         </div>
       </div>
-      <img class="v4-team-photo" src="yaniv.jpg" alt="Yaniv Nizan">
-      <div class="v4-team-name">Yaniv Nizan</div>
-      <div class="v4-team-role">Co-Founder &amp; CEO</div>
-      <div class="v4-team-bullets">
-        <div class="v4-team-bullet">CEO &amp; co-founder of <strong>SOOMLA</strong> (acquired by ironSource/Unity)</div>
-        <div class="v4-team-bullet">Built <strong>3 networks</strong> — IntentClick ($4M ARR ad network at Kontera), SOOMLA's payer-data network, SOOMLA's ad-creative network</div>
-        <div class="v4-team-bullet">Customer in 4 referral-driven segments — startups, divorce, home-building, weddings</div>
+
+      <div class="v4-team-card">
+        <div class="v4-team-logos">
+          <div class="v4-team-logos-row">
+            <img class="v4-team-logo" src="logos/infinityar.png" alt="InfinityAR">
+            <img class="v4-team-logo" src="logos/alibaba.svg" alt="Alibaba">
+          </div>
+          <div class="v4-team-logos-row">
+            <img class="v4-team-logo" src="logos/talpiot.png" alt="Talpiot">
+            <img class="v4-team-logo" src="logos/technion.svg" alt="Technion">
+            <img class="v4-team-logo" src="logos/bigpanda.svg" alt="BigPanda">
+          </div>
+          <div class="v4-team-logos-row">
+            <img class="v4-team-logo v4-team-logo--solo" src="logos/rafael.svg" alt="Rafael">
+          </div>
+        </div>
+        <img class="v4-team-photo" src="matan.jpg" alt="Matan Protter">
+        <div class="v4-team-name">Matan Protter</div>
+        <div class="v4-team-role">Co-Founder &amp; CTO</div>
+        <div class="v4-team-bullets">
+          <div class="v4-team-bullet">CTO &amp; co-founder of <strong>Infinity</strong> (acquired by Alibaba)</div>
+          <div class="v4-team-bullet"><strong>9 patents</strong> · Talpiot graduate · PhD Technion</div>
+          <div class="v4-team-bullet">3.5 years shipping products with Yaniv — SynqUp and Referna</div>
+        </div>
       </div>
     </div>
 
-    <div class="v4-team-card">
-      <div class="v4-team-logos">
-        <div class="v4-team-logos-row">
-          <img class="v4-team-logo" src="logos/infinityar.png" alt="InfinityAR">
-          <img class="v4-team-logo" src="logos/alibaba.svg" alt="Alibaba">
-        </div>
-        <div class="v4-team-logos-row">
-          <img class="v4-team-logo" src="logos/talpiot.png" alt="Talpiot">
-          <img class="v4-team-logo" src="logos/technion.svg" alt="Technion">
-          <img class="v4-team-logo" src="logos/bigpanda.svg" alt="BigPanda">
-        </div>
-        <div class="v4-team-logos-row">
-          <img class="v4-team-logo v4-team-logo--solo" src="logos/rafael.svg" alt="Rafael">
-        </div>
-      </div>
-      <img class="v4-team-photo" src="matan.jpg" alt="Matan Protter">
-      <div class="v4-team-name">Matan Protter</div>
-      <div class="v4-team-role">Co-Founder &amp; CTO</div>
-      <div class="v4-team-bullets">
-        <div class="v4-team-bullet">CTO &amp; co-founder of <strong>Infinity</strong> (acquired by Alibaba)</div>
-        <div class="v4-team-bullet"><strong>9 patents</strong> · Talpiot graduate · PhD Technion</div>
-        <div class="v4-team-bullet">3.5 years shipping products with Yaniv — SynqUp and Referna</div>
-      </div>
-    </div>
-  </div>
+    <div class="v4-team-foot">Second startup together. <strong>30+ combined years</strong> of building products.</div>
 
-  <div class="v4-team-foot">Second startup together. <strong>30+ combined years</strong> of building products.</div>
-
-  <!-- Round (mirrors slide-13) -->
-  <div class="v4-round">
+    <!-- Round -->
     <div class="v4-section-label">Round</div>
     <div class="v4-section-title" style="margin-bottom: 4px;">Pre-seed for 24 months</div>
-
     <div class="v4-round-goal">12-month milestone: <span class="gold">4,000 Weekly Active Users</span></div>
 
     <div class="v4-round-rows">
@@ -647,43 +577,38 @@ body[data-doc="v4"] .v4-p2 {
     </div>
 
     <div class="v4-round-conclusion">4,000 active is <strong>seed-ready scale</strong> for a network business — and we have the path.</div>
-  </div>
 
-  <!-- Opportunity (new copy) -->
-  <div class="v4-opp">
-    <div class="v4-opp-title">Why this is a great opportunity</div>
+    <!-- Opportunity -->
+    <div class="v4-section-label">Why this is a great opportunity</div>
+
     <div class="v4-opp-cols">
-
       <div class="v4-opp-col">
         <div class="v4-opp-col-rule"></div>
         <div class="v4-opp-col-title">BNI as incumbent.</div>
         <div class="v4-opp-col-desc">Proved the need and the market — but AI is now reaching the level where we can replace the <strong>40,000 people</strong> involved in their operation with something far more efficient.</div>
       </div>
-
       <div class="v4-opp-col">
         <div class="v4-opp-col-rule"></div>
         <div class="v4-opp-col-title">Strong market pull.</div>
         <div class="v4-opp-col-desc"><strong>30%+ replies</strong> on our cold campaigns, with early signs of a <strong>viral loop</strong>. Week-over-week growth above <strong>50%</strong>.</div>
       </div>
-
       <div class="v4-opp-col">
         <div class="v4-opp-col-rule"></div>
         <div class="v4-opp-col-title">We love networks.</div>
         <div class="v4-opp-col-desc">They grow fast and build a massive, compounding moat. I've built <strong>3</strong> already: <strong>IntentClick</strong> ($4M ARR ad network at Kontera), <strong>SOOMLA</strong>'s payer-data network, and SOOMLA's ad-creative network.</div>
       </div>
-
     </div>
-  </div>
 
-  <!-- Close -->
-  <div class="v4-close">
-    <div class="v4-close-msg"><span class="gold">We're moving fast.</span> Move with us.</div>
-    <div class="v4-close-meta">
-      <span class="who">Yaniv Nizan · Co-Founder &amp; CEO</span>
-      <a href="mailto:yaniv@referna.com">yaniv@referna.com</a> · <a href="https://referna.com">referna.com</a>
-    </div>
-  </div>
+    <!-- Footer (same shape) -->
+    <footer class="v4-ftr">
+      <div class="cta"><span class="gold">We're moving fast.</span> Move with us.</div>
+      <div class="meta">
+        <span class="who">Yaniv Nizan · Co-Founder &amp; CEO</span>
+        <a href="mailto:yaniv@referna.com">yaniv@referna.com</a> · <a href="https://referna.com">referna.com</a>
+      </div>
+    </footer>
 
+  </div>
 </div>
 
 </body>
