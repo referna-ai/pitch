@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Referna — Two-Pager (V4 · Polished default)</title>
+<title>Referna — Two-Pager (V4.2 · Data tiles + boxed cards)</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -265,112 +265,121 @@ body[data-doc="v4"] .v4-page {
 }
 .v4-team-bullet strong { color: var(--white); font-weight: 600; }
 
-.v4-team-foot {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 12px;
-  letter-spacing: -0.01em;
-  color: var(--white);
-  padding: 10px 0;
-  margin-top: 4px;
-}
-.v4-team-foot::before { content: "→ "; color: var(--gold); font-weight: 800; }
-.v4-team-foot strong { color: var(--gold); font-weight: 700; }
-
-/* Round */
-.v4-round-goal {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 22px;
-  line-height: 1.25;
-  letter-spacing: -0.015em;
-  color: var(--white);
-  text-align: center;
-  margin: 6px 0 14px;
-}
-.v4-round-goal .gold { color: var(--gold); }
-.v4-round-rows { display: flex; flex-direction: column; margin-bottom: 14px; }
-.v4-round-row {
-  display: grid;
-  grid-template-columns: 150px 1fr;
-  gap: 18px;
-  padding: 8px 4px;
-  border-bottom: 1px solid rgba(212, 165, 116, 0.14);
+/* Team head — single line above the cards */
+.v4-team-head {
+  display: flex;
   align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-top: 1px solid var(--gold-line);
+  margin-bottom: 14px;
 }
-.v4-round-row:last-child { border-bottom: none; }
-.v4-round-key {
+.v4-team-head .lbl {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 11px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--gold);
 }
-.v4-round-val {
-  font-family: var(--font-display);
-  font-size: 13px;
-  line-height: 1.45;
-  color: var(--white);
-  display: grid;
-  gap: 4px;
-}
-.v4-round-val strong { color: var(--gold); font-weight: 700; }
-.v4-round-conclusion {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 13.5px;
-  line-height: 1.4;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  padding: 10px 14px;
-  background: var(--gold-soft);
-  border-left: 2px solid var(--gold);
-  border-radius: 4px;
-}
-.v4-round-conclusion::before { content: "→ "; color: var(--gold); font-weight: 800; }
-.v4-round-conclusion strong { color: var(--gold); font-weight: 700; }
-
-/* Opportunity (3 cols, gold rule + title + desc) */
-.v4-opp-title {
+.v4-team-head .sep { color: var(--gold-line); font-weight: 700; }
+.v4-team-head .title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: 18px;
-  letter-spacing: -0.02em;
+  font-size: 17px;
+  letter-spacing: -0.015em;
   color: var(--white);
-  text-align: center;
-  margin-bottom: 16px;
+  line-height: 1.2;
 }
-.v4-opp-cols {
+.v4-team-head .meta {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--gray-mid);
+  letter-spacing: 0;
+}
+
+/* Round 4.2 — three KPI tiles */
+.r2-tiles {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-  align-items: start;
+  gap: 12px;
+  margin-top: 6px;
 }
-.v4-opp-col {
+.r2-tile {
+  padding: 18px 14px;
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
+  background: var(--gold-faint);
+  text-align: center;
+}
+.r2-tile.primary {
+  background: var(--gold-soft);
+  border-color: var(--gold);
+}
+.r2-tile-num {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  letter-spacing: -0.025em;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.r2-tile-lab {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gray-mid);
+  line-height: 1.35;
+}
+.r2-tile-sub {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 11px;
+  color: var(--gray-mid);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+.r2-tile-sub strong { color: var(--white); font-weight: 600; }
+
+/* Opportunity 4.2 — three bordered cards */
+.o2-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 4px;
+}
+.o2-card {
+  padding: 16px 16px 18px;
+  background: var(--black-soft);
+  border: 1px solid var(--gold-line);
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
   gap: 8px;
 }
-.v4-opp-col-rule { width: 36px; height: 2px; background: var(--gold); flex-shrink: 0; }
-.v4-opp-col-title {
+.o2-card-rule { width: 32px; height: 2px; background: var(--gold); }
+.o2-card-title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 15px;
-  color: var(--white);
   letter-spacing: -0.015em;
+  color: var(--white);
   line-height: 1.15;
 }
-.v4-opp-col-desc {
+.o2-card-desc {
   font-family: var(--font-display);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.5;
   color: var(--gray);
 }
-.v4-opp-col-desc strong { color: var(--white); font-weight: 700; }
+.o2-card-desc strong { color: var(--white); font-weight: 700; }
 
 /* Footer — CTA + contact (same on both pages) */
 .v4-ftr {
@@ -501,10 +510,14 @@ body[data-doc="v4"] .v4-page {
       <div class="page-meta">Page 2 of 2</div>
     </header>
 
-    <!-- Team -->
-    <div class="v4-section-label" style="border-top:none;padding-top:0;">Team</div>
-    <div class="v4-section-title">Two founders, two exits</div>
-    <div class="v4-section-subtitle">3.5 years working together</div>
+    <!-- Team (consolidated single-line head) -->
+    <div class="v4-team-head" style="border-top:none;padding-top:0;">
+      <span class="lbl">Team</span>
+      <span class="sep">·</span>
+      <span class="title">Two founders, two exits</span>
+      <span class="sep">·</span>
+      <span class="meta">3.5 years together · 30+ combined years building products</span>
+    </div>
 
     <div class="v4-team-grid">
       <div class="v4-team-card">
@@ -555,47 +568,45 @@ body[data-doc="v4"] .v4-page {
       </div>
     </div>
 
-    <div class="v4-team-foot">Second startup together. <strong>30+ combined years</strong> of building products.</div>
+    <!-- Round 4.2 — three KPI tiles -->
+    <div class="v4-section-label">Round · Pre-seed for 24 months</div>
 
-    <!-- Round -->
-    <div class="v4-section-label">Round</div>
-    <div class="v4-section-title" style="margin-bottom: 4px;">Pre-seed for 24 months</div>
-    <div class="v4-round-goal">12-month milestone: <span class="gold">4,000 Weekly Active Users</span></div>
-
-    <div class="v4-round-rows">
-      <div class="v4-round-row">
-        <div class="v4-round-key">Seed-ready</div>
-        <div class="v4-round-val">
-          <div>Network businesses raise seed at this scale (Clubhouse, Boardy…).</div>
-          <div>4,000 WAU → ~<strong>500 weekly referrals</strong> → ~<strong>$130M</strong> annualized economic value.</div>
-        </div>
+    <div class="r2-tiles">
+      <div class="r2-tile primary">
+        <div class="r2-tile-num">4,000</div>
+        <div class="r2-tile-lab">Weekly active users</div>
+        <div class="r2-tile-sub">12-month milestone</div>
       </div>
-      <div class="v4-round-row">
-        <div class="v4-round-key">What we need</div>
-        <div class="v4-round-val">Pre-seed · 24 months runway · team of 4 (founders + 2 Talpiot graduates) · 12m buffer before seed.</div>
+      <div class="r2-tile">
+        <div class="r2-tile-num">~$130M</div>
+        <div class="r2-tile-lab">Annualized value</div>
+        <div class="r2-tile-sub">~500 weekly referrals</div>
+      </div>
+      <div class="r2-tile">
+        <div class="r2-tile-num">24 mo</div>
+        <div class="r2-tile-lab">Runway</div>
+        <div class="r2-tile-sub">Team of 4 · 12m seed buffer</div>
       </div>
     </div>
 
-    <div class="v4-round-conclusion">4,000 active is <strong>seed-ready scale</strong> for a network business — and we have the path.</div>
-
-    <!-- Opportunity -->
+    <!-- Opportunity 4.2 — three bordered cards -->
     <div class="v4-section-label">Why this is a great opportunity</div>
 
-    <div class="v4-opp-cols">
-      <div class="v4-opp-col">
-        <div class="v4-opp-col-rule"></div>
-        <div class="v4-opp-col-title">BNI as incumbent.</div>
-        <div class="v4-opp-col-desc">Proved the need and the market — but AI is now reaching the level where we can replace the <strong>40,000 people</strong> involved in their operation with something far more efficient.</div>
+    <div class="o2-cards">
+      <div class="o2-card">
+        <div class="o2-card-rule"></div>
+        <div class="o2-card-title">BNI as incumbent.</div>
+        <div class="o2-card-desc">Proved the need and the market — but AI is now reaching the level where we can replace the <strong>40,000 people</strong> involved in their operation with something far more efficient.</div>
       </div>
-      <div class="v4-opp-col">
-        <div class="v4-opp-col-rule"></div>
-        <div class="v4-opp-col-title">Strong market pull.</div>
-        <div class="v4-opp-col-desc"><strong>30%+ replies</strong> on our cold campaigns, with early signs of a <strong>viral loop</strong>. Week-over-week growth above <strong>50%</strong>.</div>
+      <div class="o2-card">
+        <div class="o2-card-rule"></div>
+        <div class="o2-card-title">Strong market pull.</div>
+        <div class="o2-card-desc"><strong>30%+ replies</strong> on our cold campaigns, with early signs of a <strong>viral loop</strong>. Week-over-week growth above <strong>50%</strong>.</div>
       </div>
-      <div class="v4-opp-col">
-        <div class="v4-opp-col-rule"></div>
-        <div class="v4-opp-col-title">We love networks.</div>
-        <div class="v4-opp-col-desc">They grow fast and build a massive, compounding moat. I've built <strong>3</strong> already: <strong>IntentClick</strong> ($4M ARR ad network at Kontera), <strong>SOOMLA</strong>'s payer-data network, and SOOMLA's ad-creative network.</div>
+      <div class="o2-card">
+        <div class="o2-card-rule"></div>
+        <div class="o2-card-title">We love networks.</div>
+        <div class="o2-card-desc">They grow fast and build a massive, compounding moat. I've built <strong>3</strong> already: <strong>IntentClick</strong> ($4M ARR ad network at Kontera), <strong>SOOMLA</strong>'s payer-data network, and SOOMLA's ad-creative network.</div>
       </div>
     </div>
 
