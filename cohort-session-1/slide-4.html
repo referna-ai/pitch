@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Introductions · referna Cohort — Session 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body data-slide="slide-4">
+
+<div class="deck">
+<div class="slide" id="slide-4">
+  <div class="slide-number"></div>
+  <div class="slide-label"></div>
+  <h2 class="slide-title">Your Turn, Timed</h2>
+  <p class="slide-subtitle">Name, what you do, who you help. Today you get room to find your footing — from session 2 on, this tightens to 30 seconds.</p>
+  <div class="timer-box">
+    <div class="timer-display" id="timerDisplay">01:30</div>
+    <div class="timer-controls">
+      <select class="timer-select" id="timerPreset">
+        <option value="90" selected>Session 1 — 90s</option>
+        <option value="30">Session 2+ — 30s</option>
+      </select>
+      <button class="timer-btn" id="timerStart" data-nav-ignore>Start</button>
+      <button class="timer-btn" id="timerReset" data-nav-ignore>Reset</button>
+    </div>
+  </div>
+  <div class="timer-note">Host clicks Start per person, screen-shared so everyone sees the same clock. Last 10 seconds turn red.</div>
+</div>
+</div>
+
+<script src="nav.js"></script>
+<script>
+(function () {
+  var display = document.getElementById('timerDisplay');
+  var preset = document.getElementById('timerPreset');
+  var startBtn = document.getElementById('timerStart');
+  var resetBtn = document.getElementById('timerReset');
+  var interval = null;
+  var remaining = parseInt(preset.value, 10);
+
+  function render() {
+    var m = Math.floor(remaining / 60);
+    var s = remaining % 60;
+    display.textContent = String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    display.classList.toggle('warn', remaining <= 10);
+  }
+
+  function tick() {
+    remaining -= 1;
+    if (remaining <= 0) {
+      remaining = 0;
+      render();
+      clearInterval(interval);
+      interval = null;
+      startBtn.textContent = 'Start';
+      return;
+    }
+    render();
+  }
+
+  preset.addEventListener('change', function () {
+    clearInterval(interval);
+    interval = null;
+    remaining = parseInt(preset.value, 10);
+    startBtn.textContent = 'Start';
+    render();
+  });
+
+  startBtn.addEventListener('click', function () {
+    if (interval) {
+      clearInterval(interval);
+      interval = null;
+      startBtn.textContent = 'Start';
+      return;
+    }
+    if (remaining <= 0) remaining = parseInt(preset.value, 10);
+    startBtn.textContent = 'Pause';
+    interval = setInterval(tick, 1000);
+  });
+
+  resetBtn.addEventListener('click', function () {
+    clearInterval(interval);
+    interval = null;
+    remaining = parseInt(preset.value, 10);
+    startBtn.textContent = 'Start';
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>
