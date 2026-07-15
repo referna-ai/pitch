@@ -16,16 +16,52 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
   font-family: var(--font-body);
   font-size: 17px;
   color: var(--gray-mid);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 
-.s8-flow {
+.s8-flow-wrap {
   flex: 1;
   min-height: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 2px;
+}
+
+.s8-journey-start {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.s8-journey-end {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.s8-flow {
+  display: flex;
+  align-items: flex-start;
   gap: 12px;
 }
+
+/* waterfall: each step starts a little lower than the previous */
+.s8-step-apply { margin-top: 0; }
+.s8-lanes-step { margin-top: 24px; }
+.s8-step-circle { margin-top: 48px; }
+.s8-arrow-1 { margin-top: 58px; }
+.s8-arrow-2 { margin-top: 168px; }
 
 .s8-step {
   display: flex;
@@ -46,6 +82,8 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
   width: 148px;
   flex-shrink: 0;
 }
+
+.s8-step-circle { width: 208px; flex-shrink: 0; }
 
 .s8-apply-box {
   border: 1px solid var(--border);
@@ -103,12 +141,11 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
 
 .s8-lane-cap span { color: var(--gold); font-weight: 700; }
 
-.s8-step-circle { width: 208px; flex-shrink: 0; }
-
 @media (max-width: 900px) {
   .s8-flow { flex-direction: column; align-items: stretch; overflow-y: auto; }
   .s8-lanes { flex-wrap: wrap; }
   .s8-arrow { display: none; }
+  .s8-lanes-step, .s8-step-circle { margin-top: 0; }
 }
 </style>
 </head>
@@ -119,9 +156,11 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
 <div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Three ways to meet. One destination: <span style="color: var(--gold)">your circle</span>.</h2>
+  <h2 class="slide-title">Three ways to meet. One destination: <span style="color: var(--gold)">referrals</span>.</h2>
   <div class="s8-sub">The live product — every visual is a real screenshot (members blurred).</div>
 
+  <div class="s8-flow-wrap">
+  <div class="s8-journey-start">Journey start: needs referrals</div>
   <div class="s8-flow">
 
     <div class="s8-step s8-step-apply">
@@ -132,9 +171,9 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
       </div>
     </div>
 
-    <div class="s8-arrow">→</div>
+    <div class="s8-arrow s8-arrow-1">→</div>
 
-    <div class="s8-step">
+    <div class="s8-step s8-lanes-step">
       <div class="s8-step-tag">2 · Meet your peers — three lanes</div>
       <div class="s8-lanes">
         <div class="s8-lane">
@@ -152,7 +191,7 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
       </div>
     </div>
 
-    <div class="s8-arrow">→</div>
+    <div class="s8-arrow s8-arrow-2">→</div>
 
     <div class="s8-step s8-step-circle">
       <div class="s8-step-tag">3 · Join your circle</div>
@@ -161,8 +200,10 @@ body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
     </div>
 
   </div>
+  <div class="s8-journey-end">Journey end: gets referrals</div>
+  </div>
 
-  <div class="conclusion">Meeting the right peers is productized. <strong>The circle turns meetings into consistent referrals.</strong></div>
+  <div class="conclusion">Every stage creates referrals. <strong>The circle makes them consistent.</strong></div>
   <div class="sources">Sources: Referna app screenshots, production, July 2026 (member names blurred)</div>
 </div>
 
