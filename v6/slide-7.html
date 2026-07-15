@@ -3,220 +3,229 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S8 · Distribution — Referna Pitch</title>
+<title>S7 · Distribution — Referna Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-7"] .slide-title {
-  font-size: 28px;
-  text-align: center;
-  margin: 0 auto 28px;
-  max-width: 880px;
-  line-height: 1.3;
-}
-body[data-slide="slide-7"] .slide-title .previously-on {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: 0.02em;
-  color: var(--gray-mid);
-  margin-bottom: 8px;
-  text-transform: none;
-}
+body[data-slide="slide-7"] .slide-title { margin-bottom: 6px; }
 
-.killed-section {
-  margin-top: 18px;
-  margin-bottom: 6px;
-  padding: 14px 20px;
-  background: rgba(212,165,116,0.04);
-  border-left: 2px solid rgba(212,165,116,0.35);
-  border-radius: 0 6px 6px 0;
-}
-.killed-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 8px;
-}
-.killed-list {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-.killed-item {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 15px;
-  color: var(--gray);
-  letter-spacing: -0.005em;
-  line-height: 1.4;
-}
-.killed-item .killed-arrow {
-  color: rgba(212,165,116,0.55);
-  margin: 0 8px;
-}
-.killed-item .killed-tag {
-  color: var(--gray-mid);
-  text-transform: uppercase;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-}
-
-body[data-slide="slide-7"] .reasons-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; align-items: stretch; }
-body[data-slide="slide-7"] .reason-card {
-  padding: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
-.reason-ribbon {
-  padding: 6px 18px;
-  background: rgba(212, 165, 116, 0.06);
-  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
-  border-radius: 7px 7px 0 0;
-  font-family: var(--font-display);
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: rgba(212, 165, 116, 0.6);
-}
-.reason-card-body {
-  padding: 16px 20px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  flex: 1;
-}
-body[data-slide="slide-7"] .reason-title {
-  font-family: var(--font-display);
-  font-weight: 700;
+.s7-sub {
+  font-family: var(--font-body);
   font-size: 17px;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  line-height: 1.25;
+  color: var(--gray-mid);
+  margin-bottom: 24px;
 }
-.reason-stats { display: flex; gap: 24px; }
-.reason-stat-num {
+
+.s7-main {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  gap: 52px;
+}
+
+.s7-col { flex: 1; min-width: 0; }
+
+.s7-col-head {
   font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* left: channels */
+.s7-channel {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(212, 165, 116, 0.12);
+}
+
+.s7-channel:last-child { border-bottom: none; }
+
+.s7-ch-stat {
+  font-family: var(--font-display);
+  font-size: 38px;
   font-weight: 800;
-  font-size: 28px;
   color: var(--gold);
   letter-spacing: -0.02em;
-  line-height: 1.05;
+  width: 128px;
+  flex-shrink: 0;
 }
-.reason-stat-label {
+
+.s7-ch-body { flex: 1; }
+
+.s7-ch-name {
   font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gray-mid);
-  margin-top: 4px;
-}
-body[data-slide="slide-7"] .reason-desc {
-  font-family: var(--font-body);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--gray);
-  margin-top: auto;
-}
-body[data-slide="slide-7"] .reason-desc strong {
+  font-size: 17px;
+  font-weight: 700;
   color: var(--white);
-  font-weight: 600;
-  font-family: var(--font-display);
 }
 
+.s7-ch-desc {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-mid);
+  margin-top: 3px;
+  line-height: 1.45;
+}
 
-@media (max-width: 900px) {
-  body[data-slide="slide-7"] .reasons-grid { grid-template-columns: 1fr; }
-  body[data-slide="slide-7"] .slide-title { font-size: 30px; }
+/* right: seats */
+.s7-seats-intro {
+  font-family: var(--font-display);
+  font-size: 15px;
+  color: var(--gray);
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.s7-prof-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+}
+
+.s7-prof-name {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray);
+  width: 108px;
+  flex-shrink: 0;
+  text-align: right;
+}
+
+.s7-prof-bar-wrap { flex: 1; display: flex; align-items: center; gap: 8px; }
+
+.s7-prof-bar {
+  height: 14px;
+  border-radius: 3px;
+  background: #55606b;
+  min-width: 4px;
+}
+
+.s7-prof-row.hot .s7-prof-bar { background: var(--gold); }
+
+.s7-prof-count {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gray-mid);
+}
+
+.s7-prof-tag {
+  font-family: var(--font-display);
+  font-size: 11.5px;
+  font-weight: 800;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.s7-seats-chips {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.s7-chip {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 5px 12px;
+}
+
+.s7-chips-label {
+  font-family: var(--font-display);
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--gray-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-top: 18px;
+  margin-bottom: 8px;
 }
 </style>
 </head>
 <body data-slide="slide-7">
 
-
 <div class="deck">
 
-<div class="slide" id="slide-8">
+<div class="slide" id="slide-7">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title"><span class="previously-on">The 30.2% wasn't the only test.</span>We ran weekly tests — focused on cracking distribution before building product.</h2>
+  <h2 class="slide-title">The network <span style="color: var(--gold)">recruits itself</span>.</h2>
+  <div class="s7-sub">Every circle needs one of each profession — we invite the ones we're missing, and members nominate who fills them.</div>
 
-  <div class="reasons-grid">
+  <div class="s7-main">
 
-    <div class="reason-card">
-      <div class="reason-ribbon">n=134</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Weekly growth</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">50%+</div>
-            <div class="reason-stat-label">W/W user growth</div>
-          </div>
-          <div class="reason-stat">
-            <div class="reason-stat-num">77</div>
-            <div class="reason-stat-label">WAU last week</div>
-          </div>
+    <div class="s7-col">
+      <div class="s7-col-head">Once invited, they want in</div>
+
+      <div class="s7-channel">
+        <div class="s7-ch-stat">76%</div>
+        <div class="s7-ch-body">
+          <div class="s7-ch-name">Cold email invitations</div>
+          <div class="s7-ch-desc">of replies want in (93 of 123 replies processed) — from 6.1K invitations sent.</div>
         </div>
-        <div class="reason-desc"><strong>7× YC's "good" threshold (5–7%).</strong><br>134 registered in first 6 weeks.</div>
+      </div>
+
+      <div class="s7-channel">
+        <div class="s7-ch-stat">10+</div>
+        <div class="s7-ch-body">
+          <div class="s7-ch-name">Circle-opening posts</div>
+          <div class="s7-ch-desc">leads per post, zero negative responses; 66% became registered members. <strong style="color: var(--gold)">Peers nominate peers in the comments.</strong></div>
+        </div>
+      </div>
+
+      <div class="s7-channel">
+        <div class="s7-ch-stat">15%</div>
+        <div class="s7-ch-body">
+          <div class="s7-ch-name">Personal LinkedIn invitations</div>
+          <div class="s7-ch-desc">of everyone invited is already a registered member; 154 more conversations live. Deliberately human-paced.</div>
+        </div>
       </div>
     </div>
 
-    <div class="reason-card">
-      <div class="reason-ribbon">n=139 vs 5,201 control</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Cold email → onboarded</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">6.7%</div>
-            <div class="reason-stat-label">of emails reach onboarded</div>
-          </div>
-        </div>
-        <div class="reason-desc"><strong>Cold outreach converts.</strong></div>
-      </div>
-    </div>
+    <div class="s7-col">
+      <div class="s7-col-head">We invite who the network is missing</div>
+      <div class="s7-seats-intro">Member professions today — the short bars are the invitation list:</div>
 
-    <div class="reason-card">
-      <div class="reason-ribbon">n=14</div>
-      <div class="reason-card-body">
-        <div class="reason-title">Virality</div>
-        <div class="reason-stats">
-          <div class="reason-stat">
-            <div class="reason-stat-num">3.5</div>
-            <div class="reason-stat-label">invites / user</div>
-          </div>
-          <div class="reason-stat">
-            <div class="reason-stat-num">29%</div>
-            <div class="reason-stat-label">acceptance</div>
-          </div>
-        </div>
-        <div class="reason-desc"><strong>Each user brings in one more. Rare.</strong></div>
+      <div class="s7-prof-row"><div class="s7-prof-name">Marketing</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 100%"></div><div class="s7-prof-count">28</div></div></div>
+      <div class="s7-prof-row"><div class="s7-prof-name">Finance</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 93%"></div><div class="s7-prof-count">26</div></div></div>
+      <div class="s7-prof-row"><div class="s7-prof-name">Tech &amp; AI</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 61%"></div><div class="s7-prof-count">17</div></div></div>
+      <div class="s7-prof-row"><div class="s7-prof-name">HR &amp; talent</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 46%"></div><div class="s7-prof-count">13</div></div></div>
+      <div class="s7-prof-row hot"><div class="s7-prof-name">Sales &amp; RevOps</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 18%"></div><div class="s7-prof-count">5</div><div class="s7-prof-tag">recruiting</div></div></div>
+      <div class="s7-prof-row hot"><div class="s7-prof-name">Ops &amp; product</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 14%"></div><div class="s7-prof-count">4</div><div class="s7-prof-tag">recruiting</div></div></div>
+      <div class="s7-prof-row hot"><div class="s7-prof-name">Legal &amp; IP</div><div class="s7-prof-bar-wrap"><div class="s7-prof-bar" style="width: 11%"></div><div class="s7-prof-count">3</div><div class="s7-prof-tag">recruiting</div></div></div>
+
+      <div class="s7-chips-label">Open seats in the live circle, right now</div>
+      <div class="s7-seats-chips">
+        <div class="s7-chip">Startup Lawyer</div>
+        <div class="s7-chip">PR / Comms</div>
+        <div class="s7-chip">Sales Advisor</div>
+        <div class="s7-chip">Exec Coach</div>
+        <div class="s7-chip">Fractional VP HR</div>
       </div>
     </div>
 
   </div>
 
-  <div class="killed-section">
-    <div class="killed-label">What we disproved</div>
-    <div class="killed-list">
-      <div class="killed-item">Enterprise salespeople want referrals<span class="killed-arrow">→</span><span class="killed-tag">disproved</span></div>
-      <div class="killed-item">Independent professionals want random intros<span class="killed-arrow">→</span><span class="killed-tag">disproved</span></div>
-      <div class="killed-item">Facebook groups would drive signups<span class="killed-arrow">→</span><span class="killed-tag">disproved (no geographic density)</span></div>
-    </div>
-  </div>
-
-  <div class="conclusion">We believe data, not opinions. <strong>The data says Go.</strong></div>
-  <div class="sources">Sources: Referna growth dashboard (n=134, Jul 13, 2026) · YC growth thresholds (Paul Graham)</div>
+  <div class="conclusion">When we invite them, they want in. <strong>Scale is just getting the word out.</strong></div>
+  <div class="sources">Sources: Referna lead pipeline + Instantly, Jul 15, 2026 &middot; professions: member onboarding profiles (n=107) &middot; open seats: Atlas circle</div>
 </div>
 
 </div>
