@@ -65,7 +65,16 @@ async function main() {
 
     for (let i = 0; i < SLIDES.length; i++) {
       process.stdout.write(`[${i + 1}/${SLIDES.length}] ${SLIDES[i]} … `);
-      await page.goto(`${BASE}/${SLIDES[i]}`, { waitUntil: 'networkidle' });
+      // networkidle can hang on external requests (fonts/analytics); fall back
+      // to 'load' + a settle delay so one stuck request doesn't kill the run.
+      try {
+        await page.goto(`${BASE}/${SLIDES[i]}`, { waitUntil: 'networkidle', timeout: 20000 });
+      } catch (e) {
+        if (e.name !== 'TimeoutError') throw e;
+        process.stdout.write('(networkidle timeout — retrying with load) ');
+        await page.goto(`${BASE}/${SLIDES[i]}`, { waitUntil: 'load' });
+        await new Promise(r => setTimeout(r, 2000));
+      }
 
       // nav.js sets visibility:hidden until fonts ready + scale applied; wait for .scaled
       await page.waitForSelector('.slide.scaled, .slide-hero.scaled', { timeout: 10000 })

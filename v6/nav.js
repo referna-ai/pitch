@@ -10,7 +10,7 @@
     { file: 'slide-4.html',  title: 'Incumbent' },
     { file: 'slide-tech.html', title: 'Why Now' },
     { file: 'slide-5.html',  title: 'Category' },
-    { file: 'slide-6.html',  title: 'Market pull' },
+    { file: 'slide-6.html',  title: 'Traction' },
     { file: 'slide-7.html',  title: 'Distribution' },
     { file: 'slide-8.html',  title: 'Product 1' },
     { file: 'slide-9.html',  title: 'Product 2' },

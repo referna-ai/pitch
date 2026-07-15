@@ -3,801 +3,149 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S4 · Product — Referna Pitch</title>
+<title>S8 · Product 1 — Referna Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600;600i&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="stylesheet" href="styles.css">
 <style>
-body[data-slide="slide-8"] {
-  --black-bubble: #1F1F1F;
-  --border-soft: rgba(255,255,255,0.06);
-  --border-input: rgba(255,255,255,0.10);
-  --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
-}
+body[data-slide="slide-8"] .slide-title { margin-bottom: 4px; }
 
-body[data-slide="slide-8"] .slide-title { margin-bottom: 22px; }
-body[data-slide="slide-8"] .slide-title .gold { color: var(--gold); }
-/* clip phone glow only at the bottom (conclusion line); allow it on top/sides */
-body[data-slide="slide-8"] .s9-visual { clip-path: inset(-200px -200px 0 -200px); }
-
-/* LAYOUT */
-.s9-layout {
-  display: grid;
-  grid-template-columns: 360px 1fr;
-  grid-template-rows: 1fr;
-  gap: 32px;
-  flex: 1;
-  align-items: stretch;
-  position: relative;
-  min-height: 0;
-}
-
-/* TEXT COLUMN */
-.s9-text-col {
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-  padding-top: 4px;
-}
-.s9-pillar-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 32px;
-  letter-spacing: -0.015em;
-  color: var(--white);
-  margin-bottom: 22px;
-  line-height: 1.15;
-  white-space: nowrap;
-  width: max-content;
-  position: relative;
-  z-index: 4;
-}
-.s9-pillar + .s9-pillar { margin-top: -10px; }
-.s9-pillar-bullets { list-style: none; padding: 0; margin: 0; max-width: 300px; }
-.s9-pillar-bullets li {
+.s8-sub {
   font-family: var(--font-body);
-  font-size: 22px;
-  line-height: 1.45;
-  color: var(--gray);
-  padding: 16px 0 16px 28px;
-  border-top: 1px solid var(--border-soft);
-  position: relative;
-}
-.s9-pillar-bullets li:first-child { border-top: none; padding-top: 4px; }
-.s9-pillar-bullets li::before {
-  content: "→";
-  position: absolute;
-  left: 0; top: 16px;
-  color: var(--gold);
-  font-weight: 700;
-  font-family: var(--font-display);
-  font-size: 18px;
-}
-.s9-pillar-bullets li:first-child::before { top: 4px; }
-.s9-pillar-bullets li strong { color: inherit; font-weight: inherit; }
-
-/* VISUAL CLUSTER */
-.s9-visual {
-  position: relative;
-  height: 100%;
-  min-height: 460px;
-}
-
-/* DESKTOP FORM (LEFT, behind) */
-.s9-browser-wrap {
-  position: absolute;
-  left: -20px;
-  top: 38px;
-  width: 580px;
-  z-index: 1;
-}
-.s9-browser {
-  background: var(--black);
-  border-radius: 8px;
-  overflow: hidden;
-  border: 2px solid rgba(255,255,255,0.10);
-  box-shadow:
-    0 0 60px rgba(212,165,116,0.18),
-    0 0 24px rgba(212,165,116,0.10),
-    0 25px 50px rgba(0,0,0,0.55);
-}
-.s9-browser-chrome {
-  display: flex; align-items: center; gap: 10px;
-  padding: 8px 12px;
-  background: #2d2d2d;
-  border-bottom: 1px solid var(--border-soft);
-}
-.s9-browser-dots { display: flex; gap: 5px; }
-.s9-browser-dot { width: 9px; height: 9px; border-radius: 50%; }
-.s9-browser-dot.red { background: #FF5F57; }
-.s9-browser-dot.yellow { background: #FEBC2E; }
-.s9-browser-dot.green { background: #28C840; }
-.s9-browser-url {
-  flex: 1;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 5px;
-  padding: 3px 9px;
-  font-family: var(--font-system);
-  font-size: 10px;
+  font-size: 17px;
   color: var(--gray-mid);
-  text-align: center;
-  letter-spacing: 0.02em;
+  margin-bottom: 12px;
 }
 
-.s9-form-app { background: var(--black); }
-.s9-form-header {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border-soft);
-}
-.s9-form-brand {
-  display: flex; align-items: center; gap: 8px;
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 13px; color: white;
-  letter-spacing: -0.02em;
-}
-.s9-form-mark {
-  width: 18px; height: 18px; background: white; border-radius: 4px;
-  display: flex; align-items: center; justify-content: center;
-  color: var(--black); font-weight: 800; font-size: 11px;
-  font-family: var(--font-display);
-}
-.s9-form-status {
-  display: flex; align-items: center; gap: 7px;
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-mid);
-}
-.s9-form-status::before {
-  content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--error);
-}
-.s9-form-body {
-  display: grid; grid-template-columns: 200px 1fr;
-  min-height: 300px;
-}
-.s9-form-side {
-  padding: 16px 14px;
-  border-right: 1px solid var(--border-soft);
-}
-.s9-form-side-eyebrow {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 8.5px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--gray-mid);
-  margin-bottom: 8px;
-}
-.s9-form-progress {
-  height: 2px; background: rgba(255,255,255,0.06); border-radius: 2px;
-  overflow: hidden; margin-bottom: 10px;
-}
-.s9-form-progress::after {
-  content: ""; display: block; height: 100%; width: 70%;
-  background: var(--gold);
-}
-.s9-form-status-num {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 13px; color: white; margin-bottom: 2px;
-  letter-spacing: -0.01em;
-}
-.s9-form-status-sub {
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-dark); margin-bottom: 14px;
-}
-.s9-form-step {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 5px 8px; border-radius: 5px;
-  font-family: var(--font-display);
-  font-size: 10.5px; color: var(--gray); font-weight: 500;
-  margin-bottom: 2px;
-  border: 1px solid transparent;
-}
-.s9-form-step.active {
-  border-color: var(--border);
-  background: rgba(212,165,116,0.04);
-}
-.s9-form-step-left { display: flex; align-items: center; gap: 7px; }
-.s9-form-check { color: #7BC47F; font-weight: 700; font-size: 10px; width: 9px; }
-.s9-form-num { color: var(--gray-dark); font-weight: 600; font-size: 10px; width: 9px; text-align: center; }
-.s9-form-badge {
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 8.5px; color: var(--error);
-  background: rgba(212,100,92,0.08);
-  border: 1px solid rgba(212,100,92,0.30);
-  border-radius: 3px; padding: 1px 5px;
-}
-
-.s9-form-detail { padding: 18px 22px; }
-.s9-form-title {
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 22px; letter-spacing: -0.02em;
-  color: white; margin-bottom: 4px;
-}
-.s9-form-step-label {
-  font-family: var(--font-display);
-  font-weight: 600; font-size: 9px; letter-spacing: 0.18em;
-  text-transform: uppercase; color: var(--gray-dark);
-  margin-bottom: 14px;
-}
-.s9-form-instruct {
-  border-left: 2px solid var(--gold);
-  padding: 2px 0 2px 12px;
-  margin-bottom: 16px;
-}
-.s9-form-instruct-text {
-  font-family: var(--font-body); font-size: 13px; line-height: 1.4;
-  color: white; margin-bottom: 6px;
-}
-.s9-form-instruct-sub {
-  display: inline-block;
-  font-family: var(--font-display);
-  font-size: 10px; color: var(--gray-mid);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border-input);
-  border-radius: 4px; padding: 3px 7px;
-}
-.s9-form-fields {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 10px 12px;
-}
-.s9-field-label {
-  display: block;
-  font-family: var(--font-display);
-  font-weight: 500; font-size: 10px;
-  color: white; margin-bottom: 5px;
-}
-.s9-field-input {
-  width: 100%; background: transparent;
-  border: 1px solid var(--border-input);
-  border-radius: 5px; padding: 7px 9px;
-  font-family: var(--font-body); font-size: 11px; color: white;
-}
-
-/* MOBILE PHONE (RIGHT, in front) */
-.s9-phone-wrap {
-  position: absolute;
-  right: 2px;
-  top: -2px;
-  width: 240px;
-  z-index: 2;
-  filter:
-    drop-shadow(0 0 22px rgba(212,165,116,0.20))
-    drop-shadow(0 0 8px  rgba(212,165,116,0.12))
-    drop-shadow(0 30px 50px rgba(0,0,0,0.55));
-}
-.s9-phone {
-  width: 100%;
-  background: var(--white);
-  border: 7px solid #1a1a1a;
-  border-radius: 34px;
-  overflow: hidden;
-  position: relative;
-  height: 484px;
-  display: flex; flex-direction: column;
-}
-.s9-phone-notch {
-  position: absolute;
-  top: 7px; left: 50%; transform: translateX(-50%);
-  width: 64px; height: 17px;
-  background: #050505; border-radius: 9px;
-  z-index: 5;
-}
-.s9-phone-statusbar {
-  position: absolute;
-  top: 13px; left: 0; right: 0;
-  display: flex; justify-content: space-between;
-  padding: 0 19px;
-  font-family: var(--font-system);
-  font-weight: 600; font-size: 8.5px;
-  color: #000; z-index: 4;
-}
-
-/* CHAT HEADER */
-.s9-chat-header {
-  padding: 34px 9px 7px;
-  display: flex; align-items: center; gap: 6px;
-  border-bottom: 1px solid #E5E5EA;
-  background: #F6F6F8;
-  flex-shrink: 0;
-}
-.s9-chat-back {
-  font-size: 16px; color: #007AFF; font-weight: 300;
-  line-height: 1; flex-shrink: 0; width: 9px;
-}
-.s9-chat-avatar {
-  width: 23px; height: 23px; border-radius: 50%;
-  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-system);
-  font-weight: 700; font-size: 9px; color: #fff;
-  flex-shrink: 0;
-}
-.s9-chat-info { flex: 1; min-width: 0; }
-.s9-chat-name {
-  font-family: var(--font-system);
-  font-weight: 600; font-size: 10px; color: #1C1C1E;
-  letter-spacing: -0.01em;
-}
-.s9-chat-sub {
-  font-family: var(--font-system);
-  font-size: 8.5px; color: #6B6B70;
-}
-.s9-chat-more { color: #007AFF; font-size: 13px; flex-shrink: 0; }
-
-/* CHAT BODY */
-.s9-chat-body {
+.s8-flow-wrap {
   flex: 1;
-  overflow: hidden;
-  padding: 8px 7px 0;
-  background: #FFFFFF;
-  position: relative;
-}
-.s9-chat-date {
-  text-align: center; font-family: var(--font-system);
-  font-size: 8px; color: #8E8E93; font-weight: 600;
-  margin-bottom: 8px;
-}
-.s9-chat-date strong { color: #1C1C1E; }
-.s9-chat-sys {
-  text-align: center; font-family: var(--font-system);
-  font-size: 8.5px; color: #8E8E93; margin-bottom: 8px;
-  line-height: 1.3; padding: 0 6px;
-}
-
-.s9-chat-msg {
-  display: flex; gap: 5px; align-items: flex-end;
-  margin-bottom: 6px;
-}
-.s9-chat-msg-avatar {
-  width: 18px; height: 18px; border-radius: 50%;
-  background: linear-gradient(135deg,#D4A574 0%,#B68A5C 100%);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-system);
-  font-weight: 700; font-size: 8px; color: #fff;
-  flex-shrink: 0;
-}
-.s9-chat-msg-avatar.hidden { visibility: hidden; }
-.s9-chat-msg-content { flex: 1; min-width: 0; max-width: 80%; }
-.s9-chat-msg-name {
-  font-family: var(--font-system);
-  font-size: 8px; font-weight: 500;
-  color: #6B6B70; margin-bottom: 2px; margin-left: 3px;
-}
-.s9-chat-bubble {
-  background: #E9E9EB; border-radius: 11px;
-  padding: 5px 8px;
-  font-family: var(--font-system);
-  font-size: 10px; line-height: 1.32;
-  color: #000; display: inline-block;
-  max-width: 100%; word-wrap: break-word;
-}
-
-/* IMAGE ATTACHMENT */
-.s9-chat-attachment {
-  border-radius: 11px; overflow: hidden;
-  background: var(--black-bubble);
-  border: 1px solid rgba(0,0,0,0.06);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
-  font-family: var(--font-display);
-}
-.s9-att-section { padding: 7px 8px; }
-.s9-att-section + .s9-att-section { border-top: 1px solid var(--border-soft); }
-.s9-att-label {
-  font-size: 7px; font-weight: 700;
-  letter-spacing: 0.16em; text-transform: uppercase;
-  color: #999; margin-bottom: 6px;
-}
-
-.s9-att-customer {
-  display: flex; align-items: center; gap: 6px;
-  background: rgba(212,165,116,0.06);
-  border: 1px solid var(--border);
-  border-radius: 7px; padding: 5px 7px;
-}
-.s9-att-customer-icon {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--black);
-  border: 1.2px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.s9-att-customer-icon svg { width: 12px; height: 12px; }
-.s9-att-customer-info { flex: 1; min-width: 0; }
-.s9-att-customer-title {
-  font-weight: 700; font-size: 8.5px; color: white;
-  letter-spacing: -0.005em; line-height: 1.2;
-}
-.s9-att-customer-sub {
-  font-family: var(--font-body);
-  font-size: 7.5px; color: #D1D1D1;
-  font-style: italic; margin-top: 1px;
-  line-height: 1.3;
-}
-
-.s9-att-members { display: flex; flex-direction: column; gap: 5px; }
-.s9-att-member { display: flex; align-items: center; gap: 5px; }
-.s9-att-member-avatar {
-  width: 20px; height: 20px; border-radius: 50%;
-  background: linear-gradient(135deg,#2d2d2d,#161616);
-  border: 1.2px solid var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display);
-  font-weight: 700; font-size: 7.5px; color: var(--gold);
-  flex-shrink: 0; letter-spacing: 0.02em;
-}
-.s9-att-member-info { flex: 1; min-width: 0; }
-.s9-att-member-name {
-  font-weight: 600; font-size: 8.5px; color: #fff;
-  line-height: 1.2;
-}
-.s9-att-member-name .role { font-weight: 500; color: #999; }
-.s9-att-member-trigger {
-  font-family: var(--font-body);
-  font-size: 7.5px; color: #D1D1D1;
-  font-style: italic; margin-top: 1px;
-  line-height: 1.3;
-}
-.s9-att-member-trigger::before {
-  content: "→ "; color: var(--gold);
-  font-style: normal; font-family: var(--font-display);
-  font-weight: 700;
-}
-
-/* MOCKUP CLUSTER — transparent on desktop, scaled on mobile */
-.s9-mockup-cluster {
-  position: absolute;
-  inset: 0;
-}
-
-/* MOCKUP LABELS */
-.s9-label {
-  position: absolute;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--gold);
-  line-height: 1;
-}
-.s9-label-browser { top: 80px; left: 10px; }
-.s9-label-phone   { top: 0px;  right: 2px; width: 240px; text-align: center; }
-
-/* Push mockups down to make room for labels */
-.s9-browser-wrap { top: 98px; }
-.s9-phone-wrap   { top: 16px; }
-
-/* FULL-SCREEN MATCH OVERLAY */
-.s9-match-full {
-  position: absolute;
-  inset: 0;
-  z-index: 10;
-  background: #0d0a06;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-}
-.s9-match-icon {
-  width: 52px;
-  height: 52px;
-  color: var(--gold);
-  animation: s9-icon-pulse 1.2s ease-in-out infinite;
-}
-.s9-match-full-title {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 20px;
-  color: var(--gold);
-  letter-spacing: -0.01em;
-}
-.s9-match-full-sub {
-  font-family: var(--font-display);
-  font-weight: 500;
-  font-size: 12px;
-  color: rgba(212,165,116,0.55);
-  letter-spacing: 0.04em;
-}
-
-@keyframes s9-icon-pulse {
-  0%, 100% { transform: scale(1);    opacity: 1;    }
-  50%       { transform: scale(1.18); opacity: 0.85; }
-}
-
-/* SEQUENTIAL REVEAL */
-.s9-reveal-item {
-  opacity: 0;
-  transition: opacity 0.4s ease;
-}
-.s9-reveal-item.s9-shown {
-  opacity: 1;
-}
-
-/* ── Apply-for-circles web UI ── */
-.s9-apply-inner { zoom: 0.79; }
-.s9-apply-app { background: var(--black); }
-.s9-apply-topbar {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 10px 18px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-.s9-apply-brand { display: flex; align-items: center; gap: 8px; }
-.s9-apply-brand-name { font-family: var(--font-display); font-weight: 800; font-size: 15px; color: var(--white); letter-spacing: -0.02em; }
-.s9-apply-nav {
-  display: flex; gap: 22px;
-  font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--gray-dark);
-}
-.s9-apply-nav .act { color: var(--white); }
-.s9-apply-user-dot {
-  width: 24px; height: 24px; border-radius: 50%; background: var(--gold);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--black);
-}
-.s9-apply-body { padding: 16px 20px; }
-.s9-apply-page-title {
-  font-family: var(--font-display); font-weight: 800; font-size: 20px;
-  color: var(--white); letter-spacing: -0.01em; margin-bottom: 14px;
-}
-.s9-apply-card {
-  background: linear-gradient(180deg,#1a1815 0%,#0e0d0b 100%);
-  border: 1.5px solid var(--gold); border-radius: 10px;
-  padding: 16px 18px 14px;
-  box-shadow: 0 6px 18px rgba(212,165,116,0.15);
-  margin-bottom: 14px;
-}
-.s9-apply-tag {
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px;
-}
-.s9-apply-cmp-head {
-  display: grid; grid-template-columns: 1fr 1fr;
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  color: var(--gold); letter-spacing: 0.10em; text-transform: uppercase;
-  padding-bottom: 8px; margin-bottom: 8px;
-  border-bottom: 1px solid rgba(212,165,116,0.22);
-}
-.s9-apply-cmp-head span:first-child { border-right: 1px solid rgba(212,165,116,0.30); padding-right: 12px; }
-.s9-apply-cmp-head span:last-child { padding-left: 12px; }
-.s9-apply-cmp-row {
-  display: grid; grid-template-columns: 1fr 1fr;
-  font-family: var(--font-display); font-weight: 500; font-size: 15px;
-  color: var(--gray); margin-bottom: 6px; line-height: 1.35;
-}
-.s9-apply-cmp-row span:first-child { border-right: 1px solid rgba(212,165,116,0.18); padding-right: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.s9-apply-cmp-row span:last-child  { padding-left: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.s9-apply-signal {
-  font-family: var(--font-display); font-size: 15px; font-weight: 500;
-  color: var(--white); margin: 10px 0 12px;
-}
-.s9-apply-divider { border-top: 1px dashed rgba(212,165,116,0.16); margin: 8px 0; }
-.s9-apply-footer { display: flex; flex-direction: column; gap: 8px; }
-.s9-apply-faces { display: flex; align-items: center; gap: 8px; }
-.s9-apply-face-stack { display: flex; }
-.s9-apply-face {
-  width: 22px; height: 22px; border-radius: 50%; overflow: hidden;
-  border: 1.5px solid var(--black); background: var(--black-soft); margin-left: -6px;
-}
-.s9-apply-face:first-child { margin-left: 0; }
-.s9-apply-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.s9-apply-count { font-family: var(--font-display); font-size: 14px; font-weight: 500; color: var(--gray-mid); }
-.s9-apply-cta {
-  background: var(--gold); color: var(--black);
-  font-family: var(--font-display); font-weight: 700; font-size: 14px;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  padding: 9px 18px; border-radius: 7px; text-align: center;
-}
-.s9-apply-more {
-  font-family: var(--font-display); font-size: 14px; font-weight: 700;
-  color: var(--gray-mid); letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 8px;
-}
-.s9-apply-row {
-  display: flex; align-items: center; gap: 10px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px; padding: 10px 12px; margin-bottom: 6px;
-}
-.s9-apply-row-faces { display: flex; flex-shrink: 0; }
-.s9-apply-row-face {
-  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
-  border: 1.5px solid var(--black); background: var(--black-soft); margin-left: -5px;
-}
-.s9-apply-row-face:first-child { margin-left: 0; }
-.s9-apply-row-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.s9-apply-row-info { flex: 1; min-width: 0; }
-.s9-apply-row-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
-.s9-apply-row-meta { font-family: var(--font-body); font-size: 14px; font-style: italic; color: var(--gray-dark); }
-.s9-apply-chev { font-size: 18px; color: var(--gray-dark); font-family: var(--font-display); }
-
-/* ── Browser split body ── */
-.s9-apply-body-split {
-  display: flex;
   min-height: 0;
-}
-.s9-apply-left {
-  flex: 0 0 54%;
-  padding: 16px 20px;
-  border-right: 1px solid rgba(255,255,255,0.07);
-}
-.s9-apply-right {
-  flex: 1;
-  padding: 16px 14px;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  justify-content: flex-start;
+  padding-top: 2px;
 }
 
-/* ── Carousel ── */
-.s9-carousel-wrap {
-  flex: 1;
-  overflow: hidden;
-  position: relative;
-}
-.s9-carousel-track {
-  animation: s9-carousel-scroll 9s linear infinite;
-}
-.s9-carousel-track:hover { animation-play-state: paused; }
-@keyframes s9-carousel-scroll {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-50%); }
-}
-.s9-carousel-item {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 12px; margin-bottom: 6px;
-  background: rgba(255,255,255,0.025);
-  border: 1px solid rgba(255,255,255,0.05);
-  border-radius: 8px;
-  cursor: pointer;
-}
-.s9-carousel-faces { display: flex; flex-shrink: 0; }
-.s9-carousel-face {
-  width: 18px; height: 18px; border-radius: 50%; overflow: hidden;
-  border: 1.5px solid var(--black); background: var(--black-soft);
-  margin-left: -5px;
-}
-.s9-carousel-face:first-child { margin-left: 0; }
-.s9-carousel-face img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(100%); }
-.s9-carousel-info { flex: 1; min-width: 0; }
-.s9-carousel-name { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: var(--white); }
-.s9-carousel-meta { font-family: var(--font-body); font-size: 14px; font-style: italic; color: var(--gray-dark); }
-.s9-carousel-chev { font-size: 18px; color: var(--gray-dark); font-family: var(--font-display); flex-shrink: 0; }
-
-/* statusbar needs light text on dark phone background */
-body[data-slide="slide-8"] .s9-phone-statusbar { color: rgba(255,255,255,0.7); }
-
-/* ── Phone static match screen ── */
-.s9-phone-match {
-  flex: 1;
-  background: #0d0a06;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
-  overflow: hidden;
-}
-.s9-phone-match-top {
-  display: flex; flex-direction: column; align-items: center;
-  gap: 3px; margin-bottom: 14px;
-}
-.s9-match-sparkle {
-  width: 30px; height: 30px;
+.s8-journey-start {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
   color: var(--gold);
-  animation: s9-icon-pulse 1.8s ease-in-out infinite;
-  margin-bottom: 4px;
-}
-.s9-match-title-static {
-  font-family: var(--font-display);
-  font-weight: 800; font-size: 20px;
-  color: var(--gold); letter-spacing: -0.01em;
-}
-.s9-match-circle-sub {
-  font-family: var(--font-display);
-  font-weight: 500; font-size: 14px;
-  color: rgba(212,165,116,0.50); letter-spacing: 0.02em;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: left;
+  margin-bottom: 10px;
 }
 
-/* ── Circle visualization ── */
-.s9-circle-stage {
-  width: 200px; height: 200px;
-  position: relative;
+.s8-journey-end {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-align: right;
+  margin-top: 2px;
+}
+
+.s8-flow {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* waterfall: each step starts a little lower than the previous */
+.s8-step-apply { margin-top: 0; }
+.s8-lanes-step { margin-top: 24px; }
+.s8-step-circle { margin-top: 48px; }
+.s8-arrow-1 { margin-top: 58px; }
+.s8-arrow-2 { margin-top: 168px; }
+
+.s8-step {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.s8-step-tag {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.s8-step-apply {
+  width: 148px;
   flex-shrink: 0;
 }
-.s9-circle-ring-svg {
-  position: absolute; inset: 0; width: 100%; height: 100%;
-  overflow: visible; pointer-events: none;
-}
-.s9-ring-pulse {
-  position: absolute; left: 50%; top: 50%;
-  width: 44px; height: 44px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(212,165,116,0.45);
-  transform: translate(-50%,-50%);
-  animation: s9-ring-expand 2.2s ease-out infinite;
-  pointer-events: none;
-}
-@keyframes s9-ring-expand {
-  0%   { transform: translate(-50%,-50%) scale(1);   opacity: 0.7; }
-  100% { transform: translate(-50%,-50%) scale(3.8); opacity: 0; }
-}
-.s9-ami-face {
-  position: absolute; left: 50%; top: 50%;
-  width: 44px; height: 44px;
-  border-radius: 50%; overflow: hidden;
-  border: 2px solid var(--gold);
-  transform: translate(-50%,-50%);
-  animation: s9-ami-pulse 2.2s ease-in-out infinite;
-  z-index: 2;
-}
-.s9-ami-face img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); display: block; }
-@keyframes s9-ami-pulse {
-  0%, 100% { transform: translate(-50%,-50%) scale(1);    box-shadow: 0 0 0   0   rgba(212,165,116,0.4); }
-  50%       { transform: translate(-50%,-50%) scale(1.18); box-shadow: 0 0 14px 4px rgba(212,165,116,0.25); }
-}
-.s9-peer-dot {
-  position: absolute;
-  width: 26px; height: 26px;
-  border-radius: 50%; overflow: hidden;
-  border: 1.5px solid rgba(212,165,116,0.45);
-  z-index: 1;
-}
-.s9-peer-dot img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); display: block; }
 
-/* ── PORTRAIT MOBILE (≤ 768 px wide) ────────────────────────────────── */
-/*
- * Scale the entire cluster as one unit so the browser/phone overlap
- * is preserved exactly as on desktop. Cluster width 680px mirrors the
- * desktop visual column size; scale(0.46) fits it into ~310px.
- */
-@media (max-width: 768px) {
-  .s9-layout { grid-template-columns: 1fr; gap: 12px; }
-  .s9-text-col { gap: 12px; }
-  .s9-pillar-title { font-size: 15px; margin-bottom: 4px; }
-  .s9-pillar-bullets li { font-size: 12px; padding: 4px 0 4px 16px; }
-  .s9-pillar-bullets li:first-child { padding-top: 0; }
+.s8-step-circle { width: 208px; flex-shrink: 0; }
 
-  .s9-visual { min-height: 0; height: 248px; overflow: visible; }
-
-  .s9-mockup-cluster {
-    inset: auto;
-    top: 6px; left: 0;
-    width: 680px;
-    transform: scale(0.46);
-    transform-origin: top left;
-  }
+.s8-apply-box {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px 16px;
+  background: var(--black-soft);
 }
 
-/* ── TABLET LANDSCAPE (iPad ~1024–1150 px wide) ─────────────────────── */
-/*
- * At ~1024 px the visual column (~632 px) barely fits the cluster.
- * Scale it to 0.78 so the right "More matches" panel clears the phone.
- */
-@media (min-width: 901px) and (max-width: 1150px) {
-  .s9-visual { min-height: 0; overflow: visible; }
-  .s9-mockup-cluster {
-    inset: auto;
-    top: 8px; left: 0;
-    width: 830px;
-    transform: scale(0.77);
-    transform-origin: top left;
-  }
+.s8-apply-box .t1 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 8px;
 }
 
-/* ── LANDSCAPE MOBILE (height ≤ 500 px, width > 768 px) ─────────────── */
-@media (max-height: 500px) and (min-width: 769px) {
-  body[data-slide="slide-8"] .slide-title { font-size: 26px; margin-bottom: 14px; }
-  .s9-layout { grid-template-columns: 240px 1fr; gap: 20px; }
-  .s9-text-col { gap: 14px; }
-  .s9-pillar-title { font-size: 14px; margin-bottom: 4px; }
-  .s9-pillar-bullets li { font-size: 11.5px; padding: 4px 0 4px 16px; }
+.s8-apply-box .t2 {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  color: var(--gray-mid);
+  line-height: 1.45;
+}
 
-  .s9-visual { min-height: 0; height: 320px; overflow: visible; }
+.s8-arrow {
+  font-family: var(--font-display);
+  color: var(--gold);
+  font-size: 26px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
 
-  .s9-mockup-cluster {
-    inset: auto;
-    top: 6px; left: 0;
-    width: 680px;
-    transform: scale(0.60);
-    transform-origin: top left;
-  }
+.s8-lanes {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.s8-lane { width: 188px; }
+
+.s8-shot {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  display: block;
+}
+
+.s8-lane-cap {
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--gray);
+  margin-top: 8px;
+  text-align: center;
+}
+
+.s8-lane-cap span { color: var(--gold); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .s8-flow { flex-direction: column; align-items: stretch; overflow-y: auto; }
+  .s8-lanes { flex-wrap: wrap; }
+  .s8-arrow { display: none; }
+  .s8-lanes-step, .s8-step-circle { margin-top: 0; }
 }
 </style>
 </head>
@@ -805,230 +153,58 @@ body[data-slide="slide-8"] .s9-phone-statusbar { color: rgba(255,255,255,0.7); }
 
 <div class="deck">
 
-<div class="slide" id="slide-4">
+<div class="slide" id="slide-8">
   <div class="slide-number"></div>
   <div class="slide-label"></div>
-  <h2 class="slide-title">Referna matches like <span class="gold">online dating</span></h2>
+  <h2 class="slide-title">Three ways to meet. One destination: <span style="color: var(--gold)">referrals</span>.</h2>
+  <div class="s8-sub">The live product — every visual is a real screenshot (members blurred).</div>
 
-  <div class="s9-layout">
+  <div class="s8-flow-wrap">
+  <div class="s8-journey-start">Journey start: needs referrals</div>
+  <div class="s8-flow">
 
-    <!-- LEFT: TEXT (Matching first, Trust second) -->
-    <div class="s9-text-col">
-
-      <div class="s9-pillar">
-        <h3 class="s9-pillar-title">Ami finds his circle</h3>
-        <ul class="s9-pillar-bullets">
-          <li>Matched by <strong>who they serve</strong>, not where they live</li>
-          <li>Selected by ability to <strong>create trust with the circle</strong> —<br>equal standing,<br>mutual connections,<br>common interests</li>
-          <li>Ami has a circle of 8-12 <strong>helping each other</strong></li>
-        </ul>
+    <div class="s8-step s8-step-apply">
+      <div class="s8-step-tag">1 · Apply</div>
+      <div class="s8-apply-box">
+        <div class="t1">10-minute application</div>
+        <div class="t2">Who you serve, what a great referral looks like, calendar connect. Gordy builds your profile.</div>
       </div>
-
     </div>
 
-    <!-- RIGHT: VISUALS -->
-    <div class="s9-visual">
+    <div class="s8-arrow s8-arrow-1">→</div>
 
-      <!-- MOCKUP CLUSTER — scaled as a unit on mobile to preserve overlap -->
-      <div class="s9-mockup-cluster">
-      <div class="s9-label s9-label-browser">Apply for circles</div>
-      <div class="s9-label s9-label-phone">It's a match</div>
-      <!-- DESKTOP FORM IN BROWSER FRAME -->
-      <div class="s9-browser-wrap">
-        <div class="s9-browser">
-          <div class="s9-browser-chrome">
-            <div class="s9-browser-dots">
-              <span class="s9-browser-dot red"></span>
-              <span class="s9-browser-dot yellow"></span>
-              <span class="s9-browser-dot green"></span>
-            </div>
-            <div class="s9-browser-url">app.referna.com · review your application</div>
-          </div>
-          <div class="s9-apply-inner">
-          <div class="s9-apply-app">
-            <div class="s9-apply-topbar">
-              <div class="s9-apply-brand">
-                <div class="s9-form-mark">I</div>
-                <div class="s9-apply-brand-name">Referna</div>
-              </div>
-              <div class="s9-apply-nav">
-                <span>Circles</span>
-                <span class="act">Apply</span>
-                <span>Referrals</span>
-              </div>
-              <div class="s9-apply-user-dot">A</div>
-            </div>
-            <div class="s9-apply-body-split">
-
-              <!-- LEFT: featured card -->
-              <div class="s9-apply-left">
-                <div class="s9-apply-card">
-                  <div class="s9-apply-tag">Top match · Atlas</div>
-                  <div class="s9-apply-cmp-head">
-                    <span>Atlas Circle</span><span>Ami</span>
-                  </div>
-                  <div class="s9-apply-cmp-row"><span>Seed B2B Founders</span><span>Seed Founders</span></div>
-                  <div class="s9-apply-cmp-row"><span>🇮🇱</span><span>🇮🇱</span></div>
-                  <div class="s9-apply-cmp-row"><span>Acme (customer)</span><span>Acme (customer)</span></div>
-                  <div class="s9-apply-signal">+ mutual connections &amp; work history with Sarah and Tom</div>
-                  <div class="s9-apply-divider"></div>
-                  <div class="s9-apply-footer">
-                    <div class="s9-apply-faces">
-                      <div class="s9-apply-face-stack">
-                        <div class="s9-apply-face"><img src="portraits/women/23.jpg" alt=""></div>
-                        <div class="s9-apply-face"><img src="portraits/men/12.jpg" alt=""></div>
-                        <div class="s9-apply-face"><img src="portraits/women/45.jpg" alt=""></div>
-                        <div class="s9-apply-face"><img src="portraits/men/55.jpg" alt=""></div>
-                        <div class="s9-apply-face"><img src="portraits/men/91.jpg" alt=""></div>
-                      </div>
-                      <span class="s9-apply-count">8 members · 3 openings</span>
-                    </div>
-                    <div class="s9-apply-cta">Apply to join</div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- RIGHT: scrolling circles carousel -->
-              <div class="s9-apply-right">
-                <div class="s9-apply-more">More matches</div>
-                <div class="s9-carousel-wrap">
-                  <div class="s9-carousel-track">
-                    <!-- set 1 -->
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/women/4.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/22.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/77.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Lighthouse</div>
-                        <div class="s9-carousel-meta">SaaS Founders · 8 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/men/33.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/55.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/67.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Compass</div>
-                        <div class="s9-carousel-meta">Fintech Founders · 6 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/women/18.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/44.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/62.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Meridian</div>
-                        <div class="s9-carousel-meta">Legal Founders · 7 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                    <!-- set 2 (seamless repeat) -->
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/women/4.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/22.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/77.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Lighthouse</div>
-                        <div class="s9-carousel-meta">SaaS Founders · 8 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/men/33.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/55.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/67.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Compass</div>
-                        <div class="s9-carousel-meta">Fintech Founders · 6 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                    <div class="s9-carousel-item">
-                      <div class="s9-carousel-faces">
-                        <div class="s9-carousel-face"><img src="portraits/women/18.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/men/44.jpg" alt=""></div>
-                        <div class="s9-carousel-face"><img src="portraits/women/62.jpg" alt=""></div>
-                      </div>
-                      <div class="s9-carousel-info">
-                        <div class="s9-carousel-name">Meridian</div>
-                        <div class="s9-carousel-meta">Legal Founders · 7 members</div>
-                      </div>
-                      <span class="s9-carousel-chev">›</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-          </div>
+    <div class="s8-step s8-lanes-step">
+      <div class="s8-step-tag">2 · Meet your peers — three lanes</div>
+      <div class="s8-lanes">
+        <div class="s8-lane">
+          <img class="s8-shot" src="product/person-match-card.png" alt="Match card">
+          <div class="s8-lane-cap"><span>1:1 matches</span> — mutual opt-in, Gordy books the call</div>
+        </div>
+        <div class="s8-lane">
+          <img class="s8-shot" src="product/cohort-card.png" alt="Founding cohort card">
+          <div class="s8-lane-cap"><span>Cohort</span> — six weekly founder-led sessions</div>
+        </div>
+        <div class="s8-lane">
+          <img class="s8-shot" src="product/mixer-card.png" alt="Live mixer card">
+          <div class="s8-lane-cap"><span>Live mixer</span> — speed networking, shipping now</div>
         </div>
       </div>
+    </div>
 
-      <!-- MOBILE PHONE (front, right) -->
-      <div class="s9-phone-wrap">
-        <div class="s9-phone">
-          <div class="s9-phone-notch"></div>
-          <div class="s9-phone-statusbar">
-            <span>9:41</span>
-            <span>●●●  ▣</span>
-          </div>
+    <div class="s8-arrow s8-arrow-2">→</div>
 
-          <!-- Static match screen with circle visualization -->
-          <div class="s9-phone-match">
-
-            <div class="s9-phone-match-top">
-              <svg class="s9-match-sparkle" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/>
-                <path d="M18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456z"/>
-              </svg>
-              <div class="s9-match-title-static">It's a match</div>
-              <div class="s9-match-circle-sub">Atlas Circle · 8 members</div>
-            </div>
-
-            <!-- Circle visualization: Ami in center, 7 peers in ring -->
-            <div class="s9-circle-stage">
-              <!-- Decorative ring -->
-              <svg class="s9-circle-ring-svg" viewBox="0 0 200 200">
-                <circle cx="100" cy="100" r="72" fill="none" stroke="rgba(212,165,116,0.18)" stroke-width="1"/>
-              </svg>
-              <!-- Pulse from Ami -->
-              <div class="s9-ring-pulse"></div>
-              <!-- 7 peers around ring (r=72, face=26px, offset -13) -->
-              <div class="s9-peer-dot" style="left:92px;top:20px"><img src="portraits/women/23.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:148px;top:47px"><img src="portraits/men/44.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:162px;top:108px"><img src="portraits/women/67.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:123px;top:157px"><img src="portraits/men/81.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:61px;top:157px"><img src="portraits/women/15.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:22px;top:108px"><img src="portraits/men/7.jpg" alt=""></div>
-              <div class="s9-peer-dot" style="left:36px;top:47px"><img src="portraits/women/52.jpg" alt=""></div>
-              <!-- Ami in center -->
-              <div class="s9-ami-face"><img src="ami.png" alt="Ami"></div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-      </div><!-- /.s9-mockup-cluster -->
-
+    <div class="s8-step s8-step-circle">
+      <div class="s8-step-tag">3 · Join your circle</div>
+      <img class="s8-shot" src="product/circle-join-card.png" alt="Circle card with open seats">
+      <div class="s8-lane-cap">8–12 peers who serve the same customer — and refer each other</div>
     </div>
 
   </div>
+  <div class="s8-journey-end">Journey end: gets referrals</div>
+  </div>
 
-  <div class="conclusion">Referna lets independent professionals find each other and <strong>unlocks circle creation</strong>.</div>
-  <div class="sources">Sources: Match.com (1995), eHarmony (2000), Referna product · n=64</div>
+  <div class="conclusion">Every stage creates referrals. <strong>The circle makes them consistent.</strong></div>
+  <div class="sources">Sources: Referna app screenshots, production, July 2026 (member names blurred)</div>
 </div>
 
 </div>
