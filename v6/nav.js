@@ -16,6 +16,7 @@
     { file: 'slide-9.html',  title: 'Product 2' },
     { file: 'slide-11.html', title: 'Biz Model' },
     { file: 'slide-10.html', title: 'Market' },
+    { file: 'slide-15.html', title: 'Digital Circles' },
     { file: 'slide-12.html', title: 'Team' },
     { file: 'slide-13.html', title: 'Round' },
     { file: 'slide-14.html', title: 'Opportunity' }

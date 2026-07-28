@@ -28,6 +28,7 @@ const SLIDES = [
   'v6/slide-9.html',
   'v6/slide-11.html',
   'v6/slide-10.html',
+  'v6/slide-15.html',
   'v6/slide-12.html',
   'v6/slide-13.html',
   'v6/slide-14.html',
