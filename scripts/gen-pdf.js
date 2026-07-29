@@ -28,7 +28,6 @@ const SLIDES = [
   'v6/slide-9.html',
   'v6/slide-11.html',
   'v6/slide-10.html',
-  'v6/slide-15.html',
   'v6/slide-12.html',
   'v6/slide-13.html',
   'v6/slide-14.html',
@@ -55,6 +54,10 @@ async function main() {
       deviceScaleFactor: 2,  // 2× pixel density → sharp output
     });
     const page = await context.newPage();
+    // slide-10's segment carousel animates over ~10s before settling on the
+    // final "all 21 claimed" state; reduced-motion makes its script apply
+    // that end state immediately instead of racing the capture against it.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
 
     const pdf = new jsPDF({
       orientation: 'landscape',
