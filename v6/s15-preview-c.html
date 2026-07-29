@@ -380,8 +380,16 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   });
 
   // Card width changes with viewport (responsive %), so the side-card
-  // offset must be recomputed on resize, not just on load.
+  // offset must be recomputed on resize, not just on load. Mobile
+  // Safari fires 'resize' when its address bar auto-hides/shows on
+  // scroll (a HEIGHT-only change) — reacting to that unconditionally
+  // risks a feedback loop if the reaction nudges layout at all. Our
+  // offset only depends on width, so skip anything that isn't an
+  // actual width change.
+  var lastResizeWidth = window.innerWidth;
   window.addEventListener('resize', function () {
+    if (window.innerWidth === lastResizeWidth) return;
+    lastResizeWidth = window.innerWidth;
     var wasTransition = wraps[0].style.transition;
     wraps.forEach(function (w) { w.style.transition = 'none'; });
     applyPositions(current);
