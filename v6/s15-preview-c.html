@@ -37,14 +37,11 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
 .s15-track {
   position: relative;
   width: 100%;
-  /* calc(100% - 36px), not a bare 100% — .carousel-dots is positioned
-     absolute within .carousel-area (this element's own parent), not
-     inside the track. A full-height track/card left zero clearance
-     for those dots, so they sat overlapping the card's own bottom
-     edge/border instead of floating cleanly below it. The 36px slack
-     centers via .carousel-area's align-items:center, splitting into
-     an even gap top and bottom, and the bottom half clears the dots. */
-  height: calc(100% - 36px);
+  /* The card should read as clearly smaller than its frame, not just
+     technically non-clipping — 120px of slack (not the bare minimum
+     needed to clear the dots) centers via .carousel-area's
+     align-items:center into a real ~60px margin top and bottom. */
+  height: calc(100% - 120px);
   perspective: 1000px;
   perspective-origin: 50% 50%;
   z-index: 1;
@@ -64,8 +61,8 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
      width/aspect-ratio) — .card below scrolls internally if an
      11-role list needs more room than that at a narrow width, rather
      than silently clipping under the ancestor's overflow:hidden. */
-  width: 36%;
-  max-width: 410px;
+  width: 30%;
+  max-width: 360px;
   height: 100%;
   cursor: pointer;
   transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1),
@@ -199,7 +196,7 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
 @media (max-width: 768px) {
   /* -36px here too, same reason as the base rule above — leaves the
      dots room to sit below the card instead of overlapping it. */
-  .s15-track { height: calc(480px - 36px); }
+  .s15-track { height: calc(480px - 120px); }
   .carousel-area { min-height: 480px; }
   /* 2 columns at a ~110-190px card width leaves ~25-45px per column
      after the icon — not an overflow (each line technically stays
