@@ -15,7 +15,11 @@ const OUTPUT = resolve(__dirname, '../v6/referna-pitch.pdf');
 
 // Must match PITCH_SLIDES order in nav.js (index.html excluded — handled as first entry here)
 const SLIDES = [
-  'v6/index.html',
+  // Trailing slash, not 'v6/index.html' — `serve`'s clean-URL redirect chain
+  // for a literal "index.html" request collapses to site root and drops the
+  // /v6/ prefix, 404ing every relative asset (styles.css, nav.js, logo) and
+  // capturing an unstyled page. The directory form resolves directly.
+  'v6/',
   'v6/slide-1.html',
   'v6/slide-2.html',
   'v6/slide-3.html',

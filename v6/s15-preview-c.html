@@ -150,6 +150,21 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   transition: background 0.3s ease;
 }
 .carousel-dots .dot.is-active { background: var(--gold); }
+
+/* The global --slide-scale mechanism only accounts for viewport HEIGHT
+   (nav.js), so a fixed-px carousel like this one still overflows on
+   narrower widths (iPad portrait/landscape). Scale the whole track down
+   at those breakpoints instead of the individual card dimensions — same
+   technique already used by the carousel in slide-3-backup.html. */
+@media (max-width: 1024px) {
+  .s15-track { transform: scale(0.82); transform-origin: center center; }
+}
+@media (max-width: 834px) {
+  .s15-track { transform: scale(0.68); transform-origin: center center; }
+}
+@media (max-width: 600px) {
+  .s15-track { transform: scale(0.5); transform-origin: center center; }
+}
 </style>
 </head>
 <body data-slide="slide-15">
