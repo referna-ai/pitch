@@ -37,11 +37,14 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
 .s15-track {
   position: relative;
   width: 100%;
-  /* 100% of .carousel-area (flex:1 in a fixed-height .slide), not a
-     fixed px — a hardcoded height here doesn't shrink when the title
-     wraps to 2 lines at narrower widths and leaves less room, which
-     let the card overflow .carousel-area's actual available space. */
-  height: 100%;
+  /* calc(100% - 36px), not a bare 100% — .carousel-dots is positioned
+     absolute within .carousel-area (this element's own parent), not
+     inside the track. A full-height track/card left zero clearance
+     for those dots, so they sat overlapping the card's own bottom
+     edge/border instead of floating cleanly below it. The 36px slack
+     centers via .carousel-area's align-items:center, splitting into
+     an even gap top and bottom, and the bottom half clears the dots. */
+  height: calc(100% - 36px);
   perspective: 1000px;
   perspective-origin: 50% 50%;
   z-index: 1;
@@ -135,7 +138,14 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   transition: opacity 0.4s ease;
 }
 .card-roles li {
-  display: flex;
+  /* grid, not flex — flex children default to min-width:auto, so the
+     text (a bare anonymous flex item) refused to shrink below its
+     longest word and rendered past the li's own box under
+     overflow:visible, even though the li's box itself measured as
+     within bounds. minmax(0, 1fr) on the text column makes it
+     actually shrinkable so it wraps instead of spilling out. */
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
   align-items: center;
   gap: 7px;
   font-family: var(--font-display);
@@ -143,6 +153,11 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   font-weight: 600;
   color: var(--gray);
   line-height: 1.25;
+  /* Below ~430px the text column is narrower than one whole word
+     (e.g. "Immigration" doesn't fit ~40px no matter how the
+     container shrinks) — without this, an unbreakable word overflows
+     the column regardless of any container-level fix. */
+  overflow-wrap: break-word;
 }
 .role-icon {
   width: 15px;
@@ -182,8 +197,16 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
    they have something concrete to size against; .card's own
    overflow-y:auto already handles content that doesn't fit it. */
 @media (max-width: 768px) {
-  .s15-track, .s15-wrap { height: 480px; }
+  /* -36px here too, same reason as the base rule above — leaves the
+     dots room to sit below the card instead of overlapping it. */
+  .s15-track { height: calc(480px - 36px); }
   .carousel-area { min-height: 480px; }
+  /* 2 columns at a ~110-190px card width leaves ~25-45px per column
+     after the icon — not an overflow (each line technically stays
+     inside the card) but nowhere near enough room for real words,
+     so short wrapped fragments visually overlap into illegible
+     mush. One column gives every item the card's full width. */
+  .card-roles { grid-template-columns: minmax(0, 1fr); }
 }
 </style>
 </head>
