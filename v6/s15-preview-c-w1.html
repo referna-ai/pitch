@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S15 Width Option 1 · Direct Scale-Up — Referna Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="stylesheet" href="styles.css">
+<style>
+body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
+
+.carousel-area {
+  flex: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.carousel-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 760px;
+  height: 440px;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse, rgba(212,165,116,0.10) 0%, rgba(212,165,116,0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.s15-track {
+  position: relative;
+  width: 100%;
+  /* The card should read as clearly smaller than its frame, not just
+     technically non-clipping — 120px of slack (not the bare minimum
+     needed to clear the dots) centers via .carousel-area's
+     align-items:center into a real ~60px margin top and bottom. */
+  height: calc(100% - 120px);
+  perspective: 1000px;
+  perspective-origin: 50% 50%;
+  z-index: 1;
+}
+
+.s15-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  /* % of .s15-track, not a fixed px — .slide's width is fluid below
+     1260px (styles.css .deck { max-width:1260px; width:100% }), only
+     its height is transform-scaled. A fixed px card doesn't shrink
+     with that fluid width and clips once the track gets narrower
+     than the card. Sizing off the track's own current width fixes
+     this at every viewport, not just breakpoints we guessed at.
+     Height stays 100% of .s15-track's own fixed height (not tied to
+     width/aspect-ratio) — .card below scrolls internally if an
+     11-role list needs more room than that at a narrow width, rather
+     than silently clipping under the ancestor's overflow:hidden. */
+  /* +30% width per Yaniv (30% -> 39%, 360px -> 468px) */
+  width: 39%;
+  max-width: 468px;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity   1.1s ease;
+  will-change: transform, opacity;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #141312 0%, #0e0e0d 100%);
+  border: 1px solid rgba(212,165,116,0.18);
+  border-radius: 14px;
+  padding: 20px 24px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 14px 36px rgba(0,0,0,0.5);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.s15-wrap.is-center .card {
+  border: 1.5px solid var(--gold);
+  background: linear-gradient(180deg, #1f1610 0%, #14100c 100%);
+  box-shadow: 0 18px 48px rgba(212,165,116,0.26), inset 0 0 0 1px rgba(212,165,116,0.10);
+}
+.s15-wrap.is-center .card-name { color: var(--gold); }
+.s15-wrap.is-center .card-roles { opacity: 1; }
+.s15-wrap:not(.is-center) .card-roles { opacity: 0; }
+
+.card-name {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 23px;
+  color: var(--white);
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.card-tag {
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--gray-dark);
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(212,165,116,0.14);
+}
+.card-tag .tag-label {
+  font-weight: 800;
+  color: rgba(212,165,116,0.7);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-right: 6px;
+}
+.card-roles {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  display: grid;
+  /* minmax(0, 1fr), not bare 1fr — a bare 1fr track won't shrink below
+     its content's min-content width, so long unwrapped text (e.g.
+     "Cross-border tax advisor") pushed the grid wider than the card
+     at narrow widths, and the excess silently clipped under an
+     ancestor's overflow:hidden instead of wrapping. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-auto-flow: row;
+  gap: 7px 12px;
+  align-content: start;
+  transition: opacity 0.4s ease;
+}
+.card-roles li {
+  /* grid, not flex — flex children default to min-width:auto, so the
+     text (a bare anonymous flex item) refused to shrink below its
+     longest word and rendered past the li's own box under
+     overflow:visible, even though the li's box itself measured as
+     within bounds. minmax(0, 1fr) on the text column makes it
+     actually shrinkable so it wraps instead of spilling out. */
+  display: grid;
+  grid-template-columns: 15px minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray);
+  line-height: 1.25;
+  /* Below ~430px the text column is narrower than one whole word
+     (e.g. "Immigration" doesn't fit ~40px no matter how the
+     container shrinks) — without this, an unbreakable word overflows
+     the column regardless of any container-level fix. */
+  overflow-wrap: break-word;
+}
+.role-icon {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  color: var(--gold);
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.carousel-dots {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+.carousel-dots .dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(212,165,116,0.25);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+.carousel-dots .dot.is-active { background: var(--gold); }
+
+/* At the deck's own global mobile breakpoint (styles.css, same
+   768px), .slide switches to height:auto for natural scrolling.
+   .s15-track/.s15-wrap's height:100% then has nothing definite to
+   resolve against (auto-height ancestor -> circular reference ->
+   collapses to 0), which silently zeroed the whole carousel instead
+   of clipping it. Give both a fixed height at this breakpoint so
+   they have something concrete to size against; .card's own
+   overflow-y:auto already handles content that doesn't fit it. */
+@media (max-width: 768px) {
+  /* -36px here too, same reason as the base rule above — leaves the
+     dots room to sit below the card instead of overlapping it. */
+  .s15-track { height: calc(480px - 120px); }
+  .carousel-area { min-height: 480px; }
+  /* 2 columns at a ~110-190px card width leaves ~25-45px per column
+     after the icon — not an overflow (each line technically stays
+     inside the card) but nowhere near enough room for real words,
+     so short wrapped fragments visually overlap into illegible
+     mush. One column gives every item the card's full width. */
+  .card-roles { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body data-slide="slide-15">
+
+<div class="deck">
+
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></symbol>
+    <symbol id="icon-document" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 13h6M9 17h6"/></symbol>
+    <symbol id="icon-house" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></symbol>
+    <symbol id="icon-bank" viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10M9 21V10M15 21V10M19 21V10"/><path d="M2 10l10-6 10 6"/></symbol>
+    <symbol id="icon-grad" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1 2.5 3 6 3s6-2 6-3v-5"/></symbol>
+    <symbol id="icon-lang" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 21l1.5-4.5A8.38 8.38 0 0 1 3 12.5 8.5 8.5 0 1 1 21 11.5z"/></symbol>
+    <symbol id="icon-truck" viewBox="0 0 24 24"><path d="M1 3h13v13H1z"/><path d="M14 8h4l3 3v5h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/></symbol>
+    <symbol id="icon-idcard" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><path d="M14 10h6M14 14h4"/></symbol>
+    <symbol id="icon-paw" viewBox="0 0 24 24"><circle cx="7" cy="8" r="1.6"/><circle cx="12" cy="6" r="1.6"/><circle cx="17" cy="8" r="1.6"/><path d="M12 12c-3 0-5.5 2-5.5 4.5S9 21 12 21s5.5-2 5.5-4.5S15 12 12 12z"/></symbol>
+    <symbol id="icon-stamp" viewBox="0 0 24 24"><rect x="7" y="14" width="10" height="6" rx="1"/><path d="M9 14V9a3 3 0 0 1 6 0v5"/><path d="M4 20h16"/></symbol>
+    <symbol id="icon-entity" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M9 8h.01M9 12h.01M9 16h.01M14 8h.01"/><path d="M13.5 16l1.5 1.5L18 14"/></symbol>
+    <symbol id="icon-move" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/><path d="M12 2l3 3M12 2l-3 3M12 22l3-3M12 22l-3-3M2 12l3-3M2 12l3 3M22 12l-3-3M22 12l-3 3"/></symbol>
+    <symbol id="icon-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16 20c.3-2 1.5-3.5 3.5-4"/></symbol>
+    <symbol id="icon-bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2z"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+    <symbol id="icon-code" viewBox="0 0 24 24"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></symbol>
+    <symbol id="icon-megaphone" viewBox="0 0 24 24"><path d="M3 11v2a1 1 0 0 0 1 1h2l6 4V6l-6 4H4a1 1 0 0 0-1 1z"/><path d="M17 8a5 5 0 0 1 0 8"/></symbol>
+    <symbol id="icon-headset" viewBox="0 0 24 24"><path d="M3 14v-2a9 9 0 0 1 18 0v2"/><path d="M21 14v3a2 2 0 0 1-2 2h-1v-6h1a2 2 0 0 1 2 1zM3 14v3a2 2 0 0 0 2 2h1v-6H5a2 2 0 0 0-2 1z"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></symbol>
+    <symbol id="icon-cpu" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+    <symbol id="icon-calc" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+  </defs>
+</svg>
+
+<div class="slide" id="slide-15">
+  <div class="slide-number"></div>
+  <div class="slide-label">Beyond the first segment</div>
+  <h2 class="slide-title">Referral circles work in more digital-first segments.</h2>
+
+  <div class="carousel-area">
+    <div class="carousel-glow"></div>
+    <div class="s15-track" id="s15Track">
+
+      <div class="s15-wrap">
+        <div class="card">
+          <div class="card-name">Relocation circles</div>
+          <div class="card-tag"><span class="tag-label">Life event</span>Person moving to another country</div>
+          <ul class="card-roles">
+            <li><svg class="role-icon"><use href="#icon-briefcase"/></svg>Immigration attorney</li>
+            <li><svg class="role-icon"><use href="#icon-document"/></svg>Cross-border tax advisor</li>
+            <li><svg class="role-icon"><use href="#icon-house"/></svg>Relocation realtor</li>
+            <li><svg class="role-icon"><use href="#icon-bank"/></svg>Currency exchange advisor</li>
+            <li><svg class="role-icon"><use href="#icon-idcard"/></svg>Visa consultant</li>
+            <li><svg class="role-icon"><use href="#icon-grad"/></svg>Schools consultant</li>
+            <li><svg class="role-icon"><use href="#icon-lang"/></svg>Language coach</li>
+            <li><svg class="role-icon"><use href="#icon-truck"/></svg>Logistics coordinator</li>
+            <li><svg class="role-icon"><use href="#icon-shield"/></svg>Insurance broker</li>
+            <li><svg class="role-icon"><use href="#icon-paw"/></svg>Pet relocation specialist</li>
+            <li><svg class="role-icon"><use href="#icon-stamp"/></svg>Notary &amp; document authentication</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="s15-wrap">
+        <div class="card">
+          <div class="card-name">International expansion circles</div>
+          <div class="card-tag"><span class="tag-label">Life event</span>A company opening an office in a new country</div>
+          <ul class="card-roles">
+            <li><svg class="role-icon"><use href="#icon-briefcase"/></svg>Local employment lawyer</li>
+            <li><svg class="role-icon"><use href="#icon-idcard"/></svg>EOR / global payroll</li>
+            <li><svg class="role-icon"><use href="#icon-document"/></svg>International tax advisor</li>
+            <li><svg class="role-icon"><use href="#icon-entity"/></svg>Entity registration agent</li>
+            <li><svg class="role-icon"><use href="#icon-bank"/></svg>Corporate banking advisor</li>
+            <li><svg class="role-icon"><use href="#icon-move"/></svg>Employee relocation consultant</li>
+            <li><svg class="role-icon"><use href="#icon-users"/></svg>Local-market recruiter</li>
+            <li><svg class="role-icon"><use href="#icon-bulb"/></svg>IP counsel</li>
+            <li><svg class="role-icon"><use href="#icon-house"/></svg>Commercial realtor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="s15-wrap">
+        <div class="card">
+          <div class="card-name">One-person unicorn circles</div>
+          <div class="card-tag"><span class="tag-label">Life event</span>Solopreneur getting some traction</div>
+          <ul class="card-roles">
+            <li><svg class="role-icon"><use href="#icon-chart"/></svg>Fractional CFO</li>
+            <li><svg class="role-icon"><use href="#icon-code"/></svg>Freelance dev shop</li>
+            <li><svg class="role-icon"><use href="#icon-megaphone"/></svg>Growth / marketing agency</li>
+            <li><svg class="role-icon"><use href="#icon-headset"/></svg>Virtual assistant</li>
+            <li><svg class="role-icon"><use href="#icon-chat"/></svg>Support desk</li>
+            <li><svg class="role-icon"><use href="#icon-cpu"/></svg>AI-ops consultant</li>
+            <li><svg class="role-icon"><use href="#icon-briefcase"/></svg>Part-time counsel</li>
+            <li><svg class="role-icon"><use href="#icon-calc"/></svg>Bookkeeper</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="carousel-dots">
+      <div class="dot is-active" data-idx="0"></div>
+      <div class="dot" data-idx="1"></div>
+      <div class="dot" data-idx="2"></div>
+    </div>
+  </div>
+
+  <div class="conclusion">Startups proved the model. <strong>Referral circles form wherever there's a shared, urgent need.</strong></div>
+  <div class="sources">Sources: Referna market analysis, Jul 2026</div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  // { tz, ry, op, zi } are constant; x (side-card offset) is computed live
+  // from the card's actual rendered width below — a fixed px offset here
+  // would stop matching the card once .s15-wrap's width goes responsive.
+  var SIDE = { tz: -70, ry: 42, op: 0.32, zi: 6 };
+
+  var wraps = Array.from(document.querySelectorAll('.s15-wrap'));
+  var dots  = Array.from(document.querySelectorAll('.carousel-dots .dot'));
+  var area  = document.querySelector('.carousel-area');
+  var n = wraps.length;
+  var current = 0;
+  var paused = false;
+  var timer = null;
+  var reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function sideOffset() {
+    // Gap between the center card's edge and the next card's edge, as a
+    // small fraction of the card's own current width — scales with it.
+    // +20% spread per Yaniv (0.05 -> 0.26 multiplier).
+    var cardWidth = wraps[0].getBoundingClientRect().width;
+    return cardWidth + cardWidth * 0.26;
+  }
+
+  function applyPositions(centerIdx) {
+    var x = sideOffset();
+    wraps.forEach(function (w, i) {
+      var off = i - centerIdx;
+      if (off > n / 2) off -= n;
+      if (off < -n / 2) off += n;
+      var abs = Math.min(Math.abs(off), 1);
+      var sgn = off > 0 ? 1 : off < 0 ? -1 : 0;
+      w.style.transform = abs === 0
+        ? 'translate(-50%, -50%)'
+        : [
+            'translate(-50%, -50%)',
+            'translateX(' + (sgn * x) + 'px)',
+            'translateZ(' + SIDE.tz + 'px)',
+            'rotateY(' + (sgn * SIDE.ry) + 'deg)'
+          ].join(' ');
+      w.style.opacity = abs === 0 ? 1 : SIDE.op;
+      w.style.zIndex  = abs === 0 ? 10 : SIDE.zi;
+      w.classList.toggle('is-center', i === centerIdx);
+    });
+    dots.forEach(function (d, i) { d.classList.toggle('is-active', i === centerIdx); });
+  }
+
+  function advance() {
+    current = (current + 1) % n;
+    applyPositions(current);
+  }
+
+  function startTimer() {
+    if (reducedMotion) return;
+    timer = setInterval(function () { if (!paused) advance(); }, 3600);
+  }
+
+  function goTo(idx) {
+    current = idx;
+    applyPositions(current);
+    clearInterval(timer);
+    startTimer();
+  }
+
+  wraps.forEach(function (w) { w.style.transition = 'none'; });
+  applyPositions(0);
+  requestAnimationFrame(function () {
+    wraps.forEach(function (w) {
+      w.style.transition = 'transform 1.1s cubic-bezier(0.4,0,0.2,1), opacity 1.1s ease';
+    });
+  });
+
+  // Hover anywhere on the carousel pauses auto-advance; clicking a side
+  // card (or its dot) animates straight to it and resets the timer.
+  area.addEventListener('mouseenter', function () { paused = true; });
+  area.addEventListener('mouseleave', function () { paused = false; });
+
+  wraps.forEach(function (w, i) {
+    w.addEventListener('click', function () { if (i !== current) goTo(i); });
+  });
+  dots.forEach(function (d, i) {
+    d.addEventListener('click', function () { if (i !== current) goTo(i); });
+  });
+
+  // Card width changes with viewport (responsive %), so the side-card
+  // offset must be recomputed on resize, not just on load. Mobile
+  // Safari fires 'resize' when its address bar auto-hides/shows on
+  // scroll (a HEIGHT-only change) — reacting to that unconditionally
+  // risks a feedback loop if the reaction nudges layout at all. Our
+  // offset only depends on width, so skip anything that isn't an
+  // actual width change.
+  var lastResizeWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    if (window.innerWidth === lastResizeWidth) return;
+    lastResizeWidth = window.innerWidth;
+    var wasTransition = wraps[0].style.transition;
+    wraps.forEach(function (w) { w.style.transition = 'none'; });
+    applyPositions(current);
+    void wraps[0].offsetHeight;
+    wraps.forEach(function (w) { w.style.transition = wasTransition; });
+  });
+
+  startTimer();
+})();
+</script>
+<script src="nav.js"></script>
+</body>
+</html>
