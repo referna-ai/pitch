@@ -15,7 +15,11 @@ const OUTPUT = resolve(__dirname, '../v6/referna-pitch.pdf');
 
 // Must match PITCH_SLIDES order in nav.js (index.html excluded — handled as first entry here)
 const SLIDES = [
-  'v6/index.html',
+  // Trailing slash, not 'v6/index.html' — `serve`'s clean-URL redirect chain
+  // for a literal "index.html" request collapses to site root and drops the
+  // /v6/ prefix, 404ing every relative asset (styles.css, nav.js, logo) and
+  // capturing an unstyled page. The directory form resolves directly.
+  'v6/',
   'v6/slide-1.html',
   'v6/slide-2.html',
   'v6/slide-3.html',
@@ -54,6 +58,10 @@ async function main() {
       deviceScaleFactor: 2,  // 2× pixel density → sharp output
     });
     const page = await context.newPage();
+    // slide-10's segment carousel animates over ~10s before settling on the
+    // final "all 21 claimed" state; reduced-motion makes its script apply
+    // that end state immediately instead of racing the capture against it.
+    await page.emulateMedia({ reducedMotion: 'reduce' });
 
     const pdf = new jsPDF({
       orientation: 'landscape',
