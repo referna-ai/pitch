@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S15 Spacing Option 2 · Auto Height Per Card — Referna Pitch</title>
+<title>S15 3D Spacing Option 1 · Tight/Compact — Referna Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -71,15 +71,7 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
      space around the same-sized card. */
   width: 39%;
   max-width: 468px;
-  /* auto + max-height, not a flat 100% — a fixed height forced every
-     card to the SAME box regardless of content, so the 8-role card
-     had way more empty leftover space than the 11-role one and each
-     one "felt" differently spaced. Auto lets each card be exactly as
-     tall as its own content; max-height still caps it at the track's
-     available room so the longest list (11 roles) scrolls via
-     .card-roles's overflow-y:auto instead of overflowing. */
-  height: auto;
-  max-height: 100%;
+  height: 100%;
   cursor: pointer;
   transition: transform 1.1s cubic-bezier(0.4, 0, 0.2, 1),
               opacity   1.1s ease;
@@ -88,8 +80,7 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
 
 .card {
   width: 100%;
-  height: auto;
-  max-height: 100%;
+  height: 100%;
   background: linear-gradient(180deg, #141312 0%, #0e0e0d 100%);
   border: 1px solid rgba(212,165,116,0.18);
   border-radius: 14px;
@@ -338,7 +329,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   // { tz, ry, op, zi } are constant; x (side-card offset) is computed live
   // from the card's actual rendered width below — a fixed px offset here
   // would stop matching the card once .s15-wrap's width goes responsive.
-  var SIDE = { tz: -70, ry: 42, op: 0.32, zi: 6 };
+  // Tight/compact: side cards sit close to the center card, minimal
+  // recession, more visible (less faded) — a compact, gallery-strip feel.
+  var SIDE = { tz: -40, ry: 30, op: 0.40, zi: 6 };
 
   var wraps = Array.from(document.querySelectorAll('.s15-wrap'));
   var dots  = Array.from(document.querySelectorAll('.carousel-dots .dot'));
@@ -353,8 +346,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
     // Gap between the center card's edge and the next card's edge, as a
     // small fraction of the card's own current width — scales with it.
     // +20% spread per Yaniv (0.05 -> 0.26 multiplier).
+    // Tight/compact: small gap between center and side cards.
     var cardWidth = wraps[0].getBoundingClientRect().width;
-    return cardWidth + cardWidth * 0.26;
+    return cardWidth + cardWidth * 0.08;
   }
 
   function applyPositions(centerIdx) {

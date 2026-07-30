@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S15 Spacing Option 1 · Center Content — Referna Pitch</title>
+<title>S15 3D Spacing Option 2 · Wide Gap — Referna Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -139,13 +139,7 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   grid-auto-flow: row;
   gap: 7px 12px;
-  /* center, not start — a fixed card height means a shorter list
-     (8 items) leaves way more leftover space than a longer one (11),
-     and align-content:start dumped all of it at the bottom, making
-     each card feel differently proportioned. Centering splits the
-     leftover evenly top/bottom instead, so the imbalance reads as
-     "this card has fewer roles" rather than "this card is broken." */
-  align-content: center;
+  align-content: start;
   transition: opacity 0.4s ease;
 }
 .card-roles li {
@@ -335,7 +329,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   // { tz, ry, op, zi } are constant; x (side-card offset) is computed live
   // from the card's actual rendered width below — a fixed px offset here
   // would stop matching the card once .s15-wrap's width goes responsive.
-  var SIDE = { tz: -70, ry: 42, op: 0.32, zi: 6 };
+  // Wide gap: side cards pushed clearly further out, moderate
+  // recession/rotation — a clean, spacious "gallery" feel.
+  var SIDE = { tz: -90, ry: 35, op: 0.35, zi: 6 };
 
   var wraps = Array.from(document.querySelectorAll('.s15-wrap'));
   var dots  = Array.from(document.querySelectorAll('.carousel-dots .dot'));
@@ -350,8 +346,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
     // Gap between the center card's edge and the next card's edge, as a
     // small fraction of the card's own current width — scales with it.
     // +20% spread per Yaniv (0.05 -> 0.26 multiplier).
+    // Wide gap: notably more separation between center and side cards.
     var cardWidth = wraps[0].getBoundingClientRect().width;
-    return cardWidth + cardWidth * 0.26;
+    return cardWidth + cardWidth * 0.55;
   }
 
   function applyPositions(centerIdx) {

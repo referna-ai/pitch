@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S15 Spacing Option 3 · Tighter Box — Referna Pitch</title>
+<title>S15 3D Spacing Option 3 · Dramatic Depth — Referna Pitch</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -41,16 +41,13 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
 .s15-track {
   position: relative;
   width: 100%;
-  /* 190px, not 120px — a looser box gave the shorter cards (8-9
-     roles) way more empty leftover space than the longest one (11),
-     which is exactly what read as "inconsistent spacing." Tightening
-     the box to just above what the longest card actually needs makes
-     all three sit snugly; only the longest card (Relocation) ends up
-     needing its .card-roles overflow-y:auto scroll for the last
-     couple of roles — a small, honest tradeoff for genuinely uniform
-     spacing everywhere else. */
-  height: calc(100% - 190px);
-  perspective: 1000px;
+  /* The card should read as clearly smaller than its frame, not just
+     technically non-clipping — 120px of slack (not the bare minimum
+     needed to clear the dots) centers via .carousel-area's
+     align-items:center into a real ~60px margin top and bottom. */
+  height: calc(100% - 120px);
+  /* Deeper perspective (1000 -> 1500) for a more dramatic recede. */
+  perspective: 1500px;
   perspective-origin: 50% 50%;
   z-index: 1;
 }
@@ -206,11 +203,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
    they have something concrete to size against; .card's own
    overflow-y:auto already handles content that doesn't fit it. */
 @media (max-width: 768px) {
-  /* Tightened less aggressively than the base rule (160px, not 190) —
-     mobile is already single-column (below), which needs more total
-     row height for the same content, so over-tightening here would
-     just force every card into a scroll instead of just the longest. */
-  .s15-track { height: calc(480px - 160px); }
+  /* -36px here too, same reason as the base rule above — leaves the
+     dots room to sit below the card instead of overlapping it. */
+  .s15-track { height: calc(480px - 120px); }
   .carousel-area { min-height: 480px; }
   /* 2 columns at a ~110-190px card width leaves ~25-45px per column
      after the icon — not an overflow (each line technically stays
@@ -335,7 +330,10 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   // { tz, ry, op, zi } are constant; x (side-card offset) is computed live
   // from the card's actual rendered width below — a fixed px offset here
   // would stop matching the card once .s15-wrap's width goes responsive.
-  var SIDE = { tz: -70, ry: 42, op: 0.32, zi: 6 };
+  // Dramatic depth: side cards recede much further and rotate
+  // sharply, fading almost into the background — a cinematic
+  // "wide stage" feel rather than a flat gap.
+  var SIDE = { tz: -160, ry: 62, op: 0.16, zi: 6 };
 
   var wraps = Array.from(document.querySelectorAll('.s15-wrap'));
   var dots  = Array.from(document.querySelectorAll('.carousel-dots .dot'));
@@ -350,8 +348,9 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
     // Gap between the center card's edge and the next card's edge, as a
     // small fraction of the card's own current width — scales with it.
     // +20% spread per Yaniv (0.05 -> 0.26 multiplier).
+    // Dramatic depth: wide separation to match the steeper rotation/recede.
     var cardWidth = wraps[0].getBoundingClientRect().width;
-    return cardWidth + cardWidth * 0.26;
+    return cardWidth + cardWidth * 0.42;
   }
 
   function applyPositions(centerIdx) {
