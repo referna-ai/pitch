@@ -335,7 +335,7 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   function sideOffset() {
     // Gap between the center card's edge and the next card's edge, as a
     // small fraction of the card's own current width — scales with it.
-    var cardWidth = wraps[0].getBoundingClientRect().width;
+    var cardWidth = wraps[0].offsetWidth; // offsetWidth, not getBoundingClientRect() - immune to wraps[0]'s current rotateY when it's a side card, not the center.
     return cardWidth + cardWidth * 0.05;
   }
 

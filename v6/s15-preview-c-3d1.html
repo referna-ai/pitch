@@ -345,9 +345,16 @@ body[data-slide="slide-15"] .slide-title { margin-bottom: 14px; }
   function sideOffset() {
     // Gap between the center card's edge and the next card's edge, as a
     // small fraction of the card's own current width — scales with it.
-    // +20% spread per Yaniv (0.05 -> 0.26 multiplier).
-    // Tight/compact: small gap between center and side cards.
-    var cardWidth = wraps[0].getBoundingClientRect().width;
+    // offsetWidth, NOT getBoundingClientRect().width — wraps[0] isn't
+    // always the centered card. When it's a rotated SIDE card instead,
+    // getBoundingClientRect() returns its foreshortened, post-rotateY
+    // width (measured as low as 279px instead of its true 455px), so
+    // the computed gap silently changed depending on which card
+    // happened to be centered — that's the "sometimes more gap,
+    // sometimes less" Yaniv saw. offsetWidth is a pre-transform layout
+    // measurement, unaffected by rotation, so it's always the same
+    // true value no matter which card is currently up front.
+    var cardWidth = wraps[0].offsetWidth;
     return cardWidth + cardWidth * 0.08;
   }
 
