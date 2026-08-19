@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>The Spine — Aligning Referna Around the Next Client</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0D0D0D;
+  --gold: #D4A574;
+  --white: #FFFFFF;
+  --gray-100: #F5F5F5;
+  --gray: #D1D1D1;
+  --gray-mid: #999999;
+  --gray-dark: #868686;
+  --gray-700: #404040;
+  --black-soft: #1A1A1A;
+  --black-mid: #111111;
+  --success: #7BC47F;
+  --error: #D4645C;
+  --border: rgba(212, 165, 116, 0.25);
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'IBM Plex Serif', Georgia, serif;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-snap-type: y proximity; scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+.slide {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 72px min(7vw, 96px) 88px;
+  position: relative;
+  border-bottom: 1px solid rgba(212,165,116,0.12);
+}
+.slide-num {
+  position: absolute;
+  top: 28px;
+  right: min(7vw, 96px);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--gray-dark);
+}
+.eyebrow {
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 18px;
+}
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(34px, 5vw, 60px);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+h2 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(26px, 3.4vw, 40px);
+  line-height: 1.18;
+  margin-bottom: 20px;
+}
+h2 em, h1 em { font-family: var(--font-body); font-style: italic; color: var(--gold); font-weight: 500; }
+.lede {
+  font-size: clamp(16px, 1.5vw, 19px);
+  color: var(--gray);
+  max-width: 780px;
+  margin-bottom: 34px;
+}
+.lede strong { color: var(--white); }
+
+/* Before / After layout */
+.ba-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; align-items: stretch; }
+.ba-col {
+  background: var(--black-mid);
+  border-radius: var(--radius-lg);
+  padding: 26px 26px 28px;
+  border: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+}
+.ba-col.after { border: 1px solid var(--gold); background: #14100C; }
+.ba-tag {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  display: inline-block;
+  margin-bottom: 18px;
+  align-self: flex-start;
+}
+.ba-col.before .ba-tag { color: var(--gray-mid); border: 1px solid var(--gray-700); }
+.ba-col.after .ba-tag { color: var(--gold); border: 1px solid var(--gold); }
+.ba-col h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 19px;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.ba-col.before h3 { color: var(--gray); }
+.ba-col p { font-size: 15px; color: var(--gray); margin-bottom: 12px; }
+.ba-col.before p { color: var(--gray-mid); }
+.ba-col ul { list-style: none; margin: 4px 0 14px; }
+.ba-col li {
+  font-size: 14.5px;
+  color: var(--gray);
+  padding: 7px 0 7px 18px;
+  position: relative;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.ba-col li:last-child { border-bottom: none; }
+.ba-col li::before { content: ''; position: absolute; left: 0; top: 15px; width: 7px; height: 2px; background: var(--gray-700); }
+.ba-col.after li::before { background: var(--gold); }
+.ba-col.before li { color: var(--gray-mid); }
+.ba-col.after li { color: var(--gray-100); }
+.quote {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 14.5px;
+  color: var(--gray);
+  border-left: 2px solid var(--gray-700);
+  padding: 8px 0 8px 16px;
+  margin: 10px 0;
+}
+.ba-col.after .quote { border-left-color: var(--gold); color: var(--gray-100); }
+.quote .src { display: block; font-family: var(--font-display); font-style: normal; font-size: 11px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gray-dark); margin-top: 6px; }
+.verdict {
+  margin-top: auto;
+  padding-top: 16px;
+  font-family: var(--font-display);
+  font-size: 13.5px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.ba-col.before .verdict { color: var(--error); }
+.ba-col.after .verdict { color: var(--success); }
+
+/* Audit table */
+.audit { width: 100%; border-collapse: collapse; margin-top: 8px; }
+.audit th {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gray-dark); text-align: left; padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.audit td { padding: 13px 14px; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 15px; vertical-align: top; }
+.audit td.surface { font-family: var(--font-display); font-weight: 700; font-size: 15px; white-space: nowrap; }
+.audit td.evidence { color: var(--gray-mid); font-size: 14px; font-style: italic; }
+.grade {
+  font-family: var(--font-display); font-weight: 800; font-size: 15px;
+  width: 38px; height: 38px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+}
+.grade.a { background: rgba(123,196,127,0.15); color: var(--success); border: 1.5px solid var(--success); }
+.grade.b { background: rgba(212,165,116,0.12); color: var(--gold); border: 1.5px solid var(--gold); }
+.grade.c { background: rgba(153,153,153,0.1); color: var(--gray-mid); border: 1.5px solid var(--gray-mid); }
+.grade.d { background: rgba(212,100,92,0.1); color: var(--error); border: 1.5px solid var(--error); }
+.grade.f { background: rgba(212,100,92,0.2); color: var(--error); border: 2px solid var(--error); }
+
+/* Principle cards */
+.cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+.card {
+  background: var(--black-soft); border-radius: var(--radius-lg); padding: 24px;
+  border-left: 2px solid var(--gold);
+}
+.card .k { font-family: var(--font-display); font-weight: 800; font-size: 26px; color: var(--gold); margin-bottom: 8px; }
+.card h4 { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 8px; }
+.card p { font-size: 14.5px; color: var(--gray); }
+
+/* Slices */
+.slice-list { counter-reset: slice; }
+.slice {
+  display: grid; grid-template-columns: 52px 1fr auto; gap: 18px; align-items: start;
+  padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.slice-n {
+  counter-increment: slice;
+  font-family: var(--font-display); font-weight: 800; font-size: 22px; color: var(--gold);
+}
+.slice-n::before { content: counter(slice, decimal-leading-zero); }
+.slice h4 { font-family: var(--font-display); font-weight: 700; font-size: 17px; margin-bottom: 4px; }
+.slice p { font-size: 14.5px; color: var(--gray-mid); max-width: 640px; }
+.slice .effort {
+  font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--gold); border: 1px solid var(--border); border-radius: 9999px; padding: 6px 14px; white-space: nowrap;
+}
+
+.big-quote {
+  font-family: var(--font-body); font-style: italic; font-weight: 400;
+  font-size: clamp(22px, 2.6vw, 32px); line-height: 1.45; color: var(--gray-100);
+  border-left: 3px solid var(--gold); padding-left: 28px; max-width: 900px; margin: 8px 0 22px;
+}
+.attribution { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: var(--gray-dark); letter-spacing: 0.04em; }
+
+.spine-statement {
+  background: #14100C; border: 1px solid var(--gold); border-radius: var(--radius-lg);
+  padding: 30px 34px; max-width: 860px; margin-top: 30px;
+}
+.spine-statement .label { font-family: var(--font-display); font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.spine-statement .text { font-family: var(--font-display); font-weight: 700; font-size: clamp(19px, 2.2vw, 26px); line-height: 1.35; }
+.spine-statement .text em { font-family: var(--font-body); font-style: italic; color: var(--gold); font-weight: 500; }
+
+.logo { height: 30px; margin-bottom: 44px; }
+.footer-note { margin-top: 36px; font-family: var(--font-display); font-size: 13px; color: var(--gray-dark); }
+
+/* Nav */
+.nav {
+  position: fixed; bottom: 22px; right: 26px; z-index: 50; display: flex; gap: 10px; align-items: center;
+  font-family: var(--font-display);
+}
+.nav button {
+  background: var(--black-soft); color: var(--gold); border: 1px solid var(--border);
+  border-radius: var(--radius-md); width: 42px; height: 42px; font-size: 17px; cursor: pointer;
+  transition: background 0.15s;
+}
+.nav button:hover { background: #241C14; }
+.nav .counter { font-size: 12px; font-weight: 600; color: var(--gray-dark); margin-right: 6px; letter-spacing: 0.06em; }
+
+.keynote { font-family: var(--font-display); font-weight: 700; color: var(--gold); }
+
+@media (max-width: 860px) {
+  .slide { padding: 60px 6vw 80px; min-height: auto; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .cards { grid-template-columns: 1fr; }
+  .audit td.evidence { display: none; }
+  .audit th:nth-child(3) { display: none; }
+  .slice { grid-template-columns: 40px 1fr; }
+  .slice .effort { display: none; }
+  html { scroll-snap-type: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- 1 · TITLE -->
+<section class="slide" id="s1">
+  <img class="logo" src="lockup-gold-on-black.svg" alt="referna">
+  <div class="eyebrow">Product strategy — a thought exercise</div>
+  <h1>The spine of Referna is<br><em>the next client.</em><br>The product keeps forgetting it.</h1>
+  <p class="lede" style="margin-top:26px;">A before-and-after walk through every surface of the member journey — what each one says today, and what it would say if every screen, email, and meeting moved a member one step closer to a real client.</p>
+  <div class="footer-note">Internal — August 2026. Every "before" quote is taken verbatim from the live product code.</div>
+</section>
+
+<!-- 2 · THE FRAME -->
+<section class="slide" id="s2">
+  <div class="slide-num">02</div>
+  <div class="eyebrow">The frame</div>
+  <h2>Every service has a spine — the one promise everything else must ladder up to.</h2>
+  <p class="big-quote">"Figure out the spine of your service offering. Then check whether the product actually follows it — that's where most products fail."</p>
+  <div class="attribution">— the CPO frame this exercise started from</div>
+  <div class="spine-statement">
+    <div class="label">Referna's spine</div>
+    <div class="text">We help independent professionals land <em>their next client</em> by matching them into referral circles.</div>
+  </div>
+  <p class="lede" style="margin-top:26px;">The golden goose is <strong>the next client</strong>. Circles, matches, meetings, points — all of it is scaffolding. A member who sits through every ritual and never gets closer to a client has been failed, however good the meetings felt.</p>
+</section>
+
+<!-- 3 · THE AUDIT -->
+<section class="slide" id="s3">
+  <div class="slide-num">03</div>
+  <div class="eyebrow">The audit — what the product says today</div>
+  <h2>The promise is made at the door and delivered in the room.<br>It is lost everywhere in between — and after.</h2>
+  <table class="audit">
+    <tr><th>Surface</th><th>Client-alignment</th><th>Evidence (verbatim)</th></tr>
+    <tr>
+      <td class="surface">Homepage</td>
+      <td><span class="grade a">A</span></td>
+      <td class="evidence">"Your next tech client is a referral away." — the H1 itself</td>
+    </tr>
+    <tr>
+      <td class="surface">Onboarding</td>
+      <td><span class="grade b">B</span></td>
+      <td class="evidence">Maps your ideal client deeply; the give side is one optional step</td>
+    </tr>
+    <tr>
+      <td class="surface">Matches page</td>
+      <td><span class="grade c">C</span></td>
+      <td class="evidence">"12 of their clients match your ICP" — a number invented by a hash function</td>
+    </tr>
+    <tr>
+      <td class="surface">Emails</td>
+      <td><span class="grade d">D</span></td>
+      <td class="evidence">"Your 3 new recommended peers are ready" — no subject ever names a client</td>
+    </tr>
+    <tr>
+      <td class="surface">Cohort roster</td>
+      <td><span class="grade d">D</span></td>
+      <td class="evidence">"Meet whoever looks interesting." — an attendance sheet</td>
+    </tr>
+    <tr>
+      <td class="surface">Live meeting</td>
+      <td><span class="grade a">A</span></td>
+      <td class="evidence">"Name one real person you'd refer to the other." — Gordy, in every call</td>
+    </tr>
+    <tr>
+      <td class="surface">After the meeting</td>
+      <td><span class="grade f">F</span></td>
+      <td class="evidence">The named lead is recorded in the summary — then nothing ever happens to it</td>
+    </tr>
+  </table>
+</section>
+
+<!-- 4 · THE LEAK -->
+<section class="slide" id="s4">
+  <div class="slide-num">04</div>
+  <div class="eyebrow">The sharpest finding</div>
+  <h2>The product manufactures its golden goose live on every call —<br>then drops it on the floor.</h2>
+  <p class="lede">In every facilitated 1:1, Gordy pushes both members to <span class="keynote">name one real person they would refer to the other</span>. The meeting summary even records whether a real lead was named. And then: no follow-up, no tracking, no "did the intro happen?", no surface where that lead ever appears again.</p>
+  <p class="lede">This is the single highest-leverage gap in the product. The moment a member says <em>"talk to Dana at Nova — I'll introduce you tomorrow"</em> is the moment Referna's promise comes true. Today that moment has no home. The data already exists; the loop is simply never closed.</p>
+  <div class="spine-statement">
+    <div class="label">The reframe</div>
+    <div class="text">The unit of progress in Referna is not a meeting held.<br>It is <em>a client opportunity in motion.</em></div>
+  </div>
+</section>
+
+<!-- 5 · PRINCIPLES -->
+<section class="slide" id="s5">
+  <div class="slide-num">05</div>
+  <div class="eyebrow">The alignment principle</div>
+  <h2>Four rules for every surface that follows</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="k">1</div>
+      <h4>Every screen answers: which client, and what moved?</h4>
+      <p>If a page cannot say which client opportunity it advances, it is scaffolding — demote it. Faces, points, and charters are means, never the message.</p>
+    </div>
+    <div class="card">
+      <div class="k">2</div>
+      <h4>The give comes before the get</h4>
+      <p>Referral circles run on give-to-get. The mirror question — "which client need have you seen that someone else can serve?" — deserves equal billing everywhere the ask appears.</p>
+    </div>
+    <div class="card">
+      <div class="k">3</div>
+      <h4>Never fake the goose</h4>
+      <p>Where real client evidence is missing, say so honestly and go collect it. An invented "12 clients match your ICP" spends trust on the exact promise the spine depends on.</p>
+    </div>
+    <div class="card">
+      <div class="k">4</div>
+      <h4>Every interaction leaves a lead, not a rating</h4>
+      <p>The artifact of a meeting is a named opportunity with an owner and a next step — not "how did it go?". Track it to done, and the product's value becomes countable.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · ONBOARDING -->
+<section class="slide" id="s6">
+  <div class="slide-num">06</div>
+  <div class="eyebrow">Before / after · Surface 1</div>
+  <h2>Onboarding — strong on the client you want, silent on the clients you can give</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>Ten steps that map you and your ideal client</h3>
+      <div class="quote">"What does a great referral look like for you?"<span class="src">Step 4 — Ideal Referral Persona</span></div>
+      <div class="quote">"How many additional good-fit clients could you start serving in the next 3 months?"<span class="src">Step 5 — Referral Baseline</span></div>
+      <p>The take side is genuinely deep: ideal client, past client examples, trigger moments, capacity. But the give side — the fuel of every circle — is a single optional step ("What is a recent client need you could not help with directly?"), answerable with a shrug.</p>
+      <div class="verdict">The member leaves as a well-described target — not as a contributor with a book to open.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>Two first-class declarations: the client you want, the clients you can open</h3>
+      <ul>
+        <li><strong>"Name your next client."</strong> One concrete description of the client the member wants to land this quarter — the object the whole product then tracks.</li>
+        <li><strong>"Open your book."</strong> Required, structured: three client needs seen in the last 90 days that were not for you — company type, the need, how you heard. This is the inventory circles trade on.</li>
+        <li>Success screen reframed from "We've identified 3 matches" to "3 people who can shorten the path to that client."</li>
+      </ul>
+      <div class="verdict">Every member arrives with a target to chase and gives to trade — matching gets richer data, circles get fuel from day one.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · MATCHES PAGE -->
+<section class="slide" id="s7">
+  <div class="slide-num">07</div>
+  <div class="eyebrow">Before / after · Surface 2</div>
+  <h2>The matches page — faces and roles up front, the client invented or buried</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>A card about a person, not a route to a client</h3>
+      <ul>
+        <li>Lead content: photo, name, profession, timezone. The match reasoning hides in a collapsed "More context".</li>
+        <li>When real client data is missing, the card invents it: "12 of their clients match your ICP" — the number is derived from a hash of the person's name, and the "+N more" beside real client chips is fabricated too.</li>
+        <li>CTA: "I want to meet" / "Not now". Mutual selection celebrates with "It's a match" — dating-app language about the relationship, not the client.</li>
+      </ul>
+      <div class="verdict">The member is asked to want a meeting. The reason to want it — a path to a client — is either hidden, or fake.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>Every card leads with the real referral route — or an honest gap</h3>
+      <ul>
+        <li>Headline slot: the route, from real evidence only — "Serves seed-stage B2B SaaS · 3 named clients in your target market · sees your buying trigger monthly."</li>
+        <li>No evidence? Say so: "No client overlap mapped yet — one call maps it." Honesty here is the product working, not failing.</li>
+        <li>Kill the hash-count generator outright — it is trust debt on the exact promise we sell.</li>
+        <li>Match celebration: "A route to your next client just opened."</li>
+      </ul>
+      <div class="verdict">"I want to meet" becomes a decision about a client path, and every card is a claim we can stand behind.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · EMAILS -->
+<section class="slide" id="s8">
+  <div class="slide-num">08</div>
+  <div class="eyebrow">Before / after · Surface 3</div>
+  <h2>Emails — fifteen recurring templates, zero client-led subject lines</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>Every subject is about peers, meetings, and the platform</h3>
+      <ul>
+        <li>"Your 3 new recommended peers on Referna are ready"</li>
+        <li>"Someone wants to connect with you on Referna"</li>
+        <li>"You have a new match on Referna"</li>
+        <li>"The Referna community is growing" / "New peers may be waiting for you"</li>
+        <li>"How did your meeting with Ben go?"</li>
+      </ul>
+      <p>Across the entire recurring email set, no subject or opening line ever names a client, a lead, or a business outcome. The inbox — the surface members see most — sells membership upkeep, not the goose.</p>
+      <div class="verdict">The channel with the highest repeat exposure carries the weakest version of the promise.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>The client rides in the subject line</h3>
+      <ul>
+        <li>"Dana can open doors to 3 companies in your target market" — match notification, real evidence only.</li>
+        <li>"Ben named a lead for you on yesterday's call — want the intro?" — post-meeting, the named lead is the headline.</li>
+        <li>"Your intro to Nova is 6 days old — nudge it?" — opportunity follow-through, not attendance follow-up.</li>
+        <li>Inactivity nudges reference the member's own declared next-client target: "Still hunting a seed-stage CFO seat? Two new routes appeared."</li>
+      </ul>
+      <div class="verdict">Every email answers "which client, and what moved" — or it doesn't send.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · LIVE MEETING -->
+<section class="slide" id="s9">
+  <div class="slide-num">09</div>
+  <div class="eyebrow">Before / after · Surface 4</div>
+  <h2>The live meeting — the most spine-aligned surface we have. Keep it. Bank its output.</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today — mostly right</span>
+      <h3>Gordy already runs the call at the client</h3>
+      <div class="quote">"Follow my lead through a short structured session — it's what turns this into real value and future referrals, not just random networking."<span class="src">Gordy, call opener</span></div>
+      <div class="quote">"Name one real person you'd refer to the other."<span class="src">Gordy, Round 5</span></div>
+      <p>Backstory, a real client story, journey mapping, call signs ("the one clue that means: refer me"), and a named real referral. This is the spine, executed.</p>
+      <div class="verdict">One flaw: the call's outputs — call signs, named leads — evaporate when the room closes.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>Same meeting — but everything said in the room becomes product state</h3>
+      <ul>
+        <li>Each named lead is captured as a structured object before the call ends: who, for whom, promised next step, by when — Gordy confirms it out loud.</li>
+        <li>Call signs ("refer me when you see ___") are saved to the member's profile and shown on their match card and roster entry from then on.</li>
+        <li>The closing clip changes from "Gordy will reach out for your honest read" to "Gordy will check on Thursday whether the Dana intro happened."</li>
+      </ul>
+      <div class="verdict">The room stops being a performance and becomes the pipeline's intake.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 · AFTER THE MEETING -->
+<section class="slide" id="s10">
+  <div class="slide-num">10</div>
+  <div class="eyebrow">Before / after · Surface 5</div>
+  <h2>After the meeting — today we ask about the relationship, never about the lead</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>The follow-up is a membership question</h3>
+      <div class="quote">"Would you like to add Ben to your circle? Adding someone means you're open to referring them — and being referred by them."<span class="src">Post-call decision nudge</span></div>
+      <p>The recap email and nudge both drive one decision: circle membership. The summary pipeline literally records whether a real lead was named on the call — a boolean sitting in the schema — and no email, page, or reminder ever mentions that lead again.</p>
+      <div class="verdict">The one artifact that proves Referna works is collected and then abandoned.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>The follow-up is the lead's next step</h3>
+      <ul>
+        <li>Recap email leads with the exchange: "You promised Ben an intro to Dana at Nova. Ben promised you an intro to the Acme CFO."</li>
+        <li>One-tap actions: "Intro sent" / "Draft it for me" / "It fell through" — each updates the tracked opportunity.</li>
+        <li>Day-7 check: "The Dana intro hasn't moved. Want Gordy to nudge Ben?"</li>
+        <li>"Add to circle" still exists — one line, after the leads. Trust follows delivered referrals, not the other way around.</li>
+      </ul>
+      <div class="verdict">Every call now has a measurable afterlife: leads promised, intros made, clients landed.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 · COHORT ROSTER -->
+<section class="slide" id="s11">
+  <div class="slide-num">11</div>
+  <div class="eyebrow">Before / after · Surface 6</div>
+  <h2>The cohort roster — an attendance sheet that should be a referral market</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>Who showed up, and how often you've met them</h3>
+      <div class="quote">"Everyone in your Founding Cohort track. Meet whoever looks interesting."<span class="src">Page header</span></div>
+      <ul>
+        <li>Per member: photo, name, profession, a "Met 2x · last 12 days ago" pill, LinkedIn, "Schedule a 1:1".</li>
+        <li>Sections are attendance states: full members, pending, guests.</li>
+        <li>Client language exists only inside the profile modal, if the member wrote it.</li>
+      </ul>
+      <div class="verdict">"Meet whoever looks interesting" is the anti-spine: browsing people instead of chasing clients.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>An asks-and-gives board</h3>
+      <ul>
+        <li>Each member's card leads with their current ask — "hunting: seed-stage fintech needing fractional CFO" — pulled from their next-client declaration.</li>
+        <li>And their open gives: client needs they've spotted that they can't serve, visible to the room.</li>
+        <li>The roster sorts by relevance to your ask, not by attendance.</li>
+        <li>"Schedule a 1:1" becomes contextual: "Talk to Dana — her give matches your ask."</li>
+      </ul>
+      <div class="verdict">Ten seconds on the page answers "who in this room moves my next client forward — and whose client can I move?"</div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 · CIRCLE PAGE -->
+<section class="slide" id="s12">
+  <div class="slide-num">12</div>
+  <div class="eyebrow">Before / after · Surface 7</div>
+  <h2>The circle page — governance and points where the pipeline should be</h2>
+  <div class="ba-grid">
+    <div class="ba-col before">
+      <span class="ba-tag">Today</span>
+      <h3>Charter, credits, cadence</h3>
+      <ul>
+        <li>Members, open seats, and a charter: meeting frequency, DM response time, voting rules, credit values.</li>
+        <li>Points badges on every member chip.</li>
+        <li>Business value appears only after the fact — the "Referral thank-you" flow with its "Estimated value of this business" slider is the one outcome-facing moment, and it's post-hoc.</li>
+      </ul>
+      <div class="verdict">The circle's home page describes how the club runs — not what the club is producing.</div>
+    </div>
+    <div class="ba-col after">
+      <span class="ba-tag">Proposed</span>
+      <h3>The circle's shared pipeline is the page</h3>
+      <ul>
+        <li>Centerpiece: opportunities in motion — "4 intros in motion · 2 proposals out · 1 client landed this month," each with an owner and a next step.</li>
+        <li>Members ranked by referrals given, not points held — the give-first culture made visible.</li>
+        <li>The charter collapses to a settings drawer. Governance is plumbing, not the promise.</li>
+        <li>The thank-you flow stays — now it closes a tracked opportunity instead of appearing from nowhere.</li>
+      </ul>
+      <div class="verdict">A member opening the page sees the machine producing clients — or sees clearly that it isn't, which is the honest signal to fix the circle.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 · NORTH STAR -->
+<section class="slide" id="s13">
+  <div class="slide-num">13</div>
+  <div class="eyebrow">Measuring the spine</div>
+  <h2>If the spine is the next client, the north star is<br><em>time to first referred client.</em></h2>
+  <p class="lede">Everything else is an input metric on the way there — and every one of them is countable the moment leads become tracked objects:</p>
+  <div class="cards">
+    <div class="card">
+      <div class="k">L</div>
+      <h4>Leads named per meeting</h4>
+      <p>Already prompted on every call. The rate at which rooms produce real, named opportunities.</p>
+    </div>
+    <div class="card">
+      <div class="k">I</div>
+      <h4>Intros completed within 7 days</h4>
+      <p>The promise-keeping rate — the give-to-get engine's pulse, and the thing Gordy should chase.</p>
+    </div>
+    <div class="card">
+      <div class="k">C</div>
+      <h4>Leads converted to clients</h4>
+      <p>The goose itself. Reported by members through the thank-you flow that already exists.</p>
+    </div>
+    <div class="card">
+      <div class="k">T</div>
+      <h4>The member-visible tracker</h4>
+      <p>A persistent "Your next client" module on every page: "2 intros in motion · 1 proposal out." The spine, always on screen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 14 · SEQUENCING -->
+<section class="slide" id="s14">
+  <div class="slide-num">14</div>
+  <div class="eyebrow">Where to start</div>
+  <h2>Five slices, each shippable and testable on its own</h2>
+  <div class="slice-list">
+    <div class="slice">
+      <div class="slice-n"></div>
+      <div><h4>Stop faking the goose</h4>
+      <p>Remove the hash-generated client counts from match cards; show real evidence or an honest gap. Smallest change, immediate trust repair.</p></div>
+      <span class="effort">Days</span>
+    </div>
+    <div class="slice">
+      <div class="slice-n"></div>
+      <div><h4>Close the named-lead loop</h4>
+      <p>Lead named on a call becomes a tracked object with a recap email, one-tap status, and a day-7 nudge. The data already exists — this is the highest-leverage slice in the deck.</p></div>
+      <span class="effort">1–2 weeks</span>
+    </div>
+    <div class="slice">
+      <div class="slice-n"></div>
+      <div><h4>Put the client in the subject line</h4>
+      <p>Rewrite the recurring email set so every subject names a client, a lead, or a movement. Copy-level change, touches the highest-frequency surface.</p></div>
+      <span class="effort">Days</span>
+    </div>
+    <div class="slice">
+      <div class="slice-n"></div>
+      <div><h4>Asks and gives on the roster</h4>
+      <p>Add the next-client declaration and open-your-book step to onboarding; surface both on cohort and match cards. Turns rosters into markets.</p></div>
+      <span class="effort">2–3 weeks</span>
+    </div>
+    <div class="slice">
+      <div class="slice-n"></div>
+      <div><h4>The circle pipeline page</h4>
+      <p>Rebuild the circle page around opportunities in motion, with the "Your next client" tracker module rolled out product-wide.</p></div>
+      <span class="effort">3–4 weeks</span>
+    </div>
+  </div>
+  <div class="footer-note">Each slice ends with something a member can click and feel — no phase ships without a user-visible change.</div>
+</section>
+
+<div class="nav">
+  <span class="counter" id="counter">1 / 14</span>
+  <button id="prev" aria-label="Previous slide">&#8593;</button>
+  <button id="next" aria-label="Next slide">&#8595;</button>
+</div>
+
+<script>
+(function () {
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var counter = document.getElementById('counter');
+  function currentIndex() {
+    var mid = window.scrollY + window.innerHeight / 2;
+    for (var i = slides.length - 1; i >= 0; i--) {
+      if (slides[i].offsetTop <= mid) return i;
+    }
+    return 0;
+  }
+  function go(delta) {
+    var i = Math.min(slides.length - 1, Math.max(0, currentIndex() + delta));
+    slides[i].scrollIntoView({ behavior: 'smooth' });
+  }
+  document.getElementById('prev').addEventListener('click', function () { go(-1); });
+  document.getElementById('next').addEventListener('click', function () { go(1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); go(1); }
+    if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); go(-1); }
+  });
+  function update() { counter.textContent = (currentIndex() + 1) + ' / ' + slides.length; }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>
