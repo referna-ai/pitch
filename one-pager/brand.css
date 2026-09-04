@@ -1,23 +1,10 @@
-/* Shared brand tokens — mirrors v6/styles.css */
+/* Tokens come from the canonical Referna brand.css at the repo root.
+   Do not redeclare colour, font or shape tokens here — edit shared/brand.css. */
+@import url("../shared/brand.css");
+
 :root {
-  --black: #0D0D0D;
-  --gold: #D4A574;
-  --gold-soft: rgba(212, 165, 116, 0.10);
   --gold-line: rgba(212, 165, 116, 0.25);
   --gold-faint: rgba(212, 165, 116, 0.06);
-  --white: #FFFFFF;
-  --cream: #FAF6F1;
-  --cream-mid: #ECE5DA;
-  --gray-100: #F5F5F5;
-  --gray: #D1D1D1;
-  --gray-mid: #999999;
-  --gray-dark: #737373;
-  --gray-700: #404040;
-  --black-soft: #1A1A1A;
-  --black-mid: #111111;
-  --border: rgba(212, 165, 116, 0.25);
-  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'IBM Plex Serif', Georgia, serif;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
