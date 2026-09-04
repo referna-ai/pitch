@@ -1,0 +1,49 @@
+/* Referna brand tokens — single source of truth.
+   Mirrored into live-meeting-agent/public/brand.css and pitch/shared/brand.css.
+   Those copies are diff-checked in CI; edit this file, then run scripts/sync-brand-css.sh. */
+
+:root {
+  --black: #0D0D0D;
+  --black-mid: #111111;
+  --black-soft: #1A1A1A;
+  --gold: #D4A574;
+  --gold-soft: #F2C998;
+  --gold-dim: rgba(212, 165, 116, 0.6);
+  --white: #FFFFFF;
+  --gray-100: #F5F5F5;
+  --gray: #D1D1D1;
+  --gray-mid: #999999;
+  --gray-dark: #868686;
+  --gray-700: #404040;
+  --success: #7BC47F;
+  --error: #D4645C;
+  --border: rgba(212, 165, 116, 0.25);
+  --border-hover: rgba(212, 165, 116, 0.5);
+
+  --font-display: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'IBM Plex Serif', Georgia, serif;
+
+  --max-w: 1000px;
+  --max-w-narrow: 680px;
+  --shadow-dropdown: 0 4px 16px rgba(0, 0, 0, 0.45);
+
+  /* Shape language — see docs/BRAND.md "Shape Language".
+     Five shapes total. Shape encodes hierarchy, not decoration. */
+  --radius-sm: 4px;      /* tiny chips, inline code */
+  --radius-md: 8px;      /* every non-primary button, nested surfaces, inputs, tooltips */
+  --radius-lg: 16px;     /* modals, panels, standard cards */
+  --radius-pill: 9999px; /* state + selection only, never a commit action */
+  --radius-circle: 50%;  /* avatars when circular, toggle thumbs */
+
+  /* The leaf is the only brand-owned shape: top-left and bottom-right rounded,
+     top-right and bottom-left square. It has the same 180-degree rotational
+     symmetry as the symmetric f in the mark. Exactly two sizes.
+     Orientation is fixed — never mirrored for RTL, same as the logo. */
+  --leaf-sm: 10px 0 10px 0; /* primary action, avatars/portrait frames, controls up to ~64px */
+  --leaf-lg: 18px 0 18px 0; /* the one hero container that is the point of the page */
+}
+
+/* At most one leaf per visual group: a leaf never nests inside a leaf.
+   Leaf card + rounded button, or rounded card + leaf button — never both. */
+.leaf-sm { border-radius: var(--leaf-sm); }
+.leaf-lg { border-radius: var(--leaf-lg); }

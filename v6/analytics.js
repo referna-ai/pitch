@@ -137,13 +137,13 @@
     o.id = 'pan-overlay';
     o.style.cssText = 'position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;background:rgba(13,13,13,0.85);backdrop-filter:blur(8px)';
     o.innerHTML = [
-      '<div style="background:#111;border:1px solid #D4A574;border-radius:16px;padding:36px 32px;',
+      '<div style="background:#111;border:1px solid #D4A574;border-radius:var(--radius-lg);padding:36px 32px;',
         'max-width:360px;width:calc(100% - 48px);font-family:Manrope,sans-serif;text-align:center">',
         '<div style="font-size:11px;color:#D4A574;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px">Referna</div>',
         '<h2 style="color:#fff;font-size:20px;font-weight:700;margin:0 0 8px">Who are you?</h2>',
         '<p style="color:#777;font-size:14px;line-height:1.5;margin:0 0 24px">Your name lets the founders know who\'s reviewing this deck.</p>',
-        '<input id="pan-inp" type="text" placeholder="Your name" autocomplete="name" style="width:100%;box-sizing:border-box;background:#0d0d0d;border:1px solid #333;color:#fff;padding:12px 14px;border-radius:8px;font-size:15px;font-family:inherit;outline:none;margin-bottom:16px;transition:border-color .2s">',
-        '<button id="pan-go" style="width:100%;padding:11px;background:#D4A574;border:none;color:#000;border-radius:8px;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit">Continue \u2192</button>',
+        '<input id="pan-inp" type="text" placeholder="Your name" autocomplete="name" style="width:100%;box-sizing:border-box;background:#0d0d0d;border:1px solid #333;color:#fff;padding:12px 14px;border-radius:var(--radius-md);font-size:15px;font-family:inherit;outline:none;margin-bottom:16px;transition:border-color .2s">',
+        '<button id="pan-go" style="width:100%;padding:11px;background:#D4A574;border:none;color:#000;border-radius:var(--leaf-sm);cursor:pointer;font-size:14px;font-weight:700;font-family:inherit">Continue \u2192</button>',
       '</div>'
     ].join('');
     document.body.appendChild(o);
