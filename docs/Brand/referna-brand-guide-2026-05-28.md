@@ -207,6 +207,13 @@ Two checks, and they answer different questions:
   This is the only check that catches a card wearing the button radius, a pill on
   a commit action, or a leaf inside a leaf. It needs a running server, so it
   cannot run in CI - run it against local dev before marking a PR ready.
+- `npm run check:colors [<path> ...]` - static, the colour equivalent of
+  check:radius. Fails on a hex/rgb literal whose (r,g,b) doesn't match any real
+  token in this file - `rgba(212,165,116,0.08)` is a legitimate custom-opacity
+  wash of `--gold` and passes, `#f6d3a5` is an invented "lighter gold" and
+  fails. Not CI-gated: a pre-existing site-wide backlog of non-shape colour
+  literals exists, so scope it to the files a diff actually touches rather than
+  the whole tree, e.g. `npm run check:colors public/onboarding/index.html`.
 
 A text grep cannot do the second one: role only exists at runtime.
 
